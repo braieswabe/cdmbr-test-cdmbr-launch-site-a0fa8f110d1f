@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { NavBar } from "@/components/NavBar";
-import { Footer } from "@/components/Footer";
+```typescript
+import { ReactNode } from 'react';
+import { NavBar } from '@/components/NavBar';
+import { Footer } from '@/components/Footer';
 
-export const metadata: Metadata = {
-  title: "CDMBR Launch Site",
-  description: "Welcome to the CDMBR Launch Site. Explore our services and case studies.",
+export const metadata = {
+  title: 'Professional Website',
+  description: 'Your partner in innovative solutions.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
@@ -19,3 +19,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+```

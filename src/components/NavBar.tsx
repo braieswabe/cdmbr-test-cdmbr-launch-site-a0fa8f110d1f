@@ -1,26 +1,25 @@
-"use client";
+```typescript
+import { FC } from 'react';
+import Link from 'next/link';
 
-import Link from "next/link";
-import { useState } from "react";
-
-export function NavBar() {
-  const [open, setOpen] = useState(false);
-
+export const NavBar: FC = () => {
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <Link href="/" className="text-2xl font-bold text-gray-900">Brand</Link>
-          <button onClick={() => setOpen(!open)} className="md:hidden">
-            {open ? "Close" : "Menu"}
-          </button>
-          <div className={`md:flex ${open ? "block" : "hidden"}`}>
-            <Link href="/services" className="px-4 py-2 text-gray-700">Services</Link>
-            <Link href="/case-studies" className="px-4 py-2 text-gray-700">Case Studies</Link>
-            <Link href="/contact" className="px-4 py-2 text-gray-700">Contact</Link>
-          </div>
+    <nav className="sticky top-0 bg-white shadow-md backdrop-blur-md z-10">
+      <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
+        <div className="text-xl font-bold">Professional Website</div>
+        <div className="hidden md:flex space-x-4">
+          {["Home", "About Us", "Our Services", "Pricing Plans", "Contact Us", "Blog", "Our Work", "Frequently Asked Questions", "Client Testimonials", "Careers", "Product Features"].map((link) => (
+            <Link key={link} href={`/${link.replace(/\s+/g, '-').toLowerCase()}`} className="hover:text-[#2563eb] transition">
+              {link}
+            </Link>
+          ))}
+        </div>
+        <div className="md:hidden">
+          {/* Mobile Hamburger Menu Placeholder */}
+          <button className="focus:outline-none">☰</button>
         </div>
       </div>
     </nav>
   );
-}
+};
+```
