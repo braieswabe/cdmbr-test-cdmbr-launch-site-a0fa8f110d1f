@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "CDMBR Launch Site",
-  description: "Welcome to the CDMBR launch site. Explore our services and case studies.",
+  description: "Welcome to the CDMBR Launch Site. Explore our services and case studies.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <NavBar />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

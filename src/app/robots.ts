@@ -5,8 +5,10 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: {
-      UserAgent: "*",
-      Disallow: "/api/",
+      userAgent: "*",
+      allow: "/",
+      disallow: "/private",
+      crawlDelay: 10,
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   };
