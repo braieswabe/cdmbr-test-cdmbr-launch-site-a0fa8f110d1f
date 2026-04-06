@@ -5,69 +5,70 @@ export const metadata: Metadata = {
   description: "Learn more about portfolio",
 };
 
-import { FC } from 'react';
-import Hero from '@/components/Hero';
-import CTABanner from '@/components/CTABanner';
-import FeatureCard from '@/components/FeatureCard';
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
+import { Hero } from "@/components/Hero";
+import { CTABanner } from "@/components/CTABanner";
+import { FeatureCard } from "@/components/FeatureCard";
+import Image from "next/image";
 
 const projects = [
   {
-    title: 'Project Alpha',
-    description: 'A cutting-edge web application that streamlines business processes.',
-    tags: ['Web Development', 'SaaS'],
-    imageUrl: '/images/project-alpha.jpg',
+    title: "E-commerce Website",
+    description: "A fully responsive e-commerce platform with a sleek design.",
+    tags: ["E-commerce", "Web Development"],
+    image: "/images/ecommerce.png",
   },
   {
-    title: 'Project Beta',
-    description: 'An innovative mobile app designed for productivity.',
-    tags: ['Mobile Development', 'Productivity'],
-    imageUrl: '/images/project-beta.jpg',
+    title: "Portfolio Site",
+    description: "A personal portfolio showcasing creative work and projects.",
+    tags: ["Portfolio", "Design"],
+    image: "/images/portfolio.png",
   },
   {
-    title: 'Project Gamma',
-    description: 'A robust e-commerce platform with seamless user experience.',
-    tags: ['E-commerce', 'UX/UI'],
-    imageUrl: '/images/project-gamma.jpg',
+    title: "Blog Platform",
+    description: "A modern blog platform with user-friendly features.",
+    tags: ["Blog", "CMS"],
+    image: "/images/blog.png",
   },
   {
-    title: 'Project Delta',
-    description: 'A data analytics tool that provides actionable insights.',
-    tags: ['Data Science', 'Analytics'],
-    imageUrl: '/images/project-delta.jpg',
+    title: "Corporate Website",
+    description: "A professional corporate site with a focus on branding.",
+    tags: ["Corporate", "Web Development"],
+    image: "/images/corporate.png",
   },
   {
-    title: 'Project Epsilon',
-    description: 'A social networking site that connects like-minded individuals.',
-    tags: ['Social Media', 'Community'],
-    imageUrl: '/images/project-epsilon.jpg',
+    title: "Landing Page",
+    description: "An engaging landing page designed to convert visitors.",
+    tags: ["Landing Page", "Marketing"],
+    image: "/images/landing.png",
   },
   {
-    title: 'Project Zeta',
-    description: 'A comprehensive learning management system for educational institutions.',
-    tags: ['Education', 'E-learning'],
-    imageUrl: '/images/project-zeta.jpg',
+    title: "Mobile App",
+    description: "A cross-platform mobile application for seamless user experience.",
+    tags: ["Mobile", "App Development"],
+    image: "/images/mobile.png",
   },
 ];
 
-const PortfolioPage: FC = () => {
+export default function PortfolioPage() {
   return (
-    <div className="flex flex-col">
-      <NavBar />
-      <Hero title="Our Portfolio" subtitle="Showcasing our successful projects" />
-      <section className="py-12 px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Project Gallery</h2>
+    <main className="flex flex-col items-center">
+      <Hero title="Our Portfolio" subtitle="Showcasing our expertise and quality of work." />
+      <section className="w-full max-w-6xl p-4">
+        <h2 className="text-3xl font-bold mb-6">Project Gallery</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <FeatureCard key={index} title={project.title} description={project.description} imageUrl={project.imageUrl} tags={project.tags} />
+            <div key={index} className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Image src={project.image} alt={project.title} width={400} height={300} className="w-full h-48 object-cover" />
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-xl font-semibold">{project.title}</h3>
+                <p className="text-center">{project.description}</p>
+                <p className="mt-2">{project.tags.join(", ")}</p>
+              </div>
+            </div>
           ))}
         </div>
       </section>
-      <CTABanner title="Ready to start your project?" subtitle="Contact us today to discuss your needs." />
-      <Footer />
-    </div>
+      <CTABanner title="Ready to Start Your Project?" subtitle="Contact us today to discuss your needs." />
+    </main>
   );
-};
-
-export default PortfolioPage;
+}

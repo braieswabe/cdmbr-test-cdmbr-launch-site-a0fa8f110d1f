@@ -1,72 +1,64 @@
 'use client';
 
-import { FC, useState } from 'react';
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
-import CTABanner from '@/components/CTABanner';
+import { useState } from "react";
+import { CTABanner } from "@/components/CTABanner";
 
-const questionsAndAnswers = [
+const faqs = [
   {
-    question: 'What services do you offer?',
-    answer: 'We provide a range of services including web development, mobile app development, and digital marketing.',
+    question: "What services do you offer?",
+    answer: "We offer a range of services including web development, design, and digital marketing.",
   },
   {
-    question: 'How can I get a quote?',
-    answer: 'You can request a quote by filling out our contact form, and we will get back to you shortly.',
+    question: "How long does a project take?",
+    answer: "Project timelines vary based on complexity, but we always aim to meet deadlines.",
   },
   {
-    question: 'What is your project turnaround time?',
-    answer: 'Our project turnaround time varies based on complexity, but we strive to deliver within agreed timelines.',
+    question: "Can you work with existing websites?",
+    answer: "Yes, we can enhance and optimize your existing website.",
   },
   {
-    question: 'Do you offer support after project completion?',
-    answer: 'Yes, we offer ongoing support and maintenance for all our projects.',
+    question: "What is your pricing model?",
+    answer: "We offer transparent pricing based on project scope and requirements.",
   },
   {
-    question: 'Can I see examples of your previous work?',
-    answer: 'Absolutely! You can view our portfolio to see our past projects.',
+    question: "Do you provide support after launch?",
+    answer: "Absolutely! We offer ongoing support and maintenance services.",
   },
   {
-    question: 'What payment methods do you accept?',
-    answer: 'We accept various payment methods including credit cards, PayPal, and bank transfers.',
+    question: "How can I get a quote?",
+    answer: "You can contact us through our website to get a personalized quote.",
   },
   {
-    question: 'How do you ensure project quality?',
-    answer: 'We follow a rigorous quality assurance process to ensure that every project meets our high standards.',
+    question: "What technologies do you use?",
+    answer: "We use modern technologies like React, Next.js, and Tailwind CSS.",
   },
   {
-    question: 'What if I have more questions?',
-    answer: 'Feel free to reach out through our contact form, and we will be happy to assist you.',
+    question: "Can I see your previous work?",
+    answer: "Yes, you can check our portfolio for examples of our work.",
   },
 ];
 
-const FAQPage: FC = () => {
+export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const toggleQuestion = (index: number) => {
+  const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="flex flex-col">
-      <NavBar />
-      <section className="py-12 px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-        <div className="space-y-4">
-          {questionsAndAnswers.map((item, index) => (
-            <div key={index} className="border-b py-2">
-              <button onClick={() => toggleQuestion(index)} className="w-full text-left text-lg font-semibold">
-                {item.question}
-              </button>
-              {openIndex === index && <p className="mt-2 text-gray-700">{item.answer}</p>}
-            </div>
-          ))}
-        </div>
+    <main className="flex flex-col items-center">
+      <h1 className="text-4xl font-bold mb-6">Frequently Asked Questions</h1>
+      <section className="w-full max-w-2xl p-4">
+        {faqs.map((faq, index) => (
+          <div key={index} className="border-b border-gray-300 py-4">
+            <button onClick={() => toggleFAQ(index)} className="w-full text-left text-lg font-semibold focus:outline-none">
+              {faq.question}
+            </button>
+            {openIndex === index && <p className="mt-2 text-gray-700">{faq.answer}</p>}
+          </div>
+        ))}
       </section>
-      <CTABanner title="Still have questions?" subtitle="Contact us for more information!" />
-      <Footer />
-    </div>
+      <CTABanner title="Still Have Questions?" subtitle="Reach out to us for more information!" />
+    </main>
   );
-};
-
-export default FAQPage;
+}

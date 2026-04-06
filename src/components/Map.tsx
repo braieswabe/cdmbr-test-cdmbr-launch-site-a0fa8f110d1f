@@ -1,12 +1,12 @@
-import React from 'react';
+import { FC } from 'react';
 
 interface MapProps {
   location: string;
 }
 
-export const Map: React.FC<MapProps> = ({ location }) => {
+export const Map: FC<MapProps> = ({ location }) => {
   return (
-    <div className="w-full h-64 rounded-lg overflow-hidden shadow-lg">
+    <div className="w-full h-64 bg-gray-200 rounded-lg">
       <iframe
         src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${location}`}
         width="100%"
@@ -14,7 +14,7 @@ export const Map: React.FC<MapProps> = ({ location }) => {
         style={{ border: 0 }}
         allowFullScreen
         loading="lazy"
-      ></iframe>
+      />
     </div>
   );
 };

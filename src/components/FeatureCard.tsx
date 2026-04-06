@@ -6,14 +6,12 @@ interface FeatureCardProps {
   description: string;
 }
 
-const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description }) => {
+export const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition">
-      <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p>{description}</p>
+    <div className="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition">
+      <div className="text-3xl">{icon}</div>
+      <h3 className="mt-4 text-xl font-semibold">{title}</h3>
+      <p className="mt-2">{description}</p>
     </div>
   );
 };
-
-export default FeatureCard;

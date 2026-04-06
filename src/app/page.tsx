@@ -5,68 +5,45 @@ export const metadata: Metadata = {
   description: "Learn more about app",
 };
 
-import { Hero } from '@/components/Hero';
-import { CTABanner } from '@/components/CTABanner';
-import { FeatureCard } from '@/components/FeatureCard';
-import { TestimonialCard } from '@/components/TestimonialCard';
-import { NavBar } from '@/components/NavBar';
-import { Footer } from '@/components/Footer';
+import { Hero } from "@/components/Hero";
+import { CTABanner } from "@/components/CTABanner";
+import { FeatureCard } from "@/components/FeatureCard";
+import { TestimonialCard } from "@/components/TestimonialCard";
 
 const HomePage = () => {
   return (
-    <>
-      <NavBar />
-      <Hero 
-        headline="Transform Your Business Today"
-        subtitle="Join us in revolutionizing your workflow with our innovative solutions."
+    <main className="flex flex-col items-center">
+      <Hero
+        title="Empowering Your Business with Innovative Solutions"
+        subtitle="Transforming ideas into reality with our expert services."
         cta1Text="Get Started"
         cta1Link="/contact"
         cta2Text="Learn More"
         cta2Link="/services"
       />
-      <section className="py-16 bg-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Key Features</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard title="User-Friendly Interface" description="Navigate effortlessly with our intuitive design." />
-            <FeatureCard title="Robust Security" description="Your data is safe with our top-notch security protocols." />
-            <FeatureCard title="24/7 Support" description="Our team is here to assist you anytime, anywhere." />
-          </div>
+      <section className="py-16 px-4 max-w-7xl w-full">
+        <h2 className="text-3xl font-bold text-center mb-8">Our Key Features</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <FeatureCard title="Custom Solutions" description="Tailored services to meet your unique needs." />
+          <FeatureCard title="Expert Team" description="A dedicated team of professionals at your service." />
+          <FeatureCard title="24/7 Support" description="Always here to assist you, day or night." />
         </div>
       </section>
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">What Our Clients Say</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TestimonialCard 
-              name="Jane Doe"
-              position="CEO, Company A"
-              testimonial="This service has transformed our operations. Highly recommend!"
-              image="/images/jane.jpg"
-            />
-            <TestimonialCard 
-              name="John Smith"
-              position="CTO, Company B"
-              testimonial="Exceptional quality and support. A game changer for our team."
-              image="/images/john.jpg"
-            />
-            <TestimonialCard 
-              name="Emily Johnson"
-              position="Marketing Director, Company C"
-              testimonial="The results speak for themselves. We couldn't be happier!"
-              image="/images/emily.jpg"
-            />
-          </div>
+      <section className="py-16 px-4 max-w-7xl w-full">
+        <h2 className="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <TestimonialCard quote="This team transformed our business!" author="Jane Doe, CEO of TechCorp" />
+          <TestimonialCard quote="Exceptional service and support." author="John Smith, Founder of StartUp" />
+          <TestimonialCard quote="Highly recommend their services!" author="Emily Johnson, Marketing Director" />
         </div>
       </section>
-      <CTABanner 
+      <CTABanner
         title="Ready to Elevate Your Business?"
-        description="Join us today and see the difference."
-        ctaText="Contact Us"
+        subtitle="Join us today and start your journey."
+        ctaText="Sign Up Now"
         ctaLink="/contact"
       />
-      <Footer />
-    </>
+    </main>
   );
 };
 

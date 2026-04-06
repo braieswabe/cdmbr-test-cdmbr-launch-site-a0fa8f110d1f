@@ -1,22 +1,20 @@
 import { ReactNode } from 'react';
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
+import { NavBar } from '@/components/NavBar';
+import { Footer } from '@/components/Footer';
 
 export const metadata = {
   title: 'Professional Website',
-  description: 'Your partner in innovative solutions.',
+  description: 'Your go-to solution for modern SaaS applications.',
 };
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-white text-gray-800">
+      <body>
         <NavBar />
-        <main>{children}</main>
+        {children}
         <Footer />
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

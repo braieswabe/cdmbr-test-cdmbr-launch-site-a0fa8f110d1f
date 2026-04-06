@@ -1,17 +1,17 @@
-import React from 'react';
+import { FC } from 'react';
 
 interface BlogPostCardProps {
   title: string;
-  excerpt: string;
+  summary: string;
   date: string;
 }
 
-export const BlogPostCard: React.FC<BlogPostCardProps> = ({ title, excerpt, date }) => {
+export const BlogPostCard: FC<BlogPostCardProps> = ({ title, summary, date }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition">
+    <div className="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition">
       <h3 className="text-xl font-semibold">{title}</h3>
-      <p className="text-gray-600">{excerpt}</p>
-      <span className="text-gray-400">{date}</span>
+      <p className="mt-2">{summary}</p>
+      <p className="mt-4 text-gray-500">{date}</p>
     </div>
   );
 };

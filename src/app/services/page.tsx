@@ -5,47 +5,39 @@ export const metadata: Metadata = {
   description: "Learn more about services",
 };
 
-import { NavBar } from '@/components/NavBar';
-import { FeatureCard } from '@/components/FeatureCard';
-import { CTABanner } from '@/components/CTABanner';
-import { Footer } from '@/components/Footer';
+import { Hero } from "@/components/Hero";
+import { FeatureCard } from "@/components/FeatureCard";
 
 const ServicesPage = () => {
   return (
-    <>
-      <NavBar />
-      <section className="py-16 bg-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Our Services</h2>
-          <p className="mb-8">We offer a range of services designed to help your business succeed.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard title="Consulting" description="Expert advice to optimize your business strategy." />
-            <FeatureCard title="Software Development" description="Custom software solutions tailored to your needs." />
-            <FeatureCard title="Digital Marketing" description="Boost your online presence with our marketing strategies." />
+    <main className="flex flex-col items-center">
+      <Hero title="Our Services" />
+      <section className="py-16 px-4 max-w-7xl w-full">
+        <h2 className="text-2xl font-bold mb-4">What We Offer</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <FeatureCard title="Web Development" description="Building responsive and user-friendly websites." />
+          <FeatureCard title="Mobile App Development" description="Creating intuitive mobile applications." />
+          <FeatureCard title="Digital Marketing" description="Boosting your online presence through effective strategies." />
+        </div>
+      </section>
+      <section className="py-16 px-4 max-w-7xl w-full">
+        <h2 className="text-2xl font-bold mb-4">Case Studies</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="border rounded-lg p-4">
+            <h3 className="font-semibold">E-commerce Platform</h3>
+            <p>Developed a fully functional e-commerce platform that increased sales by 30%.</p>
+          </div>
+          <div className="border rounded-lg p-4">
+            <h3 className="font-semibold">Mobile App for Fitness</h3>
+            <p>Created a mobile app that helped users track their fitness goals effectively.</p>
+          </div>
+          <div className="border rounded-lg p-4">
+            <h3 className="font-semibold">SEO Optimization</h3>
+            <p>Implemented SEO strategies that improved website traffic by 50%.</p>
           </div>
         </div>
       </section>
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">How We Work</h2>
-          <ol className="list-decimal pl-5 mb-8">
-            <li className="mb-2">Understand your needs through consultation.</li>
-            <li className="mb-2">Develop a tailored strategy for your business.</li>
-            <li className="mb-2">Implement solutions with our expert team.</li>
-            <li className="mb-2">Monitor progress and optimize as needed.</li>
-            <li className="mb-2">Provide ongoing support and updates.</li>
-          </ol>
-          <p>If you’re interested in learning more about our services, feel free to reach out!</p>
-        </div>
-      </section>
-      <CTABanner 
-        title="Get in Touch"
-        description="Ready to take the next step? Contact us today!"
-        ctaText="Contact Us"
-        ctaLink="/contact"
-      />
-      <Footer />
-    </>
+    </main>
   );
 };
 

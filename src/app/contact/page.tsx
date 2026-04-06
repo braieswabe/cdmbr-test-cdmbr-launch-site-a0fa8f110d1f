@@ -1,12 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { ContactForm } from '@/components';
+import { ContactForm, Map, NavBar, Footer } from '@/components';
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -17,23 +22,26 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-center mb-8">Get in Touch</h1>
-      <p className="text-lg text-center mb-12">
-        We’d love to hear from you! Reach out with any questions or inquiries.
-      </p>
-      <ContactForm formData={formData} onInputChange={handleInputChange} onSubmit={handleSubmit} />
-      <div className="mt-12 text-center">
-        <h2 className="text-2xl font-semibold">Our Location</h2>
-        <p className="text-lg">123 Business Rd, Suite 100, City, State, 12345</p>
-        <p className="text-lg">Mon-Fri: 9 AM - 5 PM</p>
-        <div className="mt-4">
-          <a href="tel:+1234567890" className="text-blue-500">+1 (234) 567-890</a>
-          <span className="mx-2">|</span>
-          <a href="mailto:info@business.com" className="text-blue-500">info@business.com</a>
+    <div className="flex flex-col">
+      <NavBar />
+      <section className="py-10">
+        <h1 className="text-3xl font-bold text-center">Get in Touch</h1>
+        <p className="text-center mt-2">We'd love to hear from you!</p>
+      </section>
+      <ContactForm formData={formData} onChange={handleChange} onSubmit={handleSubmit} />
+      <section className="py-10">
+        <h2 className="text-2xl font-semibold text-center">Our Location</h2>
+        <p className="text-center mt-2">123 Business Rd, Business City, BC 12345</p>
+        <p className="text-center">Office Hours: Mon-Fri, 9 AM - 5 PM</p>
+        <p className="text-center">
+          <a href="tel:+1234567890" className="text-blue-500">+1 (234) 567-890</a> | 
+          <a href="mailto:info@business.com" className="text-blue-500"> info@business.com</a>
+        </p>
+        <div className="mt-6">
+          <Map />
         </div>
-        <div className="mt-8 h-64 bg-gray-200 rounded-lg">Map Placeholder</div>
-      </div>
+      </section>
+      <Footer />
     </div>
   );
 };

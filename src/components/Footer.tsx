@@ -1,36 +1,38 @@
 import { FC } from 'react';
 
-const Footer: FC = () => {
+export const Footer: FC = () => {
   return (
-    <footer className="bg-gray-800 text-white py-10">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <footer className="bg-gray-800 text-white p-6">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <h4 className="font-bold mb-2">Professional Website</h4>
-          <p>Your partner in innovative solutions.</p>
+          <h2 className="text-lg font-bold">Professional Website</h2>
+          <p>Your trusted partner in modern SaaS solutions.</p>
         </div>
         <div>
-          <h4 className="font-bold mb-2">Quick Links</h4>
+          <h3 className="font-semibold">Quick Links</h3>
           <ul>
-            {["Home", "About Us", "Our Services", "Pricing", "Contact Us", "Blog", "Portfolio", "FAQ", "Testimonials", "Careers"].map(link => (
+            {["Home", "About Us", "Our Services", "Pricing", "Contact Us", "Blog", "Portfolio", "FAQ", "Testimonials", "Careers"].map((link) => (
               <li key={link}>
-                <a href={`/${link.replace(/\s+/g, '-').toLowerCase()}`} className="hover:underline">{link}</a>
+                <a href={`/${link.replace(/\s+/g, '-').toLowerCase()}`} className="text-gray-400 hover:text-white transition">
+                  {link}
+                </a>
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <h4 className="font-bold mb-2">Newsletter Signup</h4>
-          <form>
-            <input type="email" placeholder="Your Email" className="border p-2 mb-2 w-full" required />
-            <button type="submit" className="bg-accent text-white py-2 px-4 rounded hover:bg-opacity-80 transition">Subscribe</button>
+          <h3 className="font-semibold">Newsletter Signup</h3>
+          <form className="mt-4">
+            <input type="email" placeholder="Your email" className="border rounded w-full p-2" />
+            <button type="submit" className="mt-2 bg-accent text-white py-2 px-4 rounded hover:bg-opacity-80 transition">
+              Subscribe
+            </button>
           </form>
         </div>
       </div>
-      <div className="text-center text-gray-400 mt-4">
-        &copy; {new Date().getFullYear()} Professional Website. All rights reserved.
+      <div className="text-center mt-6">
+        <p>&copy; {new Date().getFullYear()} Professional Website. All rights reserved.</p>
       </div>
     </footer>
   );
 };
-
-export default Footer;
