@@ -1,15 +1,16 @@
 import React from 'react';
+import Link from 'next/link';
 
 const NavBar: React.FC = () => {
   return (
-    <nav className="bg-blue-500 p-4">
+    <nav className="bg-gray-800 p-4">
       <ul className="flex space-x-4">
-        <li><a href="/" className="text-white">Home</a></li>
-        <li><a href="/about" className="text-white">About</a></li>
-        <li><a href="/services" className="text-white">Services</a></li>
-        <li><a href="/portfolio" className="text-white">Portfolio</a></li>
-        <li><a href="/pricing" className="text-white">Pricing</a></li>
-        <li><a href="/contact" className="text-white">Contact</a></li>
+        <li><Link href="/">Home</Link></li>
+        <li><Link href="/about">About</Link></li>
+        <li><Link href="/services">Services</Link></li>
+        <li><Link href="/portfolio">Portfolio</Link></li>
+        <li><Link href="/pricing">Pricing</Link></li>
+        <li><Link href="/contact">Contact</Link></li>
       </ul>
     </nav>
   );

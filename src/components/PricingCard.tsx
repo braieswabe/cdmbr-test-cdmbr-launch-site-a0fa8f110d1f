@@ -11,13 +11,13 @@ const PricingCard: React.FC<PricingCardProps> = ({ name, price, features, recomm
   return (
     <div className={`border rounded-lg p-4 shadow-md ${recommended ? 'border-blue-500' : ''}`}>
       <h3 className="font-semibold text-lg">{name}</h3>
-      <p className="text-xl font-bold">${price}</p>
+      <p className="text-2xl font-bold">${price}</p>
       <ul className="mt-2">
         {features.map((feature, index) => (
-          <li key={index} className="list-disc pl-5">{feature}</li>
+          <li key={index} className="list-disc">{feature}</li>
         ))}
       </ul>
-      {recommended && <p className="text-blue-500 mt-2">Recommended</p>}
+      {recommended && <p className="text-blue-500">Recommended</p>}
     </div>
   );
 };

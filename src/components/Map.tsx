@@ -4,7 +4,7 @@ const Map: React.FC = () => {
   return (
     <div className="h-64 bg-gray-200">
       {/* Placeholder for map */}
-      <p className="text-center">Map Placeholder</p>
+      <p className="text-center p-4">Map Placeholder</p>
     </div>
   );
 };
