@@ -20,7 +20,3 @@ const CTABanner: FC<CTABannerProps> = ({ headline, description, buttonText, butt
 };
 
 export default CTABanner;
-
-export function CTABanner() {
-  return <div className="max-w-7xl mx-auto px-4 py-6">CTABanner</div>;
-}
