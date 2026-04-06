@@ -1,23 +1,21 @@
-import React from 'react';
+import { FC } from 'react';
 
 interface PricingCardProps {
-  name: string;
-  price: number;
+  title: string;
+  price: string;
   features: string[];
-  recommended?: boolean;
 }
 
-const PricingCard: React.FC<PricingCardProps> = ({ name, price, features, recommended }) => {
+const PricingCard: FC<PricingCardProps> = ({ title, price, features }) => {
   return (
-    <div className={`border rounded-lg p-4 shadow-md ${recommended ? 'border-blue-500' : ''}`}>
-      <h3 className="font-semibold text-lg">{name}</h3>
-      <p className="text-2xl font-bold">${price}</p>
-      <ul className="mt-2">
+    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition">
+      <h3 className="text-xl font-semibold">{title}</h3>
+      <p className="mt-2 text-2xl font-bold">{price}</p>
+      <ul className="mt-4 space-y-2">
         {features.map((feature, index) => (
-          <li key={index} className="list-disc">{feature}</li>
+          <li key={index} className="text-gray-600">- {feature}</li>
         ))}
       </ul>
-      {recommended && <p className="text-blue-500">Recommended</p>}
     </div>
   );
 };

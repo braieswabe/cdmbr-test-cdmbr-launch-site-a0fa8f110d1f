@@ -1,11 +1,10 @@
-export * from './BlogPostCard';
+export * from './BlogPostPreview';
 export * from './CTABanner';
 export * from './ContactForm';
 export * from './FeatureCard';
 export * from './Footer';
 export * from './Hero';
-export * from './Map';
 export * from './NavBar';
+export * from './PortfolioItem';
 export * from './PricingCard';
 export * from './TestimonialCard';
-export function FAQSection() { return <div>FAQSection</div>; }

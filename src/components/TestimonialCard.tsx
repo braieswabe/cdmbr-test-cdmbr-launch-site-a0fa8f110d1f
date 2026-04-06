@@ -1,17 +1,17 @@
-import React from 'react';
+import { FC } from 'react';
 
 interface TestimonialCardProps {
-  name: string;
-  feedback: string;
-  rating: number;
+  icon: JSX.Element;
+  title: string;
+  description: string;
 }
 
-const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, feedback, rating }) => {
+const TestimonialCard: FC<TestimonialCardProps> = ({ icon, title, description }) => {
   return (
-    <div className="border rounded-lg p-4 shadow-md">
-      <h3 className="font-semibold">{name}</h3>
-      <p>{feedback}</p>
-      <p className="text-yellow-500">Rating: {rating} ★</p>
+    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition">
+      <div className="text-4xl text-primary">{icon}</div>
+      <h3 className="mt-2 text-xl font-semibold">{title}</h3>
+      <p className="mt-1 text-gray-600">{description}</p>
     </div>
   );
 };

@@ -1,17 +1,19 @@
-import React from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 
-const NavBar: React.FC = () => {
+const NavBar: FC = () => {
   return (
-    <nav className="bg-gray-800 p-4">
-      <ul className="flex space-x-4">
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/about">About</Link></li>
-        <li><Link href="/services">Services</Link></li>
-        <li><Link href="/portfolio">Portfolio</Link></li>
-        <li><Link href="/pricing">Pricing</Link></li>
-        <li><Link href="/contact">Contact</Link></li>
-      </ul>
+    <nav className="sticky top-0 z-50 bg-white shadow-md backdrop-blur-md">
+      <div className="container mx-auto flex justify-between items-center p-4">
+        <h1 className="text-xl font-bold">Professional Website</h1>
+        <ul className="hidden md:flex space-x-4">
+          {["Home", "About Us", "Our Services", "Pricing", "Contact Us", "Blog", "Portfolio", "FAQ", "Testimonials", "Careers"].map((link) => (
+            <li key={link}>
+              <Link href={`/${link.replace(/\s+/g, '-').toLowerCase()}`} className="text-gray-700 hover:text-primary transition">{link}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };

@@ -1,41 +1,44 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Learn more about blog",
+  title: "Our Insights",
+  description: "Learn more about our insights",
 };
 
-import { BlogPostCard, NavBar, Footer, Hero } from '@/components';
+import { BlogPostPreview, NavBar, Footer } from '@/components';
 
 const BlogPage = () => {
   const posts = [
     {
       title: 'Understanding the Basics of SaaS',
       excerpt: 'Explore the fundamental concepts of Software as a Service and how it can benefit your business.',
-      date: 'October 10, 2023',
+      date: 'October 1, 2023',
       category: 'SaaS',
       image: '/images/saas-basics.jpg',
     },
     {
-      title: 'Top 5 Trends in Web Development',
-      excerpt: 'Stay ahead of the curve with these emerging trends in web development for 2024.',
-      date: 'October 15, 2023',
-      category: 'Web Development',
-      image: '/images/web-development-trends.jpg',
+      title: 'Top 5 Trends in Technology',
+      excerpt: 'Stay ahead of the curve with these emerging technology trends that are shaping the future.',
+      date: 'September 15, 2023',
+      category: 'Technology',
+      image: '/images/tech-trends.jpg',
     },
     // Add more posts as needed
   ];
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <NavBar />
-      <Hero title="Our Blog" subtitle="Insights, tips, and updates." />
-      <section className="py-10">
-        <h2 className="text-2xl font-semibold text-center">Latest Posts</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-          {posts.map(post => (
-            <BlogPostCard
-              key={post.title}
+      <main className="flex-grow p-6">
+        <section className="text-center mb-12">
+          <h1 className="text-4xl font-bold">Our Insights</h1>
+          <p className="mt-4 text-lg">Latest updates and articles from our team.</p>
+        </section>
+
+        <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post, index) => (
+            <BlogPostPreview
+              key={index}
               title={post.title}
               excerpt={post.excerpt}
               date={post.date}
@@ -43,8 +46,18 @@ const BlogPage = () => {
               image={post.image}
             />
           ))}
-        </div>
-      </section>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="text-2xl font-semibold">Categories</h2>
+          <div className="mt-4 flex flex-wrap gap-4">
+            <span className="bg-gray-200 px-3 py-1 rounded">SaaS</span>
+            <span className="bg-gray-200 px-3 py-1 rounded">Technology</span>
+            <span className="bg-gray-200 px-3 py-1 rounded">Business</span>
+            {/* Add more categories as needed */}
+          </div>
+        </section>
+      </main>
       <Footer />
     </div>
   );

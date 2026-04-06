@@ -5,3 +5,7 @@
   --color-secondary: #7c3aed;
   --color-accent: #f59e0b;
 }
+
+body {
+  @apply bg-white text-gray-800;
+}

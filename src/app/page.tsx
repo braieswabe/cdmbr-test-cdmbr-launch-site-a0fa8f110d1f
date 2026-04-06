@@ -5,44 +5,52 @@ export const metadata: Metadata = {
   description: "Learn more about app",
 };
 
-import { Hero } from "@/components/Hero";
-import { CTABanner } from "@/components/CTABanner";
-import { FeatureCard } from "@/components/FeatureCard";
-import { TestimonialCard } from "@/components/TestimonialCard";
+import { Hero } from '@/components/Hero';
+import { CTABanner } from '@/components/CTABanner';
+import { FeatureCard } from '@/components/FeatureCard';
+import { TestimonialCard } from '@/components/TestimonialCard';
+import { NavBar } from '@/components/NavBar';
+import { Footer } from '@/components/Footer';
+
+const features = [
+  { title: 'User-Friendly Interface', description: 'Our platform is designed with the user in mind, making it easy for anyone to navigate and utilize.', icon: '🖥️' },
+  { title: '24/7 Support', description: 'We offer round-the-clock support to ensure you have help whenever you need it.', icon: '📞' },
+  { title: 'Affordable Pricing', description: 'Our pricing plans are transparent and designed to fit any budget.', icon: '💰' },
+];
+
+const testimonials = [
+  { quote: 'This service transformed our business!', name: 'Jane Doe', rating: 5 },
+  { quote: 'Highly recommend for anyone looking to improve their workflow.', name: 'John Smith', rating: 4 },
+];
 
 const HomePage = () => {
   return (
     <main className="flex flex-col items-center">
-      <Hero
-        title="Empowering Your Business with Innovative Solutions"
-        subtitle="Transforming ideas into reality with our expert services."
-        cta1Text="Get Started"
-        cta1Link="/contact"
-        cta2Text="Learn More"
-        cta2Link="/services"
+      <NavBar />
+      <Hero 
+        headline="Transform Your Business Today"
+        subtitle="Join thousands of satisfied customers who trust us."
+        cta1="Get Started"
+        cta2="Learn More"
       />
-      <section className="py-16 px-4 max-w-7xl w-full">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Key Features</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard title="Custom Solutions" description="Tailored services to meet your unique needs." />
-          <FeatureCard title="Expert Team" description="A dedicated team of professionals at your service." />
-          <FeatureCard title="24/7 Support" description="Always here to assist you, day or night." />
+      <section className="my-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature, index) => (
+          <FeatureCard key={index} title={feature.title} description={feature.description} icon={feature.icon} />
+        ))}
+      </section>
+      <section className="my-12">
+        <h2 className="text-2xl font-bold text-center">What Our Customers Say</h2>
+        <div className="flex flex-col items-center">
+          {testimonials.map((testimonial, index) => (
+            <TestimonialCard key={index} quote={testimonial.quote} name={testimonial.name} rating={testimonial.rating} />
+          ))}
         </div>
       </section>
-      <section className="py-16 px-4 max-w-7xl w-full">
-        <h2 className="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <TestimonialCard quote="This team transformed our business!" author="Jane Doe, CEO of TechCorp" />
-          <TestimonialCard quote="Exceptional service and support." author="John Smith, Founder of StartUp" />
-          <TestimonialCard quote="Highly recommend their services!" author="Emily Johnson, Marketing Director" />
-        </div>
-      </section>
-      <CTABanner
-        title="Ready to Elevate Your Business?"
-        subtitle="Join us today and start your journey."
-        ctaText="Sign Up Now"
-        ctaLink="/contact"
+      <CTABanner 
+        title="Ready to take the next step?"
+        cta="Sign Up Now"
       />
+      <Footer />
     </main>
   );
 };

@@ -5,40 +5,48 @@ export const metadata: Metadata = {
   description: "Learn more about services",
 };
 
-import { Hero } from "@/components/Hero";
-import { FeatureCard } from "@/components/FeatureCard";
+import { Hero } from '@/components/Hero';
+import { CTABanner } from '@/components/CTABanner';
+import { FeatureCard } from '@/components/FeatureCard';
+import { NavBar } from '@/components/NavBar';
+import { Footer } from '@/components/Footer';
 
-const ServicesPage = () => {
+const services = [
+  { title: 'Consulting', description: 'Expert advice to help you navigate your business challenges.', icon: '🧑‍💼' },
+  { title: 'Development', description: 'Custom software solutions tailored to your needs.', icon: '💻' },
+  { title: 'Marketing', description: 'Strategies to boost your online presence and engagement.', icon: '📈' },
+];
+
+const OurServicesPage = () => {
   return (
     <main className="flex flex-col items-center">
-      <Hero title="Our Services" />
-      <section className="py-16 px-4 max-w-7xl w-full">
-        <h2 className="text-2xl font-bold mb-4">What We Offer</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard title="Web Development" description="Building responsive and user-friendly websites." />
-          <FeatureCard title="Mobile App Development" description="Creating intuitive mobile applications." />
-          <FeatureCard title="Digital Marketing" description="Boosting your online presence through effective strategies." />
-        </div>
+      <NavBar />
+      <Hero 
+        headline="Our Services"
+        subtitle="Discover how we can help you succeed."
+      />
+      <section className="my-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service, index) => (
+          <FeatureCard key={index} title={service.title} description={service.description} icon={service.icon} />
+        ))}
       </section>
-      <section className="py-16 px-4 max-w-7xl w-full">
-        <h2 className="text-2xl font-bold mb-4">Case Studies</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="border rounded-lg p-4">
-            <h3 className="font-semibold">E-commerce Platform</h3>
-            <p>Developed a fully functional e-commerce platform that increased sales by 30%.</p>
-          </div>
-          <div className="border rounded-lg p-4">
-            <h3 className="font-semibold">Mobile App for Fitness</h3>
-            <p>Created a mobile app that helped users track their fitness goals effectively.</p>
-          </div>
-          <div className="border rounded-lg p-4">
-            <h3 className="font-semibold">SEO Optimization</h3>
-            <p>Implemented SEO strategies that improved website traffic by 50%.</p>
-          </div>
-        </div>
+      <section className="my-12 max-w-4xl px-4">
+        <h2 className="text-xl font-bold">Our Process</h2>
+        <ol className="list-decimal list-inside mt-4">
+          <li>Consultation: We understand your needs and goals.</li>
+          <li>Planning: We create a tailored strategy for your project.</li>
+          <li>Execution: Our team implements the plan with precision.</li>
+          <li>Review: We assess the outcomes and make necessary adjustments.</li>
+          <li>Support: We provide ongoing support to ensure success.</li>
+        </ol>
       </section>
+      <CTABanner 
+        title="Interested in our services?"
+        cta="Contact Us"
+      />
+      <Footer />
     </main>
   );
 };
 
-export default ServicesPage;
+export default OurServicesPage;

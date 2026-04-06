@@ -1,58 +1,70 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "What Our Clients Say",
-  description: "Learn more about what our clients say",
+  title: "Testimonials",
+  description: "Learn more about testimonials",
 };
 
-import { TestimonialCard } from "@/components/TestimonialCard";
-import { CTABanner } from "@/components/CTABanner";
+import { FC } from 'react';
+import { NavBar, Footer, TestimonialCard, CTABanner } from '@/components';
 
 const testimonials = [
   {
-    name: "Jane Doe",
-    feedback: "The team was incredibly professional and delivered on time. Highly recommend!",
+    name: 'Jane Doe',
+    feedback: 'The team was incredibly professional and delivered on time. Highly recommend!',
     rating: 5,
   },
   {
-    name: "John Smith",
-    feedback: "Amazing experience! They transformed our website beyond our expectations.",
-    rating: 5,
-  },
-  {
-    name: "Emily Johnson",
-    feedback: "Great communication and support throughout the project. Will work with them again!",
+    name: 'John Smith',
+    feedback: 'Great experience! They understood my needs and provided excellent solutions.',
     rating: 4,
   },
   {
-    name: "Michael Brown",
-    feedback: "Professional, reliable, and very skilled. Our project was a success!",
+    name: 'Emily Johnson',
+    feedback: 'A fantastic team that goes above and beyond. I am very satisfied with the results.',
     rating: 5,
   },
   {
-    name: "Sarah Davis",
-    feedback: "Fantastic results! The team understood our needs perfectly.",
+    name: 'Michael Brown',
+    feedback: 'Professional and reliable. I would definitely work with them again.',
+    rating: 4,
+  },
+  {
+    name: 'Sarah Wilson',
+    feedback: 'They transformed my ideas into reality. Truly impressed with their work!',
     rating: 5,
   },
   {
-    name: "David Wilson",
-    feedback: "Very satisfied with the service and the final product. Thank you!",
+    name: 'David Lee',
+    feedback: 'Excellent service and support throughout the project. Highly recommend!',
     rating: 4,
   },
 ];
 
-export default function TestimonialsPage() {
+const TestimonialsPage: FC = () => {
   return (
-    <main className="flex flex-col items-center">
-      <h1 className="text-4xl font-bold mb-6">What Our Clients Say</h1>
-      <section className="w-full max-w-6xl p-4">
+    <div className="flex flex-col">
+      <NavBar />
+      <section className="py-10 px-4">
+        <h2 className="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={index} name={testimonial.name} feedback={testimonial.feedback} rating={testimonial.rating} />
+            <TestimonialCard
+              key={index}
+              name={testimonial.name}
+              feedback={testimonial.feedback}
+              rating={testimonial.rating}
+            />
           ))}
         </div>
       </section>
-      <CTABanner title="Join Our Happy Clients!" subtitle="Contact us to start your project today." />
-    </main>
+      <section className="py-10 px-4 bg-gray-100 text-center">
+        <h3 className="text-2xl font-semibold mb-4">Join Our Happy Clients</h3>
+        <CTABanner />
+      </section>
+      <Footer />
+    </div>
   );
-}
+};
+
+export default TestimonialsPage;

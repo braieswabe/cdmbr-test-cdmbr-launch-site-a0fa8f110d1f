@@ -1,23 +1,21 @@
-import React from 'react';
+import { FC } from 'react';
 
 interface HeroProps {
   title: string;
   subtitle: string;
-  ctaText?: string;
-  ctaLink?: string;
+  ctaText: string;
+  ctaLink: string;
 }
 
-const Hero: React.FC<HeroProps> = ({ title, subtitle, ctaText, ctaLink }) => {
+const Hero: FC<HeroProps> = ({ title, subtitle, ctaText, ctaLink }) => {
   return (
-    <div className="hero bg-gray-100 p-6 text-center">
-      <h1 className="text-4xl font-bold">{title}</h1>
-      <p className="mt-2">{subtitle}</p>
-      {ctaText && ctaLink && (
-        <a href={ctaLink} className="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded">
-          {ctaText}
-        </a>
-      )}
-    </div>
+    <section className="flex flex-col items-center justify-center h-screen text-center bg-gradient-to-r from-primary to-secondary">
+      <h1 className="text-5xl font-bold text-white">{title}</h1>
+      <p className="mt-4 text-lg text-white">{subtitle}</p>
+      <a href={ctaLink} className="mt-6 px-6 py-3 text-lg font-semibold text-white bg-accent rounded hover:bg-yellow-600 transition">
+        {ctaText}
+      </a>
+    </section>
   );
 };
 
