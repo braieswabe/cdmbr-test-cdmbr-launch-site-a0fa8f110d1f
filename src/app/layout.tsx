@@ -4,13 +4,13 @@ import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'Professional Website',
-  description: 'Your go-to platform for professional services.',
+  description: 'Your go-to solution for professional services.',
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-white text-gray-800">
         <NavBar />
         <main>{children}</main>
         <Footer />

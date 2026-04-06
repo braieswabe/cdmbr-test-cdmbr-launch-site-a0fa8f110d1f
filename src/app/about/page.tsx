@@ -5,61 +5,68 @@ export const metadata: Metadata = {
   description: "Learn more about about",
 };
 
-import { Hero } from '@/components/Hero';
-import { NavBar } from '@/components/NavBar';
-import { Footer } from '@/components/Footer';
+import { Hero, CTABanner } from '@/components';
+import { FC } from 'react';
 
-const AboutPage = () => {
+const AboutPage: FC = () => {
   return (
     <main className="flex flex-col items-center">
-      <NavBar />
-      <Hero 
-        headline="About Us"
-        subtitle="Learn more about our mission and values."
-      />
-      <section className="my-12 max-w-4xl px-4">
-        <h2 className="text-xl font-bold">Our History</h2>
-        <p className="mt-4">
-          Founded in 2020, we set out to revolutionize the way businesses operate online. Our journey began with a simple idea: to create a platform that empowers users to achieve their goals effortlessly.
+      <Hero title="About Us" subtitle="Learn more about our mission and values." />
+      <section className="py-16 px-4 max-w-7xl w-full">
+        <h2 className="text-3xl font-bold mb-6">Our Story</h2>
+        <p className="text-lg">
+          Founded in 2020, our company was born out of a passion for innovation and a desire to help businesses thrive in a digital world. 
+          Our mission is to provide cutting-edge solutions that empower our clients to achieve their goals.
         </p>
       </section>
-      <section className="my-12 max-w-4xl px-4">
-        <h2 className="text-xl font-bold">Our Mission</h2>
-        <p className="mt-4">
-          Our mission is to provide innovative solutions that enhance productivity and foster collaboration. We believe in transparency, integrity, and putting our customers first.
-        </p>
+      <section className="py-16 px-4 max-w-7xl w-full">
+        <h2 className="text-3xl font-bold mb-6">Our Values</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex items-center">
+            <span className="text-4xl mr-4">🌟</span>
+            <p>Integrity: We believe in doing the right thing, always.</p>
+          </div>
+          <div className="flex items-center">
+            <span className="text-4xl mr-4">🤝</span>
+            <p>Collaboration: Together, we can achieve more.</p>
+          </div>
+          <div className="flex items-center">
+            <span className="text-4xl mr-4">🚀</span>
+            <p>Innovation: We embrace change and strive for excellence.</p>
+          </div>
+        </div>
       </section>
-      <section className="my-12 max-w-4xl px-4">
-        <h2 className="text-xl font-bold">Our Values</h2>
-        <ul className="mt-4 list-disc list-inside">
-          <li>Integrity: We uphold the highest standards of honesty and accountability.</li>
-          <li>Innovation: We continuously strive to improve and innovate.</li>
-          <li>Customer Focus: Our customers are at the heart of everything we do.</li>
-        </ul>
-      </section>
-      <section className="my-12 max-w-4xl px-4">
-        <h2 className="text-xl font-bold">Meet Our Team</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
+      <section className="py-16 px-4 max-w-7xl w-full">
+        <h2 className="text-3xl font-bold mb-6">Meet Our Team</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {/* Placeholder for team member profiles */}
-          <div className="p-4 border rounded shadow">
-            <h3 className="font-bold">Alice Johnson</h3>
+          <div className="flex flex-col items-center">
+            <img src="/images/team-member1.jpg" alt="Team Member 1" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="font-semibold">Alice Brown</h3>
             <p>CEO</p>
           </div>
-          <div className="p-4 border rounded shadow">
-            <h3 className="font-bold">Bob Smith</h3>
+          <div className="flex flex-col items-center">
+            <img src="/images/team-member2.jpg" alt="Team Member 2" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="font-semibold">Bob White</h3>
             <p>CTO</p>
           </div>
-          <div className="p-4 border rounded shadow">
-            <h3 className="font-bold">Charlie Brown</h3>
+          <div className="flex flex-col items-center">
+            <img src="/images/team-member3.jpg" alt="Team Member 3" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="font-semibold">Charlie Green</h3>
             <p>CMO</p>
           </div>
-          <div className="p-4 border rounded shadow">
-            <h3 className="font-bold">Diana Prince</h3>
+          <div className="flex flex-col items-center">
+            <img src="/images/team-member4.jpg" alt="Team Member 4" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="font-semibold">Diana Blue</h3>
             <p>COO</p>
           </div>
         </div>
       </section>
-      <Footer />
+      <CTABanner 
+        title="Join Us in Our Journey" 
+        ctaText="Explore Opportunities" 
+        ctaLink="/careers" 
+      />
     </main>
   );
 };

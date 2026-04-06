@@ -1,72 +1,72 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Learn more about portfolio",
-};
-
-import { FC } from 'react';
-import { Hero, CTABanner, PortfolioItem, NavBar, Footer } from '@/components';
+import { useState } from 'react';
+import { Hero, ProjectCard, CTABanner, NavBar, Footer } from '@/components';
 
 const projects = [
   {
-    title: 'E-commerce Website',
-    description: 'A fully responsive e-commerce platform with integrated payment solutions.',
+    id: 1,
+    title: 'E-commerce Platform',
+    description: 'A robust e-commerce solution that increased sales by 30%.',
+    image: '/images/ecommerce.jpg',
     tags: ['E-commerce', 'Web Development', 'React'],
-    imageUrl: '/images/ecommerce.jpg',
   },
   {
-    title: 'Social Media App',
-    description: 'A social media application that connects users with similar interests.',
-    tags: ['Mobile App', 'React Native', 'Social Networking'],
-    imageUrl: '/images/social-media.jpg',
+    id: 2,
+    title: 'Mobile App for Fitness',
+    description: 'A user-friendly mobile app that promotes healthy living.',
+    image: '/images/fitness-app.jpg',
+    tags: ['Mobile', 'App Development', 'Health'],
   },
   {
+    id: 3,
+    title: 'Corporate Website',
+    description: 'A modern corporate website that showcases company values.',
+    image: '/images/corporate-website.jpg',
+    tags: ['Web Design', 'Corporate', 'Branding'],
+  },
+  {
+    id: 4,
     title: 'Portfolio Website',
-    description: 'A personal portfolio website showcasing creative work and projects.',
-    tags: ['Web Design', 'Personal Branding', 'HTML/CSS'],
-    imageUrl: '/images/portfolio.jpg',
+    description: 'A stunning portfolio site that highlights creative work.',
+    image: '/images/portfolio.jpg',
+    tags: ['Web Design', 'Creative', 'Portfolio'],
   },
   {
+    id: 5,
     title: 'Blog Platform',
-    description: 'A blogging platform with user-generated content and community features.',
-    tags: ['Content Management', 'Web Development', 'Node.js'],
-    imageUrl: '/images/blog.jpg',
+    description: 'A customizable blog platform for content creators.',
+    image: '/images/blog-platform.jpg',
+    tags: ['Web Development', 'Blog', 'CMS'],
   },
   {
-    title: 'Corporate Intranet',
-    description: 'An internal communication platform for corporate teams.',
-    tags: ['Intranet', 'Web Development', 'Collaboration'],
-    imageUrl: '/images/intranet.jpg',
-  },
-  {
-    title: 'Online Learning System',
-    description: 'A comprehensive online learning management system for educational institutions.',
-    tags: ['E-learning', 'Web Development', 'Education'],
-    imageUrl: '/images/learning.jpg',
+    id: 6,
+    title: 'Real Estate Application',
+    description: 'An interactive platform for real estate listings.',
+    image: '/images/real-estate.jpg',
+    tags: ['Web Development', 'Real Estate', 'React'],
   },
 ];
 
-const PortfolioPage: FC = () => {
+const PortfolioPage = () => {
   return (
     <div className="flex flex-col">
       <NavBar />
-      <Hero title="Our Portfolio" subtitle="Showcasing our success stories" />
-      <section className="py-10 px-4">
+      <Hero title="Our Portfolio" subtitle="Showcasing Our Best Work" />
+      <section className="py-10 px-5">
         <h2 className="text-3xl font-bold text-center mb-8">Project Gallery</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <PortfolioItem
-              key={index}
-              title={project.title}
-              description={project.description}
-              tags={project.tags}
-              imageUrl={project.imageUrl}
-            />
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </section>
-      <CTABanner />
+      <CTABanner 
+        title="Ready to Start Your Project?" 
+        description="Contact us today to discuss your ideas and get started!" 
+        buttonText="Get in Touch" 
+        buttonLink="/contact" 
+      />
       <Footer />
     </div>
   );

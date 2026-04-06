@@ -9,20 +9,20 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "tailwindcss": "latest",
-    "@tailwindcss/postcss": "latest",
+    "next": "^13.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "typescript": "latest",
     "@types/react": "latest",
     "@types/node": "latest",
     "react-hook-form": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
-    "@types/node": "latest",
+    "typescript": "^4.0.0",
+    "@types/react": "^19.0.0",
+    "@types/node": "^18.0.0",
     "@types/react-dom": "^19.1.2",
     "eslint": "^9.39.1",
     "eslint-config-next": "15.5.14",

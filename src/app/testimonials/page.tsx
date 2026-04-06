@@ -5,63 +5,70 @@ export const metadata: Metadata = {
   description: "Learn more about testimonials",
 };
 
-import { FC } from 'react';
-import { NavBar, Footer, TestimonialCard, CTABanner } from '@/components';
+import { NavBar, TestimonialCard, CTABanner, Footer } from '@/components';
 
 const testimonials = [
   {
+    id: 1,
     name: 'Jane Doe',
-    feedback: 'The team was incredibly professional and delivered on time. Highly recommend!',
+    feedback: 'The team was fantastic! They delivered on time and exceeded our expectations.',
     rating: 5,
   },
   {
+    id: 2,
     name: 'John Smith',
-    feedback: 'Great experience! They understood my needs and provided excellent solutions.',
+    feedback: 'Professional and dedicated. Highly recommend their services!',
     rating: 4,
   },
   {
-    name: 'Emily Johnson',
-    feedback: 'A fantastic team that goes above and beyond. I am very satisfied with the results.',
+    id: 3,
+    name: 'Alice Johnson',
+    feedback: 'A wonderful experience from start to finish. Will work with them again!',
     rating: 5,
   },
   {
-    name: 'Michael Brown',
-    feedback: 'Professional and reliable. I would definitely work with them again.',
-    rating: 4,
-  },
-  {
-    name: 'Sarah Wilson',
-    feedback: 'They transformed my ideas into reality. Truly impressed with their work!',
+    id: 4,
+    name: 'Bob Brown',
+    feedback: 'Great communication and results. They truly care about their clients.',
     rating: 5,
   },
   {
-    name: 'David Lee',
-    feedback: 'Excellent service and support throughout the project. Highly recommend!',
+    id: 5,
+    name: 'Emily White',
+    feedback: 'Their expertise made a huge difference in our project’s success.',
     rating: 4,
+  },
+  {
+    id: 6,
+    name: 'Michael Green',
+    feedback: 'I was impressed by their creativity and attention to detail.',
+    rating: 5,
   },
 ];
 
-const TestimonialsPage: FC = () => {
+const TestimonialsPage = () => {
+  const averageRating = testimonials.reduce((acc, curr) => acc + curr.rating, 0) / testimonials.length;
+
   return (
     <div className="flex flex-col">
       <NavBar />
-      <section className="py-10 px-4">
+      <section className="py-10 px-5">
         <h2 className="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
+        <div className="text-center mb-6">
+          <p className="text-lg">Average Rating: {averageRating.toFixed(1)} ⭐</p>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard
-              key={index}
-              name={testimonial.name}
-              feedback={testimonial.feedback}
-              rating={testimonial.rating}
-            />
+          {testimonials.map((testimonial) => (
+            <TestimonialCard key={testimonial.id} testimonial={testimonial} />
           ))}
         </div>
       </section>
-      <section className="py-10 px-4 bg-gray-100 text-center">
-        <h3 className="text-2xl font-semibold mb-4">Join Our Happy Clients</h3>
-        <CTABanner />
-      </section>
+      <CTABanner 
+        title="Join Our Happy Clients!" 
+        description="Contact us to start your project today!" 
+        buttonText="Get Started" 
+        buttonLink="/contact" 
+      />
       <Footer />
     </div>
   );

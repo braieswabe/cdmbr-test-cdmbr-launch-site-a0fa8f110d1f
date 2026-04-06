@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-interface TestimonialCardProps {
+interface ProjectCardProps {
   icon: JSX.Element;
   title: string;
   description: string;
 }
 
-export const TestimonialCard: FC<TestimonialCardProps> = ({ icon, title, description }) => {
+export const ProjectCard: FC<ProjectCardProps> = ({ icon, title, description }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
       <div className="text-4xl">{icon}</div>
@@ -16,4 +16,4 @@ export const TestimonialCard: FC<TestimonialCardProps> = ({ icon, title, descrip
   );
 };
 
-export default TestimonialCard;
+export default ProjectCard;
