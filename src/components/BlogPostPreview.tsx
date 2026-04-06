@@ -18,10 +18,5 @@ const BlogPostPreview: FC<BlogPostPreviewProps> = ({ title, excerpt, link }) => 
   );
 };
 
-export { BlogPostPreview };
-
-export function BlogPostPreview() {
-  return <div>BlogPostPreview</div>;
-}
-
 export default BlogPostPreview;
+export { BlogPostPreview };

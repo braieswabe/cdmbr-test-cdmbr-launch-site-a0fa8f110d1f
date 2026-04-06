@@ -16,10 +16,5 @@ const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description }) => {
   );
 };
 
-export { FeatureCard };
-
-export function FeatureCard() {
-  return <div>FeatureCard</div>;
-}
-
 export default FeatureCard;
+export { FeatureCard };

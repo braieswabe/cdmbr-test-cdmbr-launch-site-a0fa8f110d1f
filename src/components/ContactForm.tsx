@@ -22,10 +22,5 @@ const ContactForm: FC<ContactFormProps> = ({ onSubmit }) => {
   );
 };
 
-export { ContactForm };
-
-export function ContactForm() {
-  return <div>ContactForm</div>;
-}
-
 export default ContactForm;
+export { ContactForm };

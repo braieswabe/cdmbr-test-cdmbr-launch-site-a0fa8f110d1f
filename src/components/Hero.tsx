@@ -19,10 +19,5 @@ const Hero: FC<HeroProps> = ({ title, subtitle, ctaText, ctaLink }) => {
   );
 };
 
-export { Hero };
-
-export function Hero() {
-  return <div>Hero</div>;
-}
-
 export default Hero;
+export { Hero };

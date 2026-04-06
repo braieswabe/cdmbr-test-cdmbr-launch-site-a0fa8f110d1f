@@ -19,10 +19,5 @@ const CTABanner: FC<CTABannerProps> = ({ headline, description, buttonText, butt
   );
 };
 
-export { CTABanner };
-
-export function CTABanner() {
-  return <div>CTABanner</div>;
-}
-
 export default CTABanner;
+export { CTABanner };
