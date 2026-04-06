@@ -2,29 +2,33 @@
 
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const schema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email('Invalid email address'),
+  message: z.string().min(1, 'Message is required'),
+});
 
 interface ContactFormProps {
-  onSubmit: (data: any) => void;
+  onSubmit: (data: { name: string; email: string; message: string }) => void;
 }
 
-export const ContactForm: FC<ContactFormProps> = ({ onSubmit }) => {
-  const { register, handleSubmit } = useForm();
+const ContactForm: FC<ContactFormProps> = ({ onSubmit }) => {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(schema),
+  });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-6 rounded-lg shadow-md">
-      <div className="mb-4">
-        <label className="block text-gray-700">Name</label>
-        <input {...register('name')} className="mt-1 block w-full border rounded-md p-2" required />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700">Email</label>
-        <input {...register('email')} type="email" className="mt-1 block w-full border rounded-md p-2" required />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700">Message</label>
-        <textarea {...register('message')} className="mt-1 block w-full border rounded-md p-2" required />
-      </div>
-      <button type="submit" className="bg-accent text-white py-2 px-4 rounded hover:bg-yellow-600 transition">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
+      <input {...register('name')} placeholder="Your Name" className="border p-2 rounded" />
+      {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+      <input {...register('email')} placeholder="Your Email" className="border p-2 rounded" />
+      {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+      <textarea {...register('message')} placeholder="Your Message" className="border p-2 rounded" />
+      {errors.message && <span className="text-red-500">{errors.message.message}</span>}
+      <button type="submit" className="bg-primary-color text-white px-4 py-2 rounded-lg shadow hover:shadow-md transition">
         Send Message
       </button>
     </form>
@@ -32,3 +36,4 @@ export const ContactForm: FC<ContactFormProps> = ({ onSubmit }) => {
 };
 
 export default ContactForm;
+export { ContactForm };

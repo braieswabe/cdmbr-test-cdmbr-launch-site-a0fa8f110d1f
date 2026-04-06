@@ -2,16 +2,17 @@ import { FC } from 'react';
 
 interface BlogPostCardProps {
   title: string;
-  summary: string;
-  date: string;
+  description: string;
 }
 
-export const BlogPostCard: FC<BlogPostCardProps> = ({ title, summary, date }) => {
+const BlogPostCard: FC<BlogPostCardProps> = ({ title, description }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition">
-      <h3 className="text-xl font-semibold">{title}</h3>
-      <p className="mt-2">{summary}</p>
-      <p className="mt-4 text-gray-500">{date}</p>
+    <div className="border rounded-lg p-6 shadow-lg hover:shadow-xl transition">
+      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <p>{description}</p>
     </div>
   );
 };
+
+export default BlogPostCard;
+export { BlogPostCard };

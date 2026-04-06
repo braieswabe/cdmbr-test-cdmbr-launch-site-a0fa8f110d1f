@@ -1,44 +1,44 @@
 'use client';
 
-import { useState } from 'react';
-import { NavBar, Footer, CTABanner } from '@/components';
+import { FC, useState } from 'react';
+import { CTABanner, NavBar, Footer } from '@/components';
 
 const faqs = [
   {
     question: 'What services do you offer?',
-    answer: 'We offer web development, mobile app development, and digital marketing services.',
+    answer: 'We offer a range of services including web development, mobile app development, and digital marketing.',
   },
   {
     question: 'How long does a project take?',
-    answer: 'Project timelines vary based on complexity, but we provide estimates during the consultation.',
+    answer: 'Project timelines vary based on complexity, but we typically deliver within 4-12 weeks.',
   },
   {
     question: 'What is your pricing model?',
-    answer: 'We offer transparent pricing based on project scope and requirements.',
+    answer: 'We offer transparent pricing based on project scope. Contact us for a detailed quote.',
   },
   {
-    question: 'Do you provide ongoing support?',
-    answer: 'Yes, we offer maintenance and support packages for all our projects.',
+    question: 'Do you provide support after project completion?',
+    answer: 'Yes, we offer ongoing support and maintenance for all our projects.',
   },
   {
-    question: 'Can you work with my existing team?',
-    answer: 'Absolutely! We can collaborate with your team to ensure project success.',
+    question: 'Can you work with remote teams?',
+    answer: 'Absolutely! We have experience collaborating with teams across different time zones.',
   },
   {
     question: 'What technologies do you use?',
-    answer: 'We use modern technologies like React, Node.js, and Tailwind CSS for our projects.',
+    answer: 'We use modern technologies including React, Next.js, and Tailwind CSS for our projects.',
   },
   {
     question: 'How do I get started?',
-    answer: 'Simply reach out through our contact form, and we’ll schedule a consultation.',
+    answer: 'Simply reach out to us through our contact form, and we’ll guide you through the process.',
   },
   {
-    question: 'What if I need to make changes during the project?',
-    answer: 'We accommodate changes as needed, ensuring your vision is realized.',
+    question: 'What if I have more questions?',
+    answer: 'Feel free to contact us anytime, we’re here to help!',
   },
 ];
 
-const FAQPage = () => {
+const FAQPage: FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -46,36 +46,33 @@ const FAQPage = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <main className="flex flex-col items-center">
       <NavBar />
-      <section className="py-10 px-5">
-        <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+      <section className="w-full p-6">
+        <h1 className="text-3xl font-bold mb-4">Frequently Asked Questions</h1>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="border rounded-lg overflow-hidden">
-              <button 
-                className="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 focus:outline-none" 
+            <div key={index} className="border rounded-lg p-4">
+              <button
+                className="flex justify-between w-full text-left"
                 onClick={() => toggleFAQ(index)}
               >
-                <h3 className="font-semibold">{faq.question}</h3>
+                <span className="font-semibold">{faq.question}</span>
+                <span>{openIndex === index ? '-' : '+'}</span>
               </button>
-              {openIndex === index && (
-                <div className="p-4 bg-white">
-                  <p>{faq.answer}</p>
-                </div>
-              )}
+              {openIndex === index && <p className="mt-2">{faq.answer}</p>}
             </div>
           ))}
         </div>
       </section>
-      <CTABanner 
-        title="Still Have Questions?" 
-        description="Reach out to us for more information!" 
-        buttonText="Contact Us" 
-        buttonLink="/contact" 
+      <CTABanner
+        title="Have more questions?"
+        subtitle="Contact us for personalized assistance."
+        buttonText="Contact Us"
+        buttonLink="/contact"
       />
       <Footer />
-    </div>
+    </main>
   );
 };
 

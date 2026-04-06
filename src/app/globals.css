@@ -1,11 +1,7 @@
 @import "tailwindcss";
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
 :root {
-  --color-primary: #2563eb;
-  --color-secondary: #7c3aed;
-  --color-accent: #f59e0b;
+  --primary-color: #2563eb;
+  --secondary-color: #7c3aed;
+  --accent-color: #f59e0b;
 }

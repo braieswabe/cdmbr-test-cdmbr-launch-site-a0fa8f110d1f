@@ -7,12 +7,12 @@ interface HeroProps {
   ctaLink: string;
 }
 
-export const Hero: FC<HeroProps> = ({ title, subtitle, ctaText, ctaLink }) => {
+const Hero: FC<HeroProps> = ({ title, subtitle, ctaText, ctaLink }) => {
   return (
-    <section className="bg-gradient-to-r from-primary to-secondary text-white py-20 text-center">
-      <h1 className="text-4xl font-bold">{title}</h1>
-      <p className="mt-4 text-lg">{subtitle}</p>
-      <a href={ctaLink} className="mt-6 inline-block bg-accent text-white py-2 px-4 rounded hover:bg-yellow-600 transition">
+    <section className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-primary-color to-secondary-color text-white text-center p-8">
+      <h1 className="text-5xl font-bold mb-4">{title}</h1>
+      <p className="text-xl mb-8">{subtitle}</p>
+      <a href={ctaLink} className="bg-accent-color text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition">
         {ctaText}
       </a>
     </section>
@@ -20,3 +20,4 @@ export const Hero: FC<HeroProps> = ({ title, subtitle, ctaText, ctaLink }) => {
 };
 
 export default Hero;
+export { Hero };

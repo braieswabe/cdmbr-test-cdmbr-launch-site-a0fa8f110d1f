@@ -1,56 +1,74 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Careers",
-  description: "Learn more about careers",
-};
+import { useState } from 'react';
+import Hero from '@/components/Hero';
+import CTABanner from '@/components/CTABanner';
+import FeatureCard from '@/components/FeatureCard';
+import ContactForm from '@/components/ContactForm';
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 
-import { Hero } from "@/components/Hero";
-import { CTABanner } from "@/components/CTABanner";
-import { NavBar } from "@/components/NavBar";
-import { Footer } from "@/components/Footer";
+const jobOpenings = [
+  {
+    title: 'Frontend Developer',
+    location: 'Remote',
+    description: 'Join our team to create stunning user interfaces and enhance user experience.',
+    link: '#apply-frontend',
+  },
+  {
+    title: 'Backend Developer',
+    location: 'On-site - New York',
+    description: 'Work on our backend systems and APIs to support our growing applications.',
+    link: '#apply-backend',
+  },
+  {
+    title: 'Product Manager',
+    location: 'Remote',
+    description: 'Lead product development and strategy to drive our vision forward.',
+    link: '#apply-product-manager',
+  },
+];
 
-const CareersPage = () => {
+export default function CareersPage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <main className="flex flex-col items-center">
       <NavBar />
-      <Hero title="Join Our Team" subtitle="Explore exciting career opportunities with us." />
+      <Hero title="Join Our Team" subtitle="We're looking for talented individuals to help us grow." />
       
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-6">Current Job Openings</h2>
-          <ul className="space-y-4">
-            <li className="p-4 border rounded shadow hover:shadow-lg transition">
-              <h3 className="text-xl font-semibold">Frontend Developer</h3>
-              <p className="text-gray-600">We are looking for a skilled Frontend Developer to join our team. You will be responsible for building user-friendly web applications.</p>
-              <a href="#" className="text-blue-500 hover:underline">Learn More</a>
-            </li>
-            <li className="p-4 border rounded shadow hover:shadow-lg transition">
-              <h3 className="text-xl font-semibold">Product Manager</h3>
-              <p className="text-gray-600">Seeking a Product Manager to lead our product development efforts. You will work closely with cross-functional teams to deliver exceptional products.</p>
-              <a href="#" className="text-blue-500 hover:underline">Learn More</a>
-            </li>
-            <li className="p-4 border rounded shadow hover:shadow-lg transition">
-              <h3 className="text-xl font-semibold">UX/UI Designer</h3>
-              <p className="text-gray-600">Join us as a UX/UI Designer to create intuitive and engaging user experiences. Your creativity will shape our product's look and feel.</p>
-              <a href="#" className="text-blue-500 hover:underline">Learn More</a>
-            </li>
-          </ul>
+      <section className="w-full max-w-7xl p-6">
+        <h2 className="text-3xl font-semibold mb-4">Current Job Openings</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {jobOpenings.map((job) => (
+            <FeatureCard key={job.title} title={job.title} description={job.description} link={job.link} />
+          ))}
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-6">Our Company Culture</h2>
-          <p className="text-gray-700 mb-4">At our company, we believe in fostering a collaborative and inclusive environment. Our team is passionate about innovation and dedicated to excellence. We support continuous learning and encourage our employees to grow both personally and professionally.</p>
-          <p className="text-gray-700">We offer flexible working hours, remote work options, and a range of benefits designed to support your well-being. Join us and be part of a culture that values creativity, teamwork, and respect.</p>
-        </div>
+      <section className="w-full max-w-7xl p-6 bg-gray-100 rounded-lg shadow-md">
+        <h2 className="text-3xl font-semibold mb-4">Our Company Culture</h2>
+        <p className="mb-4">
+          At our company, we foster a collaborative and innovative environment where every team member's voice is heard. 
+          We believe in work-life balance, continuous learning, and celebrating our successes together.
+        </p>
+        <p>
+          We offer competitive salaries, flexible working hours, and opportunities for professional growth. 
+          Join us to be part of a team that values creativity and teamwork!
+        </p>
       </section>
 
-      <CTABanner title="Ready to take the next step?" subtitle="Apply now and become part of our dynamic team!" buttonText="View Openings" buttonLink="#" />
+      <CTABanner 
+        title="Ready to take the next step in your career?" 
+        subtitle="Apply now and become part of our dynamic team!" 
+        buttonText="View Job Openings" 
+        buttonLink="#job-openings" 
+      />
+
+      <section className="w-full max-w-7xl p-6">
+        <h2 className="text-3xl font-semibold mb-4">Get in Touch</h2>
+        <ContactForm />
+      </section>
+
       <Footer />
-    </div>
+    </main>
   );
-};
-
-export default CareersPage;
+}

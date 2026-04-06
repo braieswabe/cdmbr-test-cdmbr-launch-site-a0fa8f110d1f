@@ -1,74 +1,76 @@
-"use client";
+import type { Metadata } from "next";
 
-import { useState } from 'react';
+export const metadata: Metadata = {
+  title: "Portfolio",
+  description: "Learn more about portfolio",
+};
+
+import { FC } from 'react';
 import { Hero, ProjectCard, CTABanner, NavBar, Footer } from '@/components';
 
 const projects = [
   {
-    id: 1,
-    title: 'E-commerce Platform',
-    description: 'A robust e-commerce solution that increased sales by 30%.',
-    image: '/images/ecommerce.jpg',
-    tags: ['E-commerce', 'Web Development', 'React'],
+    title: 'Project Alpha',
+    description: 'A comprehensive solution for managing tasks efficiently.',
+    tags: ['Productivity', 'Web App'],
+    image: '/images/project-alpha.jpg',
   },
   {
-    id: 2,
-    title: 'Mobile App for Fitness',
-    description: 'A user-friendly mobile app that promotes healthy living.',
-    image: '/images/fitness-app.jpg',
-    tags: ['Mobile', 'App Development', 'Health'],
+    title: 'Project Beta',
+    description: 'An innovative platform for connecting freelancers with clients.',
+    tags: ['Marketplace', 'Web App'],
+    image: '/images/project-beta.jpg',
   },
   {
-    id: 3,
-    title: 'Corporate Website',
-    description: 'A modern corporate website that showcases company values.',
-    image: '/images/corporate-website.jpg',
-    tags: ['Web Design', 'Corporate', 'Branding'],
+    title: 'Project Gamma',
+    description: 'A cutting-edge e-commerce website that boosts sales.',
+    tags: ['E-commerce', 'Web App'],
+    image: '/images/project-gamma.jpg',
   },
   {
-    id: 4,
-    title: 'Portfolio Website',
-    description: 'A stunning portfolio site that highlights creative work.',
-    image: '/images/portfolio.jpg',
-    tags: ['Web Design', 'Creative', 'Portfolio'],
+    title: 'Project Delta',
+    description: 'A mobile app designed to enhance user engagement.',
+    tags: ['Mobile', 'App'],
+    image: '/images/project-delta.jpg',
   },
   {
-    id: 5,
-    title: 'Blog Platform',
-    description: 'A customizable blog platform for content creators.',
-    image: '/images/blog-platform.jpg',
-    tags: ['Web Development', 'Blog', 'CMS'],
+    title: 'Project Epsilon',
+    description: 'A robust CRM system tailored for small businesses.',
+    tags: ['CRM', 'Web App'],
+    image: '/images/project-epsilon.jpg',
   },
   {
-    id: 6,
-    title: 'Real Estate Application',
-    description: 'An interactive platform for real estate listings.',
-    image: '/images/real-estate.jpg',
-    tags: ['Web Development', 'Real Estate', 'React'],
+    title: 'Project Zeta',
+    description: 'An educational platform that makes learning fun.',
+    tags: ['Education', 'Web App'],
+    image: '/images/project-zeta.jpg',
   },
 ];
 
-const PortfolioPage = () => {
+const PortfolioPage: FC = () => {
   return (
-    <div className="flex flex-col">
+    <main className="flex flex-col items-center">
       <NavBar />
-      <Hero title="Our Portfolio" subtitle="Showcasing Our Best Work" />
-      <section className="py-10 px-5">
-        <h2 className="text-3xl font-bold text-center mb-8">Project Gallery</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
+      <Hero title="Our Portfolio" subtitle="Showcasing our successful projects" />
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.title}
+            title={project.title}
+            description={project.description}
+            tags={project.tags}
+            image={project.image}
+          />
+        ))}
       </section>
-      <CTABanner 
-        title="Ready to Start Your Project?" 
-        description="Contact us today to discuss your ideas and get started!" 
-        buttonText="Get in Touch" 
-        buttonLink="/contact" 
+      <CTABanner
+        title="Ready to start your project?"
+        subtitle="Contact us today to discuss your needs."
+        buttonText="Get in Touch"
+        buttonLink="/contact"
       />
       <Footer />
-    </div>
+    </main>
   );
 };
 

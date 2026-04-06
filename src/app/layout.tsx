@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'Professional Website',
-  description: 'Your go-to solution for professional services.',
+  description: 'Your go-to solution for modern SaaS applications.',
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {

@@ -1,19 +1,18 @@
 import { FC } from 'react';
 
 interface ProjectCardProps {
-  icon: JSX.Element;
   title: string;
   description: string;
 }
 
-export const ProjectCard: FC<ProjectCardProps> = ({ icon, title, description }) => {
+const ProjectCard: FC<ProjectCardProps> = ({ title, description }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition">
-      <div className="text-4xl">{icon}</div>
-      <h3 className="mt-4 text-xl font-semibold">{title}</h3>
-      <p className="mt-2 text-gray-600">{description}</p>
+    <div className="border rounded-lg p-6 shadow-lg hover:shadow-xl transition">
+      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <p>{description}</p>
     </div>
   );
 };
 
 export default ProjectCard;
+export { ProjectCard };

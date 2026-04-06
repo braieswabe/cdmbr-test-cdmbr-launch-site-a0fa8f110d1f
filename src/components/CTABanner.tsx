@@ -7,12 +7,12 @@ interface CTABannerProps {
   buttonLink: string;
 }
 
-export const CTABanner: FC<CTABannerProps> = ({ headline, description, buttonText, buttonLink }) => {
+const CTABanner: FC<CTABannerProps> = ({ headline, description, buttonText, buttonLink }) => {
   return (
-    <div className="bg-accent text-white text-center py-10">
-      <h2 className="text-2xl font-bold">{headline}</h2>
-      <p className="mt-2">{description}</p>
-      <a href={buttonLink} className="mt-4 inline-block bg-white text-accent py-2 px-4 rounded hover:bg-gray-200 transition">
+    <div className="bg-accent-color text-white text-center p-6 rounded-lg shadow-lg">
+      <h2 className="text-3xl font-semibold mb-2">{headline}</h2>
+      <p className="mb-4">{description}</p>
+      <a href={buttonLink} className="bg-white text-accent-color px-4 py-2 rounded-lg shadow hover:shadow-md transition">
         {buttonText}
       </a>
     </div>
@@ -20,3 +20,4 @@ export const CTABanner: FC<CTABannerProps> = ({ headline, description, buttonTex
 };
 
 export default CTABanner;
+export { CTABanner };

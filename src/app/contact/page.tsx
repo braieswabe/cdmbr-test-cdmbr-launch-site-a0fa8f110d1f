@@ -1,9 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ContactForm } from '@/components/ContactForm';
-import { NavBar } from '@/components/NavBar';
-import { Footer } from '@/components/Footer';
+import { ContactForm, NavBar, Footer } from '@/components';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +18,7 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
+    // Handle form submission logic
     console.log('Form submitted:', formData);
   };
 
@@ -28,27 +26,27 @@ const ContactPage = () => {
     <div className="flex flex-col min-h-screen">
       <NavBar />
       <main className="flex-grow px-4 py-8">
-        <section className="text-center mb-12">
-          <h1 className="text-4xl font-bold">Get in Touch</h1>
-          <p className="mt-4 text-lg text-gray-600">
-            We're here to help! Reach out with any questions or inquiries.
-          </p>
-        </section>
-
-        <section className="mb-12">
-          <ContactForm onChange={handleChange} onSubmit={handleSubmit} />
-        </section>
-
-        <section className="text-center">
+        <h1 className="text-3xl font-bold text-center mb-6">Get in Touch</h1>
+        <p className="text-lg text-center mb-4">
+          We’d love to hear from you! Reach out with any questions or inquiries.
+        </p>
+        <ContactForm onChange={handleChange} onSubmit={handleSubmit} />
+        <div className="mt-8 text-center">
           <h2 className="text-2xl font-semibold">Our Location</h2>
-          <p className="mt-4 text-lg text-gray-600">123 Business Rd, Suite 100, City, State, 12345</p>
-          <p className="mt-2">Office Hours: Mon-Fri 9 AM - 5 PM</p>
+          <p className="mt-2">123 Business Rd, Suite 100</p>
+          <p>Business City, BC 12345</p>
+          <p className="mt-2">Mon-Fri: 9 AM - 5 PM</p>
           <p className="mt-2">
-            <a href="tel:+1234567890" className="text-blue-600 hover:underline">+1 (234) 567-890</a> | 
-            <a href="mailto:info@business.com" className="text-blue-600 hover:underline"> info@business.com</a>
+            <a href="tel:+1234567890" className="text-blue-600">+1 (234) 567-890</a>
           </p>
-          <div className="mt-4 h-64 bg-gray-200 rounded">[Map Placeholder]</div>
-        </section>
+          <p className="mt-2">
+            <a href="mailto:info@business.com" className="text-blue-600">info@business.com</a>
+          </p>
+          <div className="mt-4 h-64 bg-gray-200 rounded-lg">
+            {/* Placeholder for map */}
+            <p className="text-gray-500 text-center pt-28">Map Placeholder</p>
+          </div>
+        </div>
       </main>
       <Footer />
     </div>
