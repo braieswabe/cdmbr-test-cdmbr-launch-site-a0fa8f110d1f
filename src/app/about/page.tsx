@@ -5,56 +5,70 @@ export const metadata: Metadata = {
   description: "Learn more about about",
 };
 
-import { Hero } from "@/components/Hero";
-import { FeatureCard } from "@/components/FeatureCard";
+import { Hero, Footer, NavBar } from '@/components';
+import { FC } from 'react';
 
-const AboutPage = () => {
+const AboutPage: FC = () => {
   return (
     <main className="flex flex-col items-center">
-      <Hero
-        title="About Us"
-        subtitle="Learn more about our mission and values."
-      />
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Story</h2>
-        <p className="text-lg text-center">
-          Founded in 2020, we set out to revolutionize the industry with innovative solutions that empower businesses to thrive. Our commitment to excellence drives everything we do.
+      <NavBar />
+      <Hero title="About Us" subtitle="Learn more about our mission and values." />
+      <section className="py-16 px-4 w-full max-w-7xl">
+        <h2 className="text-3xl font-bold mb-4">Our Story</h2>
+        <p className="text-lg">
+          Founded in 2020, we set out to revolutionize the tech industry with innovative solutions that empower businesses to thrive.
         </p>
       </section>
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Mission & Values</h2>
+      <section className="py-16 px-4 w-full max-w-7xl">
+        <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
+        <p className="text-lg">
+          Our mission is to provide cutting-edge technology solutions that drive efficiency and growth for our clients.
+        </p>
+      </section>
+      <section className="py-16 px-4 w-full max-w-7xl">
+        <h2 className="text-3xl font-bold mb-4">Our Values</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard title="Integrity" description="We uphold the highest standards of integrity in all our actions." />
-          <FeatureCard title="Innovation" description="We strive to innovate and improve continuously." />
-          <FeatureCard title="Customer Focus" description="Our customers are at the heart of everything we do." />
+          <div className="flex flex-col items-center p-4 border rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold">Integrity</h3>
+            <p>We uphold the highest standards of honesty and transparency.</p>
+          </div>
+          <div className="flex flex-col items-center p-4 border rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold">Innovation</h3>
+            <p>We embrace change and continuously seek new ways to improve.</p>
+          </div>
+          <div className="flex flex-col items-center p-4 border rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold">Collaboration</h3>
+            <p>We believe in the power of teamwork and collective success.</p>
+          </div>
         </div>
       </section>
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Meet Our Team</h2>
+      <section className="py-16 px-4 w-full max-w-7xl">
+        <h2 className="text-3xl font-bold mb-4">Meet Our Team</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Team member profiles would be here */}
-          <div className="flex flex-col items-center">
-            <div className="w-32 h-32 bg-gray-300 rounded-full mb-4"></div>
-            <h3 className="font-semibold">Alice Brown</h3>
-            <p className="text-sm">CEO</p>
+          {/* Placeholder for team member profiles */}
+          <div className="flex flex-col items-center p-4 border rounded-lg shadow-md">
+            <img src="/images/team1.jpg" alt="Team Member" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="text-xl font-semibold">Alice Johnson</h3>
+            <p>CEO</p>
           </div>
-          <div className="flex flex-col items-center">
-            <div className="w-32 h-32 bg-gray-300 rounded-full mb-4"></div>
-            <h3 className="font-semibold">Bob White</h3>
-            <p className="text-sm">CTO</p>
+          <div className="flex flex-col items-center p-4 border rounded-lg shadow-md">
+            <img src="/images/team2.jpg" alt="Team Member" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="text-xl font-semibold">Bob Lee</h3>
+            <p>CTO</p>
           </div>
-          <div className="flex flex-col items-center">
-            <div className="w-32 h-32 bg-gray-300 rounded-full mb-4"></div>
-            <h3 className="font-semibold">Charlie Green</h3>
-            <p className="text-sm">CMO</p>
+          <div className="flex flex-col items-center p-4 border rounded-lg shadow-md">
+            <img src="/images/team3.jpg" alt="Team Member" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="text-xl font-semibold">Cathy Brown</h3>
+            <p>CMO</p>
           </div>
-          <div className="flex flex-col items-center">
-            <div className="w-32 h-32 bg-gray-300 rounded-full mb-4"></div>
-            <h3 className="font-semibold">Diana Blue</h3>
-            <p className="text-sm">CFO</p>
+          <div className="flex flex-col items-center p-4 border rounded-lg shadow-md">
+            <img src="/images/team4.jpg" alt="Team Member" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="text-xl font-semibold">David Wilson</h3>
+            <p>COO</p>
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

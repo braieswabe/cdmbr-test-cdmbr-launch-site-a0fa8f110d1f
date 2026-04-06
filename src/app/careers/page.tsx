@@ -4,71 +4,59 @@ import { useState } from 'react';
 import Hero from '@/components/Hero';
 import CTABanner from '@/components/CTABanner';
 import FeatureCard from '@/components/FeatureCard';
-import ContactForm from '@/components/ContactForm';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 
 const jobOpenings = [
   {
     title: 'Frontend Developer',
-    location: 'Remote',
-    description: 'Join our team to create stunning user interfaces and enhance user experience.',
-    link: '#apply-frontend',
+    description: 'Join our dynamic team to create engaging user interfaces and enhance user experiences. Proficiency in React and TypeScript is a must.',
   },
   {
     title: 'Backend Developer',
-    location: 'On-site - New York',
-    description: 'Work on our backend systems and APIs to support our growing applications.',
-    link: '#apply-backend',
+    description: 'We are looking for a Backend Developer to build robust server-side applications. Experience with Node.js and RESTful APIs is essential.',
   },
   {
-    title: 'Product Manager',
-    location: 'Remote',
-    description: 'Lead product development and strategy to drive our vision forward.',
-    link: '#apply-product-manager',
+    title: 'UI/UX Designer',
+    description: 'Help us design intuitive and beautiful interfaces. A strong portfolio and experience with design tools are required.',
   },
 ];
 
-export default function CareersPage() {
+const CareersPage = () => {
   return (
-    <main className="flex flex-col items-center">
+    <div className="flex flex-col">
       <NavBar />
-      <Hero title="Join Our Team" subtitle="We're looking for talented individuals to help us grow." />
+      <Hero title="Join Our Team" subtitle="Where innovation meets collaboration" />
       
-      <section className="w-full max-w-7xl p-6">
-        <h2 className="text-3xl font-semibold mb-4">Current Job Openings</h2>
+      <section className="py-12 px-4">
+        <h2 className="text-3xl font-bold mb-6">Current Job Openings</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {jobOpenings.map((job) => (
-            <FeatureCard key={job.title} title={job.title} description={job.description} link={job.link} />
+          {jobOpenings.map((job, index) => (
+            <FeatureCard key={index} title={job.title} description={job.description} />
           ))}
         </div>
       </section>
 
-      <section className="w-full max-w-7xl p-6 bg-gray-100 rounded-lg shadow-md">
-        <h2 className="text-3xl font-semibold mb-4">Our Company Culture</h2>
+      <section className="py-12 px-4 bg-gray-100 rounded-lg">
+        <h2 className="text-3xl font-bold mb-6">Our Culture</h2>
         <p className="mb-4">
-          At our company, we foster a collaborative and innovative environment where every team member's voice is heard. 
-          We believe in work-life balance, continuous learning, and celebrating our successes together.
+          At our company, we believe in fostering a collaborative and inclusive environment. Our team thrives on creativity, innovation, and mutual respect.
         </p>
         <p>
-          We offer competitive salaries, flexible working hours, and opportunities for professional growth. 
-          Join us to be part of a team that values creativity and teamwork!
+          We offer flexible working hours, remote work options, and a strong focus on work-life balance. Join us to be part of a community that values your contributions.
         </p>
       </section>
 
       <CTABanner 
-        title="Ready to take the next step in your career?" 
-        subtitle="Apply now and become part of our dynamic team!" 
-        buttonText="View Job Openings" 
-        buttonLink="#job-openings" 
+        title="Ready to make an impact?" 
+        subtitle="Apply now and start your journey with us!" 
+        buttonText="View Openings" 
+        buttonLink="/careers" 
       />
 
-      <section className="w-full max-w-7xl p-6">
-        <h2 className="text-3xl font-semibold mb-4">Get in Touch</h2>
-        <ContactForm />
-      </section>
-
       <Footer />
-    </main>
+    </div>
   );
-}
+};
+
+export default CareersPage;

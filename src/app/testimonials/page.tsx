@@ -6,37 +6,37 @@ export const metadata: Metadata = {
 };
 
 import { FC } from 'react';
-import { TestimonialCard, CTABanner, NavBar, Footer } from '@/components';
+import { NavBar, TestimonialCard, CTABanner, Footer } from '@/components';
 
 const testimonials = [
   {
-    author: 'Jane Doe',
-    feedback: 'The team was professional and delivered beyond our expectations. Highly recommend!',
+    name: 'Jane Doe',
+    feedback: 'The team was incredibly professional and delivered on time. Highly recommend!',
     rating: 5,
   },
   {
-    author: 'John Smith',
-    feedback: 'Great experience! They understood our needs and provided excellent solutions.',
+    name: 'John Smith',
+    feedback: 'Fantastic experience! They understood my needs and exceeded my expectations.',
+    rating: 5,
+  },
+  {
+    name: 'Emily Johnson',
+    feedback: 'Great service and support throughout the project. Will work with them again!',
     rating: 4,
   },
   {
-    author: 'Alice Johnson',
-    feedback: 'Their attention to detail and commitment to quality is unmatched.',
+    name: 'Michael Brown',
+    feedback: 'Professional and reliable. They brought my vision to life beautifully.',
     rating: 5,
   },
   {
-    author: 'Bob Brown',
-    feedback: 'A reliable partner for our projects. We will definitely work with them again.',
-    rating: 4,
-  },
-  {
-    author: 'Charlie White',
-    feedback: 'Professional, responsive, and results-driven. A pleasure to work with.',
+    name: 'Sarah Davis',
+    feedback: 'Excellent communication and results. I couldn’t be happier with the outcome.',
     rating: 5,
   },
   {
-    author: 'Diana Green',
-    feedback: 'They transformed our ideas into reality. Truly impressed with their work!',
+    name: 'David Wilson',
+    feedback: 'A wonderful team that truly cares about their clients. Highly recommend!',
     rating: 5,
   },
 ];
@@ -45,25 +45,13 @@ const TestimonialsPage: FC = () => {
   return (
     <main className="flex flex-col items-center">
       <NavBar />
-      <section className="w-full p-6">
-        <h1 className="text-3xl font-bold mb-4">What Our Clients Say</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard
-              key={testimonial.author}
-              author={testimonial.author}
-              feedback={testimonial.feedback}
-              rating={testimonial.rating}
-            />
-          ))}
-        </div>
+      <h1 className="text-3xl font-bold my-8">What Our Clients Say</h1>
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        {testimonials.map((testimonial, index) => (
+          <TestimonialCard key={index} testimonial={testimonial} />
+        ))}
       </section>
-      <CTABanner
-        title="Join our satisfied clients!"
-        subtitle="Get in touch to start your project today."
-        buttonText="Contact Us"
-        buttonLink="/contact"
-      />
+      <CTABanner title="Join our satisfied clients!" buttonText="Get Started" />
       <Footer />
     </main>
   );

@@ -8,16 +8,18 @@ interface FeatureCardProps {
 
 const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description }) => {
   return (
-    <div className="flex flex-col items-center p-6 border rounded-lg shadow-lg hover:shadow-xl transition">
-      <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p>{description}</p>
+    <div className="border rounded-lg p-4 shadow-lg hover:shadow-xl transition">
+      <div className="text-4xl">{icon}</div>
+      <h3 className="mt-2 text-xl font-bold">{title}</h3>
+      <p className="mt-1">{description}</p>
     </div>
   );
 };
 
+export { FeatureCard };
+
+export function FeatureCard() {
+  return <div>FeatureCard</div>;
+}
+
 export default FeatureCard;
-export { FeatureCard };
-export { FeatureCard };
-export { FeatureCard };
-export { FeatureCard };

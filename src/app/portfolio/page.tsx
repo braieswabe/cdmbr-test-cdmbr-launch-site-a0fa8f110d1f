@@ -10,40 +10,40 @@ import { Hero, ProjectCard, CTABanner, NavBar, Footer } from '@/components';
 
 const projects = [
   {
-    title: 'Project Alpha',
-    description: 'A comprehensive solution for managing tasks efficiently.',
-    tags: ['Productivity', 'Web App'],
-    image: '/images/project-alpha.jpg',
+    title: 'E-commerce Website',
+    description: 'A fully responsive e-commerce platform with integrated payment solutions.',
+    tags: ['E-commerce', 'Web Development'],
+    image: '/images/ecommerce.png',
   },
   {
-    title: 'Project Beta',
-    description: 'An innovative platform for connecting freelancers with clients.',
-    tags: ['Marketplace', 'Web App'],
-    image: '/images/project-beta.jpg',
+    title: 'Portfolio Website',
+    description: 'A personal portfolio showcasing creative work and projects.',
+    tags: ['Design', 'Web Development'],
+    image: '/images/portfolio.png',
   },
   {
-    title: 'Project Gamma',
-    description: 'A cutting-edge e-commerce website that boosts sales.',
-    tags: ['E-commerce', 'Web App'],
-    image: '/images/project-gamma.jpg',
+    title: 'Blog Platform',
+    description: 'A modern blog platform with user-friendly features and SEO optimization.',
+    tags: ['Blog', 'Content Management'],
+    image: '/images/blog.png',
   },
   {
-    title: 'Project Delta',
-    description: 'A mobile app designed to enhance user engagement.',
-    tags: ['Mobile', 'App'],
-    image: '/images/project-delta.jpg',
+    title: 'Corporate Website',
+    description: 'A corporate site designed for a tech startup with a focus on user experience.',
+    tags: ['Corporate', 'Web Design'],
+    image: '/images/corporate.png',
   },
   {
-    title: 'Project Epsilon',
-    description: 'A robust CRM system tailored for small businesses.',
-    tags: ['CRM', 'Web App'],
-    image: '/images/project-epsilon.jpg',
+    title: 'Mobile App',
+    description: 'A mobile application providing seamless user interaction and functionality.',
+    tags: ['Mobile', 'App Development'],
+    image: '/images/mobile-app.png',
   },
   {
-    title: 'Project Zeta',
-    description: 'An educational platform that makes learning fun.',
-    tags: ['Education', 'Web App'],
-    image: '/images/project-zeta.jpg',
+    title: 'Landing Page',
+    description: 'A high-converting landing page designed for a marketing campaign.',
+    tags: ['Marketing', 'Web Design'],
+    image: '/images/landing-page.png',
   },
 ];
 
@@ -51,24 +51,13 @@ const PortfolioPage: FC = () => {
   return (
     <main className="flex flex-col items-center">
       <NavBar />
-      <Hero title="Our Portfolio" subtitle="Showcasing our successful projects" />
+      <Hero title="Our Portfolio" subtitle="Showcasing our best work" />
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.title}
-            title={project.title}
-            description={project.description}
-            tags={project.tags}
-            image={project.image}
-          />
+        {projects.map((project, index) => (
+          <ProjectCard key={index} project={project} />
         ))}
       </section>
-      <CTABanner
-        title="Ready to start your project?"
-        subtitle="Contact us today to discuss your needs."
-        buttonText="Get in Touch"
-        buttonLink="/contact"
-      />
+      <CTABanner title="Ready to start your project?" buttonText="Contact Us" />
       <Footer />
     </main>
   );

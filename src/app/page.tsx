@@ -5,44 +5,46 @@ export const metadata: Metadata = {
   description: "Learn more about app",
 };
 
-import { Hero } from "@/components/Hero";
-import { CTABanner } from "@/components/CTABanner";
-import { FeatureCard } from "@/components/FeatureCard";
-import { TestimonialCard } from "@/components/TestimonialCard";
+import { Hero, CTABanner, FeatureCard, TestimonialCard, Footer, NavBar } from '@/components';
+import { FC } from 'react';
 
-const HomePage = () => {
+const HomePage: FC = () => {
   return (
     <main className="flex flex-col items-center">
-      <Hero
-        title="Transform Your Business with Our Solutions"
-        subtitle="Innovative tools designed to streamline your operations."
-        cta1Text="Get Started"
-        cta1Link="/signup"
-        cta2Text="Learn More"
-        cta2Link="/services"
+      <NavBar />
+      <Hero 
+        title="Transform Your Business with Our Solutions" 
+        subtitle="Empowering you to achieve more with innovative technology." 
+        cta1="Get Started" 
+        cta2="Learn More" 
       />
-      <section className="py-16 px-4 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Key Features</h2>
+      <section className="py-16 px-4 w-full max-w-7xl">
+        <h2 className="text-3xl font-bold text-center mb-8">Our Key Features</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard title="User-Friendly Interface" description="Navigate seamlessly with our intuitive design." />
-          <FeatureCard title="Real-Time Analytics" description="Make informed decisions with up-to-date data." />
-          <FeatureCard title="24/7 Support" description="We're here for you anytime, day or night." />
+          <FeatureCard title="User-Friendly" description="Intuitive design that enhances user experience." />
+          <FeatureCard title="Scalable Solutions" description="Easily adapt to your growing business needs." />
+          <FeatureCard title="24/7 Support" description="We're here to help you anytime, anywhere." />
         </div>
       </section>
-      <section className="py-16 px-4 max-w-7xl mx-auto">
+      <section className="py-16 px-4 w-full max-w-7xl">
         <h2 className="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <TestimonialCard name="Jane Doe" quote="This service has transformed how we operate!" />
-          <TestimonialCard name="John Smith" quote="Exceptional support and results-driven solutions." />
-          <TestimonialCard name="Emily Johnson" quote="Highly recommend for any business looking to grow." />
+        <div className="flex flex-col items-center">
+          <TestimonialCard 
+            name="Jane Doe" 
+            feedback="This service transformed our workflow and increased our productivity!" 
+          />
+          <TestimonialCard 
+            name="John Smith" 
+            feedback="Exceptional support and a fantastic product!" 
+          />
         </div>
       </section>
-      <CTABanner
-        title="Ready to Elevate Your Business?"
-        subtitle="Join us today and experience the difference."
-        ctaText="Sign Up Now"
-        ctaLink="/signup"
+      <CTABanner 
+        title="Ready to elevate your business?" 
+        description="Join us today and start your journey towards success." 
+        cta="Sign Up Now" 
       />
+      <Footer />
     </main>
   );
 };

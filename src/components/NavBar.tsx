@@ -3,25 +3,25 @@ import Link from 'next/link';
 
 const NavBar: FC = () => {
   return (
-    <nav className="sticky top-0 bg-white shadow-md backdrop-blur-md p-4">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className="sticky top-0 bg-white shadow-md backdrop-blur-lg p-4">
+      <div className="flex justify-between items-center">
         <h1 className="text-xl font-bold">Professional Website</h1>
-        <ul className="flex space-x-4">
-          {["Home", "About Us", "Our Services", "Pricing Plans", "Contact Us", "Blog", "Portfolio", "Frequently Asked Questions", "Testimonials", "Careers"].map(link => (
-            <li key={link}>
-              <Link href={`/${link.replace(/\s+/g, '-').toLowerCase()}`} className="hover:text-primary-color transition">
-                {link}
-              </Link>
-            </li>
+        <div className="hidden md:flex space-x-4">
+          {["Home", "About Us", "Our Services", "Pricing Plans", "Contact Us", "Blog", "Portfolio", "Frequently Asked Questions", "Testimonials", "Careers"].map((link) => (
+            <Link key={link} href={`/${link.replace(/\s+/g, '-').toLowerCase()}`}>
+              {link}
+            </Link>
           ))}
-        </ul>
+        </div>
       </div>
     </nav>
   );
 };
 
+export { NavBar };
+
+export function NavBar() {
+  return <div>NavBar</div>;
+}
+
 export default NavBar;
-export { NavBar };
-export { NavBar };
-export { NavBar };
-export { NavBar };
