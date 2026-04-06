@@ -1,15 +1,15 @@
-import React from 'react';
+import { FC } from 'react';
 
 interface FeatureCardProps {
-  icon: React.ReactNode;
+  icon: string;
   title: string;
   description: string;
 }
 
-export const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => {
+export const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition">
-      <div className="text-4xl mb-2">{icon}</div>
+    <div className="bg-white rounded-lg shadow hover:shadow-lg transition p-4">
+      <div className="text-3xl mb-2">{icon}</div>
       <h3 className="text-xl font-semibold">{title}</h3>
       <p>{description}</p>
     </div>

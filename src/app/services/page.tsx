@@ -6,45 +6,48 @@ export const metadata: Metadata = {
 };
 
 import { Hero } from "@/components/Hero";
+import { CTABanner } from "@/components/CTABanner";
 import { FeatureCard } from "@/components/FeatureCard";
+import { Footer } from "@/components/Footer";
+import { NavBar } from "@/components/NavBar";
 
-const ServicesPage = () => {
+const services = [
+  { title: "Web Development", description: "Custom web applications tailored to your business needs." },
+  { title: "Mobile App Development", description: "Engaging mobile applications for iOS and Android." },
+  { title: "Cloud Solutions", description: "Scalable cloud solutions to enhance your business operations." },
+];
+
+export default function Services() {
   return (
     <main className="flex flex-col items-center">
+      <NavBar />
       <Hero title="Our Services" />
-      <section className="py-12 px-4 max-w-7xl">
-        <h2 className="text-2xl font-bold mb-4">What We Offer</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard title="Consulting" description="Expert advice to guide your business strategy." />
-          <FeatureCard title="Development" description="Custom software solutions tailored to your needs." />
-          <FeatureCard title="Support" description="Ongoing support to ensure your success." />
-          <FeatureCard title="Training" description="Empower your team with our training programs." />
-          <FeatureCard title="Integration" description="Seamless integration with existing systems." />
-        </div>
-      </section>
-      <section className="py-12 px-4 bg-gray-100">
-        <h2 className="text-2xl font-bold mb-4">Case Studies</h2>
-        <p className="mb-4">
-          Discover how we've helped businesses like yours achieve their goals through our tailored services.
+      <section className="py-10 px-4 max-w-6xl w-full">
+        <h2 className="text-3xl font-bold mb-6">Service Overview</h2>
+        <p className="text-lg mb-6">
+          We offer a range of services designed to help your business succeed in the digital landscape.
         </p>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Placeholder for case studies */}
-          <div className="border rounded-lg p-4">
-            <h3 className="font-semibold">Project Alpha</h3>
-            <p>Increased efficiency by 30% for a leading retail brand.</p>
-          </div>
-          <div className="border rounded-lg p-4">
-            <h3 className="font-semibold">Project Beta</h3>
-            <p>Streamlined operations for a tech startup, reducing costs by 20%.</p>
-          </div>
-          <div className="border rounded-lg p-4">
-            <h3 className="font-semibold">Project Gamma</h3>
-            <p>Enhanced customer engagement for a service provider, boosting sales by 50%.</p>
-          </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, index) => (
+            <FeatureCard key={index} title={service.title} description={service.description} />
+          ))}
         </div>
       </section>
+      <section className="py-10 px-4 max-w-6xl w-full">
+        <h2 className="text-3xl font-bold mb-6">Our Process</h2>
+        <ol className="list-decimal list-inside">
+          <li className="mb-2">Consultation: We discuss your needs and goals.</li>
+          <li className="mb-2">Planning: We create a tailored strategy for your project.</li>
+          <li className="mb-2">Development: Our team builds your solution with precision.</li>
+          <li className="mb-2">Testing: We ensure everything works seamlessly.</li>
+          <li className="mb-2">Launch: Your solution goes live, and we support you every step of the way.</li>
+        </ol>
+      </section>
+      <CTABanner 
+        title="Interested in our services?" 
+        cta="Contact Us Today" 
+      />
+      <Footer />
     </main>
   );
-};
-
-export default ServicesPage;
+}

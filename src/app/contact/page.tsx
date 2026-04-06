@@ -1,41 +1,69 @@
-'use client';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Get in Touch",
+  description: "Learn more about get in touch",
+};
 
 import { useState } from 'react';
-import Hero from '@/components/Hero';
 import ContactForm from '@/components/ContactForm';
-import Map from '@/components/Map';
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission logic
-    console.log('Form submitted:', formData);
+    console.log(formData);
   };
 
   return (
-    <main className="flex flex-col items-center justify-center p-6">
-      <Hero title="Get in Touch" subtitle="We'd love to hear from you!" />
-      <ContactForm onSubmit={handleSubmit} onChange={handleInputChange} formData={formData} />
-      <div className="mt-8">
-        <h2 className="text-xl font-bold">Our Location</h2>
-        <p className="mt-2">123 Business Rd, Suite 100, City, State, 12345</p>
-        <p>Office Hours: Mon-Fri 9 AM - 5 PM</p>
-        <p>
-          <a href="tel:+1234567890" className="text-blue-600">+1 (234) 567-890</a> | 
-          <a href="mailto:info@example.com" className="text-blue-600"> info@example.com</a>
-        </p>
-        <div className="mt-4 w-full h-64">
-          <Map />
-        </div>
-      </div>
-    </main>
+    <div className="flex flex-col min-h-screen">
+      <NavBar />
+      <main className="flex-grow p-6">
+        <section className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>
+          <p className="text-lg text-gray-600">We'd love to hear from you!</p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Contact Form</h2>
+          <ContactForm onChange={handleChange} onSubmit={handleSubmit} />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Our Location</h2>
+          <div className="bg-gray-200 rounded-lg p-4 shadow">
+            <p className="font-medium">123 Business Rd, Suite 100</p>
+            <p>Business City, BC 12345</p>
+            <p className="mt-2">Office Hours: Mon-Fri 9:00 AM - 5:00 PM</p>
+            <a href="tel:+1234567890" className="text-blue-500">+1 (234) 567-890</a>
+            <br />
+            <a href="mailto:info@business.com" className="text-blue-500">info@business.com</a>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Find Us on the Map</h2>
+          <div className="bg-gray-200 rounded-lg h-64 shadow">
+            {/* Placeholder for map */}
+            <p className="text-center pt-28 text-gray-500">Map Placeholder</p>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
   );
 };
 

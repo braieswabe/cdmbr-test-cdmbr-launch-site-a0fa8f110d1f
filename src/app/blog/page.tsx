@@ -1,56 +1,67 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Learn more about blog",
+  title: "Our Blog",
+  description: "Learn more about our blog",
 };
 
-import Hero from '@/components/Hero';
-import BlogPostCard from '@/components/BlogPostCard';
+import BlogPostPreview from '@/components/BlogPostPreview';
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 
 const BlogPage = () => {
-  const blogPosts = [
+  const posts = [
     {
-      title: 'Understanding the Future of SaaS',
-      excerpt: 'Explore the latest trends and predictions in the SaaS industry.',
-      date: 'October 10, 2023',
+      title: 'Understanding the Basics of SaaS',
+      excerpt: 'Explore the fundamental concepts of Software as a Service and how it can benefit your business.',
+      date: 'September 15, 2023',
       category: 'SaaS',
-      image: '/images/blog1.jpg',
+      image: '/images/saas-basics.jpg',
     },
     {
-      title: '5 Tips for Effective Remote Work',
-      excerpt: 'Learn how to maximize productivity while working from home.',
-      date: 'October 5, 2023',
+      title: 'Maximizing Your Productivity with Tools',
+      excerpt: 'Learn about the best tools to enhance your productivity and streamline your workflow.',
+      date: 'September 10, 2023',
       category: 'Productivity',
-      image: '/images/blog2.jpg',
+      image: '/images/productivity-tools.jpg',
     },
-    // Add more blog posts as needed
+    // Add more posts as needed
   ];
 
   return (
-    <main className="flex flex-col items-center justify-center p-6">
-      <Hero title="Our Insights" subtitle="Stay updated with the latest articles." />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {blogPosts.map((post, index) => (
-          <BlogPostCard 
-            key={index}
-            title={post.title}
-            excerpt={post.excerpt}
-            date={post.date}
-            category={post.category}
-            image={post.image}
-          />
-        ))}
-      </div>
-      <aside className="mt-6 w-full md:w-1/4">
-        <h2 className="text-lg font-bold">Categories</h2>
-        <ul className="mt-2">
-          <li><a href="#" className="text-blue-600">SaaS</a></li>
-          <li><a href="#" className="text-blue-600">Productivity</a></li>
-          <li><a href="#" className="text-blue-600">Technology</a></li>
-        </ul>
-      </aside>
-    </main>
+    <div className="flex flex-col min-h-screen">
+      <NavBar />
+      <main className="flex-grow p-6">
+        <section className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4">Our Blog</h1>
+          <p className="text-lg text-gray-600">Insights and knowledge from our experts.</p>
+        </section>
+
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post, index) => (
+            <BlogPostPreview
+              key={index}
+              title={post.title}
+              excerpt={post.excerpt}
+              date={post.date}
+              category={post.category}
+              image={post.image}
+            />
+          ))}
+        </section>
+
+        <section className="mt-12">
+          <h2 className="text-2xl font-semibold mb-4">Categories</h2>
+          <ul className="space-y-2">
+            <li><a href="/blog/saas" className="text-blue-500 hover:underline">SaaS</a></li>
+            <li><a href="/blog/productivity" className="text-blue-500 hover:underline">Productivity</a></li>
+            <li><a href="/blog/technology" className="text-blue-500 hover:underline">Technology</a></li>
+            {/* Add more categories as needed */}
+          </ul>
+        </section>
+      </main>
+      <Footer />
+    </div>
   );
 };
 

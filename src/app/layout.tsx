@@ -1,16 +1,15 @@
 import { ReactNode } from 'react';
-import { NavBar } from '@/components/NavBar';
-import { Footer } from '@/components/Footer';
-
-export const metadata = {
-  title: 'Professional Website',
-  description: 'Your trusted partner for modern solutions.',
-};
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <head>
+        <title>Professional Website</title>
+        <meta name="description" content="Your go-to platform for professional solutions." />
+      </head>
+      <body className="bg-white text-gray-800">
         <NavBar />
         <main>{children}</main>
         <Footer />
