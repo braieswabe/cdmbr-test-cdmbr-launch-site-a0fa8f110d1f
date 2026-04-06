@@ -27,3 +27,4 @@ const PricingTable: FC<PricingTableProps> = ({ planName, price, features, isHigh
 export default PricingTable;
 export { PricingTable };
 export { PricingTable };
+export { PricingTable };

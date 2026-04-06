@@ -19,3 +19,4 @@ const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description }) => {
 export default FeatureCard;
 export { FeatureCard };
 export { FeatureCard };
+export { FeatureCard };

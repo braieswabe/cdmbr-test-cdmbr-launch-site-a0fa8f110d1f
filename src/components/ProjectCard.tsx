@@ -17,3 +17,4 @@ const ProjectCard: FC<ProjectCardProps> = ({ title, description }) => {
 export default ProjectCard;
 export { ProjectCard };
 export { ProjectCard };
+export { ProjectCard };

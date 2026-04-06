@@ -22,3 +22,4 @@ const CTABanner: FC<CTABannerProps> = ({ headline, description, buttonText, butt
 export default CTABanner;
 export { CTABanner };
 export { CTABanner };
+export { CTABanner };

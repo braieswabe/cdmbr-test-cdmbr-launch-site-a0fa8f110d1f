@@ -17,3 +17,4 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ title, description }) => {
 export default BlogPostCard;
 export { BlogPostCard };
 export { BlogPostCard };
+export { BlogPostCard };
