@@ -23,3 +23,4 @@ export default CTABanner;
 export { CTABanner };
 export { CTABanner };
 export { CTABanner };
+export { CTABanner };

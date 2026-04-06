@@ -20,3 +20,4 @@ export default FeatureCard;
 export { FeatureCard };
 export { FeatureCard };
 export { FeatureCard };
+export { FeatureCard };

@@ -33,3 +33,4 @@ export default Footer;
 export { Footer };
 export { Footer };
 export { Footer };
+export { Footer };

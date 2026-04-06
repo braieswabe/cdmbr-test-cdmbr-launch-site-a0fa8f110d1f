@@ -18,3 +18,4 @@ export default BlogPostCard;
 export { BlogPostCard };
 export { BlogPostCard };
 export { BlogPostCard };
+export { BlogPostCard };

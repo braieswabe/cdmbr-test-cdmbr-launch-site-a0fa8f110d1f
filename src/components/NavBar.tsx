@@ -24,3 +24,4 @@ export default NavBar;
 export { NavBar };
 export { NavBar };
 export { NavBar };
+export { NavBar };

@@ -18,3 +18,4 @@ export default TestimonialCard;
 export { TestimonialCard };
 export { TestimonialCard };
 export { TestimonialCard };
+export { TestimonialCard };

@@ -39,3 +39,4 @@ export default ContactForm;
 export { ContactForm };
 export { ContactForm };
 export { ContactForm };
+export { ContactForm };

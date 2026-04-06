@@ -23,3 +23,4 @@ export default Hero;
 export { Hero };
 export { Hero };
 export { Hero };
+export { Hero };

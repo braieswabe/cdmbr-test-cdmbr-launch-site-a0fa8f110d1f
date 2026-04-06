@@ -18,3 +18,4 @@ export default ProjectCard;
 export { ProjectCard };
 export { ProjectCard };
 export { ProjectCard };
+export { ProjectCard };
