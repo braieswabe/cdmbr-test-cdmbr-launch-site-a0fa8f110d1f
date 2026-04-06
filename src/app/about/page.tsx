@@ -10,7 +10,12 @@ import { Hero } from "@/components/Hero";
 const AboutPage = () => {
   return (
     <main className="flex flex-col items-center">
-      <Hero title="About Us" />
+      <Hero 
+        title="About Us" 
+        subtitle="Learn more about our mission." 
+        ctaText="Join Us" 
+        ctaLink="/careers" 
+      />
       <section className="py-16 px-4 max-w-7xl w-full">
         <h2 className="text-2xl font-bold mb-4">Our Story</h2>
         <p className="mb-4">

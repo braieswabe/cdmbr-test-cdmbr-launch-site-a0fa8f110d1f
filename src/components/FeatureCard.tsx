@@ -1,17 +1,17 @@
-import { FC } from 'react';
+import React from 'react';
 
-interface FeatureCardProps {
-  icon: JSX.Element;
+export type FeatureCardProps = {
   title: string;
   description: string;
-}
+};
 
-export const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description }) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ title, description }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition">
-      <div className="text-3xl">{icon}</div>
-      <h3 className="mt-4 text-xl font-semibold">{title}</h3>
-      <p className="mt-2">{description}</p>
+    <div className="feature-card border p-4 rounded-lg shadow-md">
+      <h3 className="text-xl font-semibold">{title}</h3>
+      <p>{description}</p>
     </div>
   );
 };
+
+export default FeatureCard;

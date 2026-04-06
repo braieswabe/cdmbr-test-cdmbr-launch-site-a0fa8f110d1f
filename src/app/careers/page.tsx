@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from 'react';
-import Hero from '@/components/Hero';
-import CTABanner from '@/components/CTABanner';
-import FeatureCard from '@/components/FeatureCard';
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
+import { Hero } from '@/components/Hero';
+import { CTABanner } from '@/components/CTABanner';
+import { FeatureCard } from '@/components/FeatureCard';
+import { NavBar } from '@/components/NavBar';
+import { Footer } from '@/components/Footer';
 
 const jobOpenings = [
   {
@@ -29,7 +29,10 @@ const CareersPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <NavBar />
-      <Hero title="Join Our Team" subtitle="Explore exciting career opportunities with us." />
+      <Hero 
+        title="Join Our Team" 
+        subtitle="Explore exciting career opportunities with us." 
+      />
       
       <section className="py-12 px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-6">Current Job Openings</h2>
