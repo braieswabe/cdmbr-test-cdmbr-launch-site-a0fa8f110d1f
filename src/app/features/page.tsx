@@ -5,39 +5,39 @@ export const metadata: Metadata = {
   description: "Learn more about features",
 };
 
-import { Hero } from "@/components/Hero";
-import { CTABanner } from "@/components/CTABanner";
-import { FeatureCard } from "@/components/FeatureCard";
-import { NavBar } from "@/components/NavBar";
-import { Footer } from "@/components/Footer";
+import { Hero } from '@/components/Hero';
+import { CTABanner } from '@/components/CTABanner';
+import { FeatureCard } from '@/components/FeatureCard';
+import { NavBar } from '@/components/NavBar';
+import { Footer } from '@/components/Footer';
 
 const FeaturesPage = () => {
   return (
-    <main className="flex flex-col items-center">
+    <div className="flex flex-col min-h-screen">
       <NavBar />
-      <Hero title="Discover Our Unique Features" subtitle="Transforming the way you work with innovative solutions!" />
+      <Hero title="Explore Our Features" subtitle="Discover how our software can transform your workflow!" />
 
-      <section className="max-w-4xl mx-auto p-6">
-        <h2 className="text-3xl font-bold mb-4">Feature Overview</h2>
-        <p className="text-lg text-gray-700 mb-6">Our product is designed with you in mind. Each feature is crafted to enhance productivity, streamline processes, and deliver exceptional results.</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <FeatureCard title="Real-time Collaboration" description="Work together seamlessly with our real-time collaboration tools that keep your team connected." />
-          <FeatureCard title="Advanced Analytics" description="Gain insights into your performance with our powerful analytics dashboard." />
-          <FeatureCard title="Customizable Workflows" description="Tailor your workflows to fit your unique needs and preferences." />
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold mb-6">Feature Overview</h2>
+          <p className="text-lg text-gray-700 mb-4">
+            Our software is designed with you in mind. Here’s a closer look at the powerful features that set us apart.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <FeatureCard title="Real-Time Collaboration" description="Work together with your team in real-time, no matter where you are." />
+            <FeatureCard title="Advanced Analytics" description="Gain insights into your data with our powerful analytics tools." />
+            <FeatureCard title="Customizable Dashboards" description="Tailor your dashboard to fit your unique workflow and preferences." />
+            <FeatureCard title="Seamless Integrations" description="Connect with your favorite tools and streamline your processes." />
+            <FeatureCard title="Robust Security" description="Keep your data safe with our industry-leading security measures." />
+            <FeatureCard title="24/7 Support" description="Our dedicated support team is here to help you whenever you need it." />
+          </div>
         </div>
       </section>
 
-      <section className="bg-gray-100 w-full py-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Why Choose Us?</h2>
-          <p className="text-lg text-gray-700 mb-6">Our commitment to quality and customer satisfaction sets us apart. We continuously innovate to ensure our product meets your evolving needs.</p>
-          <p className="text-lg text-gray-700">Join thousands of satisfied customers who have transformed their workflows with our solution.</p>
-        </div>
-      </section>
+      <CTABanner title="Ready to experience our features?" buttonText="Get Started" buttonLink="#" />
 
-      <CTABanner title="Experience the Difference!" subtitle="Start your free trial today and see the benefits for yourself!" buttonText="Get Started" buttonLink="/signup" />
       <Footer />
-    </main>
+    </div>
   );
 };
 

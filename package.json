@@ -1,6 +1,6 @@
 {
-  "name": "cdmbr-test-cdmbr-launch-site-a0fa8f110d1f",
-  "version": "0.1.0",
+  "name": "professional-website",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,19 +9,19 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "next": "15.5.14",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "tailwindcss": "^4.2.2",
-    "@tailwindcss/postcss": "^4.2.2"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwindcss": "latest",
+    "@tailwindcss/postcss": "latest"
   },
   "devDependencies": {
-    "@types/node": "^22.15.3",
-    "@types/react": "^19.1.2",
+    "typescript": "latest",
+    "@types/react": "latest",
+    "@types/node": "latest",
     "@types/react-dom": "^19.1.2",
     "eslint": "^9.39.1",
     "eslint-config-next": "15.5.14",
-    "typescript": "^5.8.3",
     "@tailwindcss/postcss": "^4.2.2",
     "tailwindcss": "^4.2.2"
   }

@@ -1,11 +1,10 @@
-```typescript
 import { ReactNode } from 'react';
 import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 
 export const metadata = {
   title: 'Professional Website',
-  description: 'Your go-to solution for professional services.',
+  description: 'Your trusted partner for modern solutions.',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

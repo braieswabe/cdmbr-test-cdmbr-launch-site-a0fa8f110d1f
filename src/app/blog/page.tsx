@@ -5,57 +5,53 @@ export const metadata: Metadata = {
   description: "Learn more about blog",
 };
 
-```tsx
-import { Hero, BlogPostCard, CTABanner } from '@/components';
+import Hero from '@/components/Hero';
+import BlogPostCard from '@/components/BlogPostCard';
 
 const BlogPage = () => {
   const blogPosts = [
     {
-      title: 'Understanding SaaS: A Comprehensive Guide',
-      excerpt: 'Dive into the world of Software as a Service and learn how it can benefit your business.',
-      date: 'October 1, 2023',
+      title: 'Understanding the Future of SaaS',
+      excerpt: 'Explore the latest trends and predictions in the SaaS industry.',
+      date: 'October 10, 2023',
       category: 'SaaS',
-      image: '/images/saas-guide.jpg',
+      image: '/images/blog1.jpg',
     },
     {
-      title: '10 Tips for Effective Remote Work',
-      excerpt: 'Maximize your productivity while working from home with these essential tips.',
-      date: 'September 15, 2023',
+      title: '5 Tips for Effective Remote Work',
+      excerpt: 'Learn how to maximize productivity while working from home.',
+      date: 'October 5, 2023',
       category: 'Productivity',
-      image: '/images/remote-work.jpg',
-    },
-    {
-      title: 'The Future of Cloud Computing',
-      excerpt: 'Explore the trends and predictions shaping the future of cloud technology.',
-      date: 'September 5, 2023',
-      category: 'Cloud',
-      image: '/images/cloud-computing.jpg',
+      image: '/images/blog2.jpg',
     },
     // Add more blog posts as needed
   ];
 
   return (
-    <main className="bg-gradient-to-b from-gray-100 to-white">
-      <Hero title="Our Blog" subtitle="Insights and Updates" />
-      <section className="container mx-auto py-10">
-        <h2 className="text-2xl font-bold mb-6">Latest Posts</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogPosts.map((post) => (
-            <BlogPostCard
-              key={post.title}
-              title={post.title}
-              excerpt={post.excerpt}
-              date={post.date}
-              category={post.category}
-              image={post.image}
-            />
-          ))}
-        </div>
-      </section>
-      <CTABanner title="Want to learn more?" buttonText="Subscribe to our Newsletter" />
+    <main className="flex flex-col items-center justify-center p-6">
+      <Hero title="Our Insights" subtitle="Stay updated with the latest articles." />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        {blogPosts.map((post, index) => (
+          <BlogPostCard 
+            key={index}
+            title={post.title}
+            excerpt={post.excerpt}
+            date={post.date}
+            category={post.category}
+            image={post.image}
+          />
+        ))}
+      </div>
+      <aside className="mt-6 w-full md:w-1/4">
+        <h2 className="text-lg font-bold">Categories</h2>
+        <ul className="mt-2">
+          <li><a href="#" className="text-blue-600">SaaS</a></li>
+          <li><a href="#" className="text-blue-600">Productivity</a></li>
+          <li><a href="#" className="text-blue-600">Technology</a></li>
+        </ul>
+      </aside>
     </main>
   );
 };
 
 export default BlogPage;
-```

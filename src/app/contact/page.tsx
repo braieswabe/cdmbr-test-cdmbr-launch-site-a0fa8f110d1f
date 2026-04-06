@@ -1,42 +1,42 @@
-```tsx
 'use client';
 
 import { useState } from 'react';
-import { Hero, ContactForm, CTABanner } from '@/components';
+import Hero from '@/components/Hero';
+import ContactForm from '@/components/ContactForm';
+import Map from '@/components/Map';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission logic
-    console.log(formData);
+    console.log('Form submitted:', formData);
   };
 
   return (
-    <main className="bg-gradient-to-b from-gray-100 to-white">
+    <main className="flex flex-col items-center justify-center p-6">
       <Hero title="Get in Touch" subtitle="We'd love to hear from you!" />
-      <section className="container mx-auto py-10">
-        <ContactForm onChange={handleChange} onSubmit={handleSubmit} />
-      </section>
-      <section className="container mx-auto py-10">
-        <h2 className="text-2xl font-bold mb-4">Our Location</h2>
-        <p className="mb-2">123 Main St, Suite 100</p>
-        <p className="mb-2">Anytown, USA</p>
-        <p className="mb-2">Office Hours: Mon-Fri 9am - 5pm</p>
-        <a href="tel:+1234567890" className="text-blue-500">+1 (234) 567-890</a>
-        <br />
-        <a href="mailto:info@example.com" className="text-blue-500">info@example.com</a>
-        <div className="mt-4 h-64 bg-gray-300">[Map Placeholder]</div>
-      </section>
-      <CTABanner title="Have more questions?" buttonText="Contact Us" />
+      <ContactForm onSubmit={handleSubmit} onChange={handleInputChange} formData={formData} />
+      <div className="mt-8">
+        <h2 className="text-xl font-bold">Our Location</h2>
+        <p className="mt-2">123 Business Rd, Suite 100, City, State, 12345</p>
+        <p>Office Hours: Mon-Fri 9 AM - 5 PM</p>
+        <p>
+          <a href="tel:+1234567890" className="text-blue-600">+1 (234) 567-890</a> | 
+          <a href="mailto:info@example.com" className="text-blue-600"> info@example.com</a>
+        </p>
+        <div className="mt-4 w-full h-64">
+          <Map />
+        </div>
+      </div>
     </main>
   );
 };
 
 export default ContactPage;
-```

@@ -1,18 +1,17 @@
-```typescript
 import React from 'react';
 
 interface BlogPostCardProps {
-  icon: React.ReactNode;
   title: string;
-  description: string;
+  excerpt: string;
+  date: string;
 }
 
-export const BlogPostCard: React.FC<BlogPostCardProps> = ({ icon, title, description }) => {
+export const BlogPostCard: React.FC<BlogPostCardProps> = ({ title, excerpt, date }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition">
-      <div className="text-3xl mb-2">{icon}</div>
-      <h3 className="font-bold text-xl mb-1">{title}</h3>
-      <p>{description}</p>
+      <h3 className="text-xl font-semibold">{title}</h3>
+      <p className="text-gray-600">{excerpt}</p>
+      <span className="text-gray-400">{date}</span>
     </div>
   );
 };
