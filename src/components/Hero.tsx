@@ -20,3 +20,7 @@ const Hero: FC<HeroProps> = ({ title, subtitle, ctaText, ctaLink }) => {
 };
 
 export default Hero;
+
+export function Hero() {
+  return <div className="max-w-7xl mx-auto px-4 py-6">Hero</div>;
+}
