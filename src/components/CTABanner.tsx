@@ -1,20 +1,22 @@
 import React from 'react';
 
-export type CTABannerProps = {
+interface CTABannerProps {
   title: string;
-  description: string;
-  buttonText: string;
-  buttonLink: string;
-};
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+}
 
 const CTABanner: React.FC<CTABannerProps> = ({ title, description, buttonText, buttonLink }) => {
   return (
-    <div className="cta-banner">
-      <h2 className="text-3xl font-bold">{title}</h2>
-      <p>{description}</p>
-      <a href={buttonLink} className="btn">
-        {buttonText}
-      </a>
+    <div className="bg-blue-500 text-white p-6 text-center">
+      <h2 className="text-2xl font-bold">{title}</h2>
+      {description && <p className="mt-2">{description}</p>}
+      {buttonText && buttonLink && (
+        <a href={buttonLink} className="mt-4 inline-block bg-white text-blue-500 px-4 py-2 rounded">
+          {buttonText}
+        </a>
+      )}
     </div>
   );
 };
