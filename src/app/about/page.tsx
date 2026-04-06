@@ -5,58 +5,66 @@ export const metadata: Metadata = {
   description: "Learn more about about",
 };
 
-import { Hero } from "@/components/Hero";
-import { Footer } from "@/components/Footer";
-import { NavBar } from "@/components/NavBar";
+import { Hero } from '@/components/Hero';
+import { NavBar } from '@/components/NavBar';
+import { Footer } from '@/components/Footer';
 
-const teamMembers = [
-  { name: "Alice Johnson", role: "CEO", photo: "/images/alice.jpg" },
-  { name: "Bob Brown", role: "CTO", photo: "/images/bob.jpg" },
-  { name: "Charlie Davis", role: "CMO", photo: "/images/charlie.jpg" },
-  { name: "Diana Evans", role: "COO", photo: "/images/diana.jpg" },
-];
-
-const values = [
-  { title: "Integrity", description: "We uphold the highest standards of integrity in all our actions." },
-  { title: "Innovation", description: "We foster a culture of innovation and creativity." },
-  { title: "Customer Focus", description: "We prioritize our customers' needs and satisfaction." },
-];
-
-export default function About() {
+const AboutPage = () => {
   return (
-    <main className="flex flex-col items-center">
+    <>
       <NavBar />
-      <Hero title="About Us" />
-      <section className="py-10 px-4 max-w-6xl w-full">
-        <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-        <p className="text-lg">
-          Founded in 2020, we have been dedicated to providing top-notch solutions that empower businesses to thrive in the digital age.
-        </p>
-      </section>
-      <section className="py-10 px-4 max-w-6xl w-full">
-        <h2 className="text-3xl font-bold mb-6">Our Values</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {values.map((value, index) => (
-            <div key={index} className="p-4 border rounded shadow">
-              <h3 className="text-xl font-semibold">{value.title}</h3>
-              <p>{value.description}</p>
-            </div>
-          ))}
+      <Hero 
+        headline="About Us"
+        subtitle="Learn more about our mission and values."
+      />
+      <section className="py-16 bg-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold mb-8">Our History</h2>
+          <p className="mb-4">Founded in 2020, we set out to create innovative solutions that empower businesses to thrive in a digital world. Our journey has been one of growth, learning, and commitment to excellence.</p>
+          <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
+          <p>To provide cutting-edge technology solutions that simplify processes and enhance productivity for our clients.</p>
         </div>
       </section>
-      <section className="py-10 px-4 max-w-6xl w-full">
-        <h2 className="text-3xl font-bold mb-6">Meet Our Team</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {teamMembers.map((member, index) => (
-            <div key={index} className="p-4 border rounded shadow">
-              <img src={member.photo} alt={member.name} className="rounded-full w-24 h-24 mb-4" />
-              <h3 className="text-xl font-semibold">{member.name}</h3>
-              <p>{member.role}</p>
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold mb-8">Our Values</h2>
+          <ul className="list-disc pl-5">
+            <li className="mb-2">Integrity: We uphold the highest standards of integrity in all our actions.</li>
+            <li className="mb-2">Innovation: We strive to innovate and improve continuously.</li>
+            <li className="mb-2">Customer Focus: Our customers are at the heart of everything we do.</li>
+          </ul>
+        </div>
+      </section>
+      <section className="py-16 bg-white">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold mb-8">Meet Our Team</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <img src="/images/team1.jpg" alt="Team Member" className="rounded-full mb-4" />
+              <h3 className="font-semibold">Alice Brown</h3>
+              <p>Co-Founder</p>
             </div>
-          ))}
+            <div className="text-center">
+              <img src="/images/team2.jpg" alt="Team Member" className="rounded-full mb-4" />
+              <h3 className="font-semibold">Bob White</h3>
+              <p>CTO</p>
+            </div>
+            <div className="text-center">
+              <img src="/images/team3.jpg" alt="Team Member" className="rounded-full mb-4" />
+              <h3 className="font-semibold">Charlie Green</h3>
+              <p>Marketing Director</p>
+            </div>
+            <div className="text-center">
+              <img src="/images/team4.jpg" alt="Team Member" className="rounded-full mb-4" />
+              <h3 className="font-semibold">Diana Blue</h3>
+              <p>Lead Developer</p>
+            </div>
+          </div>
         </div>
       </section>
       <Footer />
-    </main>
+    </>
   );
-}
+};
+
+export default AboutPage;

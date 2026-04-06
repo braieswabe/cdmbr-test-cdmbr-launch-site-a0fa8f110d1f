@@ -5,62 +5,44 @@ export const metadata: Metadata = {
   description: "Learn more about our blog",
 };
 
-import BlogPostPreview from '@/components/BlogPostPreview';
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
+import { BlogPost } from '@/components';
 
 const BlogPage = () => {
   const posts = [
     {
-      title: 'Understanding the Basics of SaaS',
-      excerpt: 'Explore the fundamental concepts of Software as a Service and how it can benefit your business.',
-      date: 'September 15, 2023',
+      id: 1,
+      title: 'Understanding the Future of SaaS',
+      excerpt: 'Explore the trends shaping the future of Software as a Service...',
+      date: 'October 1, 2023',
       category: 'SaaS',
-      image: '/images/saas-basics.jpg',
     },
     {
-      title: 'Maximizing Your Productivity with Tools',
-      excerpt: 'Learn about the best tools to enhance your productivity and streamline your workflow.',
-      date: 'September 10, 2023',
+      id: 2,
+      title: '5 Tips for Effective Remote Work',
+      excerpt: 'Remote work is here to stay. Here are five tips to enhance productivity...',
+      date: 'September 15, 2023',
       category: 'Productivity',
-      image: '/images/productivity-tools.jpg',
     },
     // Add more posts as needed
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <NavBar />
-      <main className="flex-grow p-6">
-        <section className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Our Blog</h1>
-          <p className="text-lg text-gray-600">Insights and knowledge from our experts.</p>
-        </section>
-
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, index) => (
-            <BlogPostPreview
-              key={index}
-              title={post.title}
-              excerpt={post.excerpt}
-              date={post.date}
-              category={post.category}
-              image={post.image}
-            />
-          ))}
-        </section>
-
-        <section className="mt-12">
-          <h2 className="text-2xl font-semibold mb-4">Categories</h2>
-          <ul className="space-y-2">
-            <li><a href="/blog/saas" className="text-blue-500 hover:underline">SaaS</a></li>
-            <li><a href="/blog/productivity" className="text-blue-500 hover:underline">Productivity</a></li>
-            <li><a href="/blog/technology" className="text-blue-500 hover:underline">Technology</a></li>
-            {/* Add more categories as needed */}
-          </ul>
-        </section>
-      </main>
-      <Footer />
+    <div className="container mx-auto px-4 py-12">
+      <h1 className="text-4xl font-bold text-center mb-8">Our Blog</h1>
+      <p className="text-lg text-center mb-12">
+        Stay updated with our latest insights and articles.
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map(post => (
+          <BlogPost key={post.id} post={post} />
+        ))}
+      </div>
+      <h2 className="text-2xl font-semibold mt-12">Categories</h2>
+      <div className="flex flex-wrap mt-4">
+        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full mr-2">SaaS</span>
+        <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full mr-2">Productivity</span>
+        {/* Add more categories as needed */}
+      </div>
     </div>
   );
 };

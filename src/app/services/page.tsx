@@ -5,49 +5,48 @@ export const metadata: Metadata = {
   description: "Learn more about services",
 };
 
-import { Hero } from "@/components/Hero";
-import { CTABanner } from "@/components/CTABanner";
-import { FeatureCard } from "@/components/FeatureCard";
-import { Footer } from "@/components/Footer";
-import { NavBar } from "@/components/NavBar";
+import { NavBar } from '@/components/NavBar';
+import { FeatureCard } from '@/components/FeatureCard';
+import { CTABanner } from '@/components/CTABanner';
+import { Footer } from '@/components/Footer';
 
-const services = [
-  { title: "Web Development", description: "Custom web applications tailored to your business needs." },
-  { title: "Mobile App Development", description: "Engaging mobile applications for iOS and Android." },
-  { title: "Cloud Solutions", description: "Scalable cloud solutions to enhance your business operations." },
-];
-
-export default function Services() {
+const ServicesPage = () => {
   return (
-    <main className="flex flex-col items-center">
+    <>
       <NavBar />
-      <Hero title="Our Services" />
-      <section className="py-10 px-4 max-w-6xl w-full">
-        <h2 className="text-3xl font-bold mb-6">Service Overview</h2>
-        <p className="text-lg mb-6">
-          We offer a range of services designed to help your business succeed in the digital landscape.
-        </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <FeatureCard key={index} title={service.title} description={service.description} />
-          ))}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-8">Our Services</h2>
+          <p className="mb-8">We offer a range of services designed to help your business succeed.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <FeatureCard title="Consulting" description="Expert advice to optimize your business strategy." />
+            <FeatureCard title="Software Development" description="Custom software solutions tailored to your needs." />
+            <FeatureCard title="Digital Marketing" description="Boost your online presence with our marketing strategies." />
+          </div>
         </div>
       </section>
-      <section className="py-10 px-4 max-w-6xl w-full">
-        <h2 className="text-3xl font-bold mb-6">Our Process</h2>
-        <ol className="list-decimal list-inside">
-          <li className="mb-2">Consultation: We discuss your needs and goals.</li>
-          <li className="mb-2">Planning: We create a tailored strategy for your project.</li>
-          <li className="mb-2">Development: Our team builds your solution with precision.</li>
-          <li className="mb-2">Testing: We ensure everything works seamlessly.</li>
-          <li className="mb-2">Launch: Your solution goes live, and we support you every step of the way.</li>
-        </ol>
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-8">How We Work</h2>
+          <ol className="list-decimal pl-5 mb-8">
+            <li className="mb-2">Understand your needs through consultation.</li>
+            <li className="mb-2">Develop a tailored strategy for your business.</li>
+            <li className="mb-2">Implement solutions with our expert team.</li>
+            <li className="mb-2">Monitor progress and optimize as needed.</li>
+            <li className="mb-2">Provide ongoing support and updates.</li>
+          </ol>
+          <p>If you’re interested in learning more about our services, feel free to reach out!</p>
+        </div>
       </section>
       <CTABanner 
-        title="Interested in our services?" 
-        cta="Contact Us Today" 
+        title="Get in Touch"
+        description="Ready to take the next step? Contact us today!"
+        ctaText="Contact Us"
+        ctaLink="/contact"
       />
       <Footer />
-    </main>
+    </>
   );
-}
+};
+
+export default ServicesPage;

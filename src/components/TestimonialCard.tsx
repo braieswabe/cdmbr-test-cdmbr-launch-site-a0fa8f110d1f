@@ -2,16 +2,18 @@ import { FC } from 'react';
 
 interface TestimonialCardProps {
   name: string;
-  title: string;
   testimonial: string;
+  position: string;
 }
 
-export const TestimonialCard: FC<TestimonialCardProps> = ({ name, title, testimonial }) => {
+const TestimonialCard: FC<TestimonialCardProps> = ({ name, testimonial, position }) => {
   return (
-    <div className="bg-white rounded-lg shadow hover:shadow-lg transition p-4">
-      <p className="italic">"{testimonial}"</p>
-      <h4 className="font-semibold mt-2">{name}</h4>
-      <p className="text-gray-500">{title}</p>
+    <div className="bg-white p-6 rounded-lg shadow-md mb-4">
+      <p className="italic mb-2">"{testimonial}"</p>
+      <h4 className="font-semibold">{name}</h4>
+      <span className="text-gray-500">{position}</span>
     </div>
   );
 };
+
+export default TestimonialCard;

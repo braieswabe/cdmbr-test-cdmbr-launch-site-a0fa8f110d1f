@@ -6,7 +6,8 @@ export const metadata: Metadata = {
 };
 
 import { FC } from 'react';
-import Hero from '@/components/Hero';
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 import TestimonialCard from '@/components/TestimonialCard';
 import CTABanner from '@/components/CTABanner';
 
@@ -18,59 +19,46 @@ const testimonials = [
   },
   {
     name: 'John Smith',
-    feedback: 'I was impressed with their attention to detail and commitment to quality.',
+    feedback: 'Their attention to detail and commitment to quality is unmatched.',
     rating: 4,
   },
   {
-    name: 'Emily Johnson',
+    name: 'Alice Johnson',
+    feedback: 'I loved working with them! They made the process so easy and enjoyable.',
+    rating: 5,
+  },
+  {
+    name: 'Bob Brown',
     feedback: 'A fantastic experience from start to finish. Highly recommend!',
     rating: 5,
   },
   {
-    name: 'Michael Brown',
-    feedback: 'They transformed our website and helped us increase our sales significantly.',
-    rating: 5,
-  },
-  {
-    name: 'Sarah Davis',
-    feedback: 'Great communication and support throughout the project. Very satisfied!',
+    name: 'Charlie Green',
+    feedback: 'They took our ideas and turned them into a reality. Amazing work!',
     rating: 4,
   },
   {
-    name: 'Chris Wilson',
-    feedback: 'Professional, reliable, and results-driven. Would work with them again!',
+    name: 'Diana White',
+    feedback: 'Professional, responsive, and talented. Couldn’t ask for more!',
     rating: 5,
   },
 ];
 
 const TestimonialsPage: FC = () => {
   return (
-    <main className="flex flex-col items-center">
-      <Hero title="Client Testimonials" subtitle="What our clients say" />
-      <section className="w-full max-w-7xl p-6">
-        <h2 className="text-3xl font-bold mb-4">Client Feedback</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div className="flex flex-col">
+      <NavBar />
+      <section className="py-12 px-4">
+        <h2 className="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard 
-              key={index} 
-              name={testimonial.name} 
-              feedback={testimonial.feedback} 
-              rating={testimonial.rating} 
-            />
+            <TestimonialCard key={index} name={testimonial.name} feedback={testimonial.feedback} rating={testimonial.rating} />
           ))}
         </div>
       </section>
-      <section className="w-full max-w-7xl p-6">
-        <h2 className="text-3xl font-bold mb-4">Success Stories</h2>
-        <p className="mb-4">Our clients have seen remarkable transformations in their businesses. Here are some highlights:</p>
-        <CTABanner 
-          title="Join our satisfied clients!" 
-          subtitle="Contact us to start your journey." 
-          buttonText="Get Started"
-          buttonLink="/contact"
-        />
-      </section>
-    </main>
+      <CTABanner title="Join our happy clients!" subtitle="Get in touch today!" />
+      <Footer />
+    </div>
   );
 };
 
