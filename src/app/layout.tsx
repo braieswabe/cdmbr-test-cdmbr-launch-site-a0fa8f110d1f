@@ -5,7 +5,7 @@ import { Footer } from '@/components/Footer';
 
 export const metadata = {
   title: 'Professional Website',
-  description: 'Your partner in innovative solutions.',
+  description: 'Your go-to solution for professional services.',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -19,4 +19,3 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
-```

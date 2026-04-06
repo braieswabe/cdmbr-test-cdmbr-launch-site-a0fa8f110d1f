@@ -1,45 +1,37 @@
 ```typescript
-'use client';
+"use client";
 
-import { FC, useState } from 'react';
-import { NavBar, Footer, CTABanner } from '@/components';
+import { useState } from "react";
+import { Hero, CTABanner } from "@/components";
 
 const faqs = [
   {
-    question: 'What services do you offer?',
-    answer: 'We offer a range of services including web development, branding, and digital marketing.',
+    question: "What services do you offer?",
+    answer: "We offer a range of services including web development, design, and digital marketing.",
   },
   {
-    question: 'How long does a project take?',
-    answer: 'Project timelines vary based on complexity, but we provide estimates during the consultation.',
+    question: "How long does a project take?",
+    answer: "Project timelines vary based on complexity, but we always strive to deliver on time.",
   },
   {
-    question: 'Do you offer support after project completion?',
-    answer: 'Yes, we offer ongoing support and maintenance packages for our clients.',
+    question: "Can you work with my existing team?",
+    answer: "Absolutely! We can seamlessly integrate with your team to achieve your goals.",
   },
   {
-    question: 'Can I see examples of your work?',
-    answer: 'Absolutely! Visit our portfolio page to see our completed projects.',
+    question: "What is your pricing model?",
+    answer: "We offer transparent pricing based on project scope and requirements.",
   },
   {
-    question: 'What is your pricing structure?',
-    answer: 'We offer transparent pricing based on project scope. Contact us for a detailed quote.',
+    question: "Do you provide ongoing support?",
+    answer: "Yes, we offer ongoing support and maintenance for all our projects.",
   },
   {
-    question: 'How do I get started?',
-    answer: 'Simply reach out via our contact form, and we’ll schedule a consultation.',
-  },
-  {
-    question: 'What if I have more questions?',
-    answer: 'Feel free to contact us directly for any additional inquiries.',
-  },
-  {
-    question: 'Do you work with remote clients?',
-    answer: 'Yes, we work with clients from all over the world, ensuring seamless communication.',
+    question: "How do I get started?",
+    answer: "Simply reach out through our contact form, and we'll guide you from there.",
   },
 ];
 
-const FAQPage: FC = () => {
+const FAQPage = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
@@ -47,27 +39,29 @@ const FAQPage: FC = () => {
   };
 
   return (
-    <main className="bg-gray-50">
-      <NavBar />
-      <section className="py-12 px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+    <main className="flex flex-col items-center">
+      <Hero title="Frequently Asked Questions" subtitle="Your Questions Answered" />
+      <section className="w-full p-6">
+        <h2 className="text-3xl font-bold text-center mb-6">FAQ List</h2>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-gray-300">
+            <div key={index} className="border rounded-lg">
               <button
-                className="flex justify-between items-center w-full py-4 text-left focus:outline-none"
+                className="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 focus:outline-none"
                 onClick={() => toggleFAQ(index)}
               >
-                <span className="font-semibold">{faq.question}</span>
-                <span>{openIndex === index ? '-' : '+'}</span>
+                <h3 className="font-semibold">{faq.question}</h3>
               </button>
-              {openIndex === index && <p className="py-2 text-gray-700">{faq.answer}</p>}
+              {openIndex === index && (
+                <div className="p-4 bg-gray-50">
+                  <p>{faq.answer}</p>
+                </div>
+              )}
             </div>
           ))}
         </div>
       </section>
-      <CTABanner title="Still have questions?" description="Contact us for more information!" />
-      <Footer />
+      <CTABanner title="Still Have Questions?" subtitle="Contact us for more information!" />
     </main>
   );
 };

@@ -1,64 +1,57 @@
-import type { Metadata } from "next";
+```tsx
+import { Hero, CTABanner, FeatureCard, TestimonialCard, NavBar, Footer } from '@/components';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "App",
-  description: "Learn more about app",
+  title: 'Welcome to Our Professional Services',
+  description: 'Providing top-notch solutions tailored to your needs.',
 };
 
-```typescript
-import { Hero } from "@/components/Hero";
-import { CTABanner } from "@/components/CTABanner";
-import { FeatureCard } from "@/components/FeatureCard";
-import { TestimonialCard } from "@/components/TestimonialCard";
-import { NavBar } from "@/components/NavBar";
-import { Footer } from "@/components/Footer";
-
-const features = [
-  { title: "Seamless Integration", description: "Easily integrate with your existing tools and workflows.", icon: "🔗" },
-  { title: "Real-Time Analytics", description: "Gain insights into your performance with live data.", icon: "📊" },
-  { title: "24/7 Support", description: "Our team is here to help you anytime, anywhere.", icon: "🛠️" },
-];
-
-const testimonials = [
-  { name: "Jane Doe", feedback: "This service transformed our business! Highly recommend.", rating: 5 },
-  { name: "John Smith", feedback: "Exceptional support and features that truly deliver.", rating: 4 },
-];
-
-export default function Home() {
+const HomePage = () => {
   return (
-    <div>
+    <main className="flex flex-col">
       <NavBar />
       <Hero
-        title="Empower Your Business with Our Solutions"
-        subtitle="Unlock your potential with our innovative tools designed to streamline your operations."
+        title="Transform Your Business with Our Expertise"
+        subtitle="Innovative solutions designed to elevate your success."
         cta1Text="Get Started"
         cta1Link="/contact"
         cta2Text="Learn More"
-        cta2Link="/features"
+        cta2Link="/services"
       />
-      <section className="py-16 bg-white">
-        <h2 className="text-3xl font-bold text-center">Key Features</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-          {features.map((feature) => (
-            <FeatureCard key={feature.title} title={feature.title} description={feature.description} icon={feature.icon} />
-          ))}
+      <section className="py-16 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+        <h2 className="text-3xl font-bold text-center mb-8">Key Features</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <FeatureCard title="Expert Team" description="Our team consists of industry leaders." />
+          <FeatureCard title="Tailored Solutions" description="Custom solutions for every business." />
+          <FeatureCard title="24/7 Support" description="We're here for you, day and night." />
         </div>
       </section>
-      <section className="py-16 bg-gray-50">
-        <h2 className="text-3xl font-bold text-center">What Our Clients Say</h2>
-        <div className="mt-8 space-y-4">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} name={testimonial.name} feedback={testimonial.feedback} rating={testimonial.rating} />
-          ))}
+      <section className="py-16">
+        <h2 className="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
+        <div className="flex flex-col items-center">
+          <TestimonialCard
+            name="Jane Doe"
+            quote="This service transformed our operations!"
+            image="/images/jane.jpg"
+          />
+          <TestimonialCard
+            name="John Smith"
+            quote="Exceptional quality and support throughout."
+            image="/images/john.jpg"
+          />
         </div>
       </section>
       <CTABanner
-        title="Ready to Transform Your Business?"
-        ctaText="Contact Us Today"
+        title="Ready to Elevate Your Business?"
+        description="Join us today and start your journey towards success."
+        ctaText="Contact Us"
         ctaLink="/contact"
       />
       <Footer />
-    </div>
+    </main>
   );
-}
+};
+
+export default HomePage;
 ```

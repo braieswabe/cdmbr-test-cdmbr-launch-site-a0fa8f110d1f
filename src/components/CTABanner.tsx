@@ -1,5 +1,5 @@
 ```typescript
-import { FC } from 'react';
+import React from 'react';
 
 interface CTABannerProps {
   headline: string;
@@ -8,15 +8,14 @@ interface CTABannerProps {
   buttonLink: string;
 }
 
-export const CTABanner: FC<CTABannerProps> = ({ headline, description, buttonText, buttonLink }) => {
+export const CTABanner: React.FC<CTABannerProps> = ({ headline, description, buttonText, buttonLink }) => {
   return (
-    <div className="bg-[#f59e0b] text-black p-6 rounded-lg shadow-lg text-center">
-      <h2 className="text-2xl font-semibold">{headline}</h2>
+    <div className="bg-accent text-white p-6 rounded-lg shadow-lg text-center">
+      <h2 className="text-2xl font-bold mb-2">{headline}</h2>
       <p className="mb-4">{description}</p>
-      <a href={buttonLink} className="bg-black text-white py-2 px-4 rounded hover:bg-opacity-80 transition">
+      <a href={buttonLink} className="bg-white text-accent py-2 px-4 rounded hover:bg-opacity-80 transition">
         {buttonText}
       </a>
     </div>
   );
 };
-```

@@ -1,64 +1,70 @@
-import type { Metadata } from "next";
+```tsx
+import { Hero, NavBar, Footer } from '@/components';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Learn more about about",
+  title: 'About Us',
+  description: 'Learn more about our mission and values.',
 };
 
-```typescript
-import { Hero } from "@/components/Hero";
-import { NavBar } from "@/components/NavBar";
-import { Footer } from "@/components/Footer";
-
-const teamMembers = [
-  { name: "Alice Johnson", role: "CEO", photo: "/images/alice.jpg" },
-  { name: "Bob Lee", role: "CTO", photo: "/images/bob.jpg" },
-  { name: "Cathy Brown", role: "CMO", photo: "/images/cathy.jpg" },
-  { name: "David Wilson", role: "COO", photo: "/images/david.jpg" },
-];
-
-export default function About() {
+const AboutPage = () => {
   return (
-    <div>
+    <main className="flex flex-col">
       <NavBar />
-      <Hero title="About Us" subtitle="Learn more about our mission and values." />
-      <section className="py-16 bg-white">
-        <h2 className="text-2xl font-bold text-center">Our Story</h2>
-        <p className="mt-4 text-center">
-          Founded in 2020, we have dedicated ourselves to providing innovative solutions that empower businesses to thrive in a digital world.
+      <Hero title="About Our Company" />
+      <section className="py-16">
+        <h2 className="text-3xl font-bold text-center mb-8">Our Story</h2>
+        <p className="max-w-2xl mx-auto text-center">
+          Founded in 2010, we have dedicated ourselves to providing innovative solutions that empower businesses to thrive in a competitive landscape.
         </p>
       </section>
-      <section className="py-16 bg-gray-50">
-        <h2 className="text-2xl font-bold text-center">Our Mission & Values</h2>
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="p-4 bg-white rounded shadow">
-            <h3 className="font-bold">Innovation</h3>
-            <p>We strive to innovate and improve our services continuously.</p>
+      <section className="py-16 bg-gray-100">
+        <h2 className="text-3xl font-bold text-center mb-8">Our Values</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-semibold">Integrity</h3>
+            <p>We believe in honesty and transparency in all our dealings.</p>
           </div>
-          <div className="p-4 bg-white rounded shadow">
-            <h3 className="font-bold">Integrity</h3>
-            <p>We conduct our business with the highest ethical standards.</p>
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-semibold">Innovation</h3>
+            <p>Constantly evolving to bring the best solutions to our clients.</p>
           </div>
-          <div className="p-4 bg-white rounded shadow">
-            <h3 className="font-bold">Customer Focus</h3>
-            <p>Our customers are at the heart of everything we do.</p>
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-semibold">Customer Focus</h3>
+            <p>Your success is our priority, and we strive to exceed your expectations.</p>
           </div>
         </div>
       </section>
-      <section className="py-16 bg-white">
-        <h2 className="text-2xl font-bold text-center">Meet Our Team</h2>
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member) => (
-            <div key={member.name} className="p-4 bg-gray-100 rounded shadow">
-              <img src={member.photo} alt={member.name} className="rounded-full w-24 h-24 mx-auto" />
-              <h3 className="mt-4 font-bold text-center">{member.name}</h3>
-              <p className="text-center">{member.role}</p>
-            </div>
-          ))}
+      <section className="py-16">
+        <h2 className="text-3xl font-bold text-center mb-8">Meet Our Team</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {/* Placeholder images for team members */}
+          <div className="flex flex-col items-center">
+            <img src="/images/team1.jpg" alt="Team Member" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="text-lg font-semibold">Alice Johnson</h3>
+            <p>CEO</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <img src="/images/team2.jpg" alt="Team Member" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="text-lg font-semibold">Bob Brown</h3>
+            <p>CTO</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <img src="/images/team3.jpg" alt="Team Member" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="text-lg font-semibold">Cathy White</h3>
+            <p>COO</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <img src="/images/team4.jpg" alt="Team Member" className="rounded-full w-32 h-32 mb-4" />
+            <h3 className="text-lg font-semibold">David Green</h3>
+            <p>CMO</p>
+          </div>
         </div>
       </section>
       <Footer />
-    </div>
+    </main>
   );
-}
+};
+
+export default AboutPage;
 ```

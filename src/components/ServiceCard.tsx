@@ -1,13 +1,13 @@
 ```typescript
 import React from 'react';
 
-interface FeatureCardProps {
+interface ServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
 }
 
-export const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition">
       <div className="text-3xl mb-2">{icon}</div>

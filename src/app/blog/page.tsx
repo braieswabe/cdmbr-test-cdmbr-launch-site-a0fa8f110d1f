@@ -1,61 +1,59 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Blog",
-  description: "Learn more about our blog",
+  title: "Blog",
+  description: "Learn more about blog",
 };
 
-```typescript
-import NavBar from '@/components/NavBar';
-import BlogCard from '@/components/BlogCard';
-import CTABanner from '@/components/CTABanner';
-import Footer from '@/components/Footer';
+```tsx
+import { Hero, BlogPostCard, CTABanner } from '@/components';
 
 const BlogPage = () => {
-  const articles = [
+  const blogPosts = [
     {
-      title: 'Understanding the Future of SaaS',
-      excerpt: 'Explore the trends shaping the future of Software as a Service.',
-      date: 'March 10, 2023',
-      category: 'Industry Insights',
-      image: '/images/blog1.jpg',
+      title: 'Understanding SaaS: A Comprehensive Guide',
+      excerpt: 'Dive into the world of Software as a Service and learn how it can benefit your business.',
+      date: 'October 1, 2023',
+      category: 'SaaS',
+      image: '/images/saas-guide.jpg',
     },
     {
-      title: 'Maximizing Your Productivity with SaaS Tools',
-      excerpt: 'Learn how to leverage SaaS tools to boost your productivity.',
-      date: 'February 5, 2023',
+      title: '10 Tips for Effective Remote Work',
+      excerpt: 'Maximize your productivity while working from home with these essential tips.',
+      date: 'September 15, 2023',
       category: 'Productivity',
-      image: '/images/blog2.jpg',
+      image: '/images/remote-work.jpg',
     },
-    // Add more articles as needed
+    {
+      title: 'The Future of Cloud Computing',
+      excerpt: 'Explore the trends and predictions shaping the future of cloud technology.',
+      date: 'September 5, 2023',
+      category: 'Cloud',
+      image: '/images/cloud-computing.jpg',
+    },
+    // Add more blog posts as needed
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <NavBar />
-      <main className="flex-grow p-6">
-        <section className="text-center mb-12">
-          <h1 className="text-4xl font-bold">Our Blog</h1>
-          <p className="mt-4 text-lg">
-            Stay updated with the latest trends and insights in the industry.
-          </p>
-        </section>
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article, index) => (
-            <BlogCard
-              key={index}
-              title={article.title}
-              excerpt={article.excerpt}
-              date={article.date}
-              category={article.category}
-              image={article.image}
+    <main className="bg-gradient-to-b from-gray-100 to-white">
+      <Hero title="Our Blog" subtitle="Insights and Updates" />
+      <section className="container mx-auto py-10">
+        <h2 className="text-2xl font-bold mb-6">Latest Posts</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {blogPosts.map((post) => (
+            <BlogPostCard
+              key={post.title}
+              title={post.title}
+              excerpt={post.excerpt}
+              date={post.date}
+              category={post.category}
+              image={post.image}
             />
           ))}
-        </section>
-      </main>
-      <CTABanner />
-      <Footer />
-    </div>
+        </div>
+      </section>
+      <CTABanner title="Want to learn more?" buttonText="Subscribe to our Newsletter" />
+    </main>
   );
 };
 

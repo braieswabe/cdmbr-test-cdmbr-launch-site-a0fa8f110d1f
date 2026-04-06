@@ -1,66 +1,63 @@
-import type { Metadata } from "next";
+```tsx
+'use client';
 
-export const metadata: Metadata = {
-  title: "Transparent Pricing Plans",
-  description: "Learn more about transparent pricing plans",
-};
-
-```typescript
 import { useState } from 'react';
-import CTABanner from '@/components/CTABanner';
-import PricingCard from '@/components/PricingCard';
-import FAQSection from '@/components/FAQSection';
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
+import { Hero, CTABanner, ServiceCard, FAQSection } from '@/components';
 
 const PricingPage = () => {
   const [isAnnual, setIsAnnual] = useState(false);
 
-  const togglePricing = () => {
-    setIsAnnual(!isAnnual);
-  };
+  const pricingPlans = [
+    {
+      name: 'Basic',
+      priceMonthly: 19,
+      priceAnnual: 199,
+      features: ['Feature 1', 'Feature 2', 'Feature 3'],
+      recommended: false,
+    },
+    {
+      name: 'Pro',
+      priceMonthly: 39,
+      priceAnnual: 399,
+      features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
+      recommended: true,
+    },
+    {
+      name: 'Enterprise',
+      priceMonthly: 79,
+      priceAnnual: 799,
+      features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5'],
+      recommended: false,
+    },
+  ];
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <NavBar />
-      <main className="flex-grow p-6">
-        <section className="text-center mb-12">
-          <h1 className="text-4xl font-bold">Transparent Pricing Plans</h1>
-          <p className="mt-4 text-lg">
-            Choose a plan that fits your needs. No hidden fees, just straightforward pricing.
-          </p>
-          <button
-            onClick={togglePricing}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-          >
-            Switch to {isAnnual ? 'Monthly' : 'Annual'} Billing
+    <main className="bg-gradient-to-b from-gray-100 to-white">
+      <Hero title="Transparent Pricing" subtitle="Choose the plan that fits your needs." />
+      <section className="container mx-auto py-10">
+        <div className="flex justify-center mb-6">
+          <button onClick={() => setIsAnnual(false)} className={`px-4 py-2 ${!isAnnual ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>
+            Monthly
           </button>
-        </section>
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <PricingCard
-            title="Basic Plan"
-            price={isAnnual ? 120 : 12}
-            features={['Feature 1', 'Feature 2', 'Feature 3']}
-            recommended={false}
-          />
-          <PricingCard
-            title="Pro Plan"
-            price={isAnnual ? 240 : 24}
-            features={['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4']}
-            recommended={true}
-          />
-          <PricingCard
-            title="Enterprise Plan"
-            price={isAnnual ? 480 : 48}
-            features={['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5']}
-            recommended={false}
-          />
-        </section>
-        <FAQSection />
-      </main>
-      <CTABanner />
-      <Footer />
-    </div>
+          <button onClick={() => setIsAnnual(true)} className={`px-4 py-2 ${isAnnual ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>
+            Annual
+          </button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {pricingPlans.map((plan) => (
+            <ServiceCard
+              key={plan.name}
+              name={plan.name}
+              price={isAnnual ? plan.priceAnnual : plan.priceMonthly}
+              features={plan.features}
+              recommended={plan.recommended}
+            />
+          ))}
+        </div>
+      </section>
+      <FAQSection />
+      <CTABanner title="Ready to get started?" buttonText="Sign Up Now" />
+    </main>
   );
 };
 

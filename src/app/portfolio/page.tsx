@@ -6,63 +6,76 @@ export const metadata: Metadata = {
 };
 
 ```typescript
-import { FC } from 'react';
-import { Hero, FeatureCard, CTABanner, NavBar, Footer } from '@/components';
+import { Hero, CTABanner, ServiceCard } from "@/components";
+import Image from "next/image";
 
 const projects = [
   {
-    title: 'E-commerce Website',
-    description: 'A fully responsive e-commerce platform that enhances user experience.',
-    tags: ['E-commerce', 'Web Development'],
-    image: '/images/ecommerce.jpg',
+    title: "E-commerce Website",
+    description: "A fully responsive e-commerce platform with integrated payment solutions.",
+    tags: ["Web Development", "E-commerce", "React"],
+    image: "/images/ecommerce.jpg",
   },
   {
-    title: 'Corporate Branding',
-    description: 'Comprehensive branding solutions for a corporate client.',
-    tags: ['Branding', 'Design'],
-    image: '/images/branding.jpg',
+    title: "Portfolio Site",
+    description: "A personal portfolio site showcasing design and development skills.",
+    tags: ["Web Design", "Personal Branding", "Next.js"],
+    image: "/images/portfolio.jpg",
   },
   {
-    title: 'Mobile App Development',
-    description: 'An intuitive mobile application for a local business.',
-    tags: ['Mobile', 'App Development'],
-    image: '/images/mobile-app.jpg',
+    title: "Blog Platform",
+    description: "A dynamic blog platform with user authentication and commenting features.",
+    tags: ["Web Development", "Blog", "Node.js"],
+    image: "/images/blog.jpg",
   },
   {
-    title: 'Portfolio Website',
-    description: 'A stunning portfolio site for a creative professional.',
-    tags: ['Web Design', 'Portfolio'],
-    image: '/images/portfolio.jpg',
+    title: "Corporate Website",
+    description: "A sleek corporate site that highlights company values and services.",
+    tags: ["Web Development", "Corporate", "Tailwind CSS"],
+    image: "/images/corporate.jpg",
   },
   {
-    title: 'Blog Platform',
-    description: 'A user-friendly blog platform with SEO optimization.',
-    tags: ['Blog', 'SEO'],
-    image: '/images/blog.jpg',
+    title: "Landing Page",
+    description: "An engaging landing page designed to convert visitors into leads.",
+    tags: ["Web Design", "Marketing", "HTML"],
+    image: "/images/landing.jpg",
   },
   {
-    title: 'Landing Page',
-    description: 'An engaging landing page that converts visitors into leads.',
-    tags: ['Landing Page', 'Marketing'],
-    image: '/images/landing-page.jpg',
+    title: "Mobile App",
+    description: "A cross-platform mobile application for managing tasks efficiently.",
+    tags: ["Mobile Development", "React Native", "Productivity"],
+    image: "/images/mobileapp.jpg",
   },
 ];
 
-const PortfolioPage: FC = () => {
+const PortfolioPage = () => {
   return (
-    <main className="bg-gray-50">
-      <NavBar />
-      <Hero title="Our Work" subtitle="Showcasing successful projects that drive results." />
-      <section className="py-12 px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Project Gallery</h2>
+    <main className="flex flex-col items-center">
+      <Hero title="Our Portfolio" subtitle="Showcasing Our Best Work" />
+      <section className="w-full p-6">
+        <h2 className="text-3xl font-bold text-center mb-6">Project Gallery</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <FeatureCard key={index} title={project.title} description={project.description} image={project.image} tags={project.tags} />
+            <div key={index} className="relative group rounded-lg overflow-hidden shadow-lg">
+              <Image src={project.image} alt={project.title} layout="responsive" width={400} height={300} className="object-cover" />
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-white text-lg font-semibold">{project.title}</h3>
+                <p className="text-white">{project.description}</p>
+              </div>
+            </div>
           ))}
         </div>
       </section>
-      <CTABanner title="Ready to start your project?" description="Contact us today to discuss your ideas!" />
-      <Footer />
+      <section className="w-full p-6 bg-gradient-to-r from-blue-500 to-teal-500 text-white">
+        <h2 className="text-2xl font-bold text-center mb-4">Notable Clients</h2>
+        <ul className="list-disc list-inside">
+          <li>Company A</li>
+          <li>Company B</li>
+          <li>Company C</li>
+          <li>Company D</li>
+        </ul>
+      </section>
+      <CTABanner title="Ready to Start Your Project?" subtitle="Contact us today to discuss your needs!" />
     </main>
   );
 };
