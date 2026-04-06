@@ -22,3 +22,4 @@ const NavBar: FC = () => {
 
 export default NavBar;
 export { NavBar };
+export { NavBar };

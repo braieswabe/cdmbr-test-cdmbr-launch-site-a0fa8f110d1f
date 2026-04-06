@@ -37,3 +37,4 @@ const ContactForm: FC<ContactFormProps> = ({ onSubmit }) => {
 
 export default ContactForm;
 export { ContactForm };
+export { ContactForm };

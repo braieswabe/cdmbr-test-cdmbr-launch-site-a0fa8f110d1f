@@ -21,3 +21,4 @@ const Hero: FC<HeroProps> = ({ title, subtitle, ctaText, ctaLink }) => {
 
 export default Hero;
 export { Hero };
+export { Hero };

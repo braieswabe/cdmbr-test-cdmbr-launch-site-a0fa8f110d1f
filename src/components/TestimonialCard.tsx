@@ -16,3 +16,4 @@ const TestimonialCard: FC<TestimonialCardProps> = ({ name, testimonial }) => {
 
 export default TestimonialCard;
 export { TestimonialCard };
+export { TestimonialCard };
