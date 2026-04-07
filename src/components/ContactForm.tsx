@@ -1,26 +1,48 @@
-"use client";
-
-import { FC } from 'react';
-import { useForm } from 'react-hook-form';
-
-interface ContactFormProps {
-  onSubmit: (data: any) => void;
-}
-
-const ContactForm: FC<ContactFormProps> = ({ onSubmit }) => {
-  const { register, handleSubmit } = useForm();
-
+export function ContactForm() {
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <input type="text" {...register('name')} placeholder="Your Name" className="border rounded-lg p-2 w-full" required />
-      <input type="email" {...register('email')} placeholder="Your Email" className="border rounded-lg p-2 w-full" required />
-      <textarea {...register('message')} placeholder="Your Message" className="border rounded-lg p-2 w-full" required />
-      <button type="submit" className="bg-accent text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition">
-        Send Message
+    <form className="grid gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="grid gap-2 text-sm font-medium text-slate-700">
+          Name
+          <input
+            type="text"
+            placeholder="Your name"
+            className="rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[var(--color-primary)]"
+          />
+        </label>
+        <label className="grid gap-2 text-sm font-medium text-slate-700">
+          Email
+          <input
+            type="email"
+            placeholder="you@company.com"
+            className="rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[var(--color-primary)]"
+          />
+        </label>
+      </div>
+      <label className="grid gap-2 text-sm font-medium text-slate-700">
+        Subject
+        <input
+          type="text"
+          placeholder="How can we help?"
+          className="rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[var(--color-primary)]"
+        />
+      </label>
+      <label className="grid gap-2 text-sm font-medium text-slate-700">
+        Message
+        <textarea
+          rows={5}
+          placeholder="Tell us a little about your goals, timeline, and what success looks like."
+          className="rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[var(--color-primary)]"
+        />
+      </label>
+      <button
+        type="submit"
+        className="inline-flex items-center justify-center rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+      >
+        Send message
       </button>
     </form>
   );
-};
+}
 
 export default ContactForm;
-export { ContactForm };

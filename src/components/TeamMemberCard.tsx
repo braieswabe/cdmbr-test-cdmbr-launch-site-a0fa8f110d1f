@@ -1,21 +1,21 @@
 import type { ReactNode } from "react";
 
-type ServiceCardProps = {
+type TeamMemberCardProps = {
   icon?: ReactNode;
   number?: string;
   title: string;
   description: string;
 };
 
-export function ServiceCard({
+export function TeamMemberCard({
   icon,
   number,
   title,
   description,
-}: ServiceCardProps) {
+}: TeamMemberCardProps) {
   return (
     <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,rgba(37,99,235,0.12),rgba(124,58,237,0.12))] text-[var(--color-primary)]">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-[var(--color-secondary)]">
         {icon ?? <span className="text-sm font-bold">{number ?? "01"}</span>}
       </div>
       <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
@@ -24,4 +24,4 @@ export function ServiceCard({
   );
 }
 
-export default ServiceCard;
+export default TeamMemberCard;

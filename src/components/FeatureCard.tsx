@@ -1,20 +1,31 @@
-import { FC } from 'react';
+import type { ReactNode } from "react";
 
-interface FeatureCardProps {
-  icon: JSX.Element;
+type FeatureCardProps = {
+  icon?: ReactNode;
+  number?: string;
   title: string;
   description: string;
-}
-
-const FeatureCard: FC<FeatureCardProps> = ({ icon, title, description }) => {
-  return (
-    <div className="border rounded-lg p-4 shadow-lg hover:shadow-xl transition">
-      <div className="text-4xl">{icon}</div>
-      <h3 className="mt-2 text-xl font-bold">{title}</h3>
-      <p className="mt-1">{description}</p>
-    </div>
-  );
 };
 
+export function FeatureCard({
+  icon,
+  number,
+  title,
+  description,
+}: FeatureCardProps) {
+  return (
+    <article className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+      <div className="flex items-start gap-4">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[var(--color-primary)]">
+          {icon ?? <span className="text-sm font-bold">{number ?? "01"}</span>}
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+          <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default FeatureCard;
-export { FeatureCard };

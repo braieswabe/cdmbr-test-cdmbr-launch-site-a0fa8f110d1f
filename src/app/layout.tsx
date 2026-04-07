@@ -1,22 +1,26 @@
-import { ReactNode } from 'react';
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
+import type { Metadata } from "next";
+import { Footer } from "@/components/Footer";
+import { NavBar } from "@/components/NavBar";
+import "./globals.css";
 
-export const metadata = {
-  title: 'Professional Website',
-  description: 'Your partner in innovative solutions.',
+export const metadata: Metadata = {
+  title: "Professional website",
+  description:
+    "A modern, conversion-focused professional website built to earn trust, explain value clearly, and turn interest into action.",
 };
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body className="bg-white text-gray-800">
+      <body className="min-h-screen bg-white text-slate-900 antialiased">
         <NavBar />
         <main>{children}</main>
         <Footer />
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

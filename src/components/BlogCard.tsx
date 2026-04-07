@@ -1,19 +1,22 @@
-```typescript
-import { FC } from 'react';
+import type { ReactNode } from "react";
 
-interface BlogCardProps {
+type BlogCardProps = {
+  icon?: ReactNode;
+  number?: string;
   title: string;
-  excerpt: string;
-  link: string;
+  description: string;
+};
+
+export function BlogCard({ icon, number, title, description }: BlogCardProps) {
+  return (
+    <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-[var(--color-primary)]">
+        {icon ?? <span className="text-sm font-bold">{number ?? "01"}</span>}
+      </div>
+      <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+    </article>
+  );
 }
 
-export const BlogCard: FC<BlogCardProps> = ({ title, excerpt, link }) => {
-  return (
-    <div className="border rounded-lg p-4 shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold">{title}</h3>
-      <p>{excerpt}</p>
-      <a href={link} className="text-blue-600 hover:underline">Read more</a>
-    </div>
-  );
-};
-```
+export default BlogCard;
