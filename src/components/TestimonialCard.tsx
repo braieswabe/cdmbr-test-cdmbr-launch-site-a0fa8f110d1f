@@ -1,39 +1,20 @@
-import { cn } from "@/lib/cn";
+import type { ReactNode } from "react";
 
 type TestimonialCardProps = {
-  number?: string;
-  icon?: React.ReactNode;
+  icon: ReactNode;
   title: string;
   description: string;
-  className?: string;
 };
 
-export function TestimonialCard({
-  number,
-  icon,
-  title,
-  description,
-  className
-}: TestimonialCardProps) {
+export function TestimonialCard({ icon, title, description }: TestimonialCardProps) {
   return (
-    <article
-      className={cn(
-        "rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl",
-        className
-      )}
-    >
-      <div className="mb-4 flex items-center gap-3">
-        {icon ? (
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
-            {icon}
-          </div>
-        ) : number ? (
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-accent)] text-sm font-semibold text-slate-950">
-            {number}
-          </div>
-        ) : null}
+    <article className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-[#2563eb] ring-1 ring-blue-100 transition-colors duration-300 group-hover:bg-blue-100">
+        {icon}
       </div>
-      <h3 className="text-lg font-semibold text-slate-950">{title}</h3>
+
+      <h3 className="text-lg font-semibold tracking-tight text-slate-900">{title}</h3>
+
       <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
     </article>
   );

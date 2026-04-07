@@ -8,204 +8,180 @@ export const metadata: Metadata = {
 import { Hero } from "@/components/Hero";
 import { CTABanner } from "@/components/CTABanner";
 import { FeatureCard } from "@/components/FeatureCard";
-import { ServiceCard } from "@/components/ServiceCard";
-import { TestimonialCard } from "@/components/TestimonialCard";
 import { StatsStrip } from "@/components/StatsStrip";
-import { LogoCloud } from "@/components/LogoCloud";
+import { TestimonialCard } from "@/components/TestimonialCard";
 import { SectionHeading } from "@/components/SectionHeading";
-import { ButtonGroup } from "@/components/ButtonGroup";
 import { SocialProofStrip } from "@/components/SocialProofStrip";
-import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
-import { ArrowRight, BarChart3, BriefcaseBusiness, CheckCircle2, Clock3, ShieldCheck, Sparkles, Target } from "lucide-react";
+import { NavBar } from "@/components/NavBar";
+import { ArrowRight, BarChart3, Clock3, ShieldCheck, Sparkles, Target, Users } from "lucide-react";
 
 export default function HomePage() {
-  const logos = ["Northstar Health", "Crescent Labs", "Atlas Retail", "Summit Finance", "Harbor Studio", "Vertex Group"];
-
   const stats = [
-    { label: "Projects delivered", value: "180+" },
-    { label: "Average response time", value: "< 24 hrs" },
-    { label: "Client retention", value: "94%" },
-    { label: "Average rating", value: "4.9/5" },
+    { value: "98%", label: "client satisfaction" },
+    { value: "2–4 wks", label: "typical launch timeline" },
+    { value: "3x", label: "average conversion lift" },
+    { value: "24h", label: "response time" },
+  ];
+
+  const testimonials = [
+    {
+      icon: <Sparkles className="h-5 w-5" />,
+      title: "Clear strategy, fast execution",
+      description:
+        "We came in with a vague idea and left with a polished site that immediately improved lead quality. The process was organized, responsive, and easy to trust.",
+    },
+    {
+      icon: <Target className="h-5 w-5" />,
+      title: "Better messaging, better results",
+      description:
+        "The new homepage made our value proposition obvious in seconds. Inquiries became more relevant, and our sales team spent less time qualifying leads.",
+    },
+    {
+      icon: <ShieldCheck className="h-5 w-5" />,
+      title: "Reliable from start to finish",
+      description:
+        "Every milestone was delivered on time, every question was answered quickly, and the final product felt thoughtful, modern, and built to convert.",
+    },
   ];
 
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <main className="bg-zinc-50 text-zinc-900">
       <NavBar />
 
-      <section className="bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_40%),linear-gradient(135deg,_#0f172a_0%,_#1d4ed8_55%,_#38bdf8_100%)]">
-        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8 lg:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.28),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(34,197,94,0.16),transparent_30%)]" />
+        <div className="relative mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8 lg:py-28">
           <Hero
-            title="Professional support that turns interest into action."
-            subtitle="We help growing businesses win trust faster, communicate clearly, and convert more qualified leads with a polished digital presence and a proven delivery process."
-            primaryCtaLabel="Request a quote"
-            primaryCtaHref="/contact"
-            secondaryCtaLabel="Explore services"
-            secondaryCtaHref="/services"
+            title="Professional websites that turn attention into qualified inquiries"
+            subtitle="We design and build clear, credible, conversion-focused sites for businesses that need stronger messaging, faster delivery, and measurable results."
+            ctaLabel="Request a quote"
+            ctaHref="/contact"
+            secondaryLabel="View services"
+            secondaryHref="/services"
           />
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-            <div className="rounded-3xl border border-white/15 bg-white/10 p-6 shadow-2xl backdrop-blur">
-              <div className="grid gap-4 sm:grid-cols-2">
-                {[
-                  "Clear positioning that helps visitors understand your value in seconds.",
-                  "Conversion-focused pages built to guide the next step.",
-                  "Modern design system with consistent spacing and strong hierarchy.",
-                  "Fast, responsive experiences that feel credible on every device.",
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-white">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan-300" />
-                    <p className="text-sm leading-6">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-slate-200">
-              <div className="flex items-center gap-3">
-                <div className="rounded-2xl bg-blue-50 p-3 text-blue-700">
-                  <Sparkles className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-slate-500">Built for growth</p>
-                  <p className="text-lg font-bold text-slate-900">A cleaner path from first visit to booked call</p>
-                </div>
-              </div>
-              <div className="mt-6 space-y-4">
-                {[
-                  { label: "Lead quality", value: "Higher intent inquiries" },
-                  { label: "Trust signals", value: "Proof placed where it matters" },
-                  { label: "Decision support", value: "Pricing, FAQs, and testimonials" },
-                ].map((row) => (
-                  <div key={row.label} className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3">
-                    <span className="text-sm font-medium text-slate-600">{row.label}</span>
-                    <span className="text-sm font-semibold text-slate-900">{row.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="mt-12">
+            <SocialProofStrip
+              items={["Trusted by growing teams", "Fast turnaround", "Clear communication", "Built for conversion"]}
+            />
           </div>
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
-          <LogoCloud logos={logos} />
-          <div className="mt-8">
-            <StatsStrip stats={stats} />
-          </div>
-          <div className="mt-8">
-            <SocialProofStrip text="Trusted by teams that need a professional presence, clearer messaging, and a smoother path to conversion." />
-          </div>
-        </div>
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <StatsStrip stats={stats} />
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <SectionHeading
-          eyebrow="The challenge"
-          title="Most websites explain the business, but don’t move the buyer forward."
-          description="Visitors want clarity, confidence, and a simple next step. If the message is vague or the page feels dated, they leave before they ever reach out."
-        />
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-            <h3 className="text-xl font-bold text-slate-900">What usually gets in the way</h3>
-            <ul className="mt-5 space-y-4 text-slate-700">
-              <li className="flex gap-3"><Clock3 className="mt-0.5 h-5 w-5 text-blue-600" />Unclear messaging that forces visitors to guess what you do.</li>
-              <li className="flex gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 text-blue-600" />Weak trust signals that make it harder to justify a call.</li>
-              <li className="flex gap-3"><BarChart3 className="mt-0.5 h-5 w-5 text-blue-600" />Pages that look fine, but don’t support conversion decisions.</li>
-            </ul>
-          </div>
-          <div className="rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-cyan-50 p-8 shadow-sm">
-            <h3 className="text-xl font-bold text-slate-900">What a stronger site does instead</h3>
-            <ul className="mt-5 space-y-4 text-slate-700">
-              <li className="flex gap-3"><Target className="mt-0.5 h-5 w-5 text-blue-600" />Leads with outcomes, not jargon.</li>
-              <li className="flex gap-3"><BriefcaseBusiness className="mt-0.5 h-5 w-5 text-blue-600" />Shows proof, process, and pricing context early.</li>
-              <li className="flex gap-3"><ArrowRight className="mt-0.5 h-5 w-5 text-blue-600" />Makes the next step obvious on every page.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <SectionHeading
-            eyebrow="Key benefits"
-            title="Everything is designed to build confidence and drive action."
-            description="From first impression to final click, each section supports a clear business outcome."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            <FeatureCard number="01" icon={<Sparkles className="h-5 w-5" />} title="Sharper positioning" description="Communicate what makes you different in a way that is easy to understand and easy to remember." />
-            <FeatureCard number="02" icon={<CheckCircle2 className="h-5 w-5" />} title="More qualified leads" description="Guide the right visitors toward a quote, call, or consultation with less friction." />
-            <FeatureCard number="03" icon={<ShieldCheck className="h-5 w-5" />} title="Stronger trust signals" description="Use testimonials, logos, metrics, and process clarity to reduce hesitation." />
-            <FeatureCard number="04" icon={<BarChart3 className="h-5 w-5" />} title="Better decision support" description="Help buyers compare options with pricing, FAQs, and service detail pages." />
-            <FeatureCard number="05" icon={<Clock3 className="h-5 w-5" />} title="Faster launch cycles" description="Move from strategy to live pages with a structured, efficient delivery process." />
-            <FeatureCard number="06" icon={<Target className="h-5 w-5" />} title="Consistent conversion flow" description="Keep calls to action aligned across the site so every page supports the same goal." />
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <SectionHeading
           eyebrow="Featured services"
-          title="Flexible support for the parts of your site that matter most."
-          description="Choose the level of help you need, from strategy and messaging to design and launch."
+          title="Everything you need to launch with confidence"
+          description="From strategy to launch, we focus on the work that improves clarity, builds trust, and helps visitors take action."
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          <ServiceCard number="01" icon={<BriefcaseBusiness className="h-5 w-5" />} title="Website strategy" description="Clarify your message, structure your pages, and define the conversion path before design begins." />
-          <ServiceCard number="02" icon={<Sparkles className="h-5 w-5" />} title="Design and build" description="Create a polished, responsive experience with modern visuals and accessible interactions." />
-          <ServiceCard number="03" icon={<BarChart3 className="h-5 w-5" />} title="Optimization support" description="Improve key pages over time with better copy, stronger proof, and clearer calls to action." />
-        </div>
-        <div className="mt-8 flex justify-center">
-          <ButtonGroup
-            primaryLabel="Explore services"
-            primaryHref="/services"
-            secondaryLabel="View pricing"
-            secondaryHref="/pricing"
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <FeatureCard
+            icon={<BarChart3 className="h-5 w-5" />}
+            number="01"
+            title="Strategy & positioning"
+            description="Clarify your message, sharpen your offer, and align the site around the outcomes your customers care about."
+          />
+          <FeatureCard
+            icon={<Sparkles className="h-5 w-5" />}
+            number="02"
+            title="Design & content"
+            description="Create a polished visual system and concise copy that feels professional, approachable, and easy to scan."
+          />
+          <FeatureCard
+            icon={<Clock3 className="h-5 w-5" />}
+            number="03"
+            title="Build & launch"
+            description="Deliver a responsive, performant site with smooth handoff, reliable support, and a launch plan that reduces friction."
+          />
+          <FeatureCard
+            icon={<ShieldCheck className="h-5 w-5" />}
+            number="04"
+            title="Trust & credibility"
+            description="Use testimonials, proof points, and clear calls to action to help visitors feel confident taking the next step."
+          />
+          <FeatureCard
+            icon={<Users className="h-5 w-5" />}
+            number="05"
+            title="Ongoing improvements"
+            description="Refine pages over time with practical updates that improve conversion, clarity, and search visibility."
+          />
+          <FeatureCard
+            icon={<ArrowRight className="h-5 w-5" />}
+            number="06"
+            title="Support that responds"
+            description="Get a partner who communicates clearly, moves quickly, and stays focused on outcomes that matter to your business."
           />
         </div>
       </section>
 
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
           <SectionHeading
-            eyebrow="Testimonials"
-            title="Clients value the clarity, speed, and professionalism."
-            description="Short, outcome-focused feedback from teams that needed a site they could trust."
+            eyebrow="How it works"
+            title="A simple process designed to keep things moving"
+            description="We make it easy to go from first conversation to launch without unnecessary complexity."
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            <TestimonialCard number="01" icon={<CheckCircle2 className="h-5 w-5" />} title="A smoother sales conversation" description="“We started getting better inquiries within the first month because the site finally explained our offer clearly.”" />
-            <TestimonialCard number="02" icon={<CheckCircle2 className="h-5 w-5" />} title="A more credible brand presence" description="“The new pages made us look as established as we are. That mattered a lot in competitive pitches.”" />
-            <TestimonialCard number="03" icon={<CheckCircle2 className="h-5 w-5" />} title="Fast, organized delivery" description="“The process was simple, the communication was excellent, and every milestone was easy to review.”" />
+            {[
+              {
+                step: "01",
+                title: "Discovery",
+                description:
+                  "We learn about your goals, audience, and current challenges so the site is built around real business priorities.",
+              },
+              {
+                step: "02",
+                title: "Design and build",
+                description:
+                  "We create a clean, modern experience with concise messaging, strong hierarchy, and responsive layouts.",
+              },
+              {
+                step: "03",
+                title: "Review and launch",
+                description:
+                  "We refine the details, confirm everything works smoothly, and launch with confidence and clarity.",
+              },
+            ].map((item) => (
+              <div key={item.step} className="rounded-2xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
+                <div className="text-sm font-semibold text-indigo-600">Step {item.step}</div>
+                <h3 className="mt-3 text-xl font-semibold text-zinc-900">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-zinc-600">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <SectionHeading
-          eyebrow="Process"
-          title="A simple path from inquiry to launch."
-          description="Clear steps keep the project moving and make it easy to stay aligned."
+          eyebrow="Testimonials"
+          title="Clients value the clarity, speed, and measurable impact"
+          description="Real feedback from teams that needed a website partner who could deliver with confidence."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {[
-            ["01", "Discovery", "We review your goals, audience, and current site to identify the biggest opportunities."],
-            ["02", "Strategy", "We define the page structure, messaging priorities, and conversion goals."],
-            ["03", "Design and build", "We create polished pages with responsive layouts and consistent calls to action."],
-            ["04", "Launch and refine", "We publish, review performance, and make improvements based on real feedback."],
-          ].map(([number, title, description]) => (
-            <div key={number} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-700">{number}</div>
-              <h3 className="mt-4 text-lg font-bold text-slate-900">{title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
-            </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {testimonials.map((testimonial) => (
+            <TestimonialCard
+              key={testimonial.title}
+              icon={testimonial.icon}
+              title={testimonial.title}
+              description={testimonial.description}
+            />
           ))}
         </div>
       </section>
 
-      <CTABanner
-        headline="Ready for a website that feels credible and converts better?"
-        description="Book a call to discuss your goals, review your current site, and get a clear recommendation for next steps."
-        buttonLabel="Book a call"
-        buttonHref="/contact"
-      />
+      <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-8">
+        <CTABanner
+          headline="Ready for a website that works harder for your business?"
+          description="Let’s create a polished, high-converting experience that helps the right people understand your value and take action."
+          buttonLabel="Book a consultation"
+          buttonHref="/contact"
+        />
+      </section>
 
       <Footer />
     </main>

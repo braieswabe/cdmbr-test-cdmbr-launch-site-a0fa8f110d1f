@@ -1,140 +1,190 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Camera, Image as ImageIcon, MapPin, PlayCircle, Sparkles, Star } from "lucide-react";
-import { CTABanner } from "@/components/CTABanner";
-import { Footer } from "@/components/Footer";
-import { Hero } from "@/components/Hero";
-import { NavBar } from "@/components/NavBar";
-import { SectionHeading } from "@/components/SectionHeading";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ImageGrid } from "@/components/ImageGrid";
 
 export const metadata: Metadata = {
   title: "Gallery",
-  description: "A visual gallery of authentic work, spaces, products, and moments captured with clarity and style.",
+  description: "Learn more about gallery",
 };
 
-const breadcrumbs = [
-  { label: "Home", href: "/" },
-  { label: "Gallery", href: "/gallery" },
+import Link from "next/link";
+import { ArrowRight, Camera, Film, Image as ImageIcon, LayoutGrid, Sparkles, Wand2 } from "lucide-react";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CTABanner } from "@/components/CTABanner";
+import { Footer } from "@/components/Footer";
+import { Hero } from "@/components/Hero";
+import { ImageGallery } from "@/components/ImageGallery";
+import { NavBar } from "@/components/NavBar";
+import { SectionHeading } from "@/components/SectionHeading";
+import { StatsStrip } from "@/components/StatsStrip";
+import { SocialProofStrip } from "@/components/SocialProofStrip";
+
+const galleryImages = [
+  {
+    src: "/gallery/editorial-portrait.jpg",
+    alt: "Editorial portrait with soft natural light and clean composition",
+    title: "Editorial portrait series",
+    description: "Refined lighting, calm framing, and a polished finish designed for brand storytelling.",
+  },
+  {
+    src: "/gallery/event-reception.jpg",
+    alt: "Elegant event reception with warm ambient lighting and guests in conversation",
+    title: "Event coverage",
+    description: "Candid moments and wide scene-setting images that capture atmosphere and energy.",
+  },
+  {
+    src: "/gallery/product-detail.jpg",
+    alt: "Close-up product image highlighting texture, materials, and craftsmanship",
+    title: "Product detail study",
+    description: "Sharp, conversion-ready imagery that highlights quality, texture, and key selling points.",
+  },
+  {
+    src: "/gallery/team-workshop.jpg",
+    alt: "Team workshop session with collaborative discussion around a table",
+    title: "Workshop documentation",
+    description: "Authentic behind-the-scenes visuals that show process, teamwork, and momentum.",
+  },
+  {
+    src: "/gallery/architecture-exterior.jpg",
+    alt: "Modern architecture exterior with strong lines and balanced daylight",
+    title: "Architecture and spaces",
+    description: "Clean, structured compositions that emphasize form, scale, and visual balance.",
+  },
+  {
+    src: "/gallery/social-campaign.jpg",
+    alt: "Lifestyle campaign image with vibrant color and natural movement",
+    title: "Campaign imagery",
+    description: "Flexible visuals built for web, social, and marketing use across channels.",
+  },
 ];
 
-const images = [
-  { src: "/images/gallery-1.jpg", alt: "Bright modern workspace with natural light", caption: "Workspace refresh for a growing team" },
-  { src: "/images/gallery-2.jpg", alt: "Product display with premium packaging", caption: "Packaging and product presentation" },
-  { src: "/images/gallery-3.jpg", alt: "Conference event with branded stage design", caption: "Live event environment and stage visuals" },
-  { src: "/images/gallery-4.jpg", alt: "Hospitality interior with warm materials", caption: "Interior styling for a hospitality brand" },
-  { src: "/images/gallery-5.jpg", alt: "Creative team reviewing printed layouts", caption: "Design review and production planning" },
-  { src: "/images/gallery-6.jpg", alt: "Outdoor brand shoot with real people", caption: "Lifestyle imagery for campaign use" },
+const categories = [
+  { icon: <Camera className="h-5 w-5" />, title: "Portraits", description: "Professional headshots and editorial portraits with a polished, approachable feel." },
+  { icon: <Film className="h-5 w-5" />, title: "Events", description: "Conference, launch, and community coverage that captures the moments people remember." },
+  { icon: <ImageIcon className="h-5 w-5" />, title: "Products", description: "Clean product imagery that supports trust, clarity, and stronger conversion." },
+  { icon: <LayoutGrid className="h-5 w-5" />, title: "Brand systems", description: "Consistent visual sets designed to work across landing pages, campaigns, and social content." },
+];
+
+const proofItems = [
+  "Fast turnaround for launch-ready assets",
+  "Consistent color and composition across sets",
+  "Images optimized for web, print, and social",
+  "Clear direction from planning to delivery",
 ];
 
 export default function GalleryPage() {
   return (
-    <main className="bg-white text-slate-900">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       <NavBar />
-      <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-        <Breadcrumbs items={breadcrumbs} />
-      </div>
-
-      <Hero
-        title="A gallery of real work, real spaces, and real moments"
-        subtitle="Explore a visual collection designed to show detail, atmosphere, and quality. From brand photography to product scenes and event coverage, each image supports a clear story."
-        primaryCtaLabel="Book a call"
-        primaryCtaHref="/contact"
-        secondaryCtaLabel="View portfolio"
-        secondaryCtaHref="/portfolio"
-      />
-
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Visual selection"
-          title="Images chosen for clarity, composition, and context"
-          description="Use the gallery to review the style, tone, and level of finish you can expect across a project."
+      <main>
+        <Hero
+          title="A curated gallery of work that communicates quality at a glance"
+          subtitle="Explore polished visuals across portraits, events, products, and brand campaigns — all created to build trust, support storytelling, and drive engagement."
+          ctaLabel="Browse the gallery"
+          ctaHref="#gallery"
+          secondaryLabel="View categories"
+          secondaryHref="#categories"
         />
 
-        <div className="mb-8 flex flex-wrap gap-3">
-          {["All", "Spaces", "Products", "Events", "People"].map((item, index) => (
-            <button
-              key={item}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
-                index === 0
-                  ? "border-slate-900 bg-slate-900 text-white"
-                  : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
-              }`}
-            >
-              {index === 0 ? <ImageIcon className="mr-2 inline h-4 w-4" /> : null}
-              {item}
-            </button>
-          ))}
-        </div>
-
-        <ImageGrid images={images} />
-      </section>
-
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Lightbox view"
-            title="Open images for a closer look"
-            description="Each image is presented with enough space to inspect composition, color, and detail without distraction."
+        <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Gallery" }]} className="mb-8" />
+          <StatsStrip
+            stats={[
+              { label: "Projects captured", value: "120+" },
+              { label: "Average delivery", value: "3 days" },
+              { label: "Usage formats", value: "Web + print" },
+              { label: "Client satisfaction", value: "98%" },
+            ]}
           />
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+          <SectionHeading
+            eyebrow="Introduction"
+            title="Visual work that feels consistent, modern, and easy to use"
+            description="This gallery highlights the kind of imagery that helps brands communicate professionalism, personality, and attention to detail without overwhelming the viewer."
+          />
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
               {
-                title: "Natural light and clean framing",
-                description: "Ideal for workspaces, interiors, and brand environments that need to feel open and credible.",
-                icon: <Camera className="h-5 w-5" />,
-              },
-              {
-                title: "Context-rich product imagery",
-                description: "Shows the product in use, helping buyers understand scale, finish, and practical value.",
                 icon: <Sparkles className="h-5 w-5" />,
+                title: "Designed for impact",
+                description: "Each image is selected for clarity, composition, and the ability to support a stronger first impression.",
               },
               {
-                title: "People and process",
-                description: "Authentic team moments that make a brand feel approachable and trustworthy.",
-                icon: <Star className="h-5 w-5" />,
+                icon: <Wand2 className="h-5 w-5" />,
+                title: "Edited for consistency",
+                description: "Color, tone, and crop are handled with a cohesive visual standard so the collection feels unified.",
+              },
+              {
+                icon: <ImageIcon className="h-5 w-5" />,
+                title: "Built for real use",
+                description: "The gallery reflects assets that work across websites, campaigns, presentations, and social channels.",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <div className="mb-4 inline-flex rounded-2xl bg-slate-100 p-3 text-slate-900">{item.icon}</div>
-                <h3 className="text-lg font-semibold">{item.title}</h3>
+              <div key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className="mb-4 inline-flex rounded-2xl bg-sky-50 p-3 text-sky-700">{item.icon}</div>
+                <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Caption notes"
-          title="Short context for each collection"
-          description="Helpful notes make it easier to understand what each image is meant to communicate."
-        />
-        <div className="grid gap-4 md:grid-cols-2">
-          {[
-            "Workspace imagery is best for recruiting, culture pages, and service credibility.",
-            "Product scenes are styled to highlight finish, function, and premium positioning.",
-            "Event photography captures energy, scale, and brand presence in real settings.",
-            "Lifestyle images help audiences picture the service or product in everyday use.",
-          ].map((note) => (
-            <div key={note} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <MapPin className="mt-0.5 h-5 w-5 text-slate-900" />
-              <p className="text-sm leading-6 text-slate-700">{note}</p>
+        <section id="gallery" className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+          <ImageGallery images={galleryImages} />
+        </section>
+
+        <section id="categories" className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+          <SectionHeading
+            eyebrow="Collections"
+            title="Browse by category"
+            description="Use these groupings to quickly find the style of imagery that best fits your project, audience, or campaign goal."
+          />
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {categories.map((category) => (
+              <div key={category.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className="mb-4 inline-flex rounded-2xl bg-sky-50 p-3 text-sky-700">{category.icon}</div>
+                <h3 className="text-lg font-semibold text-slate-900">{category.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{category.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+          <SocialProofStrip items={proofItems} />
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+          <CTABanner
+            headline="Need imagery that looks polished and performs well?"
+            description="Let’s create a gallery of assets that helps your brand stand out, communicate clearly, and convert with confidence."
+            buttonLabel="Start a project"
+            buttonHref="/contact"
+          />
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+          <div className="rounded-3xl bg-slate-900 px-8 py-10 text-white shadow-xl sm:px-10">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">Next step</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">See how the right visuals can improve clarity and trust</h2>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
+                  Whether you need a polished portfolio, a product showcase, or campaign-ready imagery, we can help you present your work with consistency and impact.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-400"
+              >
+                Request a quote
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <CTABanner
-        headline="Need visuals that feel polished and authentic?"
-        description="Whether you are planning a shoot, refreshing a gallery, or building a visual library, we can help shape the right direction."
-        buttonLabel="Inquire now"
-        buttonHref="/contact"
-      />
-
+          </div>
+        </section>
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
