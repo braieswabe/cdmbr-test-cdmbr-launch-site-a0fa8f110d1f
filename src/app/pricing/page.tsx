@@ -1,67 +1,66 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
-  CheckCircle2,
+  Check,
+  CircleHelp,
   Clock3,
   CreditCard,
-  HelpCircle,
+  FileText,
+  Gauge,
   ShieldCheck,
   Sparkles,
   Star,
-  TrendingUp,
 } from "lucide-react";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { CTABanner } from "@/components/CTABanner";
-import { FAQAccordion } from "@/components/FAQAccordion";
-import { Footer } from "@/components/Footer";
-import { NavBar } from "@/components/NavBar";
-import { PricingTable } from "@/components/PricingTable";
-import { SectionHeading } from "@/components/SectionHeading";
+  CTABanner,
+  FAQAccordion,
+  PricingTable,
+  SectionHeading,
+} from "@/components";
 
 const monthlyTiers = [
   {
     name: "Starter",
     price: "$1,500",
-    period: "/month",
-    description: "Best for small teams that need a polished, reliable presence without unnecessary extras.",
-    recommended: false,
+    description: "Best for focused updates, landing pages, or a polished one-page presence.",
+    highlight: false,
     features: [
-      "Core website updates",
-      "Monthly performance check-in",
-      "Basic support response within 2 business days",
-      "Up to 2 content requests per month",
+      "Discovery call and scope outline",
+      "1 core page or landing page",
+      "Responsive design",
+      "Basic on-page SEO setup",
+      "Launch support",
     ],
   },
   {
     name: "Growth",
-    price: "$3,200",
-    period: "/month",
-    description: "Recommended for businesses that want ongoing improvements and a partner to help them grow.",
-    recommended: true,
+    price: "$3,500",
+    description: "Recommended for service businesses that need a stronger website and clearer conversion flow.",
+    highlight: true,
     features: [
-      "Everything in Starter",
-      "Priority support response within 1 business day",
-      "Conversion-focused updates",
-      "Up to 6 content requests per month",
-      "Quarterly strategy review",
+      "Strategy workshop",
+      "Up to 5 pages",
+      "Messaging guidance",
+      "Custom design system",
+      "Conversion-focused layout",
+      "Launch QA and handoff",
     ],
   },
   {
     name: "Scale",
-    price: "$5,800",
-    period: "/month",
-    description: "Ideal for teams with more complex needs, multiple stakeholders, or frequent launch activity.",
-    recommended: false,
+    price: "$7,500",
+    description: "For larger builds, multi-page sites, or teams that need deeper collaboration and support.",
+    highlight: false,
     features: [
-      "Everything in Growth",
-      "Dedicated project planning",
-      "Faster turnaround on priority requests",
-      "Up to 12 content requests per month",
-      "Monthly strategy and reporting session",
+      "Full discovery and planning",
+      "Up to 10 pages",
+      "Advanced content structure",
+      "Component-based build",
+      "Priority feedback rounds",
+      "Training and documentation",
     ],
   },
 ];
@@ -69,238 +68,258 @@ const monthlyTiers = [
 const annualTiers = [
   {
     name: "Starter",
-    price: "$16,200",
-    period: "/year",
-    description: "Best for small teams that need a polished, reliable presence without unnecessary extras.",
-    recommended: false,
+    price: "$15,000",
+    description: "Best for focused updates, landing pages, or a polished one-page presence.",
+    highlight: false,
     features: [
-      "Core website updates",
-      "Monthly performance check-in",
-      "Basic support response within 2 business days",
-      "Up to 2 content requests per month",
+      "Discovery call and scope outline",
+      "1 core page or landing page",
+      "Responsive design",
+      "Basic on-page SEO setup",
+      "Launch support",
     ],
   },
   {
     name: "Growth",
-    price: "$34,560",
-    period: "/year",
-    description: "Recommended for businesses that want ongoing improvements and a partner to help them grow.",
-    recommended: true,
+    price: "$35,000",
+    description: "Recommended for service businesses that need a stronger website and clearer conversion flow.",
+    highlight: true,
     features: [
-      "Everything in Starter",
-      "Priority support response within 1 business day",
-      "Conversion-focused updates",
-      "Up to 6 content requests per month",
-      "Quarterly strategy review",
+      "Strategy workshop",
+      "Up to 5 pages",
+      "Messaging guidance",
+      "Custom design system",
+      "Conversion-focused layout",
+      "Launch QA and handoff",
     ],
   },
   {
     name: "Scale",
-    price: "$62,400",
-    period: "/year",
-    description: "Ideal for teams with more complex needs, multiple stakeholders, or frequent launch activity.",
-    recommended: false,
+    price: "$75,000",
+    description: "For larger builds, multi-page sites, or teams that need deeper collaboration and support.",
+    highlight: false,
     features: [
-      "Everything in Growth",
-      "Dedicated project planning",
-      "Faster turnaround on priority requests",
-      "Up to 12 content requests per month",
-      "Monthly strategy and reporting session",
+      "Full discovery and planning",
+      "Up to 10 pages",
+      "Advanced content structure",
+      "Component-based build",
+      "Priority feedback rounds",
+      "Training and documentation",
     ],
   },
 ];
 
-const pricingFaqs = [
+const faqItems = [
   {
-    question: "Can I start with one plan and upgrade later?",
+    question: "Do you offer fixed pricing?",
     answer:
-      "Yes. Many clients begin with Growth and move to Scale as their needs expand. We make upgrades simple and transparent.",
+      "Yes for most standard projects. If the scope is unusual or likely to change, we’ll recommend a custom quote so expectations stay clear.",
   },
   {
-    question: "Do you offer custom quotes?",
+    question: "What affects the final price?",
     answer:
-      "Absolutely. If your project has unique requirements, we’ll scope it carefully and provide a clear proposal before any work begins.",
+      "Page count, content complexity, integrations, timeline, and the level of strategy or copy support all influence the total investment.",
   },
   {
-    question: "What’s included in onboarding?",
+    question: "Can I start small and expand later?",
     answer:
-      "Onboarding includes a kickoff call, access review, timeline confirmation, and a clear list of what we need from your team to get started.",
+      "Absolutely. Many clients begin with a focused build and add pages, features, or support once the core site is live.",
   },
   {
-    question: "Are there any hidden fees?",
+    question: "Do you require a deposit?",
     answer:
-      "No. We believe pricing should be easy to understand. If something is outside the agreed scope, we’ll discuss it before moving forward.",
+      "Yes. A deposit secures your project slot and allows us to begin planning and scheduling work right away.",
+  },
+  {
+    question: "Is hosting included?",
+    answer:
+      "Hosting is typically billed separately unless your proposal states otherwise. We’ll help you choose the right setup for your needs.",
+  },
+];
+
+const valuePoints = [
+  {
+    number: "01",
+    icon: <Gauge className="h-5 w-5" />,
+    title: "Built for outcomes",
+    description:
+      "Pricing reflects the strategy, design quality, and conversion thinking that help your site do more than just look good.",
+    className: "bg-white",
+  },
+  {
+    number: "02",
+    icon: <ShieldCheck className="h-5 w-5" />,
+    title: "Clear scope, fewer surprises",
+    description:
+      "You’ll know what’s included before work begins, which makes it easier to plan and approve with confidence.",
+    className: "bg-white",
+  },
+  {
+    number: "03",
+    icon: <Sparkles className="h-5 w-5" />,
+    title: "Flexible for different needs",
+    description:
+      "Whether you need a quick launch or a more comprehensive engagement, the pricing structure adapts to the project.",
+    className: "bg-white",
   },
 ];
 
 export default function PricingPage() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
+  const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
 
-  const tiers = useMemo(
-    () => (billingCycle === "monthly" ? monthlyTiers : annualTiers),
-    [billingCycle]
-  );
+  const tiers = useMemo(() => (billing === "monthly" ? monthlyTiers : annualTiers), [billing]);
 
   return (
-    <main className="bg-white text-slate-900">
-      <NavBar />
-      <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-          <Breadcrumbs
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Pricing" },
-            ]}
-          />
+    <main className="bg-white">
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
+          <Link href="/" className="hover:text-slate-900">
+            Home
+          </Link>
+          <span>/</span>
+          <span className="text-slate-900">Pricing</span>
         </div>
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pb-20 lg:pt-10">
-          <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-700">
-              <CreditCard className="h-4 w-4" />
-              Transparent pricing with no surprises
-            </div>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-              Pricing that makes it easy to choose the right level of support.
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              Our plans are designed to be clear, flexible, and easy to compare. You’ll know what’s
-              included, what it costs, and which option is the best fit for your goals.
-            </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setBillingCycle("monthly")}
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                  billingCycle === "monthly"
-                    ? "bg-sky-600 text-white shadow-sm"
-                    : "border border-slate-300 bg-white text-slate-700 hover:border-sky-300 hover:text-sky-700"
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                type="button"
-                onClick={() => setBillingCycle("annual")}
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                  billingCycle === "annual"
-                    ? "bg-sky-600 text-white shadow-sm"
-                    : "border border-slate-300 bg-white text-slate-700 hover:border-sky-300 hover:text-sky-700"
-                }`}
-              >
-                Annual
-              </button>
-              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-700">
-                <Sparkles className="h-4 w-4" />
-                Annual billing includes savings
-              </span>
-            </div>
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+            Transparent pricing
+          </p>
+          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+            Clear pricing for confident decisions
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-slate-600">
+            Choose a package that matches your goals, or request a custom quote if your project
+            needs a more tailored scope. Every engagement is designed to deliver measurable value.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => setBilling("monthly")}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                billing === "monthly"
+                  ? "bg-slate-900 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              onClick={() => setBilling("annual")}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                billing === "annual"
+                  ? "bg-slate-900 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              Annual
+            </button>
           </div>
         </div>
-      </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Pricing table"
-          title="Compare plans side by side."
-          description="Each tier includes the essentials for a smooth experience, with more support and strategic depth as you move up."
-        />
-        <div className="mt-10">
+        <div className="mt-12">
           <PricingTable tiers={tiers} />
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <SectionHeading
-            eyebrow="What affects cost"
-            title="Pricing reflects scope, speed, and the level of support you need."
-            description="We keep pricing fair by aligning it with the complexity of the work, the pace of delivery, and the amount of ongoing attention required."
+            eyebrow="Custom quote"
+            title="Need something more tailored?"
+            description="For enterprise needs, multi-phase work, or variable scope, we’ll build a proposal around your priorities and timeline."
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {[
-              {
-                icon: <ShieldCheck className="h-5 w-5" />,
-                title: "Scope",
-                description:
-                  "More pages, more integrations, and more custom functionality naturally require more time and coordination.",
-              },
-              {
-                icon: <Clock3 className="h-5 w-5" />,
-                title: "Timeline",
-                description:
-                  "If you need a faster turnaround, we’ll plan accordingly so the schedule matches your launch needs.",
-              },
-              {
-                icon: <TrendingUp className="h-5 w-5" />,
-                title: "Ongoing support",
-                description:
-                  "Some teams need a one-time project, while others benefit from continuous improvements and strategic guidance.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-50 text-sky-700">
-                  {item.icon}
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-2">
+              <div className="flex items-center gap-3">
+                <div className="rounded-2xl bg-slate-900 p-3 text-white">
+                  <FileText className="h-5 w-5" />
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-slate-950">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+                <div>
+                  <h2 className="text-xl font-semibold text-slate-900">Bespoke project scope</h2>
+                  <p className="text-sm text-slate-600">Ideal for larger teams and evolving requirements.</p>
+                </div>
               </div>
-            ))}
-          </div>
-
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
-                <BadgeCheck className="h-4 w-4 text-emerald-500" />
-                Why clients see value
-              </div>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                 {[
-                  "A clearer message that helps the right people say yes faster",
-                  "A more polished experience that builds trust from the first visit",
-                  "A structured process that reduces back-and-forth and saves time",
-                  "A partner who thinks beyond launch and supports long-term results",
+                  "Custom discovery and planning",
+                  "Flexible page and feature scope",
+                  "Integration support",
+                  "Priority scheduling options",
+                  "Stakeholder review checkpoints",
+                  "Launch and post-launch support",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-emerald-500" />
+                  <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
+                    <Check className="mt-0.5 h-4 w-4 text-emerald-500" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
-                <HelpCircle className="h-4 w-4 text-sky-600" />
-                Good to know
+              <div className="rounded-2xl bg-emerald-50 p-3 text-emerald-600">
+                <Clock3 className="h-5 w-5" />
               </div>
-              <p className="mt-4 text-sm leading-6 text-slate-600">
-                If you’re not sure which plan fits, start with a conversation. We’ll help you choose the
-                most efficient option based on your goals, timeline, and internal capacity.
+              <h3 className="mt-4 text-lg font-semibold text-slate-900">Typical timeline</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Most custom projects begin with a short discovery phase, followed by a scoped proposal
+                and a delivery plan that fits your schedule.
               </p>
+              <Link
+                href="/contact"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 hover:text-slate-600"
+              >
+                Request a custom quote <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <SectionHeading
-          eyebrow="FAQ"
-          title="Common pricing questions, answered clearly."
-          description="We want you to feel confident before you commit, so here are the questions we hear most often."
+          eyebrow="Value"
+          title="Why the pricing makes sense"
+          description="You’re not just paying for pages — you’re investing in clarity, credibility, and a smoother path to conversion."
         />
-        <div className="mt-10">
-          <FAQAccordion items={pricingFaqs} />
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {valuePoints.map((point) => (
+            <div
+              key={point.number}
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white">
+                {point.icon}
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-slate-900">{point.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{point.description}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <CTABanner
-        headline="Ready for a custom quote or a quick recommendation?"
-        description="Tell us what you need, and we’ll suggest the most practical next step."
-        buttonLabel="Contact sales"
-        buttonHref="/contact"
-      />
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+          <SectionHeading
+            eyebrow="FAQ"
+            title="Pricing questions, answered"
+            description="A few quick answers to help you compare options and move forward with confidence."
+          />
+          <div className="mt-12">
+            <FAQAccordion items={faqItems} />
+          </div>
+        </div>
+      </section>
 
-      <Footer />
+      <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+        <CTABanner
+          headline="Ready to start your project?"
+          description="Book a call and we’ll help you choose the right package or build a custom proposal."
+          buttonLabel="Schedule a call"
+          buttonHref="/contact"
+        />
+      </section>
     </main>
   );
 }

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 
-type TestimonialCardProps = {
+type PostCardProps = {
   number?: string;
   icon?: React.ReactNode;
   title: string;
@@ -8,27 +8,21 @@ type TestimonialCardProps = {
   className?: string;
 };
 
-export function TestimonialCard({
-  number,
-  icon,
-  title,
-  description,
-  className
-}: TestimonialCardProps) {
+export function PostCard({ number, icon, title, description, className }: PostCardProps) {
   return (
     <article
       className={cn(
-        "rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl",
+        "rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl",
         className
       )}
     >
       <div className="mb-4 flex items-center gap-3">
         {icon ? (
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-[var(--color-secondary)]">
             {icon}
           </div>
         ) : number ? (
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-accent)] text-sm font-semibold text-slate-950">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-secondary)] text-sm font-semibold text-white">
             {number}
           </div>
         ) : null}
@@ -39,4 +33,4 @@ export function TestimonialCard({
   );
 }
 
-export default TestimonialCard;
+export default PostCard;

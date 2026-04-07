@@ -6,11 +6,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Professional website",
   description:
-    "A modern, conversion-focused professional website built to earn trust, explain value clearly, and turn interest into action.",
+    "A modern, conversion-focused professional website built to showcase services, build trust, and turn visitors into qualified leads."
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {

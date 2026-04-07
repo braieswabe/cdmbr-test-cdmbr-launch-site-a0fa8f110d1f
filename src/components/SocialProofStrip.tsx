@@ -1,19 +1,12 @@
 type SocialProofStripProps = {
-  items: string[];
+  text: string;
 };
 
-export function SocialProofStrip({ items }: SocialProofStripProps) {
+export function SocialProofStrip({ text }: SocialProofStripProps) {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-3">
-      {items.map((item) => (
-        <span
-          key={item}
-          className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm"
-        >
-          {item}
-        </span>
-      ))}
-    </div>
+    <section className="bg-slate-950 px-6 py-4 text-center text-sm text-white/85">
+      <p>{text}</p>
+    </section>
   );
 }
 

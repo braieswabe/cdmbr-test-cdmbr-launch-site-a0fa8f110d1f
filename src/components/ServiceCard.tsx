@@ -1,25 +1,40 @@
-import type { ReactNode } from "react";
+import { cn } from "@/lib/cn";
 
 type ServiceCardProps = {
-  icon?: ReactNode;
   number?: string;
+  icon?: React.ReactNode;
   title: string;
   description: string;
+  className?: string;
 };
 
 export function ServiceCard({
-  icon,
   number,
+  icon,
   title,
   description,
+  className
 }: ServiceCardProps) {
   return (
-    <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,rgba(37,99,235,0.12),rgba(124,58,237,0.12))] text-[var(--color-primary)]">
-        {icon ?? <span className="text-sm font-bold">{number ?? "01"}</span>}
+    <article
+      className={cn(
+        "rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl",
+        className
+      )}
+    >
+      <div className="mb-4 flex items-center gap-3">
+        {icon ? (
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-secondary)]/10 text-[var(--color-secondary)]">
+            {icon}
+          </div>
+        ) : number ? (
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-secondary)] text-sm font-semibold text-white">
+            {number}
+          </div>
+        ) : null}
       </div>
-      <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+      <h3 className="text-lg font-semibold text-slate-950">{title}</h3>
+      <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
     </article>
   );
 }

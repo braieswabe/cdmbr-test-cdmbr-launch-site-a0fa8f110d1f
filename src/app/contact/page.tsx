@@ -2,21 +2,15 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react";
-import { NavBar } from "@/components/NavBar";
-import { Footer } from "@/components/Footer";
-import { SectionHeading } from "@/components/SectionHeading";
+import { Mail, MapPin, Phone, Clock, CheckCircle2 } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CTABanner } from "@/components/CTABanner";
+import { ContactForm } from "@/components/ContactForm";
+import { FAQAccordion } from "@/components/FAQAccordion";
+import { SectionHeading } from "@/components/SectionHeading";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -24,242 +18,248 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900">
-      <NavBar />
-      <main>
-        <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
+    <main className="bg-white text-slate-900">
+      <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
+        </div>
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8 lg:py-24">
+          <div className="max-w-2xl">
+            <span className="inline-flex rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sm font-medium text-sky-700">
+              Fast replies. Clear next steps.
+            </span>
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+              Talk to a team that responds quickly and follows through.
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Whether you need a quote, want to book a call, or have a support question, we’ll get you to the right person and
+              reply with clear next steps.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="#contact-form"
+                className="rounded-full bg-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-500"
+              >
+                Send a message
+              </Link>
+              <Link
+                href="tel:+15551234567"
+                className="rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+              >
+                Call now
+              </Link>
+            </div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              {[
+                { label: "Typical response", value: "Within 1 business day" },
+                { label: "Phone support", value: "Mon–Fri, 9am–5pm" },
+                { label: "Project start", value: "As soon as next week" },
+              ].map((item) => (
+                <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <p className="text-sm text-slate-500">{item.label}</p>
+                  <p className="mt-1 font-semibold text-slate-950">{item.value}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-20">
-            <div className="max-w-2xl">
-              <SectionHeading
-                eyebrow="Contact"
-                title="Talk to a team that responds quickly and follows through."
-                description="Whether you need a quote, have a support question, or want to explore a new project, we make it easy to reach the right person and get a clear next step."
-              />
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="#contact-form"
-                  className="inline-flex items-center rounded-full bg-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700"
-                >
-                  Send a message
-                </Link>
-                <Link
-                  href="tel:+1-555-0142"
-                  className="inline-flex items-center rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:text-sky-700"
-                >
-                  Call now
-                </Link>
+
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+              <p className="font-medium text-slate-900">Your message goes straight to our client team.</p>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              We review every inquiry carefully and route it to the right specialist so you get a useful answer, not a generic reply.
+            </p>
+            <div className="mt-6 space-y-4 rounded-2xl bg-slate-50 p-5">
+              <div className="flex items-start gap-3">
+                <Clock className="mt-0.5 h-5 w-5 text-sky-600" />
+                <div>
+                  <p className="font-medium text-slate-900">Response expectations</p>
+                  <p className="text-sm text-slate-600">Most messages receive a reply within one business day.</p>
+                </div>
               </div>
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
-                {[
-                  { icon: Phone, label: "Phone", value: "+1 (555) 014-2000", href: "tel:+15550142000" },
-                  { icon: Mail, label: "Email", value: "hello@northstarstudio.com", href: "mailto:hello@northstarstudio.com" },
-                  { icon: MapPin, label: "Office", value: "1200 Market Street, Suite 400, San Francisco, CA", href: "#location" },
-                  { icon: Clock, label: "Hours", value: "Mon–Fri, 9:00 AM–5:30 PM PT", href: "#hours" },
-                ].map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-                  >
-                    <item.icon className="h-5 w-5 text-sky-600" />
-                    <p className="mt-3 text-sm font-medium text-slate-500">{item.label}</p>
-                    <p className="mt-1 text-sm font-semibold text-slate-900">{item.value}</p>
+              <div className="flex items-start gap-3">
+                <Phone className="mt-0.5 h-5 w-5 text-sky-600" />
+                <div>
+                  <p className="font-medium text-slate-900">Prefer to talk?</p>
+                  <Link href="tel:+15551234567" className="text-sm text-sky-700 hover:underline">
+                    +1 (555) 123-4567
                   </Link>
-                ))}
-              </div>
-            </div>
-
-            <div id="contact-form" className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-              <div className="mb-6 flex items-center gap-3">
-                <div className="rounded-full bg-sky-100 p-2 text-sky-700">
-                  <Send className="h-5 w-5" />
                 </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail className="mt-0.5 h-5 w-5 text-sky-600" />
                 <div>
-                  <h2 className="text-xl font-semibold text-slate-900">Send us a message</h2>
-                  <p className="text-sm text-slate-600">We usually reply within one business day.</p>
-                </div>
-              </div>
-
-              {submitted ? (
-                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-900">
-                  <CheckCircle2 className="h-6 w-6 text-emerald-600" />
-                  <h3 className="mt-3 text-lg font-semibold">Thanks — we received your message.</h3>
-                  <p className="mt-2 text-sm leading-6">
-                    A member of our team will review your request and follow up with the next best step, usually within one business day.
-                  </p>
-                </div>
-              ) : (
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <label className="block">
-                      <span className="mb-2 block text-sm font-medium text-slate-700">Name</span>
-                      <input
-                        required
-                        value={formState.name}
-                        onChange={(e) => setFormState((prev) => ({ ...prev, name: e.target.value }))}
-                        className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                        placeholder="Your full name"
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="mb-2 block text-sm font-medium text-slate-700">Email</span>
-                      <input
-                        required
-                        type="email"
-                        value={formState.email}
-                        onChange={(e) => setFormState((prev) => ({ ...prev, email: e.target.value }))}
-                        className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                        placeholder="you@company.com"
-                      />
-                    </label>
-                  </div>
-                  <label className="block">
-                    <span className="mb-2 block text-sm font-medium text-slate-700">Phone</span>
-                    <input
-                      required
-                      type="tel"
-                      value={formState.phone}
-                      onChange={(e) => setFormState((prev) => ({ ...prev, phone: e.target.value }))}
-                      className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                      placeholder="(555) 014-2000"
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="mb-2 block text-sm font-medium text-slate-700">Message</span>
-                    <textarea
-                      required
-                      rows={6}
-                      value={formState.message}
-                      onChange={(e) => setFormState((prev) => ({ ...prev, message: e.target.value }))}
-                      className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
-                      placeholder="Tell us what you need help with, your timeline, and any details that will help us respond faster."
-                    />
-                  </label>
-                  <p className="text-sm text-slate-500">
-                    By submitting this form, you agree to be contacted about your inquiry. We never share your information.
-                  </p>
-                  <button
-                    type="submit"
-                    className="inline-flex w-full items-center justify-center rounded-full bg-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700"
-                  >
-                    Submit inquiry
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Direct contact"
-            title="Reach us the way that works best for you."
-            description="For urgent support, a quick call is often the fastest route. For project inquiries, email or the form above gives us the context we need to respond well."
-          />
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
-              <Phone className="h-6 w-6 text-sky-600" />
-              <h3 className="mt-4 text-lg font-semibold">Phone</h3>
-              <p className="mt-2 text-sm text-slate-600">Speak with our team during business hours.</p>
-              <Link href="tel:+15550142000" className="mt-4 inline-block text-sm font-semibold text-sky-700 hover:text-sky-800">
-                +1 (555) 014-2000
-              </Link>
-            </div>
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
-              <Mail className="h-6 w-6 text-sky-600" />
-              <h3 className="mt-4 text-lg font-semibold">Email</h3>
-              <p className="mt-2 text-sm text-slate-600">Best for detailed questions and project briefs.</p>
-              <Link href="mailto:hello@northstarstudio.com" className="mt-4 inline-block text-sm font-semibold text-sky-700 hover:text-sky-800">
-                hello@northstarstudio.com
-              </Link>
-            </div>
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
-              <Clock className="h-6 w-6 text-sky-600" />
-              <h3 className="mt-4 text-lg font-semibold">Hours</h3>
-              <p className="mt-2 text-sm text-slate-600">We respond promptly during the work week.</p>
-              <p className="mt-4 text-sm font-semibold text-slate-700">Monday–Friday, 9:00 AM–5:30 PM PT</p>
-            </div>
-          </div>
-        </section>
-
-        <section id="location" className="border-y border-slate-200 bg-slate-50">
-          <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-            <div>
-              <SectionHeading
-                eyebrow="Location"
-                title="Visit our office in downtown San Francisco."
-                description="We welcome scheduled meetings and local clients by appointment. The office is easy to reach by transit, rideshare, and nearby parking."
-              />
-              <div id="hours" className="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="text-lg font-semibold">Office details</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  Northstar Studio
-                  <br />
-                  1200 Market Street, Suite 400
-                  <br />
-                  San Francisco, CA 94102
-                </p>
-                <p className="mt-4 text-sm leading-6 text-slate-600">
-                  Monday–Friday: 9:00 AM–5:30 PM PT
-                  <br />
-                  Saturday–Sunday: Closed
-                </p>
-              </div>
-            </div>
-            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-              <div className="flex h-full min-h-[320px] items-center justify-center bg-gradient-to-br from-slate-100 via-white to-sky-50 p-8 text-center">
-                <div>
-                  <MapPin className="mx-auto h-10 w-10 text-sky-600" />
-                  <h3 className="mt-4 text-xl font-semibold">Map placeholder</h3>
-                  <p className="mt-2 max-w-md text-sm leading-6 text-slate-600">
-                    Embed your preferred map provider here to help visitors find the office, plan their route, and estimate travel time.
-                  </p>
+                  <p className="font-medium text-slate-900">Email us</p>
+                  <Link href="mailto:hello@northstarstudio.com" className="text-sm text-sky-700 hover:underline">
+                    hello@northstarstudio.com
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="What happens next"
-            title="Clear expectations from the first message."
-            description="We keep the process simple so you know what to expect after you reach out."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                title: "1. We review your message",
-                description: "We read the details you send and route it to the right person, whether it’s sales, support, or a custom request.",
-              },
-              {
-                title: "2. We respond with next steps",
-                description: "You’ll hear back with a direct answer, a few clarifying questions, or a suggested time to talk.",
-              },
-              {
-                title: "3. We move forward quickly",
-                description: "If it’s a fit, we’ll outline the process, timeline, and what we need from you to get started.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <CTABanner
-          headline="Prefer to talk it through first?"
-          description="Call us or send a message and we’ll help you choose the right next step."
-          buttonLabel="Contact us now"
-          buttonHref="#contact-form"
+      <section id="contact-form" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Contact form"
+          title="Tell us what you need."
+          description="Share a few details and we’ll recommend the best next step, whether that’s a call, a quote, or a support follow-up."
         />
-      </main>
-      <Footer />
-    </div>
+        <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_0.9fr]">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block">
+                  <span className="text-sm font-medium text-slate-700">Name</span>
+                  <input
+                    required
+                    type="text"
+                    name="name"
+                    className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                    placeholder="Jordan Lee"
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-medium text-slate-700">Email</span>
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                    placeholder="jordan@company.com"
+                  />
+                </label>
+              </div>
+              <label className="block">
+                <span className="text-sm font-medium text-slate-700">Phone</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                  placeholder="+1 (555) 123-4567"
+                />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium text-slate-700">Message</span>
+                <textarea
+                  required
+                  name="message"
+                  rows={6}
+                  className="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-3 outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                  placeholder="Tell us about your goals, timeline, and any questions you have."
+                />
+              </label>
+              <button
+                type="submit"
+                className="rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-500"
+              >
+                Submit inquiry
+              </button>
+              {submitted && (
+                <p className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                  Thanks — your message has been received. We’ll be in touch soon.
+                </p>
+              )}
+            </form>
+          </div>
+
+          <div className="space-y-6">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h2 className="text-xl font-semibold text-slate-950">Direct contact</h2>
+              <div className="mt-5 space-y-4 text-sm text-slate-600">
+                <div className="flex items-start gap-3">
+                  <MapPin className="mt-0.5 h-5 w-5 text-sky-600" />
+                  <div>
+                    <p className="font-medium text-slate-900">Office address</p>
+                    <p>1200 Market Street, Suite 400, San Francisco, CA 94102</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Phone className="mt-0.5 h-5 w-5 text-sky-600" />
+                  <div>
+                    <p className="font-medium text-slate-900">Phone</p>
+                    <Link href="tel:+15551234567" className="hover:text-sky-700">
+                      +1 (555) 123-4567
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Mail className="mt-0.5 h-5 w-5 text-sky-600" />
+                  <div>
+                    <p className="font-medium text-slate-900">Email</p>
+                    <Link href="mailto:hello@northstarstudio.com" className="hover:text-sky-700">
+                      hello@northstarstudio.com
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock className="mt-0.5 h-5 w-5 text-sky-600" />
+                  <div>
+                    <p className="font-medium text-slate-900">Business hours</p>
+                    <p>Monday–Friday, 9:00 AM–5:00 PM PT</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+              <div className="border-b border-slate-200 px-6 py-4">
+                <h2 className="text-xl font-semibold text-slate-950">Find us</h2>
+                <p className="mt-1 text-sm text-slate-600">Serving clients locally and remotely across the U.S.</p>
+              </div>
+              <div className="h-72 bg-[linear-gradient(135deg,#dbeafe_0%,#eff6ff_45%,#f8fafc_100%)] p-6">
+                <div className="flex h-full items-center justify-center rounded-2xl border border-dashed border-sky-300 bg-white/70 text-center">
+                  <div>
+                    <MapPin className="mx-auto h-8 w-8 text-sky-600" />
+                    <p className="mt-3 font-medium text-slate-900">Map placeholder</p>
+                    <p className="mt-1 text-sm text-slate-600">Embed your Google Map or location image here.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Common questions"
+            title="Quick answers before you reach out."
+            description="A few details to help you decide the fastest way to connect."
+          />
+          <div className="mt-10">
+            <FAQAccordion
+              items={[
+                {
+                  question: "How quickly do you respond?",
+                  answer: "Most inquiries receive a response within one business day, often sooner during business hours.",
+                },
+                {
+                  question: "Can I book a call instead of using the form?",
+                  answer: "Yes. Use the call button above or mention your preferred time in the message and we’ll coordinate.",
+                },
+                {
+                  question: "Do you work with remote clients?",
+                  answer: "Absolutely. We support local and remote clients and can meet by phone or video.",
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <CTABanner
+          headline="Ready to get started?"
+          description="Send your details now and we’ll help you choose the right next step."
+          buttonLabel="Book a call"
+          buttonHref="/contact"
+        />
+      </section>
+    </main>
   );
 }

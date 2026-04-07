@@ -1,27 +1,42 @@
-import { FC } from 'react';
+import { cn } from "@/lib/cn";
 
-interface ProjectCardProps {
+type ProjectCardProps = {
+  number?: string;
+  icon?: React.ReactNode;
   title: string;
   description: string;
-  link: string;
-}
-
-const ProjectCard: FC<ProjectCardProps> = ({ title, description, link }) => {
-  return (
-    <div className="border rounded-lg p-4 shadow-lg hover:shadow-xl transition">
-      <h3 className="text-xl font-bold">{title}</h3>
-      <p className="mt-2">{description}</p>
-      <a href={link} className="mt-4 inline-block text-accent hover:underline">
-        View Project
-      </a>
-    </div>
-  );
+  className?: string;
 };
 
-export { ProjectCard };
-
-export function ProjectCard() {
-  return <div>ProjectCard</div>;
+export function ProjectCard({
+  number,
+  icon,
+  title,
+  description,
+  className
+}: ProjectCardProps) {
+  return (
+    <article
+      className={cn(
+        "rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl",
+        className
+      )}
+    >
+      <div className="mb-4 flex items-center gap-3">
+        {icon ? (
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-[var(--color-primary)]">
+            {icon}
+          </div>
+        ) : number ? (
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-primary)] text-sm font-semibold text-white">
+            {number}
+          </div>
+        ) : null}
+      </div>
+      <h3 className="text-lg font-semibold text-slate-950">{title}</h3>
+      <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+    </article>
+  );
 }
 
 export default ProjectCard;

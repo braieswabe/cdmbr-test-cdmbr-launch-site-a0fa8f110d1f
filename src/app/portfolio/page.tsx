@@ -1,280 +1,208 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BriefcaseBusiness, CheckCircle2, Filter, Sparkles } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, Building2, Camera, CheckCircle2, Filter, Globe2, LayoutGrid, Sparkles, TrendingUp } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CTABanner } from "@/components/CTABanner";
 import { Footer } from "@/components/Footer";
+import { Hero } from "@/components/Hero";
+import { LogoCloud } from "@/components/LogoCloud";
 import { NavBar } from "@/components/NavBar";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SocialProofStrip } from "@/components/SocialProofStrip";
+import { ProjectCard } from "@/components/ProjectCard";
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description:
-    "Explore selected projects, creative proof, and real-world outcomes across branding, web, and digital experiences.",
+  description: "Selected projects, case studies, and client results that show our approach to thoughtful design and measurable outcomes.",
 };
-
-const categories = ["All", "Branding", "Web Design", "Product", "Campaigns", "Strategy"];
 
 const projects = [
   {
-    title: "Northstar Financial",
-    description:
-      "A conversion-focused website redesign that clarified services, improved trust signals, and increased qualified inquiries.",
-    tags: ["Web Design", "Strategy", "Finance"],
-    category: "Web Design",
-    image: "/images/portfolio/northstar-financial.jpg",
+    number: "01",
+    icon: <LayoutGrid className="h-5 w-5" />,
+    title: "B2B SaaS website redesign",
+    description: "Rebuilt the marketing site around clearer messaging, stronger proof, and a faster path to demo requests. Qualified leads increased by 38% in the first quarter.",
+    className: "bg-white",
   },
   {
-    title: "Harbor Health",
-    description:
-      "A patient-friendly digital experience that simplified appointment booking and made care options easier to understand.",
-    tags: ["Product", "Healthcare", "UX"],
-    category: "Product",
-    image: "/images/portfolio/harbor-health.jpg",
+    number: "02",
+    icon: <Building2 className="h-5 w-5" />,
+    title: "Professional services brand refresh",
+    description: "Modernized the visual system, refined the service pages, and created a more credible experience for enterprise buyers evaluating the firm.",
+    className: "bg-white",
   },
   {
-    title: "Studio Vale",
-    description:
-      "A refined brand identity and portfolio system built to showcase premium work and attract higher-value clients.",
-    tags: ["Branding", "Creative", "Identity"],
-    category: "Branding",
-    image: "/images/portfolio/studio-vale.jpg",
+    number: "03",
+    icon: <Camera className="h-5 w-5" />,
+    title: "Creative studio portfolio",
+    description: "Designed a visual-first portfolio with case study storytelling, image-led navigation, and a polished presentation for prospective clients.",
+    className: "bg-white",
   },
   {
-    title: "Summit Supply",
-    description:
-      "A B2B campaign landing page that aligned messaging, sharpened positioning, and lifted demo requests.",
-    tags: ["Campaigns", "B2B", "Lead Gen"],
-    category: "Campaigns",
-    image: "/images/portfolio/summit-supply.jpg",
+    number: "04",
+    icon: <Globe2 className="h-5 w-5" />,
+    title: "Multi-location service business",
+    description: "Improved local discovery, clarified service areas, and added trust signals that helped lift contact form submissions by 29%.",
+    className: "bg-white",
   },
   {
-    title: "ClearPath SaaS",
-    description:
-      "A product marketing site that translated complex features into clear benefits for decision-makers and buyers.",
-    tags: ["Web Design", "SaaS", "Messaging"],
-    category: "Web Design",
-    image: "/images/portfolio/clearpath-saas.jpg",
+    number: "05",
+    icon: <BriefcaseBusiness className="h-5 w-5" />,
+    title: "Executive recruiting landing pages",
+    description: "Created concise, conversion-focused pages that helped candidates understand the opportunity and apply with confidence.",
+    className: "bg-white",
   },
   {
-    title: "Evergreen Hospitality",
-    description:
-      "A polished booking experience that highlighted amenities, reduced friction, and supported direct reservations.",
-    tags: ["Strategy", "Hospitality", "Conversion"],
-    category: "Strategy",
-    image: "/images/portfolio/evergreen-hospitality.jpg",
+    number: "06",
+    icon: <TrendingUp className="h-5 w-5" />,
+    title: "Growth campaign microsite",
+    description: "Built a campaign hub with sharper calls to action, proof-backed claims, and a streamlined content structure for launch support.",
+    className: "bg-white",
   },
 ];
 
-const highlights = [
+const caseStudies = [
   {
-    title: "Northstar Financial",
-    goal: "Increase trust and improve lead quality.",
-    process:
-      "We restructured the homepage around outcomes, added clearer service pathways, and introduced stronger proof points throughout the journey.",
-    outcome:
-      "The new site created a more confident first impression and helped the team start more relevant sales conversations.",
+    number: "01",
+    icon: <CheckCircle2 className="h-5 w-5" />,
+    title: "From scattered pages to a clear conversion path",
+    description:
+      "A consulting firm needed a site that felt more credible and easier to navigate. We consolidated fragmented content into a focused structure, added social proof, and clarified the offer. Result: more time on page, fewer drop-offs, and stronger inbound inquiries.",
+    className: "bg-slate-50",
   },
   {
-    title: "ClearPath SaaS",
-    goal: "Make a technical product easier to buy.",
-    process:
-      "We translated feature depth into practical use cases, paired each section with concise visuals, and tightened the CTA flow.",
-    outcome:
-      "Visitors could understand the product faster, which supported better engagement from both prospects and internal stakeholders.",
+    number: "02",
+    icon: <Sparkles className="h-5 w-5" />,
+    title: "Turning visual polish into business confidence",
+    description:
+      "A design-led brand wanted a portfolio that matched the quality of its work. We introduced a modular gallery, project summaries, and a refined visual hierarchy to help prospects quickly understand the value behind each engagement.",
+    className: "bg-slate-50",
   },
   {
-    title: "Studio Vale",
-    goal: "Position the studio for premium work.",
-    process:
-      "We built a visual system that felt editorial and modern, then organized the portfolio to spotlight process, craft, and results.",
-    outcome:
-      "The brand now feels more selective, more credible, and better aligned with the studio’s ideal clients.",
+    number: "03",
+    icon: <ArrowRight className="h-5 w-5" />,
+    title: "A faster path from interest to action",
+    description:
+      "For a service company with high-intent traffic, we simplified the decision journey with stronger CTAs, clearer service descriptions, and a more persuasive proof section. The result was a smoother handoff from browsing to booking.",
+    className: "bg-slate-50",
   },
+];
+
+const logos = ["Northstar Group", "Summit Health", "Apex Studio", "Harbor Finance", "Fieldwork Labs", "Crescent Partners"];
+
+const breadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: "Portfolio", href: "/portfolio" },
 ];
 
 export default function PortfolioPage() {
   return (
     <main className="bg-white text-slate-900">
       <NavBar />
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Portfolio" }]} />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="pt-6">
+          <Breadcrumbs items={breadcrumbs} />
+        </div>
       </div>
 
-      <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-sky-50 p-8 shadow-sm sm:p-12">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white px-4 py-2 text-sm font-medium text-sky-700 shadow-sm">
-                <Sparkles className="h-4 w-4" />
-                Selected work with measurable impact
-              </div>
-              <div className="space-y-4">
-                <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-                  Portfolio work that looks good and performs even better.
-                </h1>
-                <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                  Explore a curated set of projects across branding, web, product, and campaign work.
-                  Each example shows how clear strategy, thoughtful design, and practical execution come
-                  together to move the business forward.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="#projects"
-                  className="inline-flex items-center justify-center rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700"
-                >
-                  Browse projects
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-                <Link
-                  href="#contact"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-slate-50"
-                >
-                  Discuss a similar project
-                </Link>
-              </div>
-            </div>
+      <Hero
+        title="Portfolio built to prove results"
+        subtitle="Selected work that combines sharp craftsmanship with measurable outcomes. Explore projects that improved clarity, increased conversions, and helped brands present themselves with confidence."
+        primaryCtaLabel="Request a proposal"
+        primaryCtaHref="/contact"
+        secondaryCtaLabel="Explore services"
+        secondaryCtaHref="/services"
+      />
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <BriefcaseBusiness className="h-6 w-6 text-sky-600" />
-                <p className="mt-4 text-sm font-medium text-slate-500">Project types</p>
-                <p className="mt-1 text-2xl font-bold">Brand, web, product</p>
-              </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <CheckCircle2 className="h-6 w-6 text-emerald-600" />
-                <p className="mt-4 text-sm font-medium text-slate-500">Focus</p>
-                <p className="mt-1 text-2xl font-bold">Clarity and conversion</p>
-              </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:col-span-2">
-                <Image
-                  src="/images/portfolio/featured-project.jpg"
-                  alt="Featured portfolio project preview"
-                  width={1200}
-                  height={800}
-                  className="h-56 w-full rounded-xl object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Project gallery"
-          title="A quick look at the work."
-          description="Filter by category to scan the kinds of projects we’ve delivered and the outcomes they were built to support."
+          eyebrow="Selected projects"
+          title="Work that is easy to scan and hard to ignore"
+          description="Browse a curated set of projects across professional services, SaaS, creative, and local business brands."
         />
 
-        <div className="mt-8 flex flex-wrap gap-2">
-          {categories.map((category) => (
+        <div className="mb-8 flex flex-wrap gap-3">
+          {["All work", "Web design", "Brand refresh", "Conversion", "Portfolio"].map((item, index) => (
             <button
-              key={category}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-sky-300 hover:text-sky-700"
-              type="button"
+              key={item}
+              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition ${
+                index === 0
+                  ? "border-slate-900 bg-slate-900 text-white"
+                  : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
+              }`}
             >
-              <Filter className="h-4 w-4" />
-              {category}
+              {index === 0 ? <Filter className="h-4 w-4" /> : null}
+              {item}
             </button>
           ))}
         </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project) => (
-            <article
-              key={project.title}
-              className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent opacity-90 transition group-hover:opacity-100" />
-                <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+            <div key={project.number} className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+              <div className="relative aspect-[4/3] bg-gradient-to-br from-slate-100 via-white to-slate-200">
+                <div className="absolute inset-0 flex items-end justify-between p-5">
+                  <div className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+                    {project.number}
                   </div>
+                  <div className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100">
+                    View project
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-slate-950/0 transition group-hover:bg-slate-950/10" />
+                <div className="absolute left-5 top-5 rounded-2xl bg-white p-3 shadow-sm">
+                  {project.icon}
                 </div>
               </div>
               <div className="space-y-3 p-6">
-                <h3 className="text-xl font-semibold text-slate-950">{project.title}</h3>
+                <h3 className="text-xl font-semibold tracking-tight">{project.title}</h3>
                 <p className="text-sm leading-6 text-slate-600">{project.description}</p>
-                <Link
-                  href="#details"
-                  className="inline-flex items-center text-sm font-semibold text-sky-700 transition hover:text-sky-800"
-                >
-                  View project highlights
-                  <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
+                <div className="flex flex-wrap gap-2">
+                  {["Strategy", "Design", "Content"].map((tag) => (
+                    <span key={tag} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </article>
+            </div>
           ))}
         </div>
       </section>
 
-      <section id="details" className="bg-slate-50 py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Project detail preview"
-            title="How the work was approached."
-            description="A few examples of the goals, process, and outcomes behind the projects shown above."
+            eyebrow="Case studies"
+            title="A closer look at the thinking behind the work"
+            description="Each engagement starts with the same goal: make the value obvious, reduce friction, and help the right audience take the next step."
           />
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {highlights.map((item) => (
-              <div key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 className="text-xl font-semibold text-slate-950">{item.title}</h3>
-                <dl className="mt-4 space-y-4 text-sm leading-6 text-slate-600">
-                  <div>
-                    <dt className="font-semibold text-slate-900">Goal</dt>
-                    <dd>{item.goal}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-semibold text-slate-900">Process</dt>
-                    <dd>{item.process}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-semibold text-slate-900">Outcome</dt>
-                    <dd>{item.outcome}</dd>
-                  </div>
-                </dl>
-              </div>
+          <div className="grid gap-6 lg:grid-cols-3">
+            {caseStudies.map((study) => (
+              <ProjectCard key={study.number} {...study} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <SocialProofStrip
-          items={[
-            "Trusted by growing teams across finance, healthcare, SaaS, and hospitality",
-            "Built to support stronger positioning and better conversion",
-            "Designed for clarity, credibility, and long-term maintainability",
-          ]}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Recognition"
+          title="Trusted by teams that care about quality"
+          description="A few of the clients and collaborators who have partnered with us on launches, refreshes, and ongoing digital work."
         />
+        <LogoCloud logos={logos} />
+        <div className="mt-8">
+          <SocialProofStrip text="Projects delivered for teams that needed stronger positioning, cleaner design, and a better path to conversion." />
+        </div>
       </section>
 
-      <section id="contact" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <CTABanner
-          headline="Have a project in mind?"
-          description="If you need a portfolio-worthy website, a sharper brand presence, or a custom digital experience, let’s talk through the best path forward."
-          buttonLabel="Start a conversation"
-          buttonHref="/contact"
-        />
-      </section>
+      <CTABanner
+        headline="Have a project in mind?"
+        description="If you need a portfolio, website, or campaign page that looks polished and performs well, let’s talk about the scope."
+        buttonLabel="Request a proposal"
+        buttonHref="/contact"
+      />
 
       <Footer />
     </main>

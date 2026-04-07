@@ -1,86 +1,71 @@
 import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Clear advice for teams that want better results.",
+  description: "Learn more about clear advice for teams that want better results.",
+};
+
 import Link from "next/link";
-import {
-  ArrowRight,
-  CalendarDays,
-  Clock3,
-  Filter,
-  Newspaper,
-  Search,
-  Sparkles,
-} from "lucide-react";
+import { CalendarDays, Tag, ArrowRight, Newspaper, Sparkles, Search } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { BlogCard } from "@/components/BlogCard";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { SectionHeading } from "@/components/SectionHeading";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Explore practical articles on web strategy, conversion, SEO, and brand clarity.",
-};
-
-const categories = [
-  "All articles",
-  "Strategy",
-  "SEO",
-  "Conversion",
-  "Branding",
-  "Content",
-];
-
 const featuredPost = {
-  title: "How to turn a homepage into a conversion tool without making it feel pushy",
+  title: "How to choose a partner that can actually deliver on time",
   excerpt:
-    "A strong homepage should answer three questions quickly: what you do, who it’s for, and why it matters. This guide breaks down the structure, messaging, and design choices that help visitors move forward with confidence.",
-  category: "Conversion",
+    "A practical guide to evaluating process, communication, and accountability before you sign a contract.",
   date: "April 2, 2026",
-  readTime: "8 min read",
+  category: "Buying Guide",
 };
 
 const posts = [
   {
-    icon: Newspaper,
-    number: "01",
-    title: "The 7 sections every high-performing service page should include",
-    description:
-      "A practical framework for building service pages that are clear, persuasive, and easy to scan on mobile.",
+    title: "7 signs your project needs a clearer scope",
+    excerpt: "Spot the warning signs early and avoid delays, rework, and budget creep.",
+    date: "March 28, 2026",
+    category: "Project Planning",
   },
   {
-    icon: Sparkles,
-    number: "02",
-    title: "Brand trust signals that actually influence buying decisions",
-    description:
-      "Learn which proof points matter most and how to present them without overwhelming your audience.",
+    title: "What a strong onboarding process should include",
+    excerpt: "See the steps that keep stakeholders aligned from kickoff through launch.",
+    date: "March 21, 2026",
+    category: "Operations",
   },
   {
-    icon: Search,
-    number: "03",
-    title: "SEO for small businesses: what to prioritize before publishing more content",
-    description:
-      "A focused approach to search visibility that starts with intent, structure, and useful answers.",
+    title: "How to compare proposals without getting lost in jargon",
+    excerpt: "A simple framework for evaluating value, risk, and long-term fit.",
+    date: "March 14, 2026",
+    category: "Buying Guide",
   },
   {
-    icon: Filter,
-    number: "04",
-    title: "Why your navigation may be costing you leads",
-    description:
-      "Simple information architecture improvements can reduce friction and help visitors find the right path faster.",
+    title: "The metrics that matter after a website launch",
+    excerpt: "Focus on the numbers that show whether your site is helping the business grow.",
+    date: "March 7, 2026",
+    category: "Analytics",
   },
   {
-    icon: CalendarDays,
-    number: "05",
-    title: "How often should you update your website content?",
-    description:
-      "A realistic maintenance plan for keeping your site accurate, relevant, and aligned with your business goals.",
+    title: "A practical checklist for a smoother client handoff",
+    excerpt: "Reduce friction with a handoff process that keeps work moving after launch.",
+    date: "February 28, 2026",
+    category: "Client Experience",
   },
   {
-    icon: Clock3,
-    number: "06",
-    title: "What makes a case study persuasive to decision-makers",
-    description:
-      "The best case studies focus on context, challenge, action, and measurable outcome — not just a list of deliverables.",
+    title: "When to refresh your brand messaging",
+    excerpt: "Learn the signals that your positioning needs a reset and how to approach it.",
+    date: "February 20, 2026",
+    category: "Brand Strategy",
   },
+];
+
+const categories = [
+  "All posts",
+  "Buying Guide",
+  "Project Planning",
+  "Operations",
+  "Analytics",
+  "Client Experience",
+  "Brand Strategy",
 ];
 
 export default function BlogPage() {
@@ -90,171 +75,144 @@ export default function BlogPage() {
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
         </div>
-
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-16 pt-6 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:pb-20 lg:pt-10">
-          <div className="max-w-3xl">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-medium text-sky-700">
-              <Sparkles className="h-4 w-4" />
-              Practical insights for better websites and stronger growth
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-              A blog built to educate, rank, and help people make better decisions.
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
+          <div className="max-w-2xl">
+            <span className="inline-flex rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sm font-medium text-sky-700">
+              Insights, guides, and practical advice
+            </span>
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+              Clear advice for teams that want better results.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              We publish clear, actionable articles on website strategy, SEO,
-              conversion, and brand messaging — written for busy teams that want
-              useful guidance, not jargon.
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Read concise, useful articles on planning, delivery, and decision-making — written to help you move faster with
+              more confidence.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="#featured"
-                className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                href="#latest"
+                className="rounded-full bg-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-500"
               >
-                Read featured article
-                <ArrowRight className="ml-2 h-4 w-4" />
+                Explore articles
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-slate-50"
+                className="rounded-full border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
               >
-                Talk to our team
+                Book a call
               </Link>
             </div>
           </div>
 
           <aside className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white">
-                <Search className="h-5 w-5" />
+              <div className="rounded-2xl bg-sky-50 p-3 text-sky-700">
+                <Newspaper className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-sm font-medium text-slate-500">Browse topics</p>
-                <p className="text-lg font-semibold text-slate-950">
-                  Find the right article faster
-                </p>
+                <p className="text-sm font-medium text-slate-500">Featured article</p>
+                <p className="font-semibold text-slate-950">{featuredPost.category}</p>
               </div>
             </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {categories.map((category, index) => (
-                <span
-                  key={category}
-                  className={`rounded-full px-3 py-1 text-sm font-medium ${
-                    index === 0
-                      ? "bg-slate-950 text-white"
-                      : "bg-slate-100 text-slate-700"
-                  }`}
-                >
-                  {category}
-                </span>
-              ))}
+            <h2 className="mt-5 text-2xl font-semibold text-slate-950">{featuredPost.title}</h2>
+            <p className="mt-4 text-sm leading-6 text-slate-600">{featuredPost.excerpt}</p>
+            <div className="mt-6 flex items-center gap-4 text-sm text-slate-500">
+              <span className="inline-flex items-center gap-2">
+                <CalendarDays className="h-4 w-4" />
+                {featuredPost.date}
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <Tag className="h-4 w-4" />
+                Featured
+              </span>
             </div>
-            <div className="mt-6 rounded-2xl bg-slate-50 p-4">
-              <p className="text-sm font-medium text-slate-500">Most read this month</p>
-              <p className="mt-2 text-base font-semibold text-slate-950">
-                Homepage structure that improves clarity and conversions
-              </p>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                A concise breakdown of the sections and messaging that help
-                visitors understand your value quickly.
-              </p>
-            </div>
+            <Link
+              href="#latest"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sky-700 hover:text-sky-600"
+            >
+              Read the featured post
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </aside>
         </div>
       </section>
 
-      <section id="featured" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section id="latest" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Featured article"
-          title="How to turn a homepage into a conversion tool"
-          description="This guide explains how to structure your homepage so it answers key questions, builds trust, and encourages action."
+          eyebrow="Recent articles"
+          title="Fresh thinking for better decisions."
+          description="Browse our latest posts for practical guidance you can use right away."
         />
-        <div className="mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-slate-950 text-white shadow-lg">
-          <div className="grid gap-0 lg:grid-cols-2">
-            <div className="min-h-[280px] bg-gradient-to-br from-slate-800 via-slate-900 to-sky-900 p-8 lg:p-10">
-              <div className="inline-flex rounded-full bg-white/10 px-3 py-1 text-sm font-medium text-white/90">
-                {featuredPost.category}
+        <div className="mt-10 grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+          <aside className="h-fit rounded-3xl border border-slate-200 bg-slate-50 p-6">
+            <div className="flex items-center gap-2 text-slate-900">
+              <Search className="h-5 w-5 text-sky-600" />
+              <h2 className="text-lg font-semibold">Categories</h2>
+            </div>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <Link
+                  key={category}
+                  href="#latest"
+                  className="rounded-full border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 transition hover:border-sky-300 hover:text-sky-700"
+                >
+                  {category}
+                </Link>
+              ))}
+            </div>
+            <div className="mt-8 rounded-2xl bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-2 text-emerald-600">
+                <Sparkles className="h-5 w-5" />
+                <p className="text-sm font-semibold">Editorial promise</p>
               </div>
-              <h2 className="mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
-                {featuredPost.title}
-              </h2>
-              <p className="mt-4 max-w-xl text-base leading-7 text-slate-300">
-                {featuredPost.excerpt}
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                Every article is written to answer a real question, reduce uncertainty, and help you make a better decision.
               </p>
-              <div className="mt-6 flex items-center gap-4 text-sm text-slate-300">
-                <span>{featuredPost.date}</span>
-                <span>•</span>
-                <span>{featuredPost.readTime}</span>
-              </div>
-              <Link
-                href="/contact"
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
+            </div>
+          </aside>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {posts.map((post, index) => (
+              <article
+                key={post.title}
+                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
               >
-                Get help with your homepage
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
-            <div className="bg-white p-8 text-slate-900 lg:p-10">
-              <h3 className="text-xl font-semibold">What you’ll learn</h3>
-              <ul className="mt-5 space-y-4 text-base leading-7 text-slate-600">
-                <li>• How to lead with a clear value proposition</li>
-                <li>• Where to place proof, benefits, and calls to action</li>
-                <li>• How to reduce friction for mobile visitors</li>
-                <li>• Which sections support SEO without cluttering the page</li>
-              </ul>
-              <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <p className="text-sm font-medium text-slate-500">Editor’s note</p>
-                <p className="mt-2 text-base leading-7 text-slate-700">
-                  We write for founders, marketers, and small teams who need
-                  practical advice they can apply immediately.
-                </p>
-              </div>
-            </div>
+                <div className="aspect-[16/10] bg-gradient-to-br from-sky-100 via-white to-slate-100 p-6">
+                  <div className="flex h-full items-center justify-center rounded-2xl border border-dashed border-sky-300 bg-white/70">
+                    <div className="text-center">
+                      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-600 text-white">
+                        {index + 1}
+                      </div>
+                      <p className="mt-3 text-sm font-medium text-slate-900">Article image placeholder</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between gap-4 text-sm">
+                    <span className="inline-flex rounded-full bg-sky-50 px-3 py-1 font-medium text-sky-700">
+                      {post.category}
+                    </span>
+                    <span className="text-slate-500">{post.date}</span>
+                  </div>
+                  <h3 className="mt-4 text-xl font-semibold text-slate-950">{post.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{post.excerpt}</p>
+                  <Link
+                    href="/contact"
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-sky-700 transition group-hover:text-sky-600"
+                  >
+                    Read more
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="border-y border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Recent articles"
-            title="Fresh ideas for strategy, SEO, and conversion"
-            description="Browse our latest articles for actionable guidance you can use to improve your website and content."
-          />
-          <div className="mt-10 grid gap-6 lg:grid-cols-[240px_1fr]">
-            <aside className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-              <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                Categories
-              </p>
-              <div className="mt-4 space-y-2">
-                {categories.map((category, index) => (
-                  <button
-                    key={category}
-                    className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium transition ${
-                      index === 0
-                        ? "bg-slate-950 text-white"
-                        : "bg-slate-50 text-slate-700 hover:bg-slate-100"
-                    }`}
-                  >
-                    <span>{category}</span>
-                    <span className="text-xs opacity-70">
-                      {index === 0 ? "12" : `0${index + 3}`}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </aside>
-
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {posts.map((post) => (
-                <BlogCard key={post.number} {...post} />
-              ))}
-            </div>
-          </div>
+          <NewsletterSignup />
         </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <NewsletterSignup />
       </section>
     </main>
   );

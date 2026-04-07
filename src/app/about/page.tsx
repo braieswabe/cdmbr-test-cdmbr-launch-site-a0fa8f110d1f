@@ -1,155 +1,211 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "We build websites that help good businesses look as credible as they are.",
-  description: "Learn more about we build websites that help good businesses look as credible as they are.",
+  title: "A team built to make your business look credible and feel easy to choose",
+  description: "Learn more about a team built to make your business look credible and feel easy to choose",
 };
 
-import { Award, HeartHandshake, Lightbulb, Users } from "lucide-react";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CTABanner } from "@/components/CTABanner";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
+import { FeatureCard } from "@/components/FeatureCard";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { NavBar } from "@/components/NavBar";
+import { Footer } from "@/components/Footer";
+import {
+  Award,
+  Compass,
+  HeartHandshake,
+  Lightbulb,
+  Rocket,
+  ShieldCheck,
+  Users,
+  Workflow,
+} from "lucide-react";
+
+const team = [
+  {
+    number: "01",
+    icon: <Users className="h-5 w-5" />,
+    title: "Maya Chen — Founder & Strategy Lead",
+    description:
+      "Maya helps clients clarify positioning, sharpen messaging, and make confident decisions that support long-term growth.",
+    className: "",
+  },
+  {
+    number: "02",
+    icon: <Workflow className="h-5 w-5" />,
+    title: "Jordan Patel — Design Director",
+    description:
+      "Jordan turns complex ideas into clean, modern interfaces that feel polished, intuitive, and easy to trust.",
+    className: "",
+  },
+  {
+    number: "03",
+    icon: <ShieldCheck className="h-5 w-5" />,
+    title: "Elena Brooks — Delivery Manager",
+    description:
+      "Elena keeps projects organized, timelines realistic, and communication clear from kickoff through launch.",
+    className: "",
+  },
+  {
+    number: "04",
+    icon: <Rocket className="h-5 w-5" />,
+    title: "Sam Rivera — Growth Specialist",
+    description:
+      "Sam focuses on conversion, analytics, and practical improvements that help websites perform after launch.",
+    className: "",
+  },
+];
+
+const values = [
+  {
+    number: "01",
+    icon: <HeartHandshake className="h-5 w-5" />,
+    title: "Partnership first",
+    description:
+      "We work like an extension of your team, with honest feedback, clear expectations, and shared accountability.",
+  },
+  {
+    number: "02",
+    icon: <Lightbulb className="h-5 w-5" />,
+    title: "Clarity over complexity",
+    description:
+      "We keep the process simple and the messaging sharp so your audience can understand your value quickly.",
+  },
+  {
+    number: "03",
+    icon: <Award className="h-5 w-5" />,
+    title: "Quality that lasts",
+    description:
+      "We build with care, attention to detail, and a focus on work that continues to perform over time.",
+  },
+  {
+    number: "04",
+    icon: <Compass className="h-5 w-5" />,
+    title: "Guided by outcomes",
+    description:
+      "Every recommendation is tied to a business result, not just aesthetics or trends.",
+  },
+];
 
 export default function AboutPage() {
-  const values = [
-    {
-      icon: <Lightbulb className="h-5 w-5" />,
-      number: "01",
-      title: "Clarity first",
-      description: "We make complex ideas easy to understand so your audience can act with confidence.",
-    },
-    {
-      icon: <HeartHandshake className="h-5 w-5" />,
-      number: "02",
-      title: "Partnership over process",
-      description: "We communicate clearly, stay responsive, and work like an extension of your team.",
-    },
-    {
-      icon: <Award className="h-5 w-5" />,
-      number: "03",
-      title: "Quality that lasts",
-      description: "We build websites that are polished today and practical to maintain long term.",
-    },
-  ];
-
-  const team = [
-    {
-      icon: <Users className="h-5 w-5" />,
-      number: "01",
-      title: "Avery Chen — Founder & Strategy Lead",
-      description: "Helps clients define positioning, messaging, and the right path to conversion.",
-    },
-    {
-      icon: <Users className="h-5 w-5" />,
-      number: "02",
-      title: "Morgan Patel — Design Director",
-      description: "Shapes clean, modern interfaces that feel premium and easy to navigate.",
-    },
-    {
-      icon: <Users className="h-5 w-5" />,
-      number: "03",
-      title: "Sam Rivera — Lead Developer",
-      description: "Builds fast, accessible websites with careful attention to performance and detail.",
-    },
-    {
-      icon: <Users className="h-5 w-5" />,
-      number: "04",
-      title: "Taylor Brooks — Client Success",
-      description: "Keeps projects organized, communication clear, and launches on track.",
-    },
-  ];
-
-  const milestones = [
-    { year: "2019", title: "Started with a simple goal", text: "Help small teams present themselves with more clarity and confidence online." },
-    { year: "2021", title: "Expanded into full website builds", text: "Added design, development, and launch support under one collaborative process." },
-    { year: "2023", title: "Refined our conversion approach", text: "Focused on practical messaging and user experience that supports real business outcomes." },
-    { year: "2025", title: "Trusted by growing brands", text: "Now partnering with organizations that want a website to do more than just look good." },
-  ];
-
   return (
-    <main className="bg-white text-slate-900">
-      <section className="mx-auto max-w-7xl px-6 py-10 sm:px-8 lg:px-10">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 pb-16 sm:px-8 lg:px-10">
-        <div className="rounded-[2rem] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-700 px-6 py-16 text-white shadow-2xl sm:px-10 lg:px-14">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">About us</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-            We build websites that help good businesses look as credible as they are.
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-            Our team combines strategy, design, and development to create clear, trustworthy digital experiences for organizations that care about quality and results.
-          </p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-8 sm:px-8 lg:px-10">
-        <SectionHeading
-          eyebrow="Our story"
-          title="Founded on the belief that clarity drives growth"
-          description="We started by helping teams who had strong services but a website that didn’t reflect their value. That gap became our focus."
-        />
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm leading-6 text-slate-600">
-              From the beginning, our work has centered on one idea: when people understand what you do and trust what they see, they are far more likely to take the next step. That means every project starts with listening, not assumptions.
-            </p>
-            <p className="mt-4 text-sm leading-6 text-slate-600">
-              We care about practical outcomes — more qualified inquiries, better engagement, and a site your team can confidently share. The result is a process that feels collaborative, calm, and focused on what matters most.
-            </p>
+    <div className="min-h-screen bg-white text-slate-900">
+      <NavBar />
+      <main>
+        <section className="border-b border-slate-200 bg-gradient-to-br from-slate-50 via-white to-indigo-50">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+            <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
+            <div className="mt-8 max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600">About our company</p>
+              <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                A team built to make your business look credible and feel easy to choose
+              </h1>
+              <p className="mt-6 text-lg leading-8 text-slate-600">
+                We help growing businesses present themselves with confidence through thoughtful strategy, refined
+                design, and a process that respects your time.
+              </p>
+            </div>
           </div>
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-slate-900">Mission</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              To help organizations present themselves with clarity and professionalism so their websites become a reliable driver of trust and growth.
-            </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+          <SectionHeading
+            eyebrow="Our story"
+            title="Founded to bring clarity to busy teams"
+            description="We started with a simple observation: many great businesses struggle to explain their value online. We built our company to solve that problem with practical, high-quality web experiences."
+          />
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+              <h3 className="text-xl font-semibold text-slate-900">How it began</h3>
+              <p className="mt-4 leading-7 text-slate-600">
+                Our first projects came from referrals — businesses that needed a website partner who could combine
+                strategy, design, and execution without adding complexity. That focus still shapes how we work today.
+              </p>
+              <p className="mt-4 leading-7 text-slate-600">
+                Over time, we refined a process that helps clients move faster, communicate better, and launch with a
+                stronger sense of direction.
+              </p>
+            </div>
+            <div className="rounded-3xl bg-gradient-to-br from-indigo-600 to-sky-500 p-8 text-white shadow-lg">
+              <h3 className="text-xl font-semibold">What we believe</h3>
+              <ul className="mt-5 space-y-3 text-white/90">
+                <li>Good websites should make decisions easier, not harder.</li>
+                <li>Clear communication is as important as great design.</li>
+                <li>Trust is built through consistency, not just visuals.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-slate-50">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+            <SectionHeading
+              eyebrow="Mission and values"
+              title="We care about the work and the relationship"
+              description="Our values shape how we plan, communicate, and deliver — so clients know what to expect at every step."
+            />
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
               {values.map((value) => (
-                <div key={value.number} className="rounded-2xl border border-slate-200 bg-white p-4">
-                  <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white">
-                    {value.icon}
-                  </div>
-                  <h3 className="text-sm font-semibold text-slate-900">{value.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{value.description}</p>
+                <FeatureCard key={value.number} {...value} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+          <SectionHeading
+            eyebrow="Team"
+            title="Experienced people who keep projects moving"
+            description="You’ll work with specialists who understand strategy, design, delivery, and growth."
+          />
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {team.map((member) => (
+              <TeamMemberCard key={member.number} {...member} />
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-white">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+            <SectionHeading
+              eyebrow="Why clients choose us"
+              title="A practical partner with a polished standard"
+              description="We combine strategic thinking, responsive communication, and a high bar for quality."
+            />
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+              {[
+                {
+                  title: "Fast to understand",
+                  text: "We quickly identify what matters most and turn it into a clear plan.",
+                },
+                {
+                  title: "Easy to work with",
+                  text: "You get a calm, organized process with straightforward communication.",
+                },
+                {
+                  title: "Built for business impact",
+                  text: "We focus on the outcomes that matter: trust, leads, and momentum.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-10">
-        <SectionHeading
-          eyebrow="The team"
-          title="Experienced people who care about the details"
-          description="We bring together strategy, design, development, and client support so projects stay aligned from start to finish."
+        <CTABanner
+          headline="Want to work with a team that values clarity and quality?"
+          description="Explore our services or reach out to start a conversation about your goals, timeline, and next steps."
+          buttonLabel="Explore services"
+          buttonHref="/services"
         />
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {team.map((member) => (
-            <TeamMemberCard key={member.number} {...member} />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-10">
-        <SectionHeading
-          eyebrow="Milestones"
-          title="A steady path of growth"
-          description="A few moments that shaped how we work and the standards we hold ourselves to."
-        />
-        <div className="grid gap-4">
-          {milestones.map((milestone) => (
-            <div key={milestone.year} className="flex flex-col gap-3 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:flex-row sm:items-start sm:gap-6">
-              <div className="min-w-24 text-sm font-semibold text-sky-600">{milestone.year}</div>
-              <div>
-                <h3 className="text-lg font-semibold text-slate-900">{milestone.title}</h3>
-                <p className="mt-1 text-sm leading-6 text-slate-600">{milestone.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-    </main>
+      </main>
+      <Footer />
+    </div>
   );
 }

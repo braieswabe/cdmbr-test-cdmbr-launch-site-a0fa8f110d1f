@@ -9,16 +9,16 @@ export function SectionHeading({
   eyebrow,
   title,
   description,
-  align = "left",
+  align = "left"
 }: SectionHeadingProps) {
   return (
-    <div className={align === "center" ? "mx-auto max-w-3xl text-center" : ""}>
+    <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {eyebrow ? (
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+      <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
         {title}
       </h2>
       {description ? (

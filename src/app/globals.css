@@ -6,6 +6,9 @@
   --color-accent: #f59e0b;
   --background: #ffffff;
   --foreground: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --surface: #f8fafc;
 }
 
 html {

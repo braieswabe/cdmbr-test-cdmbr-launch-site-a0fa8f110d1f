@@ -5,186 +5,158 @@ export const metadata: Metadata = {
   description: "Learn more about careers",
 };
 
-import Link from "next/link";
-import { ArrowRight, BadgeCheck, BriefcaseBusiness, HeartHandshake, Users } from "lucide-react";
-import {
-  Hero,
-  SectionHeading,
-  FeatureCard,
-  TeamMemberCard,
-  CTABanner,
-} from "@/components";
+import { ButtonGroup } from "@/components/ButtonGroup";
+import { CTABanner } from "@/components/CTABanner";
+import { FeatureCard } from "@/components/FeatureCard";
+import { Hero } from "@/components/Hero";
+import { RoleCard } from "@/components/RoleCard";
+import { SectionHeading } from "@/components/SectionHeading";
+import { TeamMemberCard } from "@/components/TeamMemberCard";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Footer } from "@/components/Footer";
+import { NavBar } from "@/components/NavBar";
+import { BriefcaseBusiness, HeartHandshake, Rocket, ShieldCheck, Sparkles, Users } from "lucide-react";
 
 const openRoles = [
   {
-    icon: BriefcaseBusiness,
     number: "01",
-    title: "Senior Product Designer",
+    icon: <Rocket className="h-5 w-5" />,
+    title: "Senior Full-Stack Engineer",
     description:
-      "Shape intuitive, conversion-focused experiences across our marketing site and client platforms. You’ll collaborate closely with strategy, content, and engineering to turn complex ideas into clear, elegant interfaces.",
+      "Build polished web experiences for clients who expect speed, reliability, and measurable results. You’ll work across Next.js, design systems, and performance-focused delivery.",
   },
   {
-    icon: Users,
     number: "02",
-    title: "Full-Stack Engineer",
-    description:
-      "Build fast, reliable web experiences with a strong focus on quality, accessibility, and maintainability. We value thoughtful implementation, clean systems, and a steady pace of delivery.",
-  },
-  {
-    icon: HeartHandshake,
-    number: "03",
+    icon: <Users className="h-5 w-5" />,
     title: "Client Success Manager",
     description:
-      "Own relationships from kickoff through launch and beyond. You’ll help clients feel informed, supported, and confident while keeping projects moving smoothly and on schedule.",
-  },
-];
-
-const cultureValues = [
-  {
-    icon: BadgeCheck,
-    number: "01",
-    title: "Clear expectations",
-    description:
-      "We keep goals, timelines, and responsibilities visible so everyone can do their best work without guesswork.",
+      "Own onboarding, communication, and long-term satisfaction. You’ll help clients stay aligned, informed, and confident from kickoff through launch.",
   },
   {
-    icon: HeartHandshake,
-    number: "02",
-    title: "Respectful collaboration",
-    description:
-      "We give direct feedback, listen carefully, and treat each other like trusted partners—internally and with clients.",
-  },
-  {
-    icon: Users,
     number: "03",
-    title: "Room to grow",
+    icon: <Sparkles className="h-5 w-5" />,
+    title: "Brand Designer",
     description:
-      "You’ll get meaningful ownership, regular feedback, and opportunities to deepen your craft through real projects.",
+      "Shape visual identities and conversion-ready interfaces that feel modern, clear, and memorable across web, pitch decks, and campaign assets.",
   },
 ];
 
 export default function CareersPage() {
   return (
     <main className="bg-white text-slate-900">
+      <NavBar />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers" }]} />
+
       <Hero
-        title="Build thoughtful work with a team that values clarity, craft, and momentum."
-        subtitle="We’re looking for people who care about outcomes, communicate well, and enjoy making complex things feel simple. If you want meaningful ownership and a supportive team, you’ll fit right in."
-        ctaLabel="View open roles"
-        ctaHref="#open-roles"
-        secondaryCtaLabel="Learn about our culture"
-        secondaryCtaHref="#culture"
+        title="Build work you’re proud to ship."
+        subtitle="Join a team that values thoughtful craft, clear communication, and outcomes that matter. We move quickly, collaborate closely, and give people real ownership."
+        primaryCtaLabel="Apply now"
+        primaryCtaHref="#open-roles"
+        secondaryCtaLabel="View benefits"
+        secondaryCtaHref="#benefits"
       />
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <SectionHeading
-          eyebrow="Why join us"
-          title="A workplace built for strong work and steady growth"
-          description="We offer the structure, trust, and feedback loops people need to do their best work without unnecessary friction."
+          eyebrow="Culture"
+          title="A focused team with room to do your best work."
+          description="We keep the environment calm, collaborative, and high-trust. That means fewer meetings, clearer priorities, and more time spent on meaningful work."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           <FeatureCard
-            icon={BadgeCheck}
             number="01"
-            title="Meaningful ownership"
-            description="You’ll own real projects, not just tasks. We trust people to make decisions and follow through."
+            icon={<HeartHandshake className="h-5 w-5" />}
+            title="Respectful collaboration"
+            description="We share context early, give direct feedback, and make decisions with the team in mind."
           />
           <FeatureCard
-            icon={Users}
             number="02"
-            title="Growth that’s practical"
-            description="We support learning through mentorship, project variety, and regular performance conversations that actually help."
+            icon={<ShieldCheck className="h-5 w-5" />}
+            title="High standards, low ego"
+            description="We care about quality, but we keep the process practical and supportive."
           />
           <FeatureCard
-            icon={HeartHandshake}
             number="03"
-            title="A team that has your back"
-            description="We work collaboratively, share context early, and keep communication open so work feels manageable and focused."
+            icon={<BriefcaseBusiness className="h-5 w-5" />}
+            title="Ownership from day one"
+            description="You’ll have clear responsibilities, visible impact, and the autonomy to improve how we work."
           />
         </div>
       </section>
 
-      <section id="open-roles" className="border-y border-slate-200 bg-slate-50">
+      <section id="benefits" className="bg-slate-50">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <SectionHeading
-            eyebrow="Open roles"
-            title="Current opportunities"
-            description="We’re hiring for a few key roles right now. If you don’t see a perfect match, we still encourage you to reach out."
+            eyebrow="Benefits"
+            title="Support that helps you grow."
+            description="We invest in people with competitive compensation, flexibility, and development opportunities that make a difference over time."
           />
-          <div className="mt-10 grid gap-6">
-            {openRoles.map((role) => (
-              <div
-                key={role.title}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-              >
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                  <div className="max-w-3xl">
-                    <div className="mb-3 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">
-                      {role.number}
-                    </div>
-                    <h3 className="text-2xl font-semibold tracking-tight text-slate-900">{role.title}</h3>
-                    <p className="mt-3 text-base leading-7 text-slate-600">{role.description}</p>
-                  </div>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-                  >
-                    Apply now
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <FeatureCard number="01" icon={<ShieldCheck className="h-5 w-5" />} title="Competitive pay" description="Fair compensation aligned with experience, scope, and impact." />
+            <FeatureCard number="02" icon={<Sparkles className="h-5 w-5" />} title="Flexible schedule" description="Work in a way that supports focus, balance, and dependable delivery." />
+            <FeatureCard number="03" icon={<Users className="h-5 w-5" />} title="Learning budget" description="Use dedicated support for courses, conferences, books, and certifications." />
+            <FeatureCard number="04" icon={<HeartHandshake className="h-5 w-5" />} title="Strong team support" description="Collaborate with people who care about quality, clarity, and follow-through." />
           </div>
         </div>
       </section>
 
-      <section id="culture" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section id="open-roles" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <SectionHeading
-          eyebrow="Culture"
-          title="Professional, supportive, and refreshingly direct"
-          description="We keep the environment calm, collaborative, and focused on doing excellent work without unnecessary drama."
+          eyebrow="Open roles"
+          title="Current opportunities"
+          description="If you’re excited by thoughtful execution and visible client impact, we’d love to hear from you."
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {cultureValues.map((value) => (
-            <FeatureCard key={value.title} {...value} />
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {openRoles.map((role) => (
+            <RoleCard key={role.title} {...role} />
           ))}
         </div>
-
-        <div className="mt-10 grid gap-6 rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-8 shadow-sm lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-          <div>
-            <h3 className="text-2xl font-semibold tracking-tight text-slate-900">What the day-to-day feels like</h3>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
-              You’ll work with people who are prepared, responsive, and respectful of your time. Meetings are purposeful,
-              feedback is specific, and progress is measured by outcomes—not noise.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <TeamMemberCard
-              icon={Users}
-              number="01"
-              title="Small, collaborative teams"
-              description="You’ll know who to ask, what’s happening, and where your work fits."
-            />
-            <TeamMemberCard
-              icon={BadgeCheck}
-              number="02"
-              title="High standards, low ego"
-              description="We care about quality and keep the process grounded and human."
-            />
-          </div>
-        </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-slate-50">
+      <section className="bg-slate-50">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <CTABanner
-            headline="Interested in joining us?"
-            description="Apply to one of our open roles or send a general introduction. We review every application carefully and respond with clear next steps."
-            buttonLabel="Start your application"
-            buttonHref="/contact"
+          <SectionHeading
+            eyebrow="Hiring process"
+            title="Clear steps, no guesswork."
+            description="We keep the process straightforward so you know what to expect at every stage."
           />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <TeamMemberCard
+              number="01"
+              icon={<Users className="h-5 w-5" />}
+              title="Intro call"
+              description="A short conversation to learn about your background, goals, and the role."
+            />
+            <TeamMemberCard
+              number="02"
+              icon={<Sparkles className="h-5 w-5" />}
+              title="Skills review"
+              description="A practical discussion or exercise focused on the work you’d actually do."
+            />
+            <TeamMemberCard
+              number="03"
+              icon={<BriefcaseBusiness className="h-5 w-5" />}
+              title="Team interview"
+              description="Meet the people you’d collaborate with and ask detailed questions about the team."
+            />
+            <TeamMemberCard
+              number="04"
+              icon={<ShieldCheck className="h-5 w-5" />}
+              title="Offer and onboarding"
+              description="If it’s a fit, we move quickly and set you up for a confident start."
+            />
+          </div>
         </div>
       </section>
+
+      <CTABanner
+        headline="Think you’d be a great fit?"
+        description="Apply now or send a general interest note if you don’t see the exact role you want."
+        buttonLabel="Apply now"
+        buttonHref="/contact"
+      />
+
+      <Footer />
     </main>
   );
 }

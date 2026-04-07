@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Practical services for teams that want better outcomes, not more complexity.",
-  description: "Learn more about practical services for teams that want better outcomes, not more complexity.",
+  title: "Services",
+  description: "Learn more about services",
 };
 
 import Link from "next/link";
@@ -10,13 +10,10 @@ import {
   ArrowRight,
   BadgeCheck,
   BriefcaseBusiness,
-  Building2,
-  CalendarCheck2,
+  CalendarRange,
   CheckCircle2,
-  Cog,
+  ClipboardList,
   Compass,
-  Gauge,
-  Handshake,
   Layers3,
   Rocket,
   ShieldCheck,
@@ -24,280 +21,250 @@ import {
   Target,
   Users,
 } from "lucide-react";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { CTABanner } from "@/components/CTABanner";
-import { FeatureCard } from "@/components/FeatureCard";
-import { Footer } from "@/components/Footer";
-import { NavBar } from "@/components/NavBar";
-import { SectionHeading } from "@/components/SectionHeading";
-import { ServiceCard } from "@/components/ServiceCard";
+  CTABanner,
+  FeatureCard,
+  Hero,
+  SectionHeading,
+  ServiceCard,
+} from "@/components";
 
 const services = [
   {
-    icon: <Compass className="h-5 w-5" />,
     number: "01",
-    title: "Strategy & Discovery",
+    icon: <Compass className="h-5 w-5" />,
+    title: "Strategy & Positioning",
     description:
-      "Clarify goals, identify opportunities, and turn scattered ideas into a practical roadmap your team can act on.",
+      "Clarify your offer, sharpen your message, and align your website around the outcomes buyers care about most.",
+    outcome: "A clearer story that makes it easier to win trust and convert interest into action.",
+    href: "/services/strategy",
   },
   {
-    icon: <Layers3 className="h-5 w-5" />,
     number: "02",
-    title: "Brand & Messaging",
-    description:
-      "Shape a clear, credible story that helps the right people understand what you do and why it matters.",
-  },
-  {
-    icon: <Rocket className="h-5 w-5" />,
-    number: "03",
+    icon: <Layers3 className="h-5 w-5" />,
     title: "Website Design & Build",
     description:
-      "Create a polished, conversion-focused website that looks premium, loads fast, and works beautifully on every device.",
+      "Modern, responsive websites designed to look polished, load fast, and guide visitors toward the next step.",
+    outcome: "A professional site that feels credible on day one and scales with your business.",
+    href: "/services/web-design",
   },
   {
-    icon: <Cog className="h-5 w-5" />,
+    number: "03",
+    icon: <Rocket className="h-5 w-5" />,
+    title: "Conversion Optimization",
+    description:
+      "Improve calls to action, page structure, and content flow so more visitors become leads or customers.",
+    outcome: "More qualified inquiries without increasing traffic.",
+    href: "/services/conversion-optimization",
+  },
+  {
     number: "04",
-    title: "Ongoing Optimization",
+    icon: <ClipboardList className="h-5 w-5" />,
+    title: "Content & Messaging",
     description:
-      "Improve performance over time with content updates, conversion tuning, and technical refinements that compound results.",
+      "Benefit-led copywriting for home pages, service pages, landing pages, and supporting content.",
+    outcome: "Messaging that is concise, persuasive, and easy to scan.",
+    href: "/services/content",
   },
   {
-    icon: <ShieldCheck className="h-5 w-5" />,
     number: "05",
-    title: "Support & Maintenance",
+    icon: <ShieldCheck className="h-5 w-5" />,
+    title: "Ongoing Support",
     description:
-      "Keep your site secure, current, and dependable with proactive care and responsive support when you need it.",
+      "Reliable updates, performance checks, and small improvements that keep your site current and effective.",
+    outcome: "A website that stays secure, relevant, and aligned with your goals.",
+    href: "/services/support",
   },
   {
-    icon: <Handshake className="h-5 w-5" />,
     number: "06",
-    title: "Launch & Growth Support",
+    icon: <BriefcaseBusiness className="h-5 w-5" />,
+    title: "Launch & Handover",
     description:
-      "Go live with confidence and keep momentum with post-launch guidance, reporting, and next-step recommendations.",
+      "Structured launch support, training, and documentation so your team can manage the site confidently.",
+    outcome: "A smooth handoff with fewer surprises after launch.",
+    href: "/services/launch",
   },
 ];
 
 const processSteps = [
   {
+    number: "1",
     title: "Discover",
     description:
-      "We start with a focused conversation about your goals, audience, and current challenges so we can recommend the right path.",
+      "We start with a focused consultation to understand your goals, audience, timeline, and constraints.",
   },
   {
-    title: "Plan",
+    number: "2",
+    title: "Scope",
     description:
-      "You receive a clear scope, timeline, and deliverables list so expectations are aligned before work begins.",
+      "You receive a clear plan with deliverables, milestones, and a recommended approach based on your needs.",
   },
   {
-    title: "Create",
+    number: "3",
+    title: "Build",
     description:
-      "We design and build with regular check-ins, keeping the process collaborative without creating extra work for your team.",
+      "We design, write, and develop in short feedback cycles so the work stays aligned and efficient.",
   },
   {
+    number: "4",
     title: "Refine",
     description:
-      "We review the details, test key flows, and make thoughtful adjustments to ensure the final result feels polished and effective.",
+      "We review the details, test the experience, and make sure the final result is polished and ready to launch.",
   },
   {
-    title: "Launch",
+    number: "5",
+    title: "Deliver",
     description:
-      "After launch, we stay available for support, training, and improvements so your investment continues to perform.",
+      "You get a complete handoff, launch support, and a practical next-step plan for growth.",
   },
 ];
 
 const useCases = [
   {
-    icon: <Building2 className="h-5 w-5" />,
-    title: "Professional services",
-    description:
-      "Ideal for consultants, agencies, and firms that need a credible online presence and a stronger lead pipeline.",
-  },
-  {
-    icon: <BriefcaseBusiness className="h-5 w-5" />,
-    title: "Growing businesses",
-    description:
-      "Best for teams that have outgrown a basic website and need a more strategic digital experience.",
-  },
-  {
+    number: "01",
     icon: <Users className="h-5 w-5" />,
-    title: "Internal teams",
+    title: "Growing service businesses",
     description:
-      "Helpful for marketing and operations teams that need reliable execution and a partner who can move quickly.",
+      "Ideal for firms that need a stronger online presence, clearer offers, and more qualified leads.",
+    className: "bg-white",
   },
   {
+    number: "02",
     icon: <Target className="h-5 w-5" />,
-    title: "Launches and repositioning",
+    title: "Teams with conversion goals",
     description:
-      "A strong fit for new offers, refreshed brands, or businesses entering a new market with a clearer message.",
+      "Best for organizations that want more inquiries, booked calls, or demo requests from existing traffic.",
+    className: "bg-white",
+  },
+  {
+    number: "03",
+    icon: <CalendarRange className="h-5 w-5" />,
+    title: "Launches and rebrands",
+    description:
+      "Useful when you need a clean, credible rollout with messaging that matches your new direction.",
+    className: "bg-white",
+  },
+  {
+    number: "04",
+    icon: <BadgeCheck className="h-5 w-5" />,
+    title: "Established brands needing a refresh",
+    description:
+      "A strong fit when the site is dated, hard to manage, or no longer reflects the quality of your work.",
+    className: "bg-white",
   },
 ];
 
-const comparison = [
+const detailHighlights = [
   {
-    title: "Strategy",
-    items: ["Audience and goals review", "Competitive scan", "Messaging direction", "Recommended scope"],
+    number: "01",
+    icon: <CheckCircle2 className="h-5 w-5" />,
+    title: "What’s included in a typical engagement",
+    description:
+      "Most projects include discovery, sitemap planning, messaging guidance, design direction, responsive build, QA, and launch support.",
+    className: "bg-slate-50",
   },
   {
-    title: "Design & Build",
-    items: ["Custom page layouts", "Responsive development", "Conversion-focused CTAs", "Performance best practices"],
+    number: "02",
+    icon: <Sparkles className="h-5 w-5" />,
+    title: "How deliverables are structured",
+    description:
+      "You get practical outputs such as page outlines, wireframes, polished UI, reusable components, and clear handoff notes.",
+    className: "bg-slate-50",
   },
   {
-    title: "Launch Support",
-    items: ["QA and testing", "Content handoff", "Launch checklist", "Post-launch guidance"],
+    number: "03",
+    icon: <ShieldCheck className="h-5 w-5" />,
+    title: "Typical use cases",
+    description:
+      "From lead generation and service marketing to product launches and internal enablement, the work is tailored to the outcome.",
+    className: "bg-slate-50",
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <main className="bg-white text-slate-900">
-      <NavBar />
-      <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-          <Breadcrumbs
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Services" },
-            ]}
-          />
-        </div>
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pb-20 lg:pt-10">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="max-w-2xl">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-medium text-sky-700">
-                <Sparkles className="h-4 w-4" />
-                Services built to create clarity, trust, and momentum
-              </div>
-              <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                Practical services for teams that want better outcomes, not more complexity.
-              </h1>
-              <p className="mt-6 text-lg leading-8 text-slate-600">
-                From strategy and messaging to design, development, and ongoing support, we help you
-                choose the right level of help for where your business is today.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-full bg-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-500"
-                >
-                  Schedule a consultation
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-                <Link
-                  href="/pricing"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-sky-300 hover:text-sky-700"
-                >
-                  View pricing
-                </Link>
-              </div>
-            </div>
+    <main className="bg-white">
+      <Hero
+        title="Services built to move prospects from interest to action"
+        subtitle="From strategy and messaging to design, development, and ongoing support, we help you present a clearer offer and a more credible experience."
+        primaryCtaLabel="Request a consultation"
+        primaryCtaHref="/contact"
+        secondaryCtaLabel="View pricing"
+        secondaryCtaHref="/pricing"
+      />
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl bg-slate-50 p-4">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
-                    <BadgeCheck className="h-4 w-4 text-emerald-500" />
-                    Clear scope
-                  </div>
-                  <p className="mt-2 text-sm text-slate-600">Know exactly what’s included before work begins.</p>
-                </div>
-                <div className="rounded-2xl bg-slate-50 p-4">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
-                    <Gauge className="h-4 w-4 text-emerald-500" />
-                    Measurable progress
-                  </div>
-                  <p className="mt-2 text-sm text-slate-600">Track outcomes with milestones, reviews, and launch support.</p>
-                </div>
-                <div className="rounded-2xl bg-slate-50 p-4">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
-                    <CalendarCheck2 className="h-4 w-4 text-emerald-500" />
-                    Predictable timeline
-                  </div>
-                  <p className="mt-2 text-sm text-slate-600">A structured process keeps the project moving without surprises.</p>
-                </div>
-                <div className="rounded-2xl bg-slate-50 p-4">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                    Built for handoff
-                  </div>
-                  <p className="mt-2 text-sm text-slate-600">Your team gets a site and system they can confidently use.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <SectionHeading
-          eyebrow="Services overview"
-          title="Choose the right support for your goals."
-          description="Each service is designed to solve a specific business need, whether you need a sharper message, a stronger website, or a reliable partner to keep things moving."
+          eyebrow="Service categories"
+          title="Choose the support you need"
+          description="Each service can stand alone or be combined into a full engagement depending on your goals, timeline, and internal resources."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => (
-            <ServiceCard key={service.title} {...service} />
+            <ServiceCard key={service.number} {...service} />
           ))}
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <SectionHeading
-            eyebrow="What you get"
-            title="A practical delivery process that keeps projects clear and manageable."
-            description="We keep the work structured, collaborative, and focused on outcomes so you always know what’s happening next."
+            eyebrow="Service details"
+            title="What each service delivers"
+            description="A quick look at the outcomes, deliverables, and situations where each service is the best fit."
           />
-          <div className="mt-10 grid gap-6 lg:grid-cols-5">
-            {processSteps.map((step, index) => (
-              <div key={step.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-600 text-sm font-semibold text-white">
-                  {index + 1}
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-slate-950">{step.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{step.description}</p>
-              </div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {detailHighlights.map((item) => (
+              <FeatureCard key={item.number} {...item} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <SectionHeading
-          eyebrow="Who we help"
-          title="Built for real-world use cases across growing organizations."
-          description="Whether you’re refining an established brand or launching something new, the work is tailored to your context and priorities."
+          eyebrow="Process"
+          title="A simple, structured engagement"
+          description="We keep the work organized and transparent so you always know what’s happening next."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {useCases.map((item) => (
-            <FeatureCard key={item.title} icon={item.icon} number="" title={item.title} description={item.description} />
-          ))}
-        </div>
-
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {comparison.map((group) => (
-            <div key={group.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-slate-950">{group.title}</h3>
-              <ul className="mt-4 space-y-3">
-                {group.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 flex-none text-emerald-500" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {processSteps.map((step) => (
+            <div
+              key={step.number}
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+                {step.number}
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-slate-900">{step.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{step.description}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <CTABanner
-        headline="Not sure which service fits best?"
-        description="Tell us what you’re trying to improve, and we’ll recommend the most effective next step."
-        buttonLabel="Contact an expert"
-        buttonHref="/contact"
-      />
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+          <SectionHeading
+            eyebrow="Best fit"
+            title="Common scenarios we support"
+            description="If you’re not sure which service you need, these examples can help you identify the right starting point."
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {useCases.map((item) => (
+              <FeatureCard key={item.number} {...item} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <Footer />
+      <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+        <CTABanner
+          headline="Need help choosing the right service?"
+          description="Tell us what you’re trying to improve and we’ll recommend the most efficient path forward."
+          buttonLabel="Request a quote"
+          buttonHref="/contact"
+        />
+      </section>
     </main>
   );
 }
