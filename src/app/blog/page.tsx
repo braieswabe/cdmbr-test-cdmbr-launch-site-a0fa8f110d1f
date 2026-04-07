@@ -1,284 +1,313 @@
 import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Practical guidance for teams that want clearer messaging and better results.",
-  description: "Learn more about practical guidance for teams that want clearer messaging and better results.",
-};
-
 import Link from "next/link";
-import { CalendarDays, Clock3, ArrowRight, Tag, Search } from "lucide-react";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import {
+  ArrowRight,
+  CalendarDays,
+  Clock3,
+  Filter,
+  Search,
+  Sparkles,
+  TrendingUp,
+} from "lucide-react";
+import { BlogPostCard } from "@/components/BlogPostCard";
+import { Button } from "@/components/Button";
 import { CTABanner } from "@/components/CTABanner";
-import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { Footer } from "@/components/Footer";
+import { NavBar } from "@/components/NavBar";
 import { SectionHeading } from "@/components/SectionHeading";
 
-const categories = [
-  "Strategy",
-  "SEO",
-  "Conversion",
-  "Brand",
-  "Operations",
-  "Client Experience",
-];
+export const metadata: Metadata = {
+  title: "Blog | Insights, strategy, and practical guidance",
+  description:
+    "Read clear, actionable articles on growth, design, operations, and digital strategy. Built for teams that want better decisions and measurable outcomes.",
+};
 
 const featuredPost = {
-  title: "How to turn a professional website into a reliable lead source",
-  excerpt:
-    "A practical framework for clarifying your message, improving trust signals, and making it easier for the right clients to take action.",
-  date: "April 7, 2026",
-  category: "Conversion",
+  title: "What high-performing websites do differently in the first 10 seconds",
+  description:
+    "A practical breakdown of the trust signals, messaging patterns, and page structure choices that help visitors understand value quickly and take action with confidence.",
+  category: "Strategy",
   readTime: "8 min read",
+  date: "April 2026",
+  href: "/blog/high-performing-websites-first-10-seconds",
 };
 
 const posts = [
   {
-    title: "7 homepage changes that improve inquiries without adding more traffic",
-    excerpt:
-      "Small adjustments to structure, proof, and calls to action can create a noticeable lift in qualified leads.",
-    date: "April 2, 2026",
+    icon: <TrendingUp className="h-5 w-5" />,
+    title: "How to turn service pages into consistent lead generators",
+    description:
+      "See how clear positioning, proof points, and a focused call to action can improve conversion without adding friction.",
+    href: "/blog/service-pages-lead-generators",
     category: "Conversion",
     readTime: "6 min read",
+    date: "April 18, 2026",
   },
   {
-    title: "What clients look for before they book a call",
-    excerpt:
-      "The trust signals, clarity markers, and service details that reduce hesitation and increase response rates.",
-    date: "March 28, 2026",
-    category: "Client Experience",
+    icon: <Sparkles className="h-5 w-5" />,
+    title: "The design details that make a brand feel more credible",
+    description:
+      "From spacing and typography to imagery and microcopy, small choices can have a measurable impact on trust.",
+    href: "/blog/design-details-credible-brand",
+    category: "Brand",
     readTime: "5 min read",
+    date: "April 14, 2026",
   },
   {
-    title: "A simple SEO content plan for service businesses",
-    excerpt:
-      "Build topical authority with a focused publishing rhythm that supports visibility and buyer intent.",
-    date: "March 21, 2026",
+    icon: <CalendarDays className="h-5 w-5" />,
+    title: "A simple content calendar for teams that need steady SEO growth",
+    description:
+      "Build a repeatable publishing system that supports search visibility, audience education, and sales conversations.",
+    href: "/blog/content-calendar-seo-growth",
     category: "SEO",
     readTime: "7 min read",
+    date: "April 10, 2026",
   },
   {
-    title: "How to write service pages that feel clear, confident, and useful",
-    excerpt:
-      "Use benefit-led copy, scannable structure, and proof to help visitors understand your offer fast.",
-    date: "March 14, 2026",
-    category: "Strategy",
-    readTime: "9 min read",
+    icon: <Search className="h-5 w-5" />,
+    title: "How to choose keywords that match real buyer intent",
+    description:
+      "Focus on the questions your customers actually ask and create pages that answer them clearly and completely.",
+    href: "/blog/choose-keywords-buyer-intent",
+    category: "SEO",
+    readTime: "6 min read",
+    date: "April 6, 2026",
   },
   {
-    title: "The role of testimonials in a high-converting website",
-    excerpt:
-      "Learn how to place, frame, and select testimonials so they support credibility instead of blending in.",
-    date: "March 8, 2026",
-    category: "Brand",
-    readTime: "4 min read",
-  },
-  {
-    title: "Why responsive support matters after launch",
-    excerpt:
-      "A dependable post-launch process keeps your site accurate, fast, and aligned with business goals.",
-    date: "March 1, 2026",
+    icon: <Clock3 className="h-5 w-5" />,
+    title: "Why faster project delivery usually starts with better scope",
+    description:
+      "Learn how tighter planning, clearer approvals, and fewer handoffs can reduce delays and improve outcomes.",
+    href: "/blog/faster-delivery-better-scope",
     category: "Operations",
-    readTime: "5 min read",
+    readTime: "4 min read",
+    date: "April 2, 2026",
   },
+  {
+    icon: <ArrowRight className="h-5 w-5" />,
+    title: "What to include in a case study that actually helps sell",
+    description:
+      "A strong case study should show the problem, the process, and the result in language that decision-makers trust.",
+    href: "/blog/case-study-that-helps-sell",
+    category: "Sales",
+    readTime: "5 min read",
+    date: "March 28, 2026",
+  },
+];
+
+const categories = [
+  "All topics",
+  "Strategy",
+  "Conversion",
+  "SEO",
+  "Brand",
+  "Operations",
+  "Sales",
+];
+
+const tags = [
+  "Website strategy",
+  "Lead generation",
+  "Content planning",
+  "Conversion rate",
+  "Client communication",
+  "Search visibility",
 ];
 
 export default function BlogPage() {
   return (
-    <main className="bg-neutral-50 text-neutral-900">
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Blog" },
-          ]}
-        />
-      </div>
-
-      <section className="mx-auto max-w-7xl px-4 pb-8 pt-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[1.4fr_0.6fr]">
-          <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-neutral-200 sm:p-10">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1 text-sm font-medium text-primary-700">
-              <Tag className="h-4 w-4" />
-              Educational content hub
-            </div>
-            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
-              Practical guidance for teams that want clearer messaging and better results.
-            </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-              Our blog is built to help you make smarter website decisions. Expect concise,
-              authoritative articles on SEO, conversion, trust-building, and client experience—
-              all focused on measurable value.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="#latest"
-                className="inline-flex items-center justify-center rounded-full bg-primary-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-700"
-              >
-                Browse articles
-              </Link>
-              <Link
-                href="#newsletter"
-                className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-900 transition hover:border-primary-300 hover:text-primary-700"
-              >
-                Get updates
-              </Link>
-            </div>
-          </div>
-
-          <aside className="rounded-3xl bg-neutral-900 p-6 text-white shadow-sm sm:p-8">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-neutral-300">
-              Popular topics
-            </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <span
-                  key={category}
-                  className="rounded-full bg-white/10 px-3 py-1 text-sm text-white/90"
-                >
-                  {category}
-                </span>
-              ))}
-            </div>
-            <div className="mt-8 rounded-2xl bg-white/5 p-5">
-              <div className="flex items-center gap-2 text-sm text-neutral-300">
-                <Search className="h-4 w-4" />
-                Search-friendly content
+    <div className="min-h-screen bg-white text-slate-900">
+      <NavBar />
+      <main>
+        <section className="border-b border-slate-200 bg-gradient-to-b from-slate-50 to-white">
+          <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.4fr_0.8fr] lg:px-8 lg:py-24">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm">
+                <Sparkles className="h-4 w-4 text-blue-600" />
+                Editorial insights for teams that want better results
               </div>
-              <p className="mt-3 text-sm leading-6 text-neutral-200">
-                Every article is designed to answer real questions prospects ask before they
-                inquire, helping your site earn trust and visibility over time.
-              </p>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Featured article"
-          title="Start here if you want a website that works harder for your business."
-          description="A high-value read for first-time visitors who want practical steps, not theory."
-        />
-        <div className="mt-8 overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-neutral-200 lg:grid lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="min-h-[280px] bg-gradient-to-br from-primary-600 via-secondary-600 to-accent-500 p-8 text-white sm:p-10">
-            <div className="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-sm font-medium">
-              {featuredPost.category}
-            </div>
-            <h2 className="mt-6 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
-              {featuredPost.title}
-            </h2>
-            <p className="mt-4 max-w-xl text-base leading-7 text-white/90">
-              {featuredPost.excerpt}
-            </p>
-            <div className="mt-6 flex items-center gap-4 text-sm text-white/80">
-              <span className="inline-flex items-center gap-1">
-                <CalendarDays className="h-4 w-4" />
-                {featuredPost.date}
-              </span>
-              <span className="inline-flex items-center gap-1">
-                <Clock3 className="h-4 w-4" />
-                {featuredPost.readTime}
-              </span>
-            </div>
-            <Link
-              href="#latest"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary-700 transition hover:bg-neutral-100"
-            >
-              Read featured article
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="flex items-center justify-center bg-neutral-100 p-8">
-            <div className="w-full max-w-md rounded-2xl border border-dashed border-neutral-300 bg-white p-8 text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-50 text-primary-700">
-                <Tag className="h-7 w-7" />
+              <div className="space-y-5">
+                <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+                  Practical ideas for clearer messaging, stronger content, and
+                  better growth
+                </h1>
+                <p className="max-w-2xl text-lg leading-8 text-slate-600">
+                  Our blog shares straightforward guidance on websites, content,
+                  and digital strategy. Every article is written to help teams
+                  make better decisions, improve performance, and move faster
+                  with less guesswork.
+                </p>
               </div>
-              <p className="mt-4 text-sm font-medium uppercase tracking-[0.2em] text-neutral-500">
-                Featured image placeholder
-              </p>
-              <p className="mt-2 text-sm leading-6 text-neutral-600">
-                Use a polished editorial image, product screenshot, or branded illustration to
-                reinforce the article’s main takeaway.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="latest" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Latest articles"
-          title="Clear, useful articles that support SEO and build confidence."
-          description="A mix of strategy, practical guidance, and client-focused insights designed to attract the right audience."
-        />
-        <div className="mt-8 grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
-          <aside className="h-fit rounded-3xl bg-white p-6 shadow-sm ring-1 ring-neutral-200">
-            <h3 className="text-lg font-semibold">Filter by category</h3>
-            <div className="mt-4 space-y-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className="flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-primary-700"
-                >
-                  <span>{category}</span>
-                  <span className="text-xs text-neutral-400">View</span>
-                </button>
-              ))}
-            </div>
-          </aside>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {posts.map((post) => (
-              <article
-                key={post.title}
-                className="group overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-neutral-200 transition hover:-translate-y-1 hover:shadow-md"
-              >
-                <div className="aspect-[16/10] bg-gradient-to-br from-neutral-200 to-neutral-100" />
-                <div className="p-6">
-                  <div className="flex items-center justify-between gap-3 text-sm text-neutral-500">
-                    <span className="rounded-full bg-primary-50 px-3 py-1 font-medium text-primary-700">
-                      {post.category}
-                    </span>
-                    <span className="inline-flex items-center gap-1">
-                      <Clock3 className="h-4 w-4" />
-                      {post.readTime}
-                    </span>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild>
+                  <Link href="#latest-posts">Browse articles</Link>
+                </Button>
+                <Button asChild variant="secondary">
+                  <Link href="/contact">Book a Call</Link>
+                </Button>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {[
+                  { value: "120+", label: "articles and guides published" },
+                  { value: "3x", label: "more qualified traffic from content" },
+                  { value: "1 day", label: "average response time for inquiries" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+                  >
+                    <div className="text-2xl font-bold text-slate-950">
+                      {item.value}
+                    </div>
+                    <div className="mt-1 text-sm leading-6 text-slate-600">
+                      {item.label}
+                    </div>
                   </div>
-                  <h3 className="mt-4 text-xl font-semibold tracking-tight text-neutral-900">
-                    {post.title}
+                ))}
+              </div>
+            </div>
+
+            <aside className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">
+                  <TrendingUp className="h-4 w-4" />
+                  Featured article
+                </div>
+                <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
+                  {featuredPost.title}
+                </h2>
+                <p className="text-base leading-7 text-slate-600">
+                  {featuredPost.description}
+                </p>
+                <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
+                  <span>{featuredPost.category}</span>
+                  <span>•</span>
+                  <span>{featuredPost.date}</span>
+                  <span>•</span>
+                  <span>{featuredPost.readTime}</span>
+                </div>
+                <Button asChild className="w-full">
+                  <Link href={featuredPost.href}>Read featured article</Link>
+                </Button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Latest thinking"
+            title="Articles that help teams plan, publish, and perform"
+            description="Explore practical posts on content strategy, website conversion, SEO, and the systems behind consistent growth."
+            action={
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition hover:text-blue-800"
+              >
+                See services
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            }
+          />
+
+          <div className="mt-10 grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+            <aside className="h-fit rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                <Filter className="h-4 w-4 text-blue-600" />
+                Topic filters
+              </div>
+              <div className="mt-5 space-y-6">
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                    Categories
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-neutral-600">{post.excerpt}</p>
-                  <div className="mt-5 flex items-center justify-between text-sm text-neutral-500">
-                    <span className="inline-flex items-center gap-1">
-                      <CalendarDays className="h-4 w-4" />
-                      {post.date}
-                    </span>
-                    <Link
-                      href="#"
-                      className="inline-flex items-center gap-2 font-semibold text-primary-700 transition group-hover:text-primary-800"
-                    >
-                      Read more
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {categories.map((category) => (
+                      <button
+                        key={category}
+                        className="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-blue-300 hover:text-blue-700"
+                        type="button"
+                      >
+                        {category}
+                      </button>
+                    ))}
                   </div>
                 </div>
-              </article>
-            ))}
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                    Popular tags
+                  </h3>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {tags.map((tag) => (
+                      <button
+                        key={tag}
+                        className="rounded-full bg-slate-100 px-3 py-2 text-sm text-slate-600 transition hover:bg-blue-50 hover:text-blue-700"
+                        type="button"
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="rounded-2xl bg-white p-4 shadow-sm">
+                  <p className="text-sm leading-6 text-slate-600">
+                    Looking for a specific topic? Use the filters to find
+                    articles on strategy, SEO, conversion, and content planning.
+                  </p>
+                </div>
+              </div>
+            </aside>
+
+            <div id="latest-posts" className="grid gap-6 md:grid-cols-2">
+              {posts.map((post) => (
+                <BlogPostCard key={post.title} {...post} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="newsletter" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <NewsletterSignup />
-      </section>
+        <section className="border-y border-slate-200 bg-slate-50">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
+              <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+                <h2 className="text-2xl font-semibold tracking-tight text-slate-950">
+                  Get new articles in your inbox
+                </h2>
+                <p className="mt-3 max-w-xl text-base leading-7 text-slate-600">
+                  Join readers who want practical guidance on websites, content,
+                  and growth. We send useful updates, not clutter.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Button asChild>
+                    <Link href="/contact">Request a quote</Link>
+                  </Button>
+                  <Button asChild variant="secondary">
+                    <Link href="/about">Learn more</Link>
+                  </Button>
+                </div>
+              </div>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+              <div className="rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white shadow-lg">
+                <h3 className="text-xl font-semibold">What subscribers get</h3>
+                <ul className="mt-5 space-y-4 text-sm leading-6 text-blue-50">
+                  <li>• Clear breakdowns of what works on high-converting pages</li>
+                  <li>• SEO ideas you can apply without a large content team</li>
+                  <li>• Real examples from client projects and editorial planning</li>
+                  <li>• Short, actionable updates you can use right away</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <CTABanner
-          headline="Want practical ideas you can use right away?"
-          description="Subscribe for concise guidance on improving clarity, conversion, and search visibility."
-          buttonLabel="Join the newsletter"
-          buttonHref="#newsletter"
+          headline="Need help turning content into qualified leads?"
+          description="We help teams build content systems that support search visibility, trust, and measurable growth."
+          buttonLabel="Get Started"
+          buttonHref="/contact"
         />
-      </section>
-    </main>
+      </main>
+      <Footer />
+    </div>
   );
 }

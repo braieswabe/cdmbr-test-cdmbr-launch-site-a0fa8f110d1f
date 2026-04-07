@@ -1,5 +1,4 @@
-import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
 
 export type StatItem = {
   label: string;
@@ -9,68 +8,55 @@ export type StatItem = {
 };
 
 export type StatsStripProps = {
+  stats: StatItem[];
   title?: string;
   description?: string;
-  stats: StatItem[];
-  className?: string;
 };
 
 export function StatsStrip({
-  title = "Trusted by teams that need clarity, speed, and measurable results",
-  description = "A concise snapshot of the outcomes clients care about most: faster delivery, stronger conversion, and dependable support.",
   stats,
-  className,
+  title = "Trusted results that move the business forward",
+  description = "A concise snapshot of the outcomes clients care about most: speed, quality, and measurable growth.",
 }: StatsStripProps) {
   return (
-    <section
-      className={cn(
-        "rounded-3xl border border-slate-200 bg-white px-6 py-8 shadow-sm sm:px-8",
-        className
-      )}
-      aria-labelledby="stats-strip-heading"
-    >
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-2xl">
-          <h2
-            id="stats-strip-heading"
-            className="text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
-          >
-            {title}
-          </h2>
-          <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 sm:text-base">
-            {description}
-          </p>
-        </div>
+    <section className="rounded-3xl bg-gradient-to-br from-blue-600 via-violet-600 to-blue-700 p-6 text-white shadow-xl sm:p-8">
+      <div className="mb-8 max-w-2xl">
+        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-amber-300">
+          Performance snapshot
+        </p>
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{title}</h2>
+        <p className="mt-3 text-sm leading-6 text-blue-50 sm:text-base">
+          {description}
+        </p>
+      </div>
 
-        <dl className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-md"
-            >
-              <div className="flex items-start gap-3">
-                {stat.icon ? (
-                  <div className="mt-0.5 rounded-xl bg-blue-50 p-2 text-blue-600 ring-1 ring-inset ring-blue-100 transition-colors group-hover:bg-blue-100">
-                    {stat.icon}
-                  </div>
-                ) : null}
-                <div className="min-w-0">
-                  <dt className="text-sm font-medium text-slate-600">
-                    {stat.label}
-                  </dt>
-                  <dd className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-                    {stat.value}
-                  </dd>
-                  {stat.description ? (
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
-                      {stat.description}
-                    </p>
-                  ) : null}
-                </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1 hover:bg-white/15"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-3xl font-bold tracking-tight text-white">
+                  {stat.value}
+                </p>
+                <p className="mt-1 text-sm font-medium text-blue-50">{stat.label}</p>
               </div>
+              {stat.icon && (
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 text-amber-300">
+                  {stat.icon}
+                </div>
+              )}
             </div>
-          ))}
-        </dl>
+
+            {stat.description && (
+              <p className="mt-4 text-sm leading-6 text-blue-100">
+                {stat.description}
+              </p>
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );

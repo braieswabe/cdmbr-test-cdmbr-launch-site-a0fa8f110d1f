@@ -1,196 +1,253 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, BadgeCheck, BriefcaseBusiness, HeartHandshake, MapPin, Rocket, Users } from "lucide-react";
+import {
+  CTABanner,
+  Hero,
+  SectionHeading,
+  SocialProofBanner,
+  StatsStrip,
+} from "@/components";
 
 export const metadata: Metadata = {
-  title: "Careers",
-  description: "Learn more about careers",
+  title: "Careers | Professional Website",
+  description:
+    "Join a team that values clear communication, thoughtful design, and measurable outcomes for every client.",
 };
-
-import Link from "next/link";
-import { ArrowRight, BadgeCheck, BriefcaseBusiness, Clock3, HeartHandshake, Laptop2, Users2 } from "lucide-react";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { CTABanner } from "@/components/CTABanner";
-import { Footer } from "@/components/Footer";
-import { Hero } from "@/components/Hero";
-import { NavBar } from "@/components/NavBar";
-import { RoleListing } from "@/components/RoleListing";
-import { SectionHeading } from "@/components/SectionHeading";
-import { StatsStrip } from "@/components/StatsStrip";
-import { TeamMemberCard } from "@/components/TeamMemberCard";
-
-const roles = [
-  {
-    title: "Senior Product Designer",
-    description:
-      "Shape intuitive experiences that help customers move faster, understand value quickly, and complete key tasks with confidence.",
-    href: "/careers/senior-product-designer",
-    location: "Remote",
-    employmentType: "Full-time",
-    department: "Design",
-  },
-  {
-    title: "Full-Stack Engineer",
-    description:
-      "Build reliable, high-performance web experiences with a focus on clean architecture, measurable impact, and smooth delivery.",
-    href: "/careers/full-stack-engineer",
-    location: "Remote",
-    employmentType: "Full-time",
-    department: "Engineering",
-  },
-  {
-    title: "Client Success Manager",
-    description:
-      "Guide clients from kickoff to launch with clear communication, proactive support, and a strong focus on outcomes.",
-    href: "/careers/client-success-manager",
-    location: "Hybrid",
-    employmentType: "Full-time",
-    department: "Customer Success",
-  },
-];
 
 const benefits = [
   {
-    icon: <BadgeCheck className="h-5 w-5" />,
-    title: "Competitive compensation",
-    description: "Fair pay, transparent reviews, and a package designed to reward strong ownership and consistent results.",
+    icon: Rocket,
+    title: "Meaningful ownership",
+    description:
+      "Take responsibility for work that matters, with clear goals, supportive feedback, and room to shape the outcome.",
   },
   {
-    icon: <Clock3 className="h-5 w-5" />,
-    title: "Flexible work rhythm",
-    description: "Remote-first collaboration with room for deep work, focused delivery, and a schedule that supports life outside work.",
+    icon: Users,
+    title: "Collaborative team",
+    description:
+      "Work with people who communicate well, share context early, and make it easy to do your best work.",
   },
   {
-    icon: <Laptop2 className="h-5 w-5" />,
-    title: "Modern tools and systems",
-    description: "A streamlined stack, clear processes, and the support you need to do your best work without unnecessary friction.",
+    icon: BadgeCheck,
+    title: "Growth with structure",
+    description:
+      "Learn through real projects, regular reviews, and a culture that values improvement over perfection.",
   },
   {
-    icon: <HeartHandshake className="h-5 w-5" />,
-    title: "Growth with mentorship",
-    description: "Regular feedback, learning opportunities, and leaders who invest in your development and long-term success.",
+    icon: HeartHandshake,
+    title: "Healthy pace",
+    description:
+      "We plan carefully, set realistic timelines, and respect the focus it takes to deliver quality work consistently.",
   },
 ];
 
-const cultureCards = [
+const roles = [
   {
-    icon: <Users2 className="h-5 w-5" />,
-    title: "Collaborative by default",
-    description:
-      "We work in small, cross-functional teams that value clarity, accountability, and thoughtful feedback. Everyone has a voice, and good ideas can come from anywhere.",
+    title: "Senior Frontend Developer",
+    location: "Remote / North America",
+    summary:
+      "Build fast, accessible interfaces for client websites and product experiences using Next.js, React, and TypeScript.",
+    href: "/contact",
   },
   {
-    icon: <BriefcaseBusiness className="h-5 w-5" />,
-    title: "High standards, low ego",
-    description:
-      "We care about quality, but we keep the process human. You’ll find direct communication, practical decision-making, and a team that respects your time.",
+    title: "Content Strategist",
+    location: "Hybrid / New York",
+    summary:
+      "Shape clear messaging, page structure, and conversion-focused copy that helps brands explain value simply.",
+    href: "/contact",
   },
   {
-    icon: <HeartHandshake className="h-5 w-5" />,
-    title: "Work that matters",
+    title: "Project Manager",
+    location: "Remote / Flexible",
+    summary:
+      "Keep projects moving with organized timelines, proactive communication, and a strong eye for client outcomes.",
+    href: "/contact",
+  },
+];
+
+const stats = [
+  { value: "4.9/5", label: "candidate experience rating" },
+  { value: "92%", label: "team retention over 2 years" },
+  { value: "1 business day", label: "average response time" },
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Apply online",
     description:
-      "Our projects are built to create measurable value for clients and meaningful progress for the people doing the work. That makes the day-to-day feel purposeful.",
+      "Send your resume, portfolio, or LinkedIn profile. We review every application carefully and respond with next steps.",
+  },
+  {
+    step: "02",
+    title: "Intro conversation",
+    description:
+      "Meet with our team to discuss your experience, interests, and the kind of work environment where you do your best work.",
+  },
+  {
+    step: "03",
+    title: "Role-specific interview",
+    description:
+      "We’ll explore practical skills, collaboration style, and how you approach quality, communication, and problem-solving.",
+  },
+  {
+    step: "04",
+    title: "Offer and onboarding",
+    description:
+      "If it’s a fit, we move quickly with a clear offer, transparent expectations, and a thoughtful onboarding plan.",
   },
 ];
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <NavBar />
-      <main>
-        <Hero
-          title="Build meaningful work with a team that values clarity, craft, and momentum"
-          subtitle="Join a professional, supportive environment where great work is recognized, growth is encouraged, and your impact is visible from day one."
-          ctaLabel="View open roles"
-          ctaHref="#open-roles"
-          secondaryLabel="Learn about our culture"
-          secondaryHref="#culture"
+    <main className="bg-white text-slate-900">
+      <Hero
+        title="Build work you can be proud of, with people who value clarity"
+        subtitle="We’re looking for thoughtful, reliable people who care about outcomes, communicate well, and want to help clients grow."
+        ctaLabel="View Open Roles"
+        ctaHref="#open-roles"
+        secondaryLabel="Book a Call"
+        secondaryHref="/contact"
+      />
+
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SocialProofBanner
+          title="A team built on trust, craft, and follow-through"
+          stats={stats}
         />
+      </section>
 
-        <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Careers" }]} className="mb-8" />
-          <StatsStrip
-            stats={[
-              { label: "Average response time", value: "24h" },
-              { label: "Remote-friendly team", value: "100%" },
-              { label: "Learning budget", value: "$1,500" },
-              { label: "Weekly focus time", value: "10+ hrs" },
-            ]}
-          />
-        </section>
-
-        <section id="culture" className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Culture"
-            title="A workplace built for strong execution and sustainable pace"
-            description="We believe the best teams combine high standards with trust, flexibility, and clear expectations. That means less noise, better collaboration, and more room to do your best work."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {cultureCards.map((card) => (
-              <TeamMemberCard key={card.title} icon={card.icon} title={card.title} description={card.description} />
-            ))}
-          </div>
-        </section>
-
-        <section id="open-roles" className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <SectionHeading
-            eyebrow="Open roles"
-            title="Current opportunities"
-            description="We’re hiring people who care about quality, communicate clearly, and want to make a measurable difference."
-          />
-          <div className="mt-10 grid gap-5">
-            {roles.map((role) => (
-              <RoleListing key={role.title} {...role} />
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <SectionHeading
-            eyebrow="Benefits"
-            title="Support that helps you do your best work"
-            description="Our benefits are designed to reduce friction, support growth, and make it easier to stay focused on meaningful outcomes."
+            eyebrow="Why join us"
+            title="A place to do your best work"
+            description="We combine strong standards with a supportive environment so people can grow, contribute, and stay energized."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {benefits.map((benefit) => (
-              <div key={benefit.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="mb-4 inline-flex rounded-2xl bg-sky-50 p-3 text-sky-700">{benefit.icon}</div>
-                <h3 className="text-lg font-semibold text-slate-900">{benefit.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{benefit.description}</p>
-              </div>
+              <article
+                key={benefit.title}
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="inline-flex rounded-2xl bg-indigo-50 p-3 text-indigo-600">
+                  <benefit.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold text-slate-900">{benefit.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{benefit.description}</p>
+              </article>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <CTABanner
-            headline="Ready to do your best work with a team that moves with purpose?"
-            description="If you want clear goals, thoughtful collaboration, and the chance to create real impact, we’d love to hear from you."
-            buttonLabel="Apply now"
-            buttonHref="/contact"
-          />
-        </section>
-
-        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <div className="rounded-3xl bg-slate-900 px-8 py-10 text-white shadow-xl sm:px-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">Why people join</p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">A team that values reliability, responsiveness, and real outcomes</h2>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
-                  We keep communication clear, expectations realistic, and delivery focused. That creates a workplace where people can contribute confidently and see the impact of their work.
-                </p>
+      <section id="open-roles" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Open roles"
+          title="Current opportunities"
+          description="We’re hiring people who care about quality, communication, and measurable results."
+        />
+        <div className="mt-10 grid gap-6">
+          {roles.map((role) => (
+            <article
+              key={role.title}
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+            >
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-900">{role.title}</h3>
+                  <div className="mt-2 flex items-center gap-2 text-sm text-slate-500">
+                    <MapPin className="h-4 w-4" />
+                    {role.location}
+                  </div>
+                  <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">{role.summary}</p>
+                </div>
+                <Link
+                  href={role.href}
+                  className="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+                >
+                  Apply now
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-400"
-              >
-                Start your application
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Culture"
+            title="Clear expectations, honest feedback, and real support"
+            description="We keep communication direct and respectful, celebrate strong work, and make space for people to learn as they go."
+          />
+          <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <h3 className="text-2xl font-semibold tracking-tight text-slate-900">
+                What it feels like to work here
+              </h3>
+              <p className="mt-4 text-base leading-7 text-slate-600">
+                You’ll join a team that values thoughtful planning, clean execution, and a calm,
+                collaborative pace. We believe great work comes from clear priorities, mutual respect,
+                and a shared commitment to outcomes.
+              </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {[
+                  "Weekly planning and feedback",
+                  "Flexible work arrangements",
+                  "Transparent project goals",
+                  "Room to grow your skills",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3 rounded-2xl bg-slate-50 p-4">
+                    <BriefcaseBusiness className="h-5 w-5 text-indigo-600" />
+                    <span className="text-sm font-medium text-slate-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+              <img
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"
+                alt="Diverse team collaborating around a table in a bright office"
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Hiring process"
+          title="A simple process with clear next steps"
+          description="We keep the experience efficient and respectful of your time, with communication at every stage."
+        />
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {process.map((item) => (
+            <article
+              key={item.step}
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+            >
+              <div className="text-sm font-semibold text-indigo-600">{item.step}</div>
+              <h3 className="mt-3 text-lg font-semibold text-slate-900">{item.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <CTABanner
+            headline="Think you’d be a great fit?"
+            description="Send your application today and tell us what kind of work you want to do next."
+            buttonLabel="Get Started"
+            buttonHref="/contact"
+          />
+        </div>
+      </section>
+    </main>
   );
 }

@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
 import { NavBar } from "@/components/NavBar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Professional website | Modern services that drive measurable growth",
+  title: "Professional website | Modern services that drive results",
   description:
-    "A polished, conversion-focused professional website built to showcase expertise, build trust, and turn visitors into qualified leads.",
-  metadataBase: new URL("https://example.com")
+    "A polished, conversion-focused professional website built to showcase services, build trust, and turn visitors into clients.",
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
-  children: ReactNode;
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
+      <body className="min-h-screen bg-white text-slate-900 antialiased">
         <NavBar />
         <main>{children}</main>
         <Footer />

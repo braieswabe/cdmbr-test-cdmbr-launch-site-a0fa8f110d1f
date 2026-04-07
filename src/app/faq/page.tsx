@@ -2,237 +2,152 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, HelpCircle, MessageCircle, ShieldCheck, Sparkles, Clock3, BadgeCheck, PhoneCall } from "lucide-react";
+import { ChevronDown, HelpCircle, MessageSquareText, ArrowRight } from "lucide-react";
+import { Hero } from "@/components/Hero";
 import { CTABanner } from "@/components/CTABanner";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { SectionHeading } from "@/components/SectionHeading";
-import { Footer } from "@/components/Footer";
-import { NavBar } from "@/components/NavBar";
 
-type FAQItem = {
-  question: string;
-  answer: string;
-};
-
-type FAQGroup = {
-  title: string;
-  description: string;
-  items: FAQItem[];
-};
-
-const faqGroups: FAQGroup[] = [
+const faqGroups = [
   {
-    title: "Services and scope",
-    description: "Clear answers about what we do, what’s included, and how we tailor work to your goals.",
+    title: "Getting started",
     items: [
       {
         question: "What types of projects do you take on?",
         answer:
-          "We work on professional websites, landing pages, content strategy, and conversion-focused updates for businesses that want a clearer message and stronger results. If your goal is to improve trust, leads, or clarity, we can help.",
+          "We work on professional websites, service pages, brand refreshes, and conversion-focused digital experiences for teams that want clearer messaging and stronger results.",
       },
       {
-        question: "Do you only build new websites?",
+        question: "How do we begin?",
         answer:
-          "No. We also improve existing sites by refining messaging, restructuring pages, tightening calls to action, and making the overall experience easier to use. Many clients come to us for a focused refresh rather than a full rebuild.",
+          "Start with a short discovery call. We’ll learn about your goals, review your current site or materials, and recommend the best next step with a clear timeline.",
       },
       {
-        question: "Can you help with content and copywriting?",
+        question: "Do you help with strategy as well as design?",
         answer:
-          "Yes. We can shape the messaging for your homepage, services, about page, FAQs, and supporting content so the site speaks clearly to the right audience and supports SEO without sounding generic.",
-      },
-    ],
-  },
-  {
-    title: "Process and timeline",
-    description: "Understand how projects move forward, what we need from you, and how quickly you can expect progress.",
-    items: [
-      {
-        question: "What does your process look like?",
-        answer:
-          "We start with a short discovery call, then review your goals, audience, and current materials. From there, we define the structure, messaging, and priorities before moving into design and implementation. You’ll always know what happens next.",
+          "Yes. We combine messaging, structure, and design so the final site is not only polished, but also easier for visitors to understand and act on.",
       },
       {
         question: "How long does a typical project take?",
         answer:
-          "Timelines depend on scope, but most focused website projects move from kickoff to launch in a few weeks. Larger builds or content-heavy projects may take longer, especially if they require multiple review rounds or new assets.",
-      },
-      {
-        question: "How much input will I need to provide?",
-        answer:
-          "We keep the process efficient. You’ll share your goals, key details about your business, and any existing materials. We handle the structure and execution, then check in at the right points to keep everything aligned.",
+          "Most projects take between 2 and 6 weeks depending on scope, content readiness, and the number of pages involved.",
       },
     ],
   },
   {
-    title: "Pricing and support",
-    description: "Reduce uncertainty with transparent expectations around cost, revisions, and ongoing help.",
+    title: "Process and delivery",
     items: [
       {
-        question: "How do you price projects?",
+        question: "What do you need from us before work begins?",
         answer:
-          "Pricing is based on scope, complexity, and the level of strategy or content support required. We’ll always clarify what’s included before work begins so there are no surprises.",
+          "We usually need your goals, any existing brand assets, a list of services or pages, and a point of contact for feedback. We’ll guide you through the rest.",
       },
       {
-        question: "Do you offer fixed pricing?",
+        question: "How do you keep projects on schedule?",
         answer:
-          "Yes, for well-defined projects we can provide a fixed quote. If the scope is still evolving, we may recommend a phased approach so you can move forward with confidence and control costs.",
+          "We use a simple milestone-based process with clear checkpoints, fast feedback loops, and regular updates so everyone knows what’s happening next.",
       },
       {
-        question: "What kind of support do you provide after launch?",
+        question: "Can you work with our existing brand?",
         answer:
-          "We offer post-launch support to help with updates, refinements, and small improvements. If you need ongoing help, we can discuss a support plan that fits your needs and pace of growth.",
-      },
-    ],
-  },
-  {
-    title: "Results and communication",
-    description: "Learn how we measure success and how we keep communication simple and responsive.",
-    items: [
-      {
-        question: "How do you measure success?",
-        answer:
-          "Success is measured by outcomes that matter: clearer messaging, stronger engagement, better conversion, and a smoother experience for your visitors. We focus on practical improvements that support business goals.",
+          "Absolutely. We can build within your current brand system or help refine it if the visuals or messaging need to be stronger.",
       },
       {
-        question: "How do you communicate during the project?",
+        question: "Will the site be mobile-friendly?",
         answer:
-          "We keep communication direct and responsive through email and scheduled check-ins. You’ll get concise updates, clear next steps, and quick answers when questions come up.",
-      },
-      {
-        question: "Can you work with our existing brand or team?",
-        answer:
-          "Absolutely. We can work within your current brand guidelines or collaborate with your internal team, designer, or marketer to keep the project consistent and efficient.",
+          "Yes. Every page is designed and tested for mobile, tablet, and desktop so the experience stays consistent across devices.",
       },
     ],
   },
 ];
 
-const supportHighlights = [
+const supportItems = [
   {
-    icon: BadgeCheck,
-    title: "Reliable delivery",
-    description: "Clear milestones, realistic timelines, and a process designed to keep projects moving.",
+    icon: <MessageSquareText className="h-5 w-5" />,
+    title: "Need a quick answer?",
+    description:
+      "Send us a message and we’ll respond with clear next steps, usually within one business day.",
   },
   {
-    icon: Clock3,
-    title: "Responsive communication",
-    description: "Fast, straightforward answers so you’re never left wondering what happens next.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Transparent expectations",
-    description: "Scope, pricing, and support are explained clearly before work begins.",
+    icon: <HelpCircle className="h-5 w-5" />,
+    title: "Not sure which service fits?",
+    description:
+      "We’ll help you choose the right scope based on your goals, timeline, and budget.",
   },
 ];
 
 export default function FAQPage() {
-  const [openItems, setOpenItems] = useState<Record<string, boolean>>({ "0-0": true });
+  const [openItems, setOpenItems] = useState<Record<string, boolean>>({ "Getting started-0": true });
 
-  const toggleItem = (groupIndex: number, itemIndex: number) => {
-    const key = `${groupIndex}-${itemIndex}`;
+  const toggleItem = (groupTitle: string, index: number) => {
+    const key = `${groupTitle}-${index}`;
     setOpenItems((current) => ({ ...current, [key]: !current[key] }));
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <NavBar />
-      <main>
-        <section className="border-b border-slate-200 bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "FAQ" }]} />
-          </div>
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8 lg:py-20">
-            <div className="max-w-2xl">
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-700">
-                <HelpCircle className="h-4 w-4" />
-                Answers that help you move forward with confidence
+    <main className="bg-white text-slate-900">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "FAQ" },
+        ]}
+        className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8"
+      />
+
+      <Hero
+        title="Straight answers before you get started"
+        subtitle="Find quick, practical answers about our process, timelines, and what to expect so you can move forward with confidence."
+        ctaLabel="Request a Quote"
+        ctaHref="/contact"
+        secondaryLabel="Learn More"
+        secondaryHref="/services"
+      />
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          {supportItems.map((item) => (
+            <div key={item.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-white">
+                {item.icon}
               </div>
-              <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-                Frequently asked questions, answered clearly
-              </h1>
-              <p className="mt-5 text-lg leading-8 text-slate-600">
-                This page is designed to remove uncertainty. Browse by topic to learn more about services, process,
-                pricing, and support — or reach out if you need a more specific answer.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
-                >
-                  Contact the team
-                </Link>
-                <Link
-                  href="/pricing"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
-                >
-                  View pricing
-                </Link>
-              </div>
+              <h2 className="mt-5 text-xl font-semibold tracking-tight">{item.title}</h2>
+              <p className="mt-3 text-base leading-7 text-slate-600">{item.description}</p>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div className="grid gap-4 rounded-3xl bg-slate-900 p-6 text-white shadow-xl shadow-slate-200">
-              {supportHighlights.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <div className="flex items-start gap-3">
-                      <div className="rounded-xl bg-indigo-500/20 p-2 text-indigo-200">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h2 className="font-semibold">{item.title}</h2>
-                        <p className="mt-1 text-sm leading-6 text-slate-300">{item.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-              <div className="rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-500 p-5">
-                <p className="text-sm font-medium text-white/90">Need a faster answer?</p>
-                <p className="mt-2 text-sm leading-6 text-white/95">
-                  Email us or call during business hours. We respond quickly and keep the next step simple.
-                </p>
-              </div>
-            </div>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <div className="mb-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">FAQ categories</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900">Questions organized by topic</h2>
+            <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600">
+              Browse the topics below to quickly find the information you need before booking a call or requesting a quote.
+            </p>
           </div>
-        </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="FAQ categories"
-            title="Grouped answers for the questions people ask most"
-            description="Use these sections to find practical details fast. If your question is not covered, we’re happy to help directly."
-          />
+          <div className="space-y-10">
+            {faqGroups.map((group) => (
+              <div key={group.title}>
+                <h3 className="text-xl font-semibold tracking-tight text-slate-900">{group.title}</h3>
+                <div className="mt-4 space-y-3">
+                  {group.items.map((item, index) => {
+                    const key = `${group.title}-${index}`;
+                    const isOpen = openItems[key] ?? false;
 
-          <div className="mt-10 space-y-10">
-            {faqGroups.map((group, groupIndex) => (
-              <div key={group.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-                <div className="mb-6">
-                  <h2 className="text-2xl font-semibold tracking-tight">{group.title}</h2>
-                  <p className="mt-2 max-w-3xl text-slate-600">{group.description}</p>
-                </div>
-
-                <div className="space-y-3">
-                  {group.items.map((item, itemIndex) => {
-                    const key = `${groupIndex}-${itemIndex}`;
-                    const isOpen = Boolean(openItems[key]);
                     return (
-                      <div key={item.question} className="overflow-hidden rounded-2xl border border-slate-200">
+                      <div key={item.question} className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
                         <button
                           type="button"
-                          onClick={() => toggleItem(groupIndex, itemIndex)}
-                          className="flex w-full items-center justify-between gap-4 bg-slate-50 px-5 py-4 text-left transition hover:bg-slate-100"
+                          onClick={() => toggleItem(group.title, index)}
+                          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-slate-100"
                           aria-expanded={isOpen}
                         >
                           <span className="font-medium text-slate-900">{item.question}</span>
-                          <ChevronDown
-                            className={`h-5 w-5 shrink-0 text-slate-500 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                          />
+                          <ChevronDown className={`h-5 w-5 shrink-0 text-slate-500 transition ${isOpen ? "rotate-180" : ""}`} />
                         </button>
                         {isOpen ? (
-                          <div className="bg-white px-5 py-4 text-sm leading-7 text-slate-600">
-                            {item.answer}
-                          </div>
+                          <div className="px-5 pb-5 text-sm leading-7 text-slate-600">{item.answer}</div>
                         ) : null}
                       </div>
                     );
@@ -241,54 +156,43 @@ export default function FAQPage() {
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="border-y border-slate-200 bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <CTABanner
-              headline="Still have a question?"
-              description="If you didn’t find what you need here, send us a message. We’ll give you a clear answer and point you to the best next step."
-              buttonLabel="Contact support"
-              buttonHref="/contact"
-            />
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-indigo-600 px-6 py-8 text-white shadow-lg sm:px-8">
-            <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/90">
-                  <MessageCircle className="h-3.5 w-3.5" />
-                  Direct support
-                </div>
-                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                  Prefer a quick conversation instead of searching for the right answer?
-                </h2>
-                <p className="mt-3 max-w-2xl text-sm leading-7 text-indigo-100 sm:text-base">
-                  Reach out and we’ll respond with a concise, helpful answer. We’re here to make the next step easy.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-indigo-700 transition hover:bg-indigo-50"
-                >
-                  <PhoneCall className="h-4 w-4" />
-                  Contact us
-                </Link>
-                <Link
-                  href="mailto:hello@yourcompany.com"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
-                >
-                  hello@yourcompany.com
-                </Link>
-              </div>
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 p-8 text-white shadow-xl sm:p-10">
+          <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr] lg:items-center">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Still need help?</h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
+                If your question is not covered here, send us a message. We’ll help you understand the best path forward and what it will take to get there.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
+              >
+                Contact us
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              >
+                View services
+              </Link>
             </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+        </div>
+      </section>
+
+      <CTABanner
+        headline="Ready for a clear next step?"
+        description="Book a call and we’ll recommend the right approach based on your goals, timeline, and budget."
+        buttonLabel="Book a Call"
+        buttonHref="/contact"
+      />
+    </main>
   );
 }

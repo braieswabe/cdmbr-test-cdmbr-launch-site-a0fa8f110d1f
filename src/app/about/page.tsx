@@ -1,178 +1,205 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "A professional website partner focused on clarity, trust, and measurable growth",
-  description: "Learn more about a professional website partner focused on clarity, trust, and measurable growth",
+  title: "About",
+  description: "Learn more about about",
 };
 
-import { Footer } from "@/components/Footer";
-import { NavBar } from "@/components/NavBar";
+import Link from "next/link";
+import { Award, Compass, HeartHandshake, Lightbulb, Users, Target } from "lucide-react";
+import { Hero } from "@/components/Hero";
 import { SectionHeading } from "@/components/SectionHeading";
-import { TeamMemberCard } from "@/components/TeamMemberCard";
+import { CTABanner } from "@/components/CTABanner";
 import { FeatureCard } from "@/components/FeatureCard";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ShieldCheck, Sparkles, Target, Users } from "lucide-react";
 
 export default function AboutPage() {
+  const values = [
+    {
+      icon: <Compass className="h-5 w-5" />,
+      title: "Clarity first",
+      description:
+        "We make complex ideas easy to understand so your audience can quickly see the value in what you offer.",
+    },
+    {
+      icon: <HeartHandshake className="h-5 w-5" />,
+      title: "Partnership over transactions",
+      description:
+        "We work like an extension of your team, with honest communication and practical recommendations at every step.",
+    },
+    {
+      icon: <Target className="h-5 w-5" />,
+      title: "Outcomes that matter",
+      description:
+        "Every decision is tied to a business goal, whether that means more qualified leads, stronger trust, or better retention.",
+    },
+    {
+      icon: <Lightbulb className="h-5 w-5" />,
+      title: "Thoughtful problem solving",
+      description:
+        "We look for the simplest effective solution and refine the details that make the biggest difference.",
+    },
+  ];
+
   const team = [
     {
-      icon: "A",
-      title: "Avery Chen — Founder & Strategy Lead",
-      description:
-        "Guides positioning, messaging, and project direction to keep every engagement focused on outcomes that matter.",
+      name: "Avery Brooks",
+      role: "Founder & Strategy Lead",
+      bio: "Avery helps teams sharpen their message, define priorities, and build websites that support real business goals.",
     },
     {
-      icon: "M",
-      title: "Maya Patel — Design Lead",
-      description:
-        "Shapes the visual system, interaction details, and page hierarchy so the experience feels polished and easy to use.",
+      name: "Nina Shah",
+      role: "Design Director",
+      bio: "Nina creates polished, user-friendly interfaces that feel modern, credible, and easy to navigate on any device.",
     },
     {
-      icon: "J",
-      title: "Jordan Reed — Development Lead",
-      description:
-        "Builds fast, responsive interfaces with careful attention to accessibility, performance, and maintainability.",
+      name: "Marcus Lee",
+      role: "Lead Developer",
+      bio: "Marcus turns designs into fast, accessible, and reliable experiences with careful attention to performance.",
     },
     {
-      icon: "S",
-      title: "Sofia Alvarez — Client Success",
-      description:
-        "Keeps communication clear, timelines on track, and deliverables aligned with your goals from kickoff to launch.",
+      name: "Elena Torres",
+      role: "Client Success Manager",
+      bio: "Elena keeps projects organized, communication clear, and timelines on track from kickoff to launch.",
+    },
+  ];
+
+  const timeline = [
+    {
+      year: "2018",
+      title: "Started with a simple goal",
+      description: "We began by helping small businesses replace confusing websites with clear, credible ones that convert better.",
+    },
+    {
+      year: "2020",
+      title: "Expanded our process",
+      description: "As demand grew, we refined our strategy, design, and delivery workflow to support more complex projects.",
+    },
+    {
+      year: "2023",
+      title: "Built for measurable outcomes",
+      description: "We focused on proof points, conversion structure, and search-friendly content to help clients see stronger results.",
+    },
+    {
+      year: "Today",
+      title: "A trusted partner for growing teams",
+      description: "We continue to help organizations launch websites and digital experiences that are clear, polished, and effective.",
     },
   ];
 
   return (
-    <main className="bg-zinc-50 text-zinc-900">
-      <NavBar />
-      <div className="mx-auto max-w-7xl px-6 pt-8 lg:px-8">
-        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
-      </div>
+    <main className="bg-white text-slate-900">
+      <Hero
+        title="About our company"
+        subtitle="We help businesses present themselves with clarity and confidence. Our work combines strategic thinking, thoughtful design, and dependable execution so your website feels credible from the first click."
+        ctaLabel="Book a Call"
+        ctaHref="/contact"
+        secondaryLabel="Explore Services"
+        secondaryHref="/services"
+      />
 
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 px-8 py-16 text-white shadow-2xl sm:px-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-300">About our company</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-            A professional website partner focused on clarity, trust, and measurable growth
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-            We help businesses present their value clearly, earn trust faster, and convert more of the right visitors
-            into qualified opportunities.
-          </p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <SectionHeading
-          eyebrow="Company story"
-          title="Built to make professional websites feel simpler and more effective"
-          description="We started with a straightforward belief: a website should do more than look good. It should help people understand what you do, why it matters, and how to take the next step."
-        />
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
-            <h3 className="text-xl font-semibold text-zinc-900">Why we exist</h3>
-            <p className="mt-4 text-sm leading-6 text-zinc-600">
-              Too many businesses lose opportunities because their site is unclear, slow to load, or difficult to trust.
-              We created a service that brings strategy, design, and execution together so your online presence supports
-              real business goals.
-            </p>
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-start">
+          <div>
+            <SectionHeading
+              eyebrow="Our story"
+              title="Founded to make professional websites easier to trust and easier to use"
+              description="We saw too many businesses with strong services and weak websites. The message was buried, the proof was hard to find, and the next step was unclear. We built our company to solve that problem with a process that is practical, collaborative, and focused on outcomes."
+            />
+            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6 text-sm leading-6 text-slate-600">
+              <p>
+                From the beginning, our goal has been simple: help clients show up online with the same level of professionalism they bring to their work. That means better structure, better copy, and better experiences for the people they want to reach.
+              </p>
+            </div>
           </div>
-          <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
-            <h3 className="text-xl font-semibold text-zinc-900">What we believe</h3>
-            <p className="mt-4 text-sm leading-6 text-zinc-600">
-              Strong websites are built on concise messaging, thoughtful design, and dependable delivery. When those
-              pieces work together, visitors feel confident and teams see better results.
+
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h3 className="text-lg font-semibold text-slate-900">Mission</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              To help organizations communicate clearly, build trust quickly, and turn more visitors into qualified opportunities.
             </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {values.map((value) => (
+                <FeatureCard key={value.title} {...value} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <section className="border-y border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <SectionHeading
-            eyebrow="Mission & values"
-            title="Principles that keep every project focused and reliable"
-            description="Our work is guided by a small set of standards that shape how we communicate, design, and deliver."
+            eyebrow="Milestones"
+            title="A steady evolution shaped by client results"
+            description="Our work has grown through referrals, repeat partnerships, and a consistent focus on delivering useful, measurable outcomes."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            <FeatureCard
-              icon={<Target className="h-5 w-5" />}
-              number="01"
-              title="Outcome-driven"
-              description="We prioritize the business result, not just the deliverable, so every decision supports growth."
-            />
-            <FeatureCard
-              icon={<Sparkles className="h-5 w-5" />}
-              number="02"
-              title="Clear communication"
-              description="We keep updates concise, expectations visible, and next steps easy to understand."
-            />
-            <FeatureCard
-              icon={<ShieldCheck className="h-5 w-5" />}
-              number="03"
-              title="Dependable delivery"
-              description="We respect timelines, follow through on commitments, and keep projects moving without surprises."
-            />
-            <FeatureCard
-              icon={<Users className="h-5 w-5" />}
-              number="04"
-              title="Human approach"
-              description="We work like a partner, not a vendor, with practical guidance and responsive support."
-            />
+          <div className="mt-10 grid gap-6 lg:grid-cols-4">
+            {timeline.map((item) => (
+              <div key={item.year} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="text-sm font-semibold text-primary-600">{item.year}</div>
+                <h3 className="mt-3 text-lg font-semibold text-slate-900">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <SectionHeading
-          eyebrow="Team overview"
-          title="A small, experienced team with a shared standard for quality"
-          description="Each project gets direct attention from people who care about the details and the outcome."
+          eyebrow="Team"
+          title="A small, experienced team that stays close to the work"
+          description="You get direct communication, thoughtful recommendations, and people who care about the details that affect your results."
         />
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {team.map((member) => (
-            <TeamMemberCard
-              key={member.title}
-              icon={member.icon}
-              title={member.title}
-              description={member.description}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-8">
-        <SectionHeading
-          eyebrow="Why choose us"
-          title="A practical partner for businesses that need confidence and momentum"
-          description="We combine strategy, design, and execution so your website feels credible, performs well, and supports growth."
-        />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {[
-            {
-              title: "Fast, focused delivery",
-              description:
-                "We move quickly without sacrificing quality, helping you launch sooner and start learning from real user behavior.",
-            },
-            {
-              title: "Messaging that resonates",
-              description:
-                "We translate your expertise into clear, benefit-led language that helps visitors understand your value immediately.",
-            },
-            {
-              title: "Support you can count on",
-              description:
-                "We stay responsive, organized, and easy to work with so you always know what’s happening and what comes next.",
-            },
-          ].map((item) => (
-            <div key={item.title} className="rounded-2xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-zinc-900">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-zinc-600">{item.description}</p>
+            <div key={member.name} className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+              <div className="aspect-[4/3] bg-gradient-to-br from-slate-200 via-slate-100 to-slate-300" />
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-slate-900">{member.name}</h3>
+                <p className="mt-1 text-sm font-medium text-primary-600">{member.role}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{member.bio}</p>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      <Footer />
+      <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+        <SectionHeading
+          eyebrow="Why clients choose us"
+          title="Credibility, consistency, and a process built around your goals"
+          description="We combine strategic thinking with practical execution so you can move forward with confidence."
+        />
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              icon: <Award className="h-5 w-5" />,
+              title: "Proven delivery",
+              description: "Projects are scoped clearly, managed carefully, and delivered with attention to quality.",
+            },
+            {
+              icon: <Users className="h-5 w-5" />,
+              title: "Human-centered collaboration",
+              description: "We listen closely, explain decisions plainly, and keep the process easy to follow.",
+            },
+            {
+              icon: <Target className="h-5 w-5" />,
+              title: "Business-focused thinking",
+              description: "Every recommendation is tied to a practical outcome, not just visual polish.",
+            },
+          ].map((item) => (
+            <FeatureCard key={item.title} {...item} />
+          ))}
+        </div>
+      </section>
+
+      <CTABanner
+        headline="Want to work with a team that values clarity and results?"
+        description="Let’s talk about your goals and see how we can help you move forward."
+        buttonLabel="Get Started"
+        buttonHref="/contact"
+      />
     </main>
   );
 }

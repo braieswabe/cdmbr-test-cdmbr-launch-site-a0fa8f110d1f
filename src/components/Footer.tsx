@@ -1,120 +1,115 @@
 import Link from "next/link";
-import { ArrowRight, Facebook, Instagram, Linkedin, Mail, Twitter } from "lucide-react";
 
 const footerLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Contact", href: "/contact" },
+  { label: "Features", href: "/features" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
-  { label: "Features", href: "/features" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Careers", href: "/careers" },
-  { label: "Gallery", href: "/gallery" }
+  { label: "Page", href: "/page" },
 ];
 
 const socialLinks = [
-  { label: "LinkedIn", icon: Linkedin, href: "#" },
-  { label: "Twitter", icon: Twitter, href: "#" },
-  { label: "Instagram", icon: Instagram, href: "#" },
-  { label: "Facebook", icon: Facebook, href: "#" }
+  { label: "LinkedIn", href: "https://www.linkedin.com" },
+  { label: "Instagram", href: "https://www.instagram.com" },
+  { label: "X", href: "https://x.com" },
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-slate-950 text-slate-200">
+    <footer className="border-t border-slate-200 bg-slate-950 text-slate-200">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Link href="/" className="inline-flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-sm font-bold text-white shadow-lg shadow-blue-500/20">
-                PW
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-violet-500 text-sm font-bold text-white">
+                P
               </span>
-              <span className="flex flex-col leading-tight">
-                <span className="text-sm font-semibold tracking-[0.18em] text-slate-400 uppercase">
-                  Professional
-                </span>
-                <span className="text-lg font-semibold text-white">Website Studio</span>
-              </span>
+              <div>
+                <p className="text-lg font-bold text-white">Professional website</p>
+                <p className="text-sm text-slate-400">Strategy. Design. Results.</p>
+              </div>
             </Link>
-
             <p className="mt-5 max-w-md text-sm leading-6 text-slate-400">
-              We design polished, conversion-focused websites that help professional teams
-              build trust, communicate value clearly, and turn interest into action.
+              We help ambitious teams present their services clearly, build trust
+              faster, and convert more qualified visitors into real business.
             </p>
-
             <div className="mt-6 flex flex-wrap gap-3">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <Link
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition hover:-translate-y-0.5 hover:bg-white/10 hover:text-white"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="lg:col-span-5">
-            <h2 className="text-sm font-semibold tracking-[0.2em] text-slate-400 uppercase">
-              Explore
-            </h2>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {footerLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="rounded-xl px-3 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white"
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white"
                 >
-                  {link.label}
-                </Link>
+                  {social.label}
+                </a>
               ))}
             </div>
           </div>
 
           <div className="lg:col-span-3">
-            <h2 className="text-sm font-semibold tracking-[0.2em] text-slate-400 uppercase">
-              Newsletter
+            <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Pages
             </h2>
-            <p className="mt-5 text-sm leading-6 text-slate-400">
-              Get practical insights on positioning, conversion, and website strategy.
-            </p>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              {footerLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-slate-300 transition hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <form className="mt-5 space-y-3">
-              <label className="sr-only" htmlFor="footer-email">
+          <div className="lg:col-span-5">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Stay in the loop
+            </h2>
+            <p className="mt-5 max-w-xl text-sm leading-6 text-slate-400">
+              Get practical insights on positioning, conversion, and client
+              experience—delivered with clarity and no fluff.
+            </p>
+            <form className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <label className="sr-only" htmlFor="email">
                 Email address
               </label>
-              <div className="flex rounded-2xl border border-white/10 bg-white/5 p-1">
-                <Mail className="ml-3 mt-3 h-4 w-4 shrink-0 text-slate-400" />
-                <input
-                  id="footer-email"
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full bg-transparent px-3 py-2 text-sm text-white outline-none placeholder:text-slate-500"
-                />
-              </div>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500 outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30"
+              />
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+                className="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
               >
                 Subscribe
-                <ArrowRight className="h-4 w-4" />
               </button>
             </form>
+            <p className="mt-3 text-xs leading-5 text-slate-500">
+              By subscribing, you agree to receive occasional updates. Unsubscribe
+              anytime.
+            </p>
           </div>
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Professional Website Studio. All rights reserved.</p>
-          <p>Built for clarity, credibility, and conversion.</p>
+          <p>© {new Date().getFullYear()} Professional website. All rights reserved.</p>
+          <p>Built for teams that want a sharper online presence and better leads.</p>
         </div>
       </div>
     </footer>

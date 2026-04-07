@@ -1,61 +1,53 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
-const navLinks = [
+const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Contact", href: "/contact" },
+  { label: "Features", href: "/features" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
-  { label: "Features", href: "/features" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Careers", href: "/careers" },
-  { label: "Gallery", href: "/gallery" }
+  { label: "Page", href: "/page" },
 ];
 
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsOpen(false);
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-white/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition-transform duration-300 group-hover:scale-105">
-            PW
+          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition-transform duration-300 group-hover:scale-105">
+            P
           </span>
-          <span className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold tracking-[0.18em] text-slate-500 uppercase">
-              Professional
-            </span>
-            <span className="text-lg font-semibold text-slate-950">
-              Website Studio
-            </span>
-          </span>
+          <div className="leading-tight">
+            <p className="text-sm font-semibold tracking-wide text-slate-500">
+              Professional website
+            </p>
+            <p className="text-base font-bold text-slate-900">
+              Strategy. Design. Results.
+            </p>
+          </div>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
-          {navLinks.map((link) => (
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          {navItems.map((item) => (
             <Link
-              key={link.label}
-              href={link.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-950"
+              key={item.label}
+              href={item.href}
+              className="rounded-full px-3 py-2 text-sm font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-900"
             >
-              {link.label}
+              {item.label}
             </Link>
           ))}
         </nav>
@@ -63,23 +55,23 @@ export function NavBar() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/contact"
-            className="rounded-full border border-[var(--border)] bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
+            className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-blue-200 hover:text-blue-700"
           >
-            Book a Call
+            Request a Quote
           </Link>
           <Link
-            href="/pricing"
-            className="rounded-full bg-[var(--primary)] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
+            href="/contact"
+            className="rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700"
           >
-            View Pricing
+            Book a Call
           </Link>
         </div>
 
         <button
           type="button"
           onClick={() => setIsOpen((open) => !open)}
-          className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-white p-3 text-slate-700 shadow-sm transition hover:bg-slate-50 lg:hidden"
-          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white p-2 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 lg:hidden"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -87,35 +79,36 @@ export function NavBar() {
       </div>
 
       <div
-        className={`lg:hidden ${
-          isOpen ? "max-h-[80vh] opacity-100" : "pointer-events-none max-h-0 opacity-0"
-        } overflow-hidden border-t border-[var(--border)] bg-white/95 transition-all duration-300`}
+        className={`lg:hidden ${isOpen ? "block" : "hidden"} border-t border-slate-200/70 bg-white/95 backdrop-blur-xl`}
       >
-        <div className="mx-auto grid max-w-7xl gap-2 px-4 py-4 sm:px-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="rounded-2xl px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="mt-2 grid gap-3 sm:grid-cols-2">
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <nav className="grid grid-cols-2 gap-2" aria-label="Mobile primary">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="rounded-full border border-[var(--border)] bg-white px-4 py-3 text-center text-sm font-semibold text-slate-700 shadow-sm"
+              className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-center text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:text-blue-700"
             >
-              Book a Call
+              Request a Quote
             </Link>
             <Link
-              href="/pricing"
+              href="/contact"
               onClick={() => setIsOpen(false)}
-              className="rounded-full bg-[var(--primary)] px-4 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-blue-500/20"
+              className="rounded-2xl bg-blue-600 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-blue-700"
             >
-              View Pricing
+              Book a Call
             </Link>
           </div>
         </div>

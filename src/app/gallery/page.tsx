@@ -1,190 +1,238 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { Camera, Grid3X3, Layers3, Sparkles, ZoomIn } from "lucide-react";
+import {
+  Breadcrumbs,
+  CTABanner,
+  Hero,
+  ImageGrid,
+  SectionHeading,
+  Tabs,
+} from "@/components";
 
 export const metadata: Metadata = {
-  title: "Gallery",
-  description: "Learn more about gallery",
+  title: "Gallery | Professional Website",
+  description:
+    "Browse a curated gallery of brand visuals, product screenshots, and project highlights designed to inspire your next launch.",
 };
 
-import Link from "next/link";
-import { ArrowRight, Camera, Film, Image as ImageIcon, LayoutGrid, Sparkles, Wand2 } from "lucide-react";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { CTABanner } from "@/components/CTABanner";
-import { Footer } from "@/components/Footer";
-import { Hero } from "@/components/Hero";
-import { ImageGallery } from "@/components/ImageGallery";
-import { NavBar } from "@/components/NavBar";
-import { SectionHeading } from "@/components/SectionHeading";
-import { StatsStrip } from "@/components/StatsStrip";
-import { SocialProofStrip } from "@/components/SocialProofStrip";
-
-const galleryImages = [
+const galleryItems = [
   {
-    src: "/gallery/editorial-portrait.jpg",
-    alt: "Editorial portrait with soft natural light and clean composition",
-    title: "Editorial portrait series",
-    description: "Refined lighting, calm framing, and a polished finish designed for brand storytelling.",
+    src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+    alt: "Design team collaborating around a laptop in a modern studio",
+    caption: "Team collaboration and creative direction",
   },
   {
-    src: "/gallery/event-reception.jpg",
-    alt: "Elegant event reception with warm ambient lighting and guests in conversation",
-    title: "Event coverage",
-    description: "Candid moments and wide scene-setting images that capture atmosphere and energy.",
+    src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+    alt: "Product dashboard displayed on a laptop screen",
+    caption: "Dashboard UI with clear performance metrics",
   },
   {
-    src: "/gallery/product-detail.jpg",
-    alt: "Close-up product image highlighting texture, materials, and craftsmanship",
-    title: "Product detail study",
-    description: "Sharp, conversion-ready imagery that highlights quality, texture, and key selling points.",
+    src: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+    alt: "Professional portrait of a business team in a bright office",
+    caption: "Brand photography with a human, approachable feel",
   },
   {
-    src: "/gallery/team-workshop.jpg",
-    alt: "Team workshop session with collaborative discussion around a table",
-    title: "Workshop documentation",
-    description: "Authentic behind-the-scenes visuals that show process, teamwork, and momentum.",
+    src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+    alt: "Creative workspace with sketches, notes, and color samples",
+    caption: "Concept exploration and visual system development",
   },
   {
-    src: "/gallery/architecture-exterior.jpg",
-    alt: "Modern architecture exterior with strong lines and balanced daylight",
-    title: "Architecture and spaces",
-    description: "Clean, structured compositions that emphasize form, scale, and visual balance.",
+    src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+    alt: "Team reviewing a project roadmap on a large screen",
+    caption: "Strategy sessions that keep projects aligned",
   },
   {
-    src: "/gallery/social-campaign.jpg",
-    alt: "Lifestyle campaign image with vibrant color and natural movement",
-    title: "Campaign imagery",
-    description: "Flexible visuals built for web, social, and marketing use across channels.",
+    src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+    alt: "Cross-functional team meeting in a glass conference room",
+    caption: "Client workshops and collaborative planning",
   },
 ];
 
-const categories = [
-  { icon: <Camera className="h-5 w-5" />, title: "Portraits", description: "Professional headshots and editorial portraits with a polished, approachable feel." },
-  { icon: <Film className="h-5 w-5" />, title: "Events", description: "Conference, launch, and community coverage that captures the moments people remember." },
-  { icon: <ImageIcon className="h-5 w-5" />, title: "Products", description: "Clean product imagery that supports trust, clarity, and stronger conversion." },
-  { icon: <LayoutGrid className="h-5 w-5" />, title: "Brand systems", description: "Consistent visual sets designed to work across landing pages, campaigns, and social content." },
-];
-
-const proofItems = [
-  "Fast turnaround for launch-ready assets",
-  "Consistent color and composition across sets",
-  "Images optimized for web, print, and social",
-  "Clear direction from planning to delivery",
+const categoryTabs = [
+  {
+    id: "all",
+    label: "All work",
+    content: (
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {galleryItems.map((item) => (
+          <figure
+            key={item.alt}
+            className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img
+                src={item.src}
+                alt={item.alt}
+                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
+            </div>
+            <figcaption className="space-y-2 p-5">
+              <p className="text-sm font-semibold text-slate-900">{item.caption}</p>
+              <p className="text-sm leading-6 text-slate-600">
+                Built to communicate quality, clarity, and measurable outcomes at a glance.
+              </p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    ),
+  },
+  {
+    id: "brand",
+    label: "Brand",
+    content: (
+      <div className="grid gap-6 md:grid-cols-2">
+        {galleryItems.slice(0, 4).map((item) => (
+          <figure key={item.alt} className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
+            <img src={item.src} alt={item.alt} className="aspect-[16/10] w-full rounded-2xl object-cover" />
+            <figcaption className="mt-4 text-sm text-slate-600">{item.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    ),
+  },
+  {
+    id: "product",
+    label: "Product",
+    content: (
+      <div className="grid gap-6 lg:grid-cols-2">
+        {galleryItems.slice(1, 5).map((item) => (
+          <figure key={item.alt} className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+            <img src={item.src} alt={item.alt} className="aspect-[16/9] w-full rounded-2xl object-cover" />
+            <figcaption className="mt-4 text-sm text-slate-600">{item.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    ),
+  },
 ];
 
 export default function GalleryPage() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <NavBar />
-      <main>
-        <Hero
-          title="A curated gallery of work that communicates quality at a glance"
-          subtitle="Explore polished visuals across portraits, events, products, and brand campaigns — all created to build trust, support storytelling, and drive engagement."
-          ctaLabel="Browse the gallery"
-          ctaHref="#gallery"
-          secondaryLabel="View categories"
-          secondaryHref="#categories"
+    <main className="bg-white text-slate-900">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Gallery" },
+          ]}
         />
+      </div>
 
-        <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-          <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Gallery" }]} className="mb-8" />
-          <StatsStrip
-            stats={[
-              { label: "Projects captured", value: "120+" },
-              { label: "Average delivery", value: "3 days" },
-              { label: "Usage formats", value: "Web + print" },
-              { label: "Client satisfaction", value: "98%" },
-            ]}
-          />
-        </section>
+      <Hero
+        title="A visual gallery of work that builds trust fast"
+        subtitle="Explore brand imagery, product screenshots, and project moments that show how polished execution turns attention into action."
+        ctaLabel="Get Started"
+        ctaHref="/contact"
+        secondaryLabel="View Services"
+        secondaryHref="/services"
+      />
 
-        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Browse by category"
+          title="Find the style, format, or project type you need"
+          description="Use the gallery to compare visual directions, review examples, and get a feel for the quality and consistency we bring to every project."
+        />
+        <div className="mt-10">
+          <Tabs tabs={categoryTabs} defaultTabId="all" />
+        </div>
+      </section>
+
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Introduction"
-            title="Visual work that feels consistent, modern, and easy to use"
-            description="This gallery highlights the kind of imagery that helps brands communicate professionalism, personality, and attention to detail without overwhelming the viewer."
+            eyebrow="Featured collection"
+            title="A closer look at the details that matter"
+            description="From clean layouts to authentic photography, every asset is chosen to support clarity, credibility, and conversion."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                icon: <Sparkles className="h-5 w-5" />,
-                title: "Designed for impact",
-                description: "Each image is selected for clarity, composition, and the ability to support a stronger first impression.",
-              },
-              {
-                icon: <Wand2 className="h-5 w-5" />,
-                title: "Edited for consistency",
-                description: "Color, tone, and crop are handled with a cohesive visual standard so the collection feels unified.",
-              },
-              {
-                icon: <ImageIcon className="h-5 w-5" />,
-                title: "Built for real use",
-                description: "The gallery reflects assets that work across websites, campaigns, presentations, and social channels.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="mb-4 inline-flex rounded-2xl bg-sky-50 p-3 text-sky-700">{item.icon}</div>
-                <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+          <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
+            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+              <div className="relative aspect-[16/10] bg-slate-100">
+                <img
+                  src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80"
+                  alt="Creative team reviewing a polished website layout"
+                  className="h-full w-full object-cover"
+                />
               </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="gallery" className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <ImageGallery images={galleryImages} />
-        </section>
-
-        <section id="categories" className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <SectionHeading
-            eyebrow="Collections"
-            title="Browse by category"
-            description="Use these groupings to quickly find the style of imagery that best fits your project, audience, or campaign goal."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {categories.map((category) => (
-              <div key={category.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="mb-4 inline-flex rounded-2xl bg-sky-50 p-3 text-sky-700">{category.icon}</div>
-                <h3 className="text-lg font-semibold text-slate-900">{category.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{category.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <SocialProofStrip items={proofItems} />
-        </section>
-
-        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <CTABanner
-            headline="Need imagery that looks polished and performs well?"
-            description="Let’s create a gallery of assets that helps your brand stand out, communicate clearly, and convert with confidence."
-            buttonLabel="Start a project"
-            buttonHref="/contact"
-          />
-        </section>
-
-        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-          <div className="rounded-3xl bg-slate-900 px-8 py-10 text-white shadow-xl sm:px-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">Next step</p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">See how the right visuals can improve clarity and trust</h2>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
-                  Whether you need a polished portfolio, a product showcase, or campaign-ready imagery, we can help you present your work with consistency and impact.
+              <div className="p-6">
+                <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
+                  <ZoomIn className="h-4 w-4 text-indigo-600" />
+                  Expanded view
+                </div>
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
+                  Designed for a strong first impression
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-600">
+                  This collection highlights the kind of visuals that help teams explain value quickly:
+                  product clarity, real people, and project context that feels credible and current.
                 </p>
               </div>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-400"
-              >
-                Request a quote
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  icon: Camera,
+                  title: "Authentic photography",
+                  description: "Natural lighting, real environments, and people-centered imagery that feels trustworthy.",
+                },
+                {
+                  icon: Layers3,
+                  title: "Modular layouts",
+                  description: "Flexible compositions that work across landing pages, case studies, and campaign assets.",
+                },
+                {
+                  icon: Sparkles,
+                  title: "Brand-aligned polish",
+                  description: "Consistent color, spacing, and hierarchy that keep the experience refined and easy to scan.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-2xl bg-indigo-50 p-3 text-indigo-600">
+                      <item.icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Need something similar?"
+          title="Tell us what you want to create next"
+          description="If a visual style here matches your goals, we can adapt it into a website, campaign, or product experience built around your brand."
+          action={
+            <Link
+              href="/contact"
+              className="inline-flex items-center rounded-full bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+            >
+              Request a Quote
+            </Link>
+          }
+        />
+        <div className="mt-8">
+          <CTABanner
+            headline="Ready to turn inspiration into a polished, high-converting experience?"
+            description="Book a call and we’ll help you translate the right visual direction into a clear plan, timeline, and next step."
+            buttonLabel="Book a Call"
+            buttonHref="/contact"
+          />
+        </div>
+      </section>
+    </main>
   );
 }

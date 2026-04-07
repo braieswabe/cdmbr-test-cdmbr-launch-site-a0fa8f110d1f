@@ -1,96 +1,72 @@
 import Link from "next/link";
-import { Check } from "lucide-react";
 
-export type PricingTier = {
+type PricingTableProps = {
   planName: string;
   price: string;
-  description?: string;
   features: string[];
   ctaLabel: string;
   ctaHref: string;
   popular?: boolean;
 };
 
-export type PricingTableProps = {
-  tiers: PricingTier[];
-};
-
-export function PricingTable({ tiers }: PricingTableProps) {
+export function PricingTable({
+  planName,
+  price,
+  features,
+  ctaLabel,
+  ctaHref,
+  popular = false,
+}: PricingTableProps) {
   return (
-    <section className="bg-slate-50 px-6 py-16 sm:px-8 lg:px-12">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
-            Transparent pricing
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Choose the plan that matches your growth stage
-          </h2>
-          <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
-            Clear pricing, no hidden fees, and flexible options designed to help
-            you move forward with confidence.
-          </p>
+    <article
+      className={[
+        "relative flex h-full flex-col rounded-3xl border bg-white p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl",
+        popular
+          ? "border-blue-600 ring-2 ring-blue-600/10"
+          : "border-slate-200",
+      ].join(" ")}
+    >
+      {popular ? (
+        <div className="absolute right-6 top-6 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-1 text-xs font-semibold text-white shadow-sm">
+          Most Popular
         </div>
+      ) : null}
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {tiers.map((tier) => (
-            <article
-              key={tier.planName}
-              className={`relative flex h-full flex-col rounded-3xl border p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl ${
-                tier.popular
-                  ? "border-blue-600 bg-white ring-2 ring-blue-600/20"
-                  : "border-slate-200 bg-white"
-              }`}
-            >
-              {tier.popular ? (
-                <div className="absolute -top-3 left-8 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-1 text-xs font-semibold text-white shadow-md">
-                  Most popular
-                </div>
-              ) : null}
-
-              <div>
-                <h3 className="text-2xl font-bold tracking-tight text-slate-900">
-                  {tier.planName}
-                </h3>
-                {tier.description ? (
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {tier.description}
-                  </p>
-                ) : null}
-                <div className="mt-6 flex items-end gap-2">
-                  <span className="text-4xl font-bold tracking-tight text-slate-900">
-                    {tier.price}
-                  </span>
-                  <span className="pb-1 text-sm text-slate-500">/month</span>
-                </div>
-              </div>
-
-              <ul className="mt-8 space-y-3 text-sm text-slate-600">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-8">
-                <Link
-                  href={tier.ctaHref}
-                  className={`inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition-colors duration-200 ${
-                    tier.popular
-                      ? "bg-blue-600 text-white hover:bg-blue-700"
-                      : "bg-slate-900 text-white hover:bg-slate-800"
-                  }`}
-                >
-                  {tier.ctaLabel}
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
+      <div className="pr-24">
+        <h3 className="text-xl font-bold text-slate-900">{planName}</h3>
+        <p className="mt-3 text-4xl font-bold tracking-tight text-slate-950">
+          {price}
+        </p>
+        <p className="mt-2 text-sm text-slate-500">
+          Transparent pricing with no hidden fees.
+        </p>
       </div>
-    </section>
+
+      <ul className="mt-8 space-y-4">
+        {features.map((feature) => (
+          <li key={feature} className="flex items-start gap-3 text-sm text-slate-700">
+            <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+              ✓
+            </span>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-8">
+        <Link
+          href={ctaHref}
+          className={[
+            "inline-flex w-full items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2",
+            popular
+              ? "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-600"
+              : "bg-slate-950 text-white hover:bg-slate-800 focus:ring-slate-950",
+          ].join(" ")}
+        >
+          {ctaLabel}
+        </Link>
+      </div>
+    </article>
   );
 }
 
