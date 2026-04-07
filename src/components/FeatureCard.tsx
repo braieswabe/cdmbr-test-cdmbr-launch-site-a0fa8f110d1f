@@ -1,21 +1,21 @@
-import type { ReactNode } from "react";
-
-type FeatureCardProps = {
-  icon: ReactNode;
+interface FeatureCardProps {
   title: string;
   description: string;
-};
+  icon?: React.ReactNode;
+  index?: number;
+}
 
-export function FeatureCard({ icon, title, description }: FeatureCardProps) {
+export function FeatureCard({ title, description, icon, index = 0 }: FeatureCardProps) {
   return (
-    <article className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 text-white shadow-md shadow-blue-600/20 transition-transform duration-200 group-hover:scale-105">
-        {icon}
+    <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+      <div className="w-14 h-14 bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-secondary)]/10 rounded-xl flex items-center justify-center mb-5">
+        {icon || (
+          <span className="text-[var(--color-primary)] text-2xl font-bold">{index + 1}</span>
+        )}
       </div>
-
-      <h3 className="mt-5 text-lg font-semibold text-slate-900">{title}</h3>
-      <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
-    </article>
+      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+      <p className="text-gray-600 leading-relaxed">{description}</p>
+    </div>
   );
 }
 

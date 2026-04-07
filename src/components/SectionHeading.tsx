@@ -1,42 +1,18 @@
-import type { ReactNode } from "react";
-
-export type SectionHeadingProps = {
-  eyebrow?: string;
+interface SectionHeadingProps {
   title: string;
-  description?: string;
-  align?: "left" | "center";
-  action?: ReactNode;
-  className?: string;
-};
+  subtitle?: string;
+  centered?: boolean;
+}
 
-export function SectionHeading({
-  eyebrow,
-  title,
-  description,
-  align = "left",
-  action,
-  className = "",
-}: SectionHeadingProps) {
-  const alignment = align === "center" ? "items-center text-center" : "items-start text-left";
-
+export function SectionHeading({ title, subtitle, centered = true }: SectionHeadingProps) {
   return (
-    <div className={`flex w-full flex-col gap-4 ${alignment} ${className}`}>
-      {eyebrow ? (
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
-          {eyebrow}
+    <div className={`mb-12 ${centered ? "text-center" : ""}`}>
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+      {subtitle && (
+        <p className={`text-lg text-gray-600 ${centered ? "max-w-2xl mx-auto" : ""}`}>
+          {subtitle}
         </p>
-      ) : null}
-
-      <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className={align === "center" ? "mx-auto max-w-3xl" : "max-w-3xl"}>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
-          {description ? (
-            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">{description}</p>
-          ) : null}
-        </div>
-
-        {action ? <div className="shrink-0">{action}</div> : null}
-      </div>
+      )}
     </div>
   );
 }

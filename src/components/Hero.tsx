@@ -1,72 +1,56 @@
 import Link from "next/link";
 
-type HeroProps = {
+interface HeroProps {
   title: string;
-  subtitle: string;
-  ctaLabel: string;
-  ctaHref: string;
-  secondaryLabel?: string;
-  secondaryHref?: string;
-};
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  gradient?: boolean;
+}
 
 export function Hero({
   title,
   subtitle,
-  ctaLabel,
-  ctaHref,
-  secondaryLabel,
-  secondaryHref,
+  ctaText = "Get Started",
+  ctaHref = "/contact",
+  secondaryCtaText,
+  secondaryCtaHref,
+  gradient = true,
 }: HeroProps) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-700 text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_30%)]" />
-      <div className="relative mx-auto flex min-h-[500px] w-full max-w-7xl items-center px-6 py-20 sm:px-8 lg:px-12">
-        <div className="max-w-3xl">
-          <div className="mb-6 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 shadow-sm backdrop-blur">
-            Modern websites built to convert
-          </div>
-
-          <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            {title}
-          </h1>
-
-          <p className="mt-6 max-w-2xl text-base leading-7 text-white/85 sm:text-lg">
+    <section
+      className={`py-24 lg:py-36 text-white ${
+        gradient
+          ? "bg-gradient-to-br from-[var(--color-primary)] via-[var(--color-secondary)] to-[var(--color-primary)]"
+          : "bg-[var(--color-primary)]"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+          {title}
+        </h1>
+        {subtitle && (
+          <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto mb-10 leading-relaxed">
             {subtitle}
           </p>
-
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+        )}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href={ctaHref}
+            className="bg-white text-[var(--color-primary)] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
+          >
+            {ctaText}
+          </Link>
+          {secondaryCtaText && secondaryCtaHref && (
             <Link
-              href={ctaHref}
-              className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-blue-700 shadow-lg shadow-black/10 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-700"
+              href={secondaryCtaHref}
+              className="border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-colors"
             >
-              {ctaLabel}
+              {secondaryCtaText}
             </Link>
-
-            {secondaryLabel && secondaryHref ? (
-              <Link
-                href={secondaryHref}
-                className="inline-flex items-center justify-center rounded-xl border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-700"
-              >
-                {secondaryLabel}
-              </Link>
-            ) : null}
-          </div>
-
-          <div className="mt-12 grid gap-4 sm:grid-cols-3">
-            {[
-              { value: "2x", label: "Faster launch timelines" },
-              { value: "35%", label: "Average conversion lift" },
-              { value: "100%", label: "Responsive across devices" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm"
-              >
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <div className="mt-1 text-sm text-white/80">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+          )}
         </div>
       </div>
     </section>

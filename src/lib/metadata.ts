@@ -1,19 +1,28 @@
-/* Per-page metadata constants for use in page.tsx files. */
+/* Per-page metadata constants. Import in page.tsx: import {{ slug_metadata }} from "@/lib/metadata"; */
 
-// Metadata for /services
 export const services_metadata = {
   title: "Services | TEST CDMBR Launch Site",
-  description: "Generate quality solutions tailored for your needs.",
+  description: "Generate qualified leads and present agency credibility with clear service positioning and measurable proof.",
+  openGraph: {
+    title: "Services | TEST CDMBR Launch Site",
+    description: "Generate qualified leads and present agency credibility with clear service positioning and measurable proof.",
+  },
 };
 
-// Metadata for /case-studies
 export const case_studies_metadata = {
   title: "Case Studies | TEST CDMBR Launch Site",
-  description: "Explore our successful projects and client stories.",
+  description: "Generate qualified leads and present agency credibility with clear service positioning and measurable proof.",
+  openGraph: {
+    title: "Case Studies | TEST CDMBR Launch Site",
+    description: "Generate qualified leads and present agency credibility with clear service positioning and measurable proof.",
+  },
 };
 
-// Metadata for /contact
 export const contact_metadata = {
-  title: "Contact Us | TEST CDMBR Launch Site",
-  description: "Get in touch with us for any inquiries.",
+  title: "Contact | TEST CDMBR Launch Site",
+  description: "Generate qualified leads and present agency credibility with clear service positioning and measurable proof.",
+  openGraph: {
+    title: "Contact | TEST CDMBR Launch Site",
+    description: "Generate qualified leads and present agency credibility with clear service positioning and measurable proof.",
+  },
 };
