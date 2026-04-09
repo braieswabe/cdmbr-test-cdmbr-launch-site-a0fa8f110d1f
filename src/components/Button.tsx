@@ -1,89 +1,72 @@
 import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { twMerge } from "tailwind-merge";
+import { clsx } from "clsx";
 
-const buttonStyles = cva(
-  "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60",
-  {
-    variants: {
-      variant: {
-        primary:
-          "bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md active:translate-y-px",
-        secondary:
-          "bg-violet-600 text-white shadow-sm hover:bg-violet-700 hover:shadow-md active:translate-y-px",
-        outline:
-          "border border-slate-300 bg-white text-slate-900 hover:border-blue-300 hover:bg-blue-50",
-        ghost: "bg-transparent text-slate-700 hover:bg-slate-100 hover:text-slate-900",
-      },
-      size: {
-        sm: "px-4 py-2 text-sm",
-        md: "px-5 py-3 text-sm",
-        lg: "px-6 py-3.5 text-base",
-      },
-      fullWidth: {
-        true: "w-full",
-        false: "",
-      },
-    },
-    defaultVariants: {
-      variant: "primary",
-      size: "md",
-      fullWidth: false,
-    },
-  }
-);
-
-type ButtonVariants = VariantProps<typeof buttonStyles>;
+type ButtonVariant = "primary" | "secondary" | "ghost" | "outline";
+type ButtonSize = "sm" | "md" | "lg";
 
 type CommonProps = {
   children: ReactNode;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   className?: string;
-  fullWidth?: boolean;
 };
 
-type ButtonAsButton = CommonProps &
+type ButtonAsButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     href?: never;
-    variant?: ButtonVariants["variant"];
-    size?: ButtonVariants["size"];
   };
 
-type ButtonAsLink = CommonProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
+type ButtonAsLinkProps = CommonProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
     href: string;
-    variant?: ButtonVariants["variant"];
-    size?: ButtonVariants["size"];
   };
 
-export type ButtonProps = ButtonAsButton | ButtonAsLink;
+const baseStyles =
+  "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
 
-export function Button(props: ButtonProps) {
-  const { children, className, fullWidth, variant, size } = props;
-  const classes = twMerge(buttonStyles({ variant, size, fullWidth }), className);
+const variantStyles: Record<ButtonVariant, string> = {
+  primary:
+    "bg-primary text-white shadow-lg shadow-primary/20 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/25",
+  secondary:
+    "bg-secondary text-white shadow-lg shadow-secondary/20 hover:bg-secondary/90 hover:shadow-xl hover:shadow-secondary/25",
+  ghost: "bg-transparent text-foreground hover:bg-white/60 hover:text-primary",
+  outline:
+    "border border-slate-200 bg-white text-slate-900 hover:border-primary hover:text-primary hover:bg-slate-50",
+};
 
-  if ("href" in props && props.href) {
-    const { href, ...anchorProps } = props;
-    const isInternal = href.startsWith("/");
+const sizeStyles: Record<ButtonSize, string> = {
+  sm: "h-10 px-4 text-sm",
+  md: "h-12 px-5 text-sm",
+  lg: "h-14 px-6 text-base",
+};
 
-    if (isInternal) {
-      return (
-        <Link href={href} className={classes}>
-          {children}
-        </Link>
-      );
-    }
+export function Button(props: ButtonAsButtonProps): JSX.Element;
+export function Button(props: ButtonAsLinkProps): JSX.Element;
+export function Button(
+  props: ButtonAsButtonProps | ButtonAsLinkProps,
+): JSX.Element {
+  const {
+    children,
+    variant = "primary",
+    size = "md",
+    className,
+    href,
+    ...rest
+  } = props as ButtonAsButtonProps & ButtonAsLinkProps;
 
+  const classes = clsx(baseStyles, variantStyles[variant], sizeStyles[size], className);
+
+  if (href) {
     return (
-      <a href={href} className={classes} target="_blank" rel="noopener noreferrer" {...anchorProps}>
+      <Link href={href} className={classes} {...(rest as Omit<ButtonAsLinkProps, "href" | "children">)}>
         {children}
-      </a>
+      </Link>
     );
   }
 
-  const { type = "button", ...buttonProps } = props;
   return (
-    <button type={type} className={classes} {...buttonProps}>
+    <button className={classes} {...(rest as Omit<ButtonAsButtonProps, "children">)}>
       {children}
     </button>
   );

@@ -3,283 +3,299 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
-  CTABanner,
-  FAQAccordion,
-  PricingTable,
-  SectionHeading,
-  StatsStrip,
-} from "@/components";
+  ArrowRight,
+  BadgeCheck,
+  Check,
+  Clock3,
+  ShieldCheck,
+  Sparkles,
+  Star,
+} from "lucide-react";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Button } from "@/components/Button";
+import { CTABanner } from "@/components/CTABanner";
+import { FAQAccordion } from "@/components/FAQAccordion";
+import { SectionHeading } from "@/components/SectionHeading";
+
+type BillingCycle = "monthly" | "annual";
 
 const pricingPlans = [
   {
-    planName: "Starter",
-    monthly: "$2,500",
-    annual: "$27,000",
+    name: "Starter",
+    monthly: 1800,
+    annual: 18000,
+    description: "For smaller teams that need a polished, credible website without unnecessary complexity.",
+    recommended: false,
     features: [
       "Up to 5 core pages",
-      "Messaging and page structure",
       "Responsive design system",
-      "Basic SEO setup",
+      "Basic on-page SEO setup",
+      "Contact form integration",
       "Launch support",
     ],
-    ctaLabel: "Get Started",
-    ctaHref: "/contact",
-    popular: false,
-    audience: "Best for new businesses and focused service pages",
   },
   {
-    planName: "Growth",
-    monthly: "$5,500",
-    annual: "$59,400",
+    name: "Growth",
+    monthly: 3600,
+    annual: 36000,
+    description: "For businesses that want stronger messaging, more conversion focus, and room to scale.",
+    recommended: true,
     features: [
-      "Up to 10 pages",
-      "Strategy workshop",
-      "Custom design and Next.js build",
-      "Conversion copy support",
-      "SEO foundations and analytics",
-      "Priority revisions",
+      "Up to 10 pages or sections",
+      "Messaging and content structure",
+      "Conversion-focused page design",
+      "SEO-ready metadata and hierarchy",
+      "Priority launch support",
+      "Two rounds of revisions",
     ],
-    ctaLabel: "Book a Call",
-    ctaHref: "/contact",
-    popular: true,
-    audience: "Best for teams that want a stronger lead engine",
   },
   {
-    planName: "Scale",
-    monthly: "$9,500",
-    annual: "$102,600",
+    name: "Scale",
+    monthly: 6200,
+    annual: 62000,
+    description: "For larger launches, multi-page builds, or teams that need ongoing design and support.",
+    recommended: false,
     features: [
-      "Multi-page website or redesign",
-      "Advanced content and SEO planning",
-      "Component library and flexible templates",
-      "Performance optimization",
-      "Ongoing support window",
-      "Custom integrations",
+      "Custom scope and page architecture",
+      "Advanced conversion strategy",
+      "Multiple templates or page types",
+      "Content support and refinement",
+      "Post-launch optimization window",
+      "Dedicated project coordination",
     ],
-    ctaLabel: "Request a Quote",
-    ctaHref: "/contact",
-    popular: false,
-    audience: "Best for established brands with more complex needs",
   },
-];
-
-const comparisonRows = [
-  ["Strategy session", "Included", "Included", "Included"],
-  ["Custom design", "Basic", "Full", "Full"],
-  ["Copywriting support", "Optional", "Included", "Included"],
-  ["SEO setup", "Basic", "Advanced", "Advanced"],
-  ["Analytics integration", "Optional", "Included", "Included"],
-  ["Post-launch support", "7 days", "14 days", "30 days"],
 ];
 
 const faqItems = [
   {
-    question: "Do you offer monthly and annual pricing?",
+    question: "Do you offer monthly payment plans?",
     answer:
-      "Yes. You can review pricing as a monthly equivalent or annual project value depending on the engagement structure that fits your business best.",
+      "Yes. You can choose monthly or annual billing depending on how you want to structure the project budget.",
   },
   {
-    question: "What is included in the quoted price?",
+    question: "What is included in the price?",
     answer:
-      "Each package includes the deliverables listed on the plan card. If your project needs additional pages, integrations, or content support, we’ll outline those separately before work begins.",
+      "Each tier includes the core design and build work listed in the plan. We can also scope add-ons if you need extra pages, copy support, or advanced functionality.",
   },
   {
-    question: "Can you create a custom package?",
+    question: "Can the scope be customized?",
     answer:
-      "Absolutely. If your needs do not fit neatly into one tier, we can tailor a scope around your goals, timeline, and budget.",
+      "Absolutely. The plans are a starting point, and we can tailor the scope to match your timeline, content needs, and growth goals.",
   },
   {
-    question: "How do payments work?",
+    question: "Do you provide refunds?",
     answer:
-      "Most projects are billed with a deposit to begin and milestone-based payments during delivery. We’ll confirm the schedule before kickoff.",
-  },
-  {
-    question: "Is ongoing support available after launch?",
-    answer:
-      "Yes. We can provide a support window, monthly updates, or a custom maintenance arrangement depending on how much help you want after launch.",
+      "Because work begins with planning and design, refunds are handled case by case based on project stage and contract terms.",
   },
 ];
 
 export default function PricingPage() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
+  const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
 
   const plans = useMemo(
     () =>
       pricingPlans.map((plan) => ({
         ...plan,
         price: billingCycle === "monthly" ? plan.monthly : plan.annual,
+        suffix: billingCycle === "monthly" ? "/project" : "/year",
       })),
-    [billingCycle]
+    [billingCycle],
   );
 
   return (
-    <main className="bg-white text-slate-950">
-      <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <p className="text-sm text-slate-500">
-          <Link href="/" className="hover:text-slate-900">
-            Home
-          </Link>{" "}
-          / Pricing
-        </p>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
-        <div className="rounded-[2rem] bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 px-6 py-16 text-white shadow-2xl sm:px-10 lg:px-16">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-300">
-              Transparent pricing
-            </p>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-              Clear pricing for websites that need to perform
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-300">
-              Choose a plan that matches your stage of growth. Every package is built to
-              deliver a polished site, a smoother buying journey, and a clear path to
-              measurable results.
-            </p>
-
-            <div className="mt-8 inline-flex rounded-full border border-white/15 bg-white/10 p-1">
-              <button
-                type="button"
-                onClick={() => setBillingCycle("monthly")}
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                  billingCycle === "monthly"
-                    ? "bg-white text-slate-950"
-                    : "text-white hover:bg-white/10"
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                type="button"
-                onClick={() => setBillingCycle("annual")}
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                  billingCycle === "annual"
-                    ? "bg-white text-slate-950"
-                    : "text-white hover:bg-white/10"
-                }`}
-              >
-                Annual
-              </button>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/contact"
-                className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-400"
-              >
-                Request a Quote
-              </Link>
-              <Link
-                href="/services"
-                className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-              >
-                Learn More
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Pricing plans"
-          title="Pick the level of support that fits your goals"
-          description="Each plan is designed to be clear, practical, and easy to compare so you can choose with confidence."
-        />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {plans.map((plan) => (
-            <PricingTable key={plan.planName} {...plan} />
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-slate-50 py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Plan comparison"
-            title="See what’s included at a glance"
-            description="A simple side-by-side view helps you compare scope, support, and the level of customization each plan provides."
+    <main className="bg-[var(--background)] text-[var(--foreground)]">
+      <section className="border-b border-black/5 bg-gradient-to-b from-[var(--secondary)]/10 to-transparent">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Pricing" },
+            ]}
           />
-          <div className="mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-            <div className="grid grid-cols-4 border-b border-slate-200 bg-slate-50 px-6 py-4 text-sm font-semibold text-slate-900">
-              <div>Feature</div>
-              <div>Starter</div>
-              <div>Growth</div>
-              <div>Scale</div>
-            </div>
-            <div className="divide-y divide-slate-200">
-              {comparisonRows.map((row) => (
-                <div key={row[0]} className="grid grid-cols-4 px-6 py-4 text-sm text-slate-600">
-                  <div className="font-medium text-slate-900">{row[0]}</div>
-                  <div>{row[1]}</div>
-                  <div>{row[2]}</div>
-                  <div>{row[3]}</div>
-                </div>
-              ))}
+        </div>
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center rounded-full bg-[var(--primary)]/10 px-4 py-2 text-sm font-medium text-[var(--primary)]">
+              Transparent pricing for confident decisions
+            </span>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">
+              Clear pricing, simple choices, and no surprise scope creep.
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-black/70">
+              Choose a plan that fits your stage, compare what is included, and move forward with
+              confidence. If your needs are unique, we can tailor a custom scope.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild>
+                <Link href="/contact">
+                  Get a quote
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="secondary">
+                <Link href="/services">Review services</Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Add-ons"
-          title="Optional extras for teams that need more"
-          description="Add the support you need without paying for things you do not."
-        />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {[
-            {
-              title: "Extra page design",
-              description: "Add new landing pages, case studies, or service pages as your needs grow.",
-            },
-            {
-              title: "Copywriting sprint",
-              description: "Get sharper messaging for a homepage, service page, or campaign launch.",
-            },
-            {
-              title: "SEO content plan",
-              description: "Build a practical roadmap for blog topics, FAQs, and search-friendly pages.",
-            },
-            {
-              title: "Ongoing support",
-              description: "Keep your site updated with monthly improvements, fixes, and content changes.",
-            },
-          ].map((item) => (
-            <article
-              key={item.title}
-              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            eyebrow="Plans"
+            title="Pick the level of support you need."
+            description="Every plan is designed to be easy to compare, with the Growth tier recommended for most teams."
+          />
+          <div className="inline-flex rounded-full border border-black/10 bg-white p-1 shadow-sm">
+            <button
+              type="button"
+              onClick={() => setBillingCycle("monthly")}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                billingCycle === "monthly"
+                  ? "bg-[var(--primary)] text-white"
+                  : "text-black/70 hover:text-black"
+              }`}
             >
-              <h3 className="text-lg font-semibold text-slate-950">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
-            </article>
+              Monthly
+            </button>
+            <button
+              type="button"
+              onClick={() => setBillingCycle("annual")}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                billingCycle === "annual"
+                  ? "bg-[var(--primary)] text-white"
+                  : "text-black/70 hover:text-black"
+              }`}
+            >
+              Annual
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className={`relative rounded-3xl border bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg ${
+                plan.recommended ? "border-[var(--primary)] ring-1 ring-[var(--primary)]/20" : "border-black/5"
+              }`}
+            >
+              {plan.recommended ? (
+                <div className="absolute right-6 top-6 inline-flex items-center gap-1 rounded-full bg-[var(--primary)] px-3 py-1 text-xs font-semibold text-white">
+                  <Star className="h-3.5 w-3.5" />
+                  Recommended
+                </div>
+              ) : null}
+              <p className="text-sm font-medium text-[var(--primary)]">{plan.name}</p>
+              <div className="mt-4 flex items-end gap-1">
+                <span className="text-4xl font-semibold tracking-tight">
+                  ${plan.price.toLocaleString()}
+                </span>
+                <span className="pb-1 text-sm text-black/60">{plan.suffix}</span>
+              </div>
+              <p className="mt-4 text-sm leading-7 text-black/70">{plan.description}</p>
+              <ul className="mt-6 space-y-3">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 text-sm text-black/75">
+                    <Check className="mt-0.5 h-4 w-4 flex-none text-[var(--primary)]" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8">
+                <Button asChild className="w-full">
+                  <Link href="/contact">Choose {plan.name}</Link>
+                </Button>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FAQAccordion items={faqItems} title="Pricing and billing questions" />
+      <section className="bg-black/[0.02]">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
+            <div>
+              <SectionHeading
+                eyebrow="Best value"
+                title="Growth is the most popular choice for teams that want momentum."
+                description="It balances scope, speed, and strategic support, making it a strong fit for most service businesses and startups."
+              />
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {[
+                  "Messaging support",
+                  "Conversion-focused layout",
+                  "SEO-ready structure",
+                  "Priority revisions",
+                ].map((item) => (
+                  <div key={item} className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
+                    <BadgeCheck className="h-5 w-5 text-[var(--primary)]" />
+                    <p className="mt-3 text-sm font-medium">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-3xl bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] p-8 text-white shadow-lg">
+              <ShieldCheck className="h-10 w-10 text-white/90" />
+              <h3 className="mt-6 text-2xl font-semibold">What makes the pricing easy to trust</h3>
+              <div className="mt-6 space-y-4 text-sm leading-7 text-white/85">
+                <p>• Clear deliverables so you know exactly what is included.</p>
+                <p>• Flexible billing options to match your budget planning.</p>
+                <p>• Upgrade paths if your scope expands after kickoff.</p>
+                <p>• No hidden fees for the standard project workflow.</p>
+              </div>
+              <div className="mt-8 rounded-2xl bg-white/10 p-4 backdrop-blur">
+                <div className="flex items-center gap-2 text-sm font-medium">
+                  <Clock3 className="h-4 w-4" />
+                  Typical timeline: 2 to 6 weeks depending on scope
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <CTABanner
-          headline="Not sure which plan is right?"
-          description="Book a call and we’ll help you choose the most efficient path based on your goals, timeline, and budget."
-          buttonLabel="Book a Call"
-          buttonHref="/contact"
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Need something custom?"
+          title="We can adapt the scope without starting from scratch."
+          description="If your project needs extra pages, advanced functionality, or a more tailored rollout, we will recommend the most efficient path."
         />
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {[
+            "Add-on pages and templates",
+            "Copy refinement and content support",
+            "Post-launch optimization and updates",
+          ].map((item) => (
+            <div key={item} className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+              <Sparkles className="h-5 w-5 text-[var(--primary)]" />
+              <p className="mt-3 text-sm font-medium">{item}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <StatsStrip
-          stats={[
-            { label: "Typical response time", value: "1 business day" },
-            { label: "Projects with custom scope", value: "Flexible" },
-            { label: "Average client rating", value: "5.0/5" },
-          ]}
+      <section className="bg-black/[0.02]">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="FAQ"
+            title="Pricing questions, answered."
+            description="A few quick details to help you compare plans and understand how billing works."
+          />
+          <div className="mt-10">
+            <FAQAccordion items={faqItems} />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <CTABanner
+          headline="Ready to choose a plan?"
+          description="If you know what you need, we can move quickly. If you are still deciding, we will help you find the right fit."
+          buttonLabel="Start a conversation"
+          buttonHref="/contact"
         />
       </section>
     </main>

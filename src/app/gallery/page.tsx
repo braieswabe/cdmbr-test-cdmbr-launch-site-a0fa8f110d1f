@@ -1,238 +1,194 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Camera, Grid3X3, Layers3, Sparkles, ZoomIn } from "lucide-react";
-import {
-  Breadcrumbs,
-  CTABanner,
-  Hero,
-  ImageGrid,
-  SectionHeading,
-  Tabs,
-} from "@/components";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Gallery | Professional Website",
-  description:
-    "Browse a curated gallery of brand visuals, product screenshots, and project highlights designed to inspire your next launch.",
-};
+import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Button } from "@/components/Button";
+import { CTABanner } from "@/components/CTABanner";
+import { FilterTabs } from "@/components/FilterTabs";
+import { ImageGrid } from "@/components/ImageGrid";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Camera, Layers3, Sparkles, Wand2 } from "lucide-react";
 
 const galleryItems = [
   {
-    src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-    alt: "Design team collaborating around a laptop in a modern studio",
-    caption: "Team collaboration and creative direction",
+    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80",
+    alt: "Modern workspace with warm lighting and editorial styling",
+    caption: "Editorial workspace styling for a consulting brand launch.",
   },
   {
-    src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-    alt: "Product dashboard displayed on a laptop screen",
-    caption: "Dashboard UI with clear performance metrics",
+    src: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=80",
+    alt: "Creative team reviewing a website design system",
+    caption: "Design system exploration for a multi-page service website.",
   },
   {
     src: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
-    alt: "Professional portrait of a business team in a bright office",
-    caption: "Brand photography with a human, approachable feel",
+    alt: "Polished product photography on a clean background",
+    caption: "Product imagery for a premium ecommerce collection.",
   },
   {
-    src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
-    alt: "Creative workspace with sketches, notes, and color samples",
-    caption: "Concept exploration and visual system development",
+    src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+    alt: "Developer workspace with screens showing a web interface",
+    caption: "Launch-day content for a SaaS homepage refresh.",
   },
   {
-    src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
-    alt: "Team reviewing a project roadmap on a large screen",
-    caption: "Strategy sessions that keep projects aligned",
+    src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+    alt: "Team collaboration in a bright meeting room",
+    caption: "Brand photography for a leadership and culture campaign.",
   },
   {
-    src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
-    alt: "Cross-functional team meeting in a glass conference room",
-    caption: "Client workshops and collaborative planning",
+    src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+    alt: "Minimal interior with natural light and soft shadows",
+    caption: "Lifestyle imagery for a hospitality and events portfolio.",
   },
 ];
 
-const categoryTabs = [
+const categories = [
+  { label: "All", value: "all" },
+  { label: "Brand", value: "brand" },
+  { label: "Product", value: "product" },
+  { label: "Culture", value: "culture" },
+  { label: "Launches", value: "launches" },
+];
+
+const featuredCollection = [
   {
-    id: "all",
-    label: "All work",
-    content: (
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {galleryItems.map((item) => (
-          <figure
-            key={item.alt}
-            className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-          >
-            <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-              <img
-                src={item.src}
-                alt={item.alt}
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
-            </div>
-            <figcaption className="space-y-2 p-5">
-              <p className="text-sm font-semibold text-slate-900">{item.caption}</p>
-              <p className="text-sm leading-6 text-slate-600">
-                Built to communicate quality, clarity, and measurable outcomes at a glance.
-              </p>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    ),
+    src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+    alt: "Curated gallery wall with framed visuals and warm tones",
+    caption: "Featured collection: a cohesive visual system for a premium service brand.",
   },
   {
-    id: "brand",
-    label: "Brand",
-    content: (
-      <div className="grid gap-6 md:grid-cols-2">
-        {galleryItems.slice(0, 4).map((item) => (
-          <figure key={item.alt} className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
-            <img src={item.src} alt={item.alt} className="aspect-[16/10] w-full rounded-2xl object-cover" />
-            <figcaption className="mt-4 text-sm text-slate-600">{item.caption}</figcaption>
-          </figure>
-        ))}
-      </div>
-    ),
-  },
-  {
-    id: "product",
-    label: "Product",
-    content: (
-      <div className="grid gap-6 lg:grid-cols-2">
-        {galleryItems.slice(1, 5).map((item) => (
-          <figure key={item.alt} className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
-            <img src={item.src} alt={item.alt} className="aspect-[16/9] w-full rounded-2xl object-cover" />
-            <figcaption className="mt-4 text-sm text-slate-600">{item.caption}</figcaption>
-          </figure>
-        ))}
-      </div>
-    ),
+    src: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+    alt: "Close-up of a designer arranging visual assets",
+    caption: "Built to feel editorial, credible, and easy to browse on any device.",
   },
 ];
 
 export default function GalleryPage() {
   return (
-    <main className="bg-white text-slate-900">
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Gallery" },
-          ]}
-        />
-      </div>
-
-      <Hero
-        title="A visual gallery of work that builds trust fast"
-        subtitle="Explore brand imagery, product screenshots, and project moments that show how polished execution turns attention into action."
-        ctaLabel="Get Started"
-        ctaHref="/contact"
-        secondaryLabel="View Services"
-        secondaryHref="/services"
-      />
-
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Browse by category"
-          title="Find the style, format, or project type you need"
-          description="Use the gallery to compare visual directions, review examples, and get a feel for the quality and consistency we bring to every project."
-        />
-        <div className="mt-10">
-          <Tabs tabs={categoryTabs} defaultTabId="all" />
-        </div>
-      </section>
-
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Featured collection"
-            title="A closer look at the details that matter"
-            description="From clean layouts to authentic photography, every asset is chosen to support clarity, credibility, and conversion."
+    <main className="bg-[var(--background)] text-[var(--foreground)]">
+      <section className="border-b border-black/5 bg-gradient-to-b from-[var(--secondary)]/10 to-transparent">
+        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Gallery" },
+            ]}
           />
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
-            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-              <div className="relative aspect-[16/10] bg-slate-100">
-                <img
-                  src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80"
-                  alt="Creative team reviewing a polished website layout"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
-                  <ZoomIn className="h-4 w-4 text-indigo-600" />
-                  Expanded view
-                </div>
-                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
-                  Designed for a strong first impression
-                </h3>
-                <p className="mt-3 text-base leading-7 text-slate-600">
-                  This collection highlights the kind of visuals that help teams explain value quickly:
-                  product clarity, real people, and project context that feels credible and current.
-                </p>
-              </div>
+        </div>
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center rounded-full border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-4 py-2 text-sm font-medium text-[var(--color-primary)]">
+              Visual showcase
+            </span>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+              A gallery built to make your work look its best.
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-black/70">
+              Present projects, campaigns, and brand moments in a clean visual
+              system that feels polished on desktop and effortless on mobile.
+              Every section is designed to help visitors browse, compare, and
+              take the next step.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild>
+                <Link href="/contact">Request a custom gallery</Link>
+              </Button>
+              <Button asChild variant="secondary">
+                <Link href="/portfolio">See portfolio highlights</Link>
+              </Button>
             </div>
+          </div>
 
-            <div className="space-y-4">
-              {[
-                {
-                  icon: Camera,
-                  title: "Authentic photography",
-                  description: "Natural lighting, real environments, and people-centered imagery that feels trustworthy.",
-                },
-                {
-                  icon: Layers3,
-                  title: "Modular layouts",
-                  description: "Flexible compositions that work across landing pages, case studies, and campaign assets.",
-                },
-                {
-                  icon: Sparkles,
-                  title: "Brand-aligned polish",
-                  description: "Consistent color, spacing, and hierarchy that keep the experience refined and easy to scan.",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-2xl bg-indigo-50 p-3 text-indigo-600">
-                      <item.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              { icon: Camera, title: "Photography", description: "Crisp, high-contrast visuals with room to breathe." },
+              { icon: Layers3, title: "Collections", description: "Group work by theme, campaign, or deliverable." },
+              { icon: Sparkles, title: "Presentation", description: "Elegant cards, subtle shadows, and clear captions." },
+              { icon: Wand2, title: "Conversion", description: "Built to inspire inquiries, bookings, and proposals." },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <item.icon className="h-6 w-6 text-[var(--color-primary)]" />
+                <h2 className="mt-4 text-lg font-semibold">{item.title}</h2>
+                <p className="mt-2 text-sm leading-6 text-black/65">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <SectionHeading
-          eyebrow="Need something similar?"
-          title="Tell us what you want to create next"
-          description="If a visual style here matches your goals, we can adapt it into a website, campaign, or product experience built around your brand."
-          action={
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-full bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
-            >
-              Request a Quote
-            </Link>
-          }
+          eyebrow="Browse by theme"
+          title="Filter the gallery by what matters most."
+          description="Use categories to quickly scan brand work, product imagery, culture shots, and launch assets."
         />
         <div className="mt-8">
-          <CTABanner
-            headline="Ready to turn inspiration into a polished, high-converting experience?"
-            description="Book a call and we’ll help you translate the right visual direction into a clear plan, timeline, and next step."
-            buttonLabel="Book a Call"
-            buttonHref="/contact"
+          <FilterTabs tabs={categories} activeValue="all" onChange={() => undefined} />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+        <SectionHeading
+          eyebrow="Gallery grid"
+          title="A flexible layout for visual storytelling."
+          description="Use this grid for campaign imagery, project snapshots, or a curated portfolio of your best work."
+        />
+        <div className="mt-10">
+          <ImageGrid
+            title="Selected visuals"
+            subtitle="A curated mix of brand, product, and lifestyle imagery that shows range without losing consistency."
+            items={galleryItems}
           />
         </div>
       </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="rounded-[2rem] border border-black/5 bg-white p-8 shadow-sm">
+            <SectionHeading
+              eyebrow="Featured collection"
+              title="One standout set, framed with context."
+              description="Highlight a signature project or a seasonal collection with a short narrative that explains the creative direction."
+            />
+            <div className="mt-8 space-y-4">
+              {featuredCollection.map((item) => (
+                <figure key={item.caption} className="overflow-hidden rounded-3xl border border-black/5 bg-[var(--background)]">
+                  <img src={item.src} alt={item.alt} className="h-64 w-full object-cover" />
+                  <figcaption className="p-5 text-sm leading-6 text-black/70">{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] bg-[var(--color-primary)] p-8 text-white shadow-lg">
+            <SectionHeading
+              eyebrow="Need a curated presentation?"
+              title="We can shape the gallery around your brand."
+              description="From launch pages to portfolio showcases, we design visual systems that feel premium and easy to navigate."
+              className="text-white"
+            >
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button asChild variant="secondary">
+                  <Link href="/contact">Start a project</Link>
+                </Button>
+                <Button asChild variant="ghost">
+                  <Link href="/services">Explore services</Link>
+                </Button>
+              </div>
+            </SectionHeading>
+          </div>
+        </div>
+      </section>
+
+      <CTABanner
+        headline="Ready to turn your visuals into a stronger first impression?"
+        description="Book a discovery call and we’ll help you organize, present, and elevate your best work."
+        buttonLabel="Talk to us"
+        buttonHref="/contact"
+      />
     </main>
   );
 }

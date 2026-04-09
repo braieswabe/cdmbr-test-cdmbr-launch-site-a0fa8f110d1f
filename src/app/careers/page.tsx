@@ -1,143 +1,142 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, BadgeCheck, BriefcaseBusiness, HeartHandshake, MapPin, Rocket, Users } from "lucide-react";
-import {
-  CTABanner,
-  Hero,
-  SectionHeading,
-  SocialProofBanner,
-  StatsStrip,
-} from "@/components";
 
 export const metadata: Metadata = {
-  title: "Careers | Professional Website",
-  description:
-    "Join a team that values clear communication, thoughtful design, and measurable outcomes for every client.",
+  title: "Build thoughtful digital experiences with a team that values clarity and craft.",
+  description: "Learn more about build thoughtful digital experiences with a team that values clarity and craft.",
 };
 
-const benefits = [
-  {
-    icon: Rocket,
-    title: "Meaningful ownership",
-    description:
-      "Take responsibility for work that matters, with clear goals, supportive feedback, and room to shape the outcome.",
-  },
-  {
-    icon: Users,
-    title: "Collaborative team",
-    description:
-      "Work with people who communicate well, share context early, and make it easy to do your best work.",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Growth with structure",
-    description:
-      "Learn through real projects, regular reviews, and a culture that values improvement over perfection.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Healthy pace",
-    description:
-      "We plan carefully, set realistic timelines, and respect the focus it takes to deliver quality work consistently.",
-  },
-];
+import Link from "next/link";
+import { ArrowRight, BriefcaseBusiness, HeartHandshake, Rocket, ShieldCheck, Sparkles } from "lucide-react";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Button } from "@/components/Button";
+import { CTABanner } from "@/components/CTABanner";
+import { SectionHeading } from "@/components/SectionHeading";
 
-const roles = [
+const openRoles = [
   {
-    title: "Senior Frontend Developer",
-    location: "Remote / North America",
+    title: "Senior Next.js Developer",
     summary:
-      "Build fast, accessible interfaces for client websites and product experiences using Next.js, React, and TypeScript.",
-    href: "/contact",
+      "Build fast, polished websites with a strong eye for performance, accessibility, and conversion-focused UX.",
+    location: "Remote / Hybrid",
+    type: "Full-time",
   },
   {
     title: "Content Strategist",
-    location: "Hybrid / New York",
     summary:
-      "Shape clear messaging, page structure, and conversion-focused copy that helps brands explain value simply.",
-    href: "/contact",
+      "Shape clear messaging systems, page structures, and editorial plans that help brands explain their value.",
+    location: "Remote",
+    type: "Full-time",
   },
   {
-    title: "Project Manager",
-    location: "Remote / Flexible",
+    title: "UI Designer",
     summary:
-      "Keep projects moving with organized timelines, proactive communication, and a strong eye for client outcomes.",
-    href: "/contact",
+      "Design modern interfaces that feel premium, readable, and easy to navigate across every screen size.",
+    location: "Remote / Hybrid",
+    type: "Contract",
   },
 ];
 
-const stats = [
-  { value: "4.9/5", label: "candidate experience rating" },
-  { value: "92%", label: "team retention over 2 years" },
-  { value: "1 business day", label: "average response time" },
+const benefits = [
+  {
+    title: "Meaningful work",
+    description:
+      "Work on websites and content systems that directly support growth for real businesses.",
+    icon: Sparkles,
+  },
+  {
+    title: "Flexible environment",
+    description:
+      "Remote-friendly collaboration with clear expectations, focused meetings, and room for deep work.",
+    icon: HeartHandshake,
+  },
+  {
+    title: "Growth and ownership",
+    description:
+      "Take on visible responsibility, learn from experienced teammates, and shape how we build.",
+    icon: Rocket,
+  },
+  {
+    title: "Strong standards",
+    description:
+      "We care about quality, accessibility, and thoughtful execution — from copy to code.",
+    icon: ShieldCheck,
+  },
 ];
 
-const process = [
-  {
-    step: "01",
-    title: "Apply online",
-    description:
-      "Send your resume, portfolio, or LinkedIn profile. We review every application carefully and respond with next steps.",
-  },
-  {
-    step: "02",
-    title: "Intro conversation",
-    description:
-      "Meet with our team to discuss your experience, interests, and the kind of work environment where you do your best work.",
-  },
-  {
-    step: "03",
-    title: "Role-specific interview",
-    description:
-      "We’ll explore practical skills, collaboration style, and how you approach quality, communication, and problem-solving.",
-  },
-  {
-    step: "04",
-    title: "Offer and onboarding",
-    description:
-      "If it’s a fit, we move quickly with a clear offer, transparent expectations, and a thoughtful onboarding plan.",
-  },
+const processSteps = [
+  "Intro call: We learn about your background, interests, and the kind of work you want to do next.",
+  "Role conversation: You meet the hiring manager to discuss the role, expectations, and team fit.",
+  "Practical review: We look at relevant work samples or a short exercise tied to the actual job.",
+  "Decision and offer: We move quickly, share feedback, and keep the process transparent throughout.",
 ];
 
 export default function CareersPage() {
   return (
-    <main className="bg-white text-slate-900">
-      <Hero
-        title="Build work you can be proud of, with people who value clarity"
-        subtitle="We’re looking for thoughtful, reliable people who care about outcomes, communicate well, and want to help clients grow."
-        ctaLabel="View Open Roles"
-        ctaHref="#open-roles"
-        secondaryLabel="Book a Call"
-        secondaryHref="/contact"
-      />
-
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <SocialProofBanner
-          title="A team built on trust, craft, and follow-through"
-          stats={stats}
+    <main className="bg-[var(--background)] text-[var(--foreground)]">
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Careers" },
+          ]}
         />
       </section>
 
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Why join us"
-            title="A place to do your best work"
-            description="We combine strong standards with a supportive environment so people can grow, contribute, and stay energized."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {benefits.map((benefit) => (
-              <article
-                key={benefit.title}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-              >
-                <div className="inline-flex rounded-2xl bg-indigo-50 p-3 text-indigo-600">
-                  <benefit.icon className="h-5 w-5" />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-slate-900">{benefit.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{benefit.description}</p>
-              </article>
-            ))}
+      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,var(--primary),var(--secondary))] px-6 py-16 text-white shadow-xl sm:px-10 lg:px-14">
+          <div className="max-w-3xl">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-medium">
+              <BriefcaseBusiness className="h-4 w-4" />
+              Careers
+            </div>
+            <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+              Build thoughtful digital experiences with a team that values clarity and craft.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/85">
+              We help businesses communicate better online, and we do it with a team that cares
+              about quality, ownership, and practical outcomes. If you like solving real problems
+              and shipping work that matters, you’ll fit right in.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild className="bg-white text-[var(--primary)] hover:bg-white/90">
+                <Link href="#open-roles">View open roles</Link>
+              </Button>
+              <Button asChild variant="secondary" className="border-white/20 bg-white/10 text-white hover:bg-white/15">
+                <Link href="/contact">Introduce yourself</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Culture"
+          title="A team built on trust, momentum, and high standards"
+          description="We keep things simple: clear goals, honest feedback, and enough structure to move quickly without losing quality."
+        />
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm lg:col-span-2">
+            <p className="text-base leading-8 text-black/75">
+              Our work sits at the intersection of strategy, design, and development. That means
+              we value people who can think clearly, communicate well, and collaborate across
+              disciplines. We believe great work comes from focused teams, not noisy processes.
+            </p>
+            <p className="mt-4 text-base leading-8 text-black/75">
+              You’ll have room to own your craft, contribute ideas, and see the impact of your work
+              quickly. We care about the details that users notice: fast pages, readable layouts,
+              useful content, and a smooth experience from first click to final conversion.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-black/5 bg-[var(--accent)]/10 p-6 shadow-sm">
+            <p className="text-sm font-medium text-[var(--primary)]">What we value</p>
+            <ul className="mt-4 space-y-3 text-sm leading-6 text-black/75">
+              <li>• Clear communication</li>
+              <li>• Ownership and follow-through</li>
+              <li>• Strong design judgment</li>
+              <li>• Practical problem solving</li>
+              <li>• Respect for users and teammates</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -145,108 +144,81 @@ export default function CareersPage() {
       <section id="open-roles" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Open roles"
-          title="Current opportunities"
-          description="We’re hiring people who care about quality, communication, and measurable results."
+          title="Join us where your skills can make a visible difference"
+          description="We’re looking for people who care about quality, move with intention, and want to help build better digital experiences."
         />
         <div className="mt-10 grid gap-6">
-          {roles.map((role) => (
+          {openRoles.map((role) => (
             <article
               key={role.title}
-              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+              className="flex flex-col justify-between gap-6 rounded-3xl border border-black/5 bg-white p-6 shadow-sm md:flex-row md:items-center"
             >
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <h3 className="text-xl font-semibold text-slate-900">{role.title}</h3>
-                  <div className="mt-2 flex items-center gap-2 text-sm text-slate-500">
-                    <MapPin className="h-4 w-4" />
-                    {role.location}
-                  </div>
-                  <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">{role.summary}</p>
+              <div>
+                <div className="flex flex-wrap gap-2 text-xs font-medium text-black/55">
+                  <span className="rounded-full bg-black/5 px-3 py-1">{role.location}</span>
+                  <span className="rounded-full bg-black/5 px-3 py-1">{role.type}</span>
                 </div>
-                <Link
-                  href={role.href}
-                  className="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
-                >
+                <h3 className="mt-4 text-2xl font-semibold">{role.title}</h3>
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-black/70">{role.summary}</p>
+              </div>
+              <Button asChild className="shrink-0">
+                <Link href="/contact">
                   Apply now
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-              </div>
+              </Button>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Culture"
-            title="Clear expectations, honest feedback, and real support"
-            description="We keep communication direct and respectful, celebrate strong work, and make space for people to learn as they go."
-          />
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-              <h3 className="text-2xl font-semibold tracking-tight text-slate-900">
-                What it feels like to work here
-              </h3>
-              <p className="mt-4 text-base leading-7 text-slate-600">
-                You’ll join a team that values thoughtful planning, clean execution, and a calm,
-                collaborative pace. We believe great work comes from clear priorities, mutual respect,
-                and a shared commitment to outcomes.
-              </p>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {[
-                  "Weekly planning and feedback",
-                  "Flexible work arrangements",
-                  "Transparent project goals",
-                  "Room to grow your skills",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-2xl bg-slate-50 p-4">
-                    <BriefcaseBusiness className="h-5 w-5 text-indigo-600" />
-                    <span className="text-sm font-medium text-slate-700">{item}</span>
-                  </div>
-                ))}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Benefits"
+          title="Support that helps you do your best work"
+          description="We invest in the basics that make a team sustainable: flexibility, growth, and a healthy pace."
+        />
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {benefits.map((benefit) => {
+            const Icon = benefit.icon;
+            return (
+              <div key={benefit.title} className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+                <div className="inline-flex rounded-2xl bg-[var(--primary)]/10 p-3 text-[var(--primary)]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 text-lg font-semibold">{benefit.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-black/70">{benefit.description}</p>
               </div>
-            </div>
-            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"
-                alt="Diverse team collaborating around a table in a bright office"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Hiring process"
-          title="A simple process with clear next steps"
-          description="We keep the experience efficient and respectful of your time, with communication at every stage."
+          title="A straightforward process with fast feedback"
+          description="We keep the experience respectful and efficient so you always know what to expect next."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {process.map((item) => (
-            <article
-              key={item.step}
-              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
-            >
-              <div className="text-sm font-semibold text-indigo-600">{item.step}</div>
-              <h3 className="mt-3 text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
-            </article>
+        <div className="mt-10 grid gap-4 lg:grid-cols-4">
+          {processSteps.map((step, index) => (
+            <div key={step} className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--secondary)]/15 font-semibold text-[var(--primary)]">
+                0{index + 1}
+              </div>
+              <p className="text-sm leading-7 text-black/75">{step}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <CTABanner
-            headline="Think you’d be a great fit?"
-            description="Send your application today and tell us what kind of work you want to do next."
-            buttonLabel="Get Started"
-            buttonHref="/contact"
-          />
-        </div>
+      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        <CTABanner
+          headline="Think you’d be a great fit?"
+          description="Send us your resume, portfolio, or a short note about the kind of work you want to do. We’d love to hear from you."
+          buttonLabel="Apply or say hello"
+          buttonHref="/contact"
+        />
       </section>
     </main>
   );

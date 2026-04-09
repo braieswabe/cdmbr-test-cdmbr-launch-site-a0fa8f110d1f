@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 
-type TestimonialCardProps = {
+type CardProps = {
   icon?: LucideIcon;
   number?: string;
   title: string;
@@ -9,13 +9,13 @@ type TestimonialCardProps = {
   className?: string;
 };
 
-export function TestimonialCard({
+export function Card({
   icon: Icon,
   number,
   title,
   description,
   className,
-}: TestimonialCardProps) {
+}: CardProps) {
   return (
     <article
       className={cn(
@@ -25,7 +25,7 @@ export function TestimonialCard({
     >
       <div className="mb-5 flex items-center gap-3">
         {Icon ? (
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 to-blue-600 text-white shadow-lg shadow-violet-600/20 transition-transform duration-300 group-hover:scale-105">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 text-white shadow-lg shadow-blue-600/20 transition-transform duration-300 group-hover:scale-105">
             <Icon className="h-6 w-6" aria-hidden="true" />
           </div>
         ) : number ? (
@@ -43,4 +43,4 @@ export function TestimonialCard({
   );
 }
 
-export default TestimonialCard;
+export default Card;

@@ -1,309 +1,258 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import {
-  ArrowRight,
-  BarChart3,
-  BriefcaseBusiness,
-  Building2,
-  Globe2,
-  LayoutGrid,
-  Sparkles,
-} from "lucide-react";
-import { CTABanner } from "@/components/CTABanner";
-import { Footer } from "@/components/Footer";
-import { NavBar } from "@/components/NavBar";
-import { ProjectCard } from "@/components/ProjectCard";
-import { SectionHeading } from "@/components/SectionHeading";
-import { Button } from "@/components/Button";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Portfolio | Selected work and measurable outcomes",
-  description:
-    "Explore selected projects that show our approach to design, content, and digital experiences built to perform.",
-};
+import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Button } from "@/components/Button";
+import { CTABanner } from "@/components/CTABanner";
+import { FilterTabs } from "@/components/FilterTabs";
+import { ProjectCaseStudy } from "@/components/ProjectCaseStudy";
+import { SectionHeading } from "@/components/SectionHeading";
+import { StatsRow } from "@/components/StatsRow";
+import { Building2, Globe, ShieldCheck, Sparkles } from "lucide-react";
+
+const portfolioFilters = [
+  { label: "All projects", value: "all" },
+  { label: "SaaS", value: "saas" },
+  { label: "Brand", value: "brand" },
+  { label: "Ecommerce", value: "ecommerce" },
+  { label: "Operations", value: "operations" },
+];
 
 const projects = [
   {
-    icon: <LayoutGrid className="h-5 w-5" />,
-    title: "B2B website redesign for a professional services firm",
+    title: "Northstar Analytics",
     description:
-      "Rebuilt the site around clearer service pages, stronger proof points, and a simpler path to inquiry. The result was more qualified leads and fewer drop-offs.",
-    href: "/portfolio/b2b-website-redesign",
-    outcome: "42% increase in qualified inquiries",
-    tag: "Website redesign",
+      "Rebuilt the homepage and product story for a B2B analytics platform, clarifying the value proposition and improving demo requests.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Analytics dashboard on a modern laptop screen",
+    metrics: ["+42% demo requests", "2.1x time on page", "3-week launch"],
+    outcomes: ["Sharper messaging", "Faster buyer understanding", "Mobile-first conversion flow"],
+    href: "/contact",
+    tags: ["SaaS", "Messaging", "Conversion"],
   },
   {
-    icon: <BarChart3 className="h-5 w-5" />,
-    title: "Conversion-focused landing pages for a SaaS launch",
+    title: "Harbor & Co.",
     description:
-      "Created a modular landing page system that helped the team launch faster, test messaging, and improve demo requests.",
-    href: "/portfolio/saas-landing-pages",
-    outcome: "31% lift in demo conversions",
-    tag: "SaaS",
+      "Designed a premium brand site for a boutique advisory firm with a refined visual system and stronger trust signals.",
+    image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Elegant office interior with natural light",
+    metrics: ["+31% qualified leads", "18% lower bounce rate", "New brand launch"],
+    outcomes: ["Clear service positioning", "Executive-level polish", "Improved lead quality"],
+    href: "/contact",
+    tags: ["Brand", "Professional Services", "Lead Gen"],
   },
   {
-    icon: <Globe2 className="h-5 w-5" />,
-    title: "Editorial content hub for a growing brand",
+    title: "Fieldstone Supply",
     description:
-      "Designed a content experience that made articles easier to browse, improved search visibility, and supported ongoing lead nurturing.",
-    href: "/portfolio/editorial-content-hub",
-    outcome: "2.8x organic traffic growth",
-    tag: "Content strategy",
+      "Created an ecommerce experience that made product discovery easier and reduced friction across key category pages.",
+    image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Curated product display in a retail environment",
+    metrics: ["+27% add-to-cart rate", "15% faster browsing", "Expanded catalog"],
+    outcomes: ["Better navigation", "Stronger merchandising", "Cleaner product hierarchy"],
+    href: "/contact",
+    tags: ["Ecommerce", "UX", "Merchandising"],
   },
   {
-    icon: <Building2 className="h-5 w-5" />,
-    title: "Local service business site with stronger trust signals",
+    title: "Summit Operations",
     description:
-      "Focused the homepage on credibility, service clarity, and fast contact options to help visitors take the next step sooner.",
-    href: "/portfolio/local-service-business-site",
-    outcome: "More calls from high-intent visitors",
-    tag: "Local business",
+      "Streamlined a service website for an operations consultancy with clearer proof points, service pages, and calls to action.",
+    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Team collaborating around a table with laptops",
+    metrics: ["+38% contact form submissions", "4 core pages rebuilt", "Faster content updates"],
+    outcomes: ["Simpler content management", "More direct CTAs", "Better service clarity"],
+    href: "/contact",
+    tags: ["Operations", "Services", "Content"],
   },
   {
-    icon: <BriefcaseBusiness className="h-5 w-5" />,
-    title: "Brand refresh for a consulting team",
+    title: "Lumen Studio",
     description:
-      "Updated the visual system and messaging to better reflect expertise, improve consistency, and support premium positioning.",
-    href: "/portfolio/consulting-brand-refresh",
-    outcome: "Clearer positioning across every page",
-    tag: "Brand system",
+      "Built a portfolio site for a creative studio with case studies, visual storytelling, and a stronger inquiry path.",
+    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Creative studio workspace with design materials",
+    metrics: ["+54% inquiry rate", "6 case studies", "New portfolio system"],
+    outcomes: ["More compelling proof", "Better project framing", "Higher-value leads"],
+    href: "/contact",
+    tags: ["Brand", "Portfolio", "Creative"],
   },
   {
-    icon: <Sparkles className="h-5 w-5" />,
-    title: "Campaign microsite for a product announcement",
+    title: "Crest Health",
     description:
-      "Built a focused launch experience with concise messaging, social proof, and a clear call to action for early interest.",
-    href: "/portfolio/product-launch-microsite",
-    outcome: "Fast launch with strong engagement",
-    tag: "Campaign",
+      "Delivered a patient-focused website that balanced trust, accessibility, and clear next steps for new visitors.",
+    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Healthcare professional in a bright clinical setting",
+    metrics: ["+22% appointment requests", "WCAG-minded structure", "Improved clarity"],
+    outcomes: ["Accessible navigation", "Trust-building content", "Simplified booking flow"],
+    href: "/contact",
+    tags: ["Healthcare", "Accessibility", "Trust"],
   },
 ];
 
-const caseStudies = [
-  {
-    title: "Professional services firm: more qualified leads from the same traffic",
-    summary:
-      "The original site had strong services but weak structure. We simplified the navigation, clarified the offer, and added proof points throughout the funnel.",
-    goals: ["Increase inquiry quality", "Reduce bounce rate", "Improve service clarity"],
-    approach:
-      "We reorganized the homepage around customer questions, rewrote service pages in plain language, and added a stronger contact path on every key page.",
-    outcome:
-      "Within the first quarter, the firm saw a 42% increase in qualified inquiries and a noticeable drop in low-fit submissions.",
-  },
-  {
-    title: "SaaS launch: a landing page system that supported faster testing",
-    summary:
-      "The team needed a page that could support launch, iterate quickly, and convert traffic from paid and organic campaigns.",
-    goals: ["Launch quickly", "Improve demo requests", "Support A/B testing"],
-    approach:
-      "We created a flexible layout with modular sections, concise benefit-led copy, and a clear hierarchy for product value and social proof.",
-    outcome:
-      "The new landing pages improved demo conversions by 31% and gave the team a repeatable structure for future campaigns.",
-  },
-  {
-    title: "Editorial hub: content that was easier to find and easier to trust",
-    summary:
-      "The brand had useful content, but it was buried in a structure that made discovery difficult for both readers and search engines.",
-    goals: ["Increase organic traffic", "Improve content discovery", "Support lead nurturing"],
-    approach:
-      "We introduced category pathways, stronger article summaries, and a cleaner reading experience that made the content feel more authoritative.",
-    outcome:
-      "Organic traffic grew 2.8x over six months, and the content hub became a reliable source of inbound leads.",
-  },
-];
-
-const industries = [
-  "Professional services",
-  "SaaS",
-  "Local business",
-  "Consulting",
-  "Healthcare",
-  "Nonprofit",
-];
+const clientLogos = ["Northstar", "Harbor & Co.", "Fieldstone", "Summit", "Lumen", "Crest"];
 
 export default function PortfolioPage() {
   return (
-    <div className="min-h-screen bg-white text-slate-900">
-      <NavBar />
-      <main>
-        <section className="bg-gradient-to-b from-slate-50 to-white">
-          <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm">
-                <Sparkles className="h-4 w-4 text-blue-600" />
-                Selected work built for clarity, credibility, and results
-              </div>
-              <div className="space-y-5">
-                <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                  Portfolio examples that show how strategy becomes measurable
-                  outcomes
-                </h1>
-                <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                  Browse selected projects across websites, content systems,
-                  campaigns, and brand refreshes. Each example highlights the
-                  problem, the approach, and the result so you can see how we
-                  work in practice.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild>
-                  <Link href="/contact">Request a Quote</Link>
-                </Button>
-                <Button asChild variant="secondary">
-                  <Link href="/services">Learn More</Link>
-                </Button>
-              </div>
-            </div>
-
-            <aside className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <SectionHeading
-                eyebrow="What clients value"
-                title="A process that keeps projects moving"
-                description="Clear communication, thoughtful planning, and work that is designed to support business goals."
-              />
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {[
-                  { value: "6–10 weeks", label: "typical website project timeline" },
-                  { value: "1 point of contact", label: "for simpler communication" },
-                  { value: "Measurable goals", label: "built into every project" },
-                  { value: "Fast handoff", label: "with organized deliverables" },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
-                  >
-                    <div className="text-xl font-bold text-slate-950">
-                      {item.value}
-                    </div>
-                    <div className="mt-1 text-sm leading-6 text-slate-600">
-                      {item.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Project grid"
-            title="A visual snapshot of recent work"
-            description="These projects show how we combine design, messaging, and structure to create experiences that feel polished and perform well."
+    <main className="bg-[var(--background)] text-[var(--foreground)]">
+      <section className="border-b border-black/5 bg-gradient-to-b from-[var(--secondary)]/10 to-transparent">
+        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Portfolio" },
+            ]}
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
+        </div>
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center rounded-full border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-4 py-2 text-sm font-medium text-[var(--color-primary)]">
+              Selected work
+            </span>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+              Proof of work that shows how we solve real business problems.
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-black/70">
+              This portfolio highlights the strategy, design, and execution behind
+              websites that improve clarity, build trust, and drive measurable
+              action. Each project includes the goal, the approach, and the
+              outcome so decision-makers can evaluate fit quickly.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild>
+                <Link href="/contact">Request a proposal</Link>
+              </Button>
+              <Button asChild variant="secondary">
+                <Link href="/services">Review services</Link>
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              { icon: Building2, title: "Business-first", description: "Work shaped around goals, not just visuals." },
+              { icon: Globe, title: "Web-ready", description: "Responsive, accessible, and built for real users." },
+              { icon: ShieldCheck, title: "Trust signals", description: "Proof points, testimonials, and clear outcomes." },
+              { icon: Sparkles, title: "Polished delivery", description: "Modern design with a conversion-oriented system." },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <item.icon className="h-6 w-6 text-[var(--color-primary)]" />
+                <h2 className="mt-4 text-lg font-semibold">{item.title}</h2>
+                <p className="mt-2 text-sm leading-6 text-black/65">{item.description}</p>
+              </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="border-y border-slate-200 bg-slate-50">
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <SectionHeading
-              eyebrow="Case studies"
-              title="Detailed examples with goals, approach, and outcomes"
-              description="Use these summaries to understand how we think through scope, structure, and execution on real client work."
-            />
-            <div className="mt-10 grid gap-6">
-              {caseStudies.map((study) => (
-                <article
-                  key={study.title}
-                  className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
-                >
-                  <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-                    <div>
-                      <h3 className="text-2xl font-semibold tracking-tight text-slate-950">
-                        {study.title}
-                      </h3>
-                      <p className="mt-3 text-base leading-7 text-slate-600">
-                        {study.summary}
-                      </p>
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {study.goals.map((goal) => (
-                          <span
-                            key={goal}
-                            className="rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700"
-                          >
-                            {goal}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="space-y-4 rounded-2xl bg-slate-50 p-6">
-                      <div>
-                        <h4 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                          Approach
-                        </h4>
-                        <p className="mt-2 text-sm leading-6 text-slate-700">
-                          {study.approach}
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                          Outcome
-                        </h4>
-                        <p className="mt-2 text-sm leading-6 text-slate-700">
-                          {study.outcome}
-                        </p>
-                      </div>
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <SectionHeading
+          eyebrow="Portfolio overview"
+          title="A clear view of the projects we’re proud to stand behind."
+          description="Browse selected work across SaaS, brand, ecommerce, and service businesses."
+        />
+        <div className="mt-8">
+          <FilterTabs tabs={portfolioFilters} activeValue="all" onChange={() => undefined} />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          {projects.map((project) => (
+            <div key={project.title} className="group">
+              <div className="overflow-hidden rounded-[2rem] border border-black/5 bg-white shadow-sm transition duration-300 group-hover:-translate-y-1 group-hover:shadow-xl">
+                <div className="relative">
+                  <img src={project.image} alt={project.imageAlt} className="h-72 w-full object-cover transition duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 opacity-0 transition duration-300 group-hover:opacity-100">
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white backdrop-blur">
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8">
-              <SectionHeading
-                eyebrow="Industry highlights"
-                title="Experience across a range of business models"
-                description="We adapt the structure, tone, and proof points to fit the audience and the buying journey."
-              />
-              <div className="mt-6 flex flex-wrap gap-2">
-                {industries.map((industry) => (
-                  <span
-                    key={industry}
-                    className="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700"
-                  >
-                    {industry}
-                  </span>
-                ))}
+                </div>
+                <div className="space-y-4 p-6">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="rounded-full bg-[var(--secondary)]/10 px-3 py-1 text-xs font-medium text-[var(--color-primary)]">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h2 className="text-2xl font-semibold tracking-tight">{project.title}</h2>
+                  <p className="text-sm leading-6 text-black/70">{project.description}</p>
+                  <div className="grid gap-2 sm:grid-cols-3">
+                    {project.metrics.map((metric) => (
+                      <div key={metric} className="rounded-2xl bg-[var(--background)] px-3 py-3 text-sm font-medium text-black/75">
+                        {metric}
+                      </div>
+                    ))}
+                  </div>
+                  <ul className="space-y-2 text-sm leading-6 text-black/70">
+                    {project.outcomes.map((outcome) => (
+                      <li key={outcome} className="flex gap-2">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
+                        <span>{outcome}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button asChild variant="secondary" className="w-full">
+                    <Link href={project.href}>Discuss a similar project</Link>
+                  </Button>
+                </div>
               </div>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div className="rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-8 text-white shadow-lg">
-              <h2 className="text-3xl font-semibold tracking-tight">
-                Want to see work similar to your project?
-              </h2>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-blue-50">
-                We can share relevant examples, talk through scope, and help you
-                understand the best path forward for your goals, timeline, and
-                budget.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild className="bg-white text-slate-950 hover:bg-slate-100">
-                  <Link href="/contact">Book a Call</Link>
-                </Button>
-                <Button asChild variant="secondary">
-                  <Link href="/services">Explore services</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <CTABanner
-          headline="Ready to discuss a similar project?"
-          description="Tell us what you need, and we’ll recommend a practical approach with clear next steps."
-          buttonLabel="Get Started"
-          buttonHref="/contact"
+      <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+        <SectionHeading
+          eyebrow="Results highlights"
+          title="The kind of impact clients come to us for."
+          description="These outcomes reflect the clarity, trust, and conversion improvements that strong web strategy can create."
         />
-      </main>
-      <Footer />
-    </div>
+        <div className="mt-10">
+          <StatsRow
+            items={[
+              { label: "Average lift in qualified inquiries", value: "31%" },
+              { label: "Projects launched in under 6 weeks", value: "12" },
+              { label: "Client retention across retainers", value: "94%" },
+              { label: "Industries served", value: "8" },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+        <div className="rounded-[2rem] border border-black/5 bg-white p-8 shadow-sm">
+          <SectionHeading
+            eyebrow="Client logos"
+            title="Trusted by teams that need a site they can rely on."
+            description="A few of the brands and teams that have partnered with us for launches, redesigns, and ongoing improvements."
+          />
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {clientLogos.map((logo) => (
+              <div
+                key={logo}
+                className="flex items-center justify-center rounded-2xl border border-black/5 bg-[var(--background)] px-4 py-6 text-sm font-semibold text-black/60"
+              >
+                {logo}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CTABanner
+        headline="Have a project in mind?"
+        description="If you need a portfolio site, a redesign, or a high-converting launch page, we can help you shape the right approach."
+        buttonLabel="Start the conversation"
+        buttonHref="/contact"
+      />
+    </main>
   );
 }

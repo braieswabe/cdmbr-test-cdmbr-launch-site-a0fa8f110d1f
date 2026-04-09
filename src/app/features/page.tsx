@@ -1,233 +1,196 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Features",
-  description: "Learn more about features",
+  title: "Everything you need to present your offer clearly and convert with confidence.",
+  description: "Learn more about everything you need to present your offer clearly and convert with confidence.",
 };
 
 import Link from "next/link";
-import { ArrowRight, BarChart3, Blocks, Cloud, Gauge, Layers3, ShieldCheck, Sparkles, Workflow } from "lucide-react";
+import { ArrowRight, CheckCircle2, LayoutGrid, PlugZap, Sparkles, Wand2 } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/Button";
-import { FeatureCard } from "@/components/FeatureCard";
-import { Hero } from "@/components/Hero";
-import { ProjectCard } from "@/components/ProjectCard";
-import { SectionHeading } from "@/components/SectionHeading";
-import { SocialProofBanner } from "@/components/SocialProofBanner";
-import { StatsStrip } from "@/components/StatsStrip";
 import { CTABanner } from "@/components/CTABanner";
+import { FeatureCard } from "@/components/FeatureCard";
+import { SectionHeading } from "@/components/SectionHeading";
 
 export default function FeaturesPage() {
-  const featureCards = [
+  const features = [
     {
-      icon: Gauge,
-      title: "Fast, reliable performance",
+      icon: LayoutGrid,
+      title: "Flexible page sections",
       description:
-        "Pages load quickly, interactions feel smooth, and the experience stays responsive across devices and connection speeds.",
+        "Build landing pages, service pages, and campaign pages with modular sections that stay consistent and easy to scan.",
     },
-    {
-      icon: Workflow,
-      title: "Streamlined workflows",
-      description:
-        "Reduce manual steps with clear processes, smart automation, and interfaces that help teams move faster with fewer mistakes.",
-    },
-    {
-      icon: ShieldCheck,
-      title: "Built-in trust and security",
-      description:
-        "Protect customer data and support confident decision-making with secure patterns, clear permissions, and dependable infrastructure.",
-    },
-    {
-      icon: BarChart3,
-      title: "Actionable reporting",
-      description:
-        "Track what matters with dashboards and summaries that turn activity into useful insight for leaders and operators.",
-    },
-    {
-      icon: Layers3,
-      title: "Flexible content structure",
-      description:
-        "Organize pages, campaigns, and product details in a way that scales as your team grows and your needs change.",
-    },
-    {
-      icon: Cloud,
-      title: "Connected ecosystem",
-      description:
-        "Integrate the tools your team already uses so data flows cleanly between systems without extra admin work.",
-    },
-  ];
-
-  const integrations = [
-    "CRM platforms",
-    "Email marketing tools",
-    "Analytics suites",
-    "Payment providers",
-    "Project management tools",
-    "Cloud storage",
-    "Customer support systems",
-    "Automation platforms",
-  ];
-
-  const stats = [
-    { value: "42%", label: "faster launch cycles" },
-    { value: "3x", label: "more efficient handoffs" },
-    { value: "99.9%", label: "uptime-ready architecture" },
-    { value: "24/7", label: "visibility into key metrics" },
-  ];
-
-  const projects = [
     {
       icon: Sparkles,
-      title: "Unified customer portal",
+      title: "Conversion-focused design",
       description:
-        "A streamlined experience that reduced support requests, improved self-service, and gave customers faster access to the information they needed.",
-      href: "/portfolio",
-      outcome: "Cut support volume by 31% in the first quarter",
-      tag: "Workflow upgrade",
+        "Guide visitors toward the next step with clear hierarchy, strong calls to action, and trust-building proof points.",
     },
     {
-      icon: Blocks,
-      title: "Scalable content system",
+      icon: Wand2,
+      title: "Polished visual system",
       description:
-        "A modular setup for marketing and product teams to publish faster without sacrificing consistency or quality.",
-      href: "/portfolio",
-      outcome: "Reduced page production time from days to hours",
-      tag: "Content operations",
+        "Use refined spacing, gradients, and card-based layouts to create a premium look without sacrificing clarity.",
+    },
+    {
+      icon: PlugZap,
+      title: "Simple integrations",
+      description:
+        "Connect forms, analytics, booking tools, and content workflows without changing the overall experience.",
     },
   ];
 
   return (
-    <main className="bg-white text-slate-900">
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Features" },
-        ]}
-        className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8"
-      />
-
-      <Hero
-        title="Features that help teams move faster and serve customers better"
-        subtitle="See how a thoughtful product experience improves performance, simplifies workflows, and creates measurable business value."
-        ctaLabel="Book a Call"
-        ctaHref="#feature-grid"
-        secondaryLabel="Learn More"
-        secondaryHref="#benefits"
-      />
-
-      <SocialProofBanner
-        title="Designed for teams that need clarity, speed, and dependable results"
-        stats={[
-          { value: "120+", label: "projects delivered" },
-          { value: "4.9/5", label: "average client satisfaction" },
-          { value: "30%", label: "average efficiency gain" },
-        ]}
-        className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8"
-      />
-
-      <section id="feature-grid" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Core capabilities"
-          title="Everything you need to launch with confidence"
-          description="Each feature is designed to remove friction, improve consistency, and support better outcomes for your team and your customers."
-          className="mb-10"
-        />
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {featureCards.map((feature) => (
-            <FeatureCard key={feature.title} icon={feature.icon} title={feature.title} description={feature.description} />
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-slate-200 bg-slate-50">
+    <main className="bg-[var(--background)] text-[var(--foreground)]">
+      <section className="border-b border-black/5 bg-gradient-to-b from-[var(--secondary)]/10 to-transparent">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Feature deep dive"
-            title="Standout capabilities, explained in plain language"
-            description="These are the features that make the biggest difference in day-to-day work and long-term growth."
-            className="mb-10"
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Features" },
+            ]}
           />
-          <div className="grid gap-6 lg:grid-cols-2">
-            {projects.map((project) => (
-              <ProjectCard
-                key={project.title}
-                icon={project.icon}
-                title={project.title}
-                description={project.description}
-                href={project.href}
-                outcome={project.outcome}
-                tag={project.tag}
-              />
-            ))}
+
+          <div className="mt-8 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <span className="inline-flex rounded-full bg-[var(--primary)]/10 px-4 py-1 text-sm font-medium text-[var(--primary)]">
+                Feature overview
+              </span>
+              <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
+                Everything you need to present your offer clearly and convert with confidence.
+              </h1>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-black/70">
+                This feature set is designed to help visitors understand what you do, why it matters, and how to take the next step.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Button asChild>
+                  <Link href="/contact">
+                    Book a consultation
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button variant="secondary" asChild>
+                  <Link href="/pricing">See pricing</Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-black/5 bg-white p-8 shadow-sm">
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[
+                  "Fast to scan",
+                  "Easy to update",
+                  "Built for trust",
+                  "Ready to launch",
+                ].map((item) => (
+                  <div key={item} className="rounded-2xl bg-black/[0.03] p-4">
+                    <CheckCircle2 className="h-5 w-5 text-[var(--primary)]" />
+                    <p className="mt-3 font-medium">{item}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-sm leading-7 text-black/60">
+                The result is a site that feels professional, stays easy to manage, and supports real business goals.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Key capabilities"
+          title="Built to explain value quickly."
+          description="Each feature is designed to reduce friction and help visitors understand why your offer is the right fit."
+        />
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {features.map((feature) => (
+            <FeatureCard key={feature.title} {...feature} />
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-black/5 bg-black/[0.02]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div className="rounded-[2rem] border border-black/5 bg-white p-8 shadow-sm">
             <SectionHeading
-              eyebrow="Integrations"
-              title="Connect the tools your team already trusts"
-              description="Keep your stack working together with integrations that reduce duplicate work and improve data consistency."
-              className="mb-6"
+              eyebrow="Deep dive"
+              title="Pages that answer the real questions."
+              description="Use dedicated sections to show examples, explain process, and remove uncertainty before the first call."
             />
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {integrations.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm"
-                >
+            <div className="mt-8 space-y-4 text-sm leading-7 text-black/70">
+              <p>
+                <strong className="text-black">Service detail sections</strong> help visitors understand what’s included and what outcomes to expect.
+              </p>
+              <p>
+                <strong className="text-black">Proof sections</strong> highlight testimonials, metrics, and case studies so your claims feel credible.
+              </p>
+              <p>
+                <strong className="text-black">Decision support blocks</strong> answer pricing, timelines, and process questions before they become objections.
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-black/5 bg-white p-8 shadow-sm">
+            <SectionHeading
+              eyebrow="Use cases"
+              title="Works across the pages that matter most."
+              description="From home pages to portfolio pages, the same system keeps your site cohesive and conversion-ready."
+            />
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {[
+                "Home page hero",
+                "Service comparison",
+                "Pricing transparency",
+                "Testimonials and proof",
+                "FAQ and support",
+                "Portfolio and case studies",
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-black/5 bg-black/[0.02] px-4 py-3 text-sm font-medium">
                   {item}
                 </div>
               ))}
             </div>
           </div>
-
-          <div className="rounded-3xl bg-slate-900 p-6 text-white shadow-xl sm:p-8">
-            <SectionHeading
-              eyebrow="Business value"
-              title="Features that translate into measurable outcomes"
-              description="The right capabilities do more than look good — they save time, improve conversion, and make growth easier to sustain."
-              align="left"
-              className="mb-6"
-            />
-            <StatsStrip
-              stats={stats}
-              title="Trusted results that move the business forward"
-              description="A concise snapshot of the outcomes clients care about most: speed, quality, and measurable growth."
-            />
-          </div>
         </div>
       </section>
 
-      <section id="benefits" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <CTABanner
-          headline="Ready to see these features in action?"
-          description="Book a demo to explore the workflow, integrations, and reporting that can support your next stage of growth."
-          buttonLabel="Book a Call"
-          buttonHref="/contact"
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Integrations"
+          title="Fits into the tools you already use."
+          description="Keep your workflow simple with support for common publishing, contact, and scheduling patterns."
         />
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h2 className="text-2xl font-semibold text-slate-900">Want a closer look at the platform?</h2>
-              <p className="mt-2 text-slate-600">
-                We can walk you through the features that matter most to your team and show how they support real
-                outcomes.
-              </p>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "Forms and email",
+              description: "Capture leads and route inquiries to the right inbox without extra complexity.",
+            },
+            {
+              title: "Scheduling tools",
+              description: "Make it easy for qualified visitors to book a call or request a consultation.",
+            },
+            {
+              title: "Analytics and tracking",
+              description: "Measure what matters so you can improve pages based on real visitor behavior.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+              <h2 className="text-lg font-semibold">{item.title}</h2>
+              <p className="mt-2 text-sm leading-7 text-black/70">{item.description}</p>
             </div>
-            <Button asChild>
-              <Link href="/contact">
-                Get Started <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
+          ))}
         </div>
       </section>
+
+      <CTABanner
+        headline="See the features in action."
+        description="Talk with us about the pages, sections, and workflows that will help your site perform better."
+        buttonLabel="Start a project"
+        buttonHref="/contact"
+      />
     </main>
   );
 }

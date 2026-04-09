@@ -1,21 +1,42 @@
-interface FeatureCardProps {
+import type { ReactNode } from "react";
+import { clsx } from "clsx";
+
+type FeatureCardProps = {
+  icon?: ReactNode;
+  number?: string;
   title: string;
   description: string;
-  icon?: React.ReactNode;
-  index?: number;
-}
+  className?: string;
+};
 
-export function FeatureCard({ title, description, icon, index = 0 }: FeatureCardProps) {
+export function FeatureCard({
+  icon,
+  number,
+  title,
+  description,
+  className,
+}: FeatureCardProps): JSX.Element {
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-      <div className="w-14 h-14 bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-secondary)]/10 rounded-xl flex items-center justify-center mb-5">
-        {icon || (
-          <span className="text-[var(--color-primary)] text-2xl font-bold">{index + 1}</span>
-        )}
+    <article
+      className={clsx(
+        "group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-slate-200/70",
+        className,
+      )}
+    >
+      <div className="mb-5 flex items-center gap-3">
+        {icon ? (
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+            {icon}
+          </div>
+        ) : number ? (
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10 text-secondary">
+            <span className="text-sm font-semibold">{number}</span>
+          </div>
+        ) : null}
       </div>
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
-      <p className="text-gray-600 leading-relaxed">{description}</p>
-    </div>
+      <h3 className="text-xl font-semibold tracking-tight text-foreground">{title}</h3>
+      <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base">{description}</p>
+    </article>
   );
 }
 

@@ -1,11 +1,8 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export type BreadcrumbItem = {
   label: string;
   href?: string;
-  current?: boolean;
 };
 
 export type BreadcrumbsProps = {
@@ -13,37 +10,41 @@ export type BreadcrumbsProps = {
   className?: string;
 };
 
-export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
+  if (items.length === 0) return null;
+
   return (
-    <nav aria-label="Breadcrumb" className={cn("w-full", className)}>
-      <ol className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
-          const isCurrent = item.current || isLast || !item.href;
+    <nav
+      aria-label="Breadcrumb"
+      className={["flex flex-wrap items-center gap-2 text-sm text-slate-500", className].join(" ")}
+    >
+      {items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        const content = (
+          <span
+            className={
+              isLast
+                ? "font-medium text-slate-900"
+                : "transition-colors hover:text-primary"
+            }
+          >
+            {item.label}
+          </span>
+        );
 
-          return (
-            <li key={`${item.label}-${index}`} className="flex items-center gap-2">
-              {index > 0 ? <ChevronRight className="h-4 w-4 text-slate-400" aria-hidden="true" /> : null}
-
-              {isCurrent ? (
-                <span
-                  aria-current="page"
-                  className="font-medium text-slate-900"
-                >
-                  {item.label}
-                </span>
-              ) : (
-                <Link
-                  href={item.href ?? "#"}
-                  className="rounded-md transition-colors hover:text-blue-600 hover:underline underline-offset-4"
-                >
-                  {item.label}
-                </Link>
-              )}
-            </li>
-          );
-        })}
-      </ol>
+        return (
+          <div key={`${item.label}-${index}`} className="flex items-center gap-2">
+            {index > 0 ? <span aria-hidden="true" className="text-slate-300">/</span> : null}
+            {item.href && !isLast ? (
+              <Link href={item.href} className="rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30">
+                {content}
+              </Link>
+            ) : (
+              content
+            )}
+          </div>
+        );
+      })}
     </nav>
   );
 }

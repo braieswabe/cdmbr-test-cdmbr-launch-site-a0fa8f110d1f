@@ -1,63 +1,128 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/cn";
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Contact", href: "/contact" },
+  { label: "Features", href: "/features" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Blog", href: "/blog" },
+  { label: "Careers", href: "/careers" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Portfolio", href: "/portfolio" }
+];
 
 export function NavBar() {
-  const [open, setOpen] = useState(false);
-  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-lg" />
-            <span className="text-xl font-bold bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] bg-clip-text text-transparent">
-              TEST CDMBR Launch Site
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <Link
+          href="/"
+          className="group inline-flex items-center gap-3 rounded-full px-2 py-1 transition hover:bg-slate-100"
+          onClick={() => setIsOpen(false)}
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-violet-600 text-sm font-bold text-white shadow-lg shadow-blue-600/20">
+            P
+          </span>
+          <span className="flex flex-col leading-tight">
+            <span className="text-sm font-semibold tracking-tight text-slate-900">
+              Professional website
             </span>
-          </Link>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm font-medium text-gray-700 hover:text-[var(--color-primary)] transition-colors duration-200">Home</Link>
-            <Link href="/services" className="text-sm font-medium text-gray-700 hover:text-[var(--color-primary)] transition-colors duration-200">Services</Link>
-            <Link href="/case-studies" className="text-sm font-medium text-gray-700 hover:text-[var(--color-primary)] transition-colors duration-200">Case Studies</Link>
-            <Link href="/contact" className="text-sm font-medium text-gray-700 hover:text-[var(--color-primary)] transition-colors duration-200">Contact</Link>
-          </div>
-          <div className="hidden md:flex items-center gap-4">
-            <Link href="/contact" className="bg-[var(--color-primary)] text-white px-5 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity shadow-sm">
-              Get Started
+            <span className="text-xs text-slate-500">Strategy. Design. Growth.</span>
+          </span>
+        </Link>
+
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-full px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+            >
+              {link.label}
             </Link>
-          </div>
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-3 lg:flex">
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:-translate-y-0.5 hover:bg-blue-700"
           >
-            {open ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+            Get in touch
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
-        {open && (
-          <div className="md:hidden pb-4 pt-2 space-y-1 border-t border-gray-100">
-              <Link href="/" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[var(--color-primary)] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setOpen(false)}>Home</Link>
-              <Link href="/services" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[var(--color-primary)] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setOpen(false)}>Services</Link>
-              <Link href="/case-studies" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[var(--color-primary)] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setOpen(false)}>Case Studies</Link>
-              <Link href="/contact" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-[var(--color-primary)] hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setOpen(false)}>Contact</Link>
-            <Link href="/contact" className="block mx-3 mt-3 bg-[var(--color-primary)] text-white text-center px-4 py-2.5 rounded-lg font-semibold text-sm" onClick={() => setOpen(false)}>
-              Get Started
+
+        <button
+          type="button"
+          className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white p-2 text-slate-700 shadow-sm transition hover:bg-slate-50 lg:hidden"
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setIsOpen((value) => !value)}
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      <div
+        id="mobile-menu"
+        className={cn(
+          "overflow-hidden border-t border-slate-200/70 bg-white/95 backdrop-blur-xl transition-all duration-300 lg:hidden",
+          isOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <nav className="grid gap-2" aria-label="Mobile primary">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="rounded-2xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="mt-4 rounded-3xl bg-slate-50 p-4">
+            <p className="text-sm font-medium text-slate-900">Ready to move faster?</p>
+            <p className="mt-1 text-sm text-slate-600">
+              Book a discovery call and get a clear plan for your next launch.
+            </p>
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+            >
+              Start a project
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-        )}
+        </div>
       </div>
-    </nav>
+    </header>
   );
 }
 

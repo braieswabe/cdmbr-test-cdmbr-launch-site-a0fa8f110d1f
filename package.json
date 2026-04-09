@@ -1,6 +1,6 @@
 {
-  "name": "cdmbr-test-cdmbr-launch-site-a0fa8f110d1f",
-  "version": "0.1.0",
+  "name": "professional-website",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,28 +12,28 @@
     "next": "^15.5.14",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "zod": "^3.24.4",
+    "tailwindcss": "^4.2.2",
+    "@tailwindcss/postcss": "^4.2.2",
     "clsx": "^2.1.1",
+    "tailwind-merge": "^3.0.2",
+    "class-variance-authority": "^0.7.1",
+    "lucide-react": "^0.511.0",
+    "framer-motion": "^12.9.4",
+    "zod": "^3.24.4",
     "sharp": "^0.34.2",
     "slugify": "^1.6.6",
     "date-fns": "^4.1.0",
-    "tailwindcss": "^4.2.2",
-    "lucide-react": "^0.511.0",
-    "framer-motion": "^12.9.4",
-    "tailwind-merge": "^3.0.2",
     "react-hook-form": "^7.56.3",
-    "@hookform/resolvers": "^5.0.1",
-    "@tailwindcss/postcss": "^4.2.2",
-    "class-variance-authority": "^0.7.1"
+    "@hookform/resolvers": "^5.0.1"
   },
   "devDependencies": {
-    "@types/node": "^22",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "typescript": "^5.8.3",
-    "tailwindcss": "^4.2.2",
-    "@tailwindcss/postcss": "^4.2.2",
+    "@types/react": "^19",
+    "@types/node": "^22",
     "eslint": "^9.39.1",
-    "eslint-config-next": "^15"
+    "eslint-config-next": "^15",
+    "tailwindcss": "^4.2.2",
+    "@types/react-dom": "^19",
+    "@tailwindcss/postcss": "^4.2.2"
   }
 }

@@ -1,245 +1,209 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, Quote, Star } from "lucide-react";
+import { CTABanner } from "@/components/CTABanner";
+import { SectionHeading } from "@/components/SectionHeading";
+import { TestimonialCard } from "@/components/TestimonialCard";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Testimonials",
-  description: "Learn more about testimonials",
+  description:
+    "Read customer testimonials, success stories, and ratings that show how our work helps teams launch with confidence and convert more visitors.",
 };
-
-import Link from "next/link";
-import { Star, Quote, PlayCircle, ArrowRight, CheckCircle2 } from "lucide-react";
-import { Hero } from "@/components/Hero";
-import { CTABanner } from "@/components/CTABanner";
-import { TestimonialCard } from "@/components/TestimonialCard";
-import { SectionHeading } from "@/components/SectionHeading";
-import { VideoEmbed } from "@/components/VideoEmbed";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const testimonials = [
   {
-    icon: <Quote className="h-5 w-5" />,
-    title: "Clear communication from day one",
+    icon: Quote,
+    number: "01",
+    title: "“We launched in two weeks and immediately looked more credible.”",
     description:
-      "The team translated a complex launch into a simple plan, kept every milestone visible, and delivered exactly when they said they would. Our internal team finally felt aligned.",
-    author: "Maya Chen",
-    role: "Marketing Director, Northstar Health",
+      "The new site gave our team a polished presence that matched the quality of our service. In the first month, demo requests increased by 38% and prospects started referencing the site in sales calls.",
+    className: "bg-white",
   },
   {
-    icon: <Quote className="h-5 w-5" />,
-    title: "A measurable lift in qualified leads",
+    icon: Quote,
+    number: "02",
+    title: "“Clear messaging made it easier for customers to say yes.”",
     description:
-      "Within eight weeks of launch, our conversion rate improved by 31% and sales had a cleaner handoff process. The work was thoughtful, fast, and grounded in business outcomes.",
-    author: "Jordan Patel",
-    role: "Founder, Brightline Advisory",
+      "Before the redesign, visitors were confused about what we did. After the update, our bounce rate dropped and our lead form conversion nearly doubled because the value proposition finally clicked.",
+    className: "bg-white",
   },
   {
-    icon: <Quote className="h-5 w-5" />,
-    title: "Reliable delivery without the usual back-and-forth",
+    icon: Quote,
+    number: "03",
+    title: "“The process was organized, fast, and surprisingly collaborative.”",
     description:
-      "We needed a partner who could move quickly without sacrificing quality. They brought structure, strong design judgment, and a calm process that made the whole project easier.",
-    author: "Elena Torres",
-    role: "Operations Lead, Studio Arc",
+      "We had a tight deadline and a lot of stakeholders. The team kept everything moving, translated feedback into action quickly, and delivered a site that felt premium without becoming overcomplicated.",
+    className: "bg-white",
   },
   {
-    icon: <Quote className="h-5 w-5" />,
-    title: "Our team finally had a site we could be proud of",
+    icon: Quote,
+    number: "04",
+    title: "“Our portfolio now does the selling for us.”",
     description:
-      "The new website looks polished, loads quickly, and explains our services in plain language. Prospects now understand our value in the first few seconds.",
-    author: "Chris Morgan",
-    role: "CEO, Meridian Supply Co.",
+      "The case study layout and visual hierarchy helped us present our work more clearly. Prospects now spend more time on the site and come into calls with a much better understanding of our value.",
+    className: "bg-white",
   },
   {
-    icon: <Quote className="h-5 w-5" />,
-    title: "A partner that thinks beyond the brief",
+    icon: Quote,
+    number: "05",
+    title: "“We finally have a website our team is proud to share.”",
     description:
-      "They didn’t just execute the request — they improved the messaging, simplified the user journey, and helped us focus on the pages that actually drive inquiries.",
-    author: "Priya Desai",
-    role: "Growth Lead, Harbor & Co.",
+      "The brand feel is modern, the copy is concise, and the navigation is intuitive. It has become a reliable asset for recruiting, sales, and partner conversations alike.",
+    className: "bg-white",
   },
   {
-    icon: <Quote className="h-5 w-5" />,
-    title: "Fast turnaround, strong results, zero surprises",
+    icon: Quote,
+    number: "06",
+    title: "“Support was thoughtful from kickoff to launch.”",
     description:
-      "We launched on schedule, reduced support questions, and saw a noticeable increase in demo requests. The process was transparent from kickoff to handoff.",
-    author: "Daniel Brooks",
-    role: "VP of Sales, ClearPath Software",
-  },
-];
-
-const caseStudies = [
-  {
-    icon: <CheckCircle2 className="h-5 w-5" />,
-    title: "B2B services firm: 31% more qualified inquiries",
-    description:
-      "Challenge: the old site was hard to navigate and failed to explain the offer clearly. Solution: a streamlined information architecture, stronger proof points, and a conversion-focused homepage. Result: more qualified inquiries and fewer unproductive sales calls.",
-    href: "/services",
-    outcome: "31% increase in qualified inquiries",
-    tag: "Case study",
-  },
-  {
-    icon: <CheckCircle2 className="h-5 w-5" />,
-    title: "Professional services brand: faster decision-making",
-    description:
-      "Challenge: prospects needed too much explanation before reaching out. Solution: concise service pages, clearer pricing guidance, and trust-building testimonials. Result: shorter sales cycles and better-fit leads.",
-    href: "/portfolio",
-    outcome: "Shorter sales cycles and better-fit leads",
-    tag: "Case study",
+      "Every detail felt intentional, from mobile spacing to CTA placement. The result is a site that looks sharp, performs well, and gives us a stronger foundation for growth.",
+    className: "bg-white",
   },
 ];
 
-const stats = [
-  { value: "4.9/5", label: "Average client rating" },
-  { value: "96%", label: "Would recommend us" },
-  { value: "31%", label: "Average lift in inquiries" },
-  { value: "2–6 weeks", label: "Typical launch timeline" },
+const ratingItems = [
+  { label: "Average customer rating", value: "4.9/5" },
+  { label: "Verified reviews", value: "120+" },
+  { label: "Projects delivered on time", value: "98%" },
+  { label: "Clients who would recommend us", value: "100%" },
 ];
 
-const videoItems = [
+const outcomes = [
   {
-    src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    title: "Client interview: why the process worked",
+    title: "More qualified leads",
     description:
-      "A short conversation about communication, speed, and the business impact of a clearer website.",
+      "Customers consistently report better lead quality after clarifying the offer, improving trust signals, and simplifying the path to contact.",
   },
   {
-    src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    title: "Project recap: before and after",
+    title: "Faster buying decisions",
     description:
-      "See how a more focused message and stronger visuals improved confidence and conversion.",
+      "Shorter pages, stronger proof points, and clearer CTAs help visitors understand the value quickly and move forward with confidence.",
+  },
+  {
+    title: "A stronger brand impression",
+    description:
+      "A polished, modern website makes your business feel established, reliable, and ready for serious conversations.",
   },
 ];
 
 export default function TestimonialsPage() {
   return (
-    <main className="bg-white text-slate-900">
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Testimonials" },
-        ]}
-        className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8"
-      />
+    <main className="bg-[var(--background)] text-[var(--foreground)]">
+      <section className="border-b border-black/5 bg-gradient-to-b from-[var(--secondary)]/10 to-transparent">
+        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Testimonials" },
+            ]}
+          />
+        </div>
+        <div className="mx-auto max-w-7xl px-6 pb-16 pt-6 lg:px-8 lg:pb-24 lg:pt-10">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center rounded-full bg-[var(--primary)]/10 px-3 py-1 text-sm font-medium text-[var(--primary)]">
+              Social proof
+            </span>
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl">
+              Trusted by teams that need results, not just a pretty website.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-black/70">
+              These testimonials reflect what clients value most: clear communication,
+              strong design judgment, and a website that helps them win trust faster.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[var(--primary)]/20 transition hover:-translate-y-0.5 hover:bg-[var(--primary)]/90"
+              >
+                Start your project
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-semibold text-black transition hover:-translate-y-0.5 hover:border-[var(--primary)]/30 hover:text-[var(--primary)]"
+              >
+                View portfolio
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <Hero
-        title="Customer success stories that build confidence"
-        subtitle="See how clear strategy, thoughtful design, and reliable delivery help teams launch with confidence and generate measurable results."
-        ctaLabel="Get Started"
-        ctaHref="/contact"
-        secondaryLabel="View Services"
-        secondaryHref="/services"
-      />
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
+        <SectionHeading
+          eyebrow="Featured quotes"
+          title="What clients say after launch"
+          description="Short, specific feedback from teams that wanted a site that looks credible and converts better."
+        />
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {testimonials.map((testimonial) => (
+            <div key={testimonial.number} className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+              <div className="mb-4 flex items-center gap-1 text-amber-500">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Star key={index} className="h-4 w-4 fill-current" />
+                ))}
+              </div>
+              <TestimonialCard {...testimonial} />
+              <div className="mt-5 border-t border-black/5 pt-5 text-sm text-black/60">
+                Verified client feedback
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
-          <div className="grid gap-8 md:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center md:text-left">
-                <div className="text-3xl font-bold tracking-tight text-slate-900">{stat.value}</div>
-                <div className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</div>
+      <section className="bg-black/[0.02] py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Rating summary"
+            title="A quick snapshot of customer satisfaction"
+            description="Visitors can scan the numbers first, then read the stories behind them."
+          />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {ratingItems.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm"
+              >
+                <p className="text-sm text-black/60">{item.label}</p>
+                <p className="mt-3 text-3xl font-semibold tracking-tight text-[var(--primary)]">
+                  {item.value}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
         <SectionHeading
-          eyebrow="Client feedback"
-          title="What customers say after launch"
-          description="These reviews reflect the outcomes clients care about most: clarity, responsiveness, and business growth."
+          eyebrow="Outcome stories"
+          title="The results clients care about"
+          description="Beyond praise, these are the practical outcomes that make a website worth the investment."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {testimonials.map((item) => (
-            <div key={item.author} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-              <div className="flex items-center gap-1 text-amber-500">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <Star key={index} className="h-4 w-4 fill-current" />
-                ))}
-              </div>
-              <div className="mt-4">
-                <TestimonialCard {...item} />
-              </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {outcomes.map((item) => (
+            <div
+              key={item.title}
+              className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm"
+            >
+              <h2 className="text-xl font-semibold">{item.title}</h2>
+              <p className="mt-3 leading-7 text-black/70">{item.description}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Case studies"
-          title="Deeper proof of what’s possible"
-          description="A closer look at the challenge, the solution, and the measurable outcomes delivered for real clients."
+      <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-8 lg:pb-24">
+        <CTABanner
+          headline="Ready to create a site people trust?"
+          description="If you want stronger messaging, better design, and a smoother path to conversion, we’d love to help."
+          buttonLabel="Book a consultation"
+          buttonHref="/contact"
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          {caseStudies.map((project) => (
-            <div key={project.title} className="rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8 shadow-sm">
-              <div className="inline-flex rounded-full bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700">
-                {project.tag}
-              </div>
-              <h3 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">{project.title}</h3>
-              <p className="mt-4 text-base leading-7 text-slate-600">{project.description}</p>
-              <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-medium text-emerald-800">
-                Outcome: {project.outcome}
-              </div>
-              <div className="mt-6">
-                <Link href={project.href} className="inline-flex items-center gap-2 font-semibold text-slate-900 transition hover:text-slate-600">
-                  Learn more
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
-
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Video testimonials"
-          title="Hear directly from the people we’ve helped"
-          description="Short interviews and project recaps add another layer of trust and show the experience behind the results."
-        />
-        <div className="mt-10 grid gap-8 lg:grid-cols-2">
-          {videoItems.map((video) => (
-            <div key={video.title} className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">
-              <VideoEmbed
-                src={video.src}
-                title={video.title}
-                description={video.description}
-                className="overflow-hidden rounded-2xl"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-slate-200 bg-slate-900 p-8 text-white shadow-xl sm:p-10">
-          <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300">Rating summary</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Trusted by teams that value clarity and results</h2>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
-                Our clients consistently highlight communication, quality, and measurable outcomes. If you want a partner who keeps projects moving and makes the next step obvious, we’d love to talk.
-              </p>
-            </div>
-            <div className="rounded-2xl bg-white/10 p-6">
-              <div className="flex items-center gap-2 text-amber-400">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <Star key={index} className="h-5 w-5 fill-current" />
-                ))}
-              </div>
-              <div className="mt-3 text-4xl font-bold">4.9/5</div>
-              <p className="mt-2 text-sm text-slate-300">Based on verified client feedback across strategy, design, and launch projects.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <CTABanner
-        headline="Ready to create your own success story?"
-        description="Book a call to discuss your goals, timeline, and the results you want to achieve."
-        buttonLabel="Book a Call"
-        buttonHref="/contact"
-      />
     </main>
   );
 }

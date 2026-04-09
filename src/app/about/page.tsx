@@ -1,145 +1,154 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Learn more about about",
+  title: "We build websites that help serious businesses look the part and win the right clients.",
+  description: "Learn more about we build websites that help serious businesses look the part and win the right clients.",
 };
 
 import Link from "next/link";
-import { Award, Compass, HeartHandshake, Lightbulb, Users, Target } from "lucide-react";
-import { Hero } from "@/components/Hero";
-import { SectionHeading } from "@/components/SectionHeading";
+
+import { Button } from "@/components/Button";
 import { CTABanner } from "@/components/CTABanner";
-import { FeatureCard } from "@/components/FeatureCard";
+import { SectionHeading } from "@/components/SectionHeading";
+import { TeamMemberCard } from "@/components/TeamMemberCard";
+
+const values = [
+  {
+    icon: "◎",
+    title: "Clarity over clutter",
+    description:
+      "We make complex offers easy to understand so visitors can quickly see what you do and why it matters.",
+  },
+  {
+    icon: "◆",
+    title: "Craft with purpose",
+    description:
+      "Every layout choice, line of copy, and interaction is designed to support trust and conversion.",
+  },
+  {
+    icon: "◌",
+    title: "Partnership first",
+    description:
+      "We work like an extension of your team, keeping communication direct, thoughtful, and dependable.",
+  },
+];
+
+const team = [
+  {
+    icon: "A",
+    number: "01",
+    title: "Ava Chen — Founder & Strategy Lead",
+    description:
+      "Ava helps teams sharpen their message, define the right offer, and turn brand clarity into measurable growth.",
+  },
+  {
+    icon: "M",
+    number: "02",
+    title: "Marcus Reed — Design Director",
+    description:
+      "Marcus shapes polished, modern interfaces that feel premium while staying easy to navigate on every device.",
+  },
+  {
+    icon: "S",
+    number: "03",
+    title: "Sofia Patel — Content Lead",
+    description:
+      "Sofia writes concise, benefit-led copy that speaks to customer pain points and supports stronger conversion.",
+  },
+  {
+    icon: "J",
+    number: "04",
+    title: "Jordan Kim — Frontend Engineer",
+    description:
+      "Jordan builds fast, accessible experiences with careful attention to performance, responsiveness, and detail.",
+  },
+];
+
+const milestones = [
+  { year: "2019", title: "Founded with a simple idea", description: "Help growing businesses present themselves with more clarity and confidence online." },
+  { year: "2021", title: "Expanded into full website systems", description: "Moved from one-off pages to complete digital experiences built for trust and conversion." },
+  { year: "2023", title: "Supported 100+ launches", description: "Delivered websites for service firms, startups, and teams that needed a stronger first impression." },
+  { year: "2025", title: "Focused on measurable outcomes", description: "Continued refining our process around speed, clarity, and business impact." },
+];
 
 export default function AboutPage() {
-  const values = [
-    {
-      icon: <Compass className="h-5 w-5" />,
-      title: "Clarity first",
-      description:
-        "We make complex ideas easy to understand so your audience can quickly see the value in what you offer.",
-    },
-    {
-      icon: <HeartHandshake className="h-5 w-5" />,
-      title: "Partnership over transactions",
-      description:
-        "We work like an extension of your team, with honest communication and practical recommendations at every step.",
-    },
-    {
-      icon: <Target className="h-5 w-5" />,
-      title: "Outcomes that matter",
-      description:
-        "Every decision is tied to a business goal, whether that means more qualified leads, stronger trust, or better retention.",
-    },
-    {
-      icon: <Lightbulb className="h-5 w-5" />,
-      title: "Thoughtful problem solving",
-      description:
-        "We look for the simplest effective solution and refine the details that make the biggest difference.",
-    },
-  ];
-
-  const team = [
-    {
-      name: "Avery Brooks",
-      role: "Founder & Strategy Lead",
-      bio: "Avery helps teams sharpen their message, define priorities, and build websites that support real business goals.",
-    },
-    {
-      name: "Nina Shah",
-      role: "Design Director",
-      bio: "Nina creates polished, user-friendly interfaces that feel modern, credible, and easy to navigate on any device.",
-    },
-    {
-      name: "Marcus Lee",
-      role: "Lead Developer",
-      bio: "Marcus turns designs into fast, accessible, and reliable experiences with careful attention to performance.",
-    },
-    {
-      name: "Elena Torres",
-      role: "Client Success Manager",
-      bio: "Elena keeps projects organized, communication clear, and timelines on track from kickoff to launch.",
-    },
-  ];
-
-  const timeline = [
-    {
-      year: "2018",
-      title: "Started with a simple goal",
-      description: "We began by helping small businesses replace confusing websites with clear, credible ones that convert better.",
-    },
-    {
-      year: "2020",
-      title: "Expanded our process",
-      description: "As demand grew, we refined our strategy, design, and delivery workflow to support more complex projects.",
-    },
-    {
-      year: "2023",
-      title: "Built for measurable outcomes",
-      description: "We focused on proof points, conversion structure, and search-friendly content to help clients see stronger results.",
-    },
-    {
-      year: "Today",
-      title: "A trusted partner for growing teams",
-      description: "We continue to help organizations launch websites and digital experiences that are clear, polished, and effective.",
-    },
-  ];
-
   return (
-    <main className="bg-white text-slate-900">
-      <Hero
-        title="About our company"
-        subtitle="We help businesses present themselves with clarity and confidence. Our work combines strategic thinking, thoughtful design, and dependable execution so your website feels credible from the first click."
-        ctaLabel="Book a Call"
-        ctaHref="/contact"
-        secondaryLabel="Explore Services"
-        secondaryHref="/services"
-      />
+    <main>
+      <section className="bg-[linear-gradient(180deg,_rgba(15,23,42,0.96)_0%,_rgba(15,23,42,0.88)_100%)] text-white">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">About our company</p>
+          <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
+            We build websites that help serious businesses look the part and win the right clients.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+            Our work starts with a simple belief: a website should make your value obvious, your credibility visible,
+            and your next step easy. We combine strategy, design, and development to create a polished online presence
+            that supports growth.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button asChild>
+              <Link href="/contact">Talk to our team</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/services">Explore services</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-start">
+        <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
             <SectionHeading
               eyebrow="Our story"
-              title="Founded to make professional websites easier to trust and easier to use"
-              description="We saw too many businesses with strong services and weak websites. The message was buried, the proof was hard to find, and the next step was unclear. We built our company to solve that problem with a process that is practical, collaborative, and focused on outcomes."
+              title="Founded to solve a familiar problem."
+              description="Too many strong businesses lose opportunities because their website feels generic, confusing, or outdated. We started to change that."
             />
-            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6 text-sm leading-6 text-slate-600">
+            <div className="mt-8 space-y-4 text-slate-600">
               <p>
-                From the beginning, our goal has been simple: help clients show up online with the same level of professionalism they bring to their work. That means better structure, better copy, and better experiences for the people they want to reach.
+                We began by helping founders and service teams who were great at what they did but struggled to explain it
+                clearly online. Their websites had the basics, but not the structure, messaging, or visual polish needed to
+                build trust quickly.
+              </p>
+              <p>
+                Over time, that work evolved into a focused process for creating websites that are both beautiful and
+                effective. Today, we help clients launch with confidence, communicate value faster, and create a better
+                experience for every visitor.
               </p>
             </div>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <h3 className="text-lg font-semibold text-slate-900">Mission</h3>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              To help organizations communicate clearly, build trust quickly, and turn more visitors into qualified opportunities.
-            </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+            <h2 className="text-2xl font-semibold text-slate-900">What we believe</h2>
+            <div className="mt-6 grid gap-4">
               {values.map((value) => (
-                <FeatureCard key={value.title} {...value} />
+                <div key={value.title} className="rounded-2xl bg-white p-5 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-secondary)] text-lg font-semibold text-white">
+                      {value.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-slate-900">{value.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">{value.description}</p>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-slate-50">
+      <section className="bg-slate-50">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <SectionHeading
-            eyebrow="Milestones"
-            title="A steady evolution shaped by client results"
-            description="Our work has grown through referrals, repeat partnerships, and a consistent focus on delivering useful, measurable outcomes."
+            eyebrow="The team"
+            title="Experienced people who care about the details."
+            description="We bring together strategy, design, content, and engineering so the final result feels cohesive from first impression to final click."
           />
-          <div className="mt-10 grid gap-6 lg:grid-cols-4">
-            {timeline.map((item) => (
-              <div key={item.year} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <div className="text-sm font-semibold text-primary-600">{item.year}</div>
-                <h3 className="mt-3 text-lg font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
-              </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {team.map((member) => (
+              <TeamMemberCard key={member.number} {...member} />
             ))}
           </div>
         </div>
@@ -147,59 +156,29 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <SectionHeading
-          eyebrow="Team"
-          title="A small, experienced team that stays close to the work"
-          description="You get direct communication, thoughtful recommendations, and people who care about the details that affect your results."
+          eyebrow="Milestones"
+          title="A steady track record of growth."
+          description="We measure progress by the quality of the work, the strength of the relationships, and the results our clients see after launch."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {team.map((member) => (
-            <div key={member.name} className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-              <div className="aspect-[4/3] bg-gradient-to-br from-slate-200 via-slate-100 to-slate-300" />
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-slate-900">{member.name}</h3>
-                <p className="mt-1 text-sm font-medium text-primary-600">{member.role}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{member.bio}</p>
-              </div>
+        <div className="mt-12 grid gap-6 lg:grid-cols-4">
+          {milestones.map((milestone) => (
+            <div key={milestone.year} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <p className="text-sm font-semibold text-[var(--color-primary)]">{milestone.year}</p>
+              <h3 className="mt-3 text-lg font-semibold text-slate-900">{milestone.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{milestone.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
-        <SectionHeading
-          eyebrow="Why clients choose us"
-          title="Credibility, consistency, and a process built around your goals"
-          description="We combine strategic thinking with practical execution so you can move forward with confidence."
+        <CTABanner
+          headline="Want to work with a team that values clarity and craft?"
+          description="We’d love to learn about your goals and show you how a better website can support them."
+          buttonLabel="Contact us"
+          buttonHref="/contact"
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {[
-            {
-              icon: <Award className="h-5 w-5" />,
-              title: "Proven delivery",
-              description: "Projects are scoped clearly, managed carefully, and delivered with attention to quality.",
-            },
-            {
-              icon: <Users className="h-5 w-5" />,
-              title: "Human-centered collaboration",
-              description: "We listen closely, explain decisions plainly, and keep the process easy to follow.",
-            },
-            {
-              icon: <Target className="h-5 w-5" />,
-              title: "Business-focused thinking",
-              description: "Every recommendation is tied to a practical outcome, not just visual polish.",
-            },
-          ].map((item) => (
-            <FeatureCard key={item.title} {...item} />
-          ))}
-        </div>
       </section>
-
-      <CTABanner
-        headline="Want to work with a team that values clarity and results?"
-        description="Let’s talk about your goals and see how we can help you move forward."
-        buttonLabel="Get Started"
-        buttonHref="/contact"
-      />
     </main>
   );
 }

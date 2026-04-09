@@ -1,57 +1,133 @@
 import Link from "next/link";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+
+const footerLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Features", href: "/features" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Blog", href: "/blog" },
+  { label: "Careers", href: "/careers" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Contact", href: "/contact" }
+];
+
+const socialLinks = [
+  { label: "LinkedIn", href: "https://www.linkedin.com" },
+  { label: "X", href: "https://x.com" },
+  { label: "Instagram", href: "https://www.instagram.com" }
+];
 
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-lg" />
-              <span className="text-white text-xl font-bold">TEST CDMBR Launch Site</span>
-            </div>
-            <p className="text-sm leading-relaxed mb-6">Generate qualified leads and present agency credibility with clear service positioning and measurable proof.</p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--color-primary)] transition-colors" aria-label="Twitter">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[var(--color-primary)] transition-colors" aria-label="LinkedIn">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              </a>
+    <footer className="border-t border-slate-200 bg-slate-950 text-slate-200">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Link href="/" className="inline-flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-violet-500 text-sm font-bold text-white">
+                P
+              </span>
+              <span className="text-lg font-semibold text-white">Professional website</span>
+            </Link>
+            <p className="mt-4 max-w-md text-sm leading-6 text-slate-400">
+              A polished digital presence for teams that want to build trust faster, explain
+              value clearly, and turn interest into qualified conversations.
+            </p>
+
+            <div className="mt-6 space-y-3 text-sm text-slate-300">
+              <div className="flex items-center gap-3">
+                <MapPin className="h-4 w-4 text-blue-400" />
+                <span>Remote-first team serving clients worldwide</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="h-4 w-4 text-blue-400" />
+                <a href="tel:+15551234567" className="transition hover:text-white">
+                  +1 (555) 123-4567
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-blue-400" />
+                <a href="mailto:hello@professionalwebsite.com" className="transition hover:text-white">
+                  hello@professionalwebsite.com
+                </a>
+              </div>
             </div>
           </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Pages</h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/services" className="hover:text-white transition-colors">Services</Link></li>
-              <li><Link href="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+
+          <div className="lg:col-span-3">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Explore
+            </h2>
+            <ul className="mt-5 grid gap-3">
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-slate-300 transition hover:text-white">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+
+          <div className="lg:col-span-2">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Social
+            </h2>
+            <ul className="mt-5 grid gap-3">
+              {socialLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-slate-300 transition hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Stay Updated</h4>
-            <p className="text-sm mb-4">Subscribe to our newsletter for the latest updates.</p>
-            <form className="flex gap-2">
-              <input type="email" placeholder="your@email.com" className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[var(--color-primary)]" />
-              <button type="submit" className="px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
-                Join
+
+          <div className="lg:col-span-3">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Newsletter
+            </h2>
+            <p className="mt-5 text-sm leading-6 text-slate-400">
+              Get practical insights on positioning, conversion, and website strategy—no fluff.
+            </p>
+
+            <form className="mt-5 space-y-3">
+              <label htmlFor="footer-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="footer-email"
+                type="email"
+                placeholder="Enter your email"
+                className="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white placeholder:text-slate-500 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+              />
+              <button
+                type="submit"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+              >
+                Subscribe
+                <ArrowRight className="h-4 w-4" />
               </button>
             </form>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p>&copy; {new Date().getFullYear()} TEST CDMBR Launch Site. All rights reserved.</p>
-          <p className="text-gray-500">Built with care for our customers.</p>
+
+        <div className="mt-14 flex flex-col gap-4 border-t border-slate-800 pt-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} Professional website. All rights reserved.</p>
+          <p>Built for clarity, credibility, and conversion.</p>
         </div>
       </div>
     </footer>
